@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Bite</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            font-family: 'Poppins', sans-serif;
+            background-color: #0B1315;
+        }
+
+        .background-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+        }
+
+        .background-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        }
+
+        .gold-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .gold-lines::before,
+        .gold-lines::after {
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            background-color: #8C7250;
+            top: 0;
+        }
+
+        .gold-lines::before {
+            left: 80px;
+        }
+
+        .gold-lines::after {
+            right: 80px;
+        }
+
+        .gold-lines .top-line {
+            position: absolute;
+            height: 1px;
+            width: 100%;
+            background-color: #8C7250;
+            top: 80px;
+            left: 0;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 3;
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0.6;
+        }
+
+        .arrow:hover {
+            transform: translateY(-50%) scale(1.1);
+            opacity: 1;
+        }
+
+        .arrow svg {
+            width: 40px;
+            height: 40px;
+            fill: #CB9953;
+            transition: fill 0.3s ease;
+            stroke-width: 2; /* سمك السهم */
+        }
+
+        .arrow:hover svg {
+            fill: #ffffff;
+        }
+
+        .arrow-left {
+            left: 20px;
+        }
+
+        .arrow-right {
+            right: 20px;
+        }
+
+        .dots-container {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 4;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            margin: 0 6px;
+            border-radius: 50%;
+            background-color: #8C7250;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            opacity: 0.8;
+        }
+
+        .dot.active {
+            background-color: #CB9953;
+            width: 14px;
+            height: 14px;
+            opacity: 1;
+        }
+
+        .corner-image {
+            position: absolute;
+            top: 13px;
+            left: 3%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 50px;
+            background-image: url('../image/6.png');
+            background-size: cover;
+            background-position: center;
+            z-index: 5;
+        }
+
+        h1 {
+            font-size: 60px;
+            color: white;
+        }
+
+        p {
+            font-size: 24px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="background-container">
+    <img id="bg1" src="../image/3.jpg" alt="Background 1">
+</div>
+
+<div class="gold-lines">
+    <div class="top-line"></div>
+</div>
+
+
+
+<div class="corner-image"></div>
+
+
+<div class="arrow arrow-left" onclick="changeImage(-1)">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" stroke-width="2"/>
+    </svg>
+</div>
+
+
+<div class="arrow arrow-right" onclick="changeImage(1)">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" stroke-width="1"/>
+    </svg>
+</div>
+
+<div class="dots-container">
+    <div class="dot" onclick="setImage(0)"></div>
+    <div class="dot" onclick="setImage(1)"></div>
+    <div class="dot" onclick="setImage(2)"></div>
+</div>
+
+<script>
+    const bgImage = document.getElementById('bg1');
+    const dots = document.querySelectorAll('.dot');
+
+    const images = [
+        '../image/4.jpg',
+        '../image/5.jpg',
+        '../image/3.jpg'
+    ];
+
+    let currentImageIndex = 0;
+
+    function changeImage(direction) {
+        currentImageIndex = (currentImageIndex + direction + images.length) % images.length;
+        bgImage.src = images[currentImageIndex];
+        updateDots();
+    }
+
+    function setImage(index) {
+        currentImageIndex = index;
+        bgImage.src = images[currentImageIndex];
+        updateDots();
+    }
+
+    function updateDots() {
+        dots.forEach((dot, index) => {
+            if (index === currentImageIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+
+    // تغيير تلقائي
+    setInterval(() => {
+        changeImage(1);
+    }, 5000);
+
+    // تفعيل النقاط
+    updateDots();
+</script>
+
+</body>
+</html>
