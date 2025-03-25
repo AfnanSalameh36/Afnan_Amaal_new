@@ -224,6 +224,7 @@ p {
     bottom:5px; /* الخط الثاني تحته مباشرة */
 }
 
+
 .navbar a:hover::before,
 .navbar a:hover::after {
     width: 100%; /* توسيع الخطين معًا عند الـ hover */
