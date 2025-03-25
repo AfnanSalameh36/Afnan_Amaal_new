@@ -39,7 +39,15 @@ body, html {
     pointer-events: none;
 }
 
-.gold-lines::before,
+.gold-lines::before{
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background-color: #8C7250;
+    top: 2px;
+    }
+
 .gold-lines::after {
     content: "";
     position: absolute;
@@ -184,7 +192,6 @@ p {
     transform: translateX(-50%);
     z-index: 1000;
 }
-
 .navbar a {
     display: inline-block;
     padding: 14px 20px;
@@ -202,29 +209,26 @@ p {
     content: "";
     position: absolute;
     width: 0;
-    height: 2px;
+    height: 1px;
     background-color: #CB9953;
-    transition: all 0.3s ease; /* التأثير السلس للخطين */
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
 }
 
 .navbar a::before {
-    left: 0;
-    bottom: 0;
+    bottom:1px ; /* الخط الأول */
 }
 
 .navbar a::after {
-    right: 0;
-    bottom: 0;
+    bottom:5px; /* الخط الثاني تحته مباشرة */
 }
 
-.navbar a:hover::before {
-    width: 50%; /* زيادة العرض للخط الأول */
-}
-
+.navbar a:hover::before,
 .navbar a:hover::after {
-    width: 50%; /* زيادة العرض للخط الثاني */
-    left: 50%; /* تحريك الخط الثاني إلى الجهة الأخرى */
+    width: 100%; /* توسيع الخطين معًا عند الـ hover */
 }
+
 
 body {
     margin: 0;
