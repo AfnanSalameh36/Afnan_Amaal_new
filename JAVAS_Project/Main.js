@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         updateBackground();
     }
 
+
     function setImage(index) {
         currentIndex = index;
         updateBackground();
