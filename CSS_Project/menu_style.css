@@ -1,0 +1,40 @@
+body{
+    background-color: #0B1315;
+}
+
+.gold-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.gold-lines::before,
+.gold-lines::after {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background-color: #8C7250;
+    top: 0;
+}
+
+.gold-lines::before {
+    left: 80px;
+}
+
+.gold-lines::after {
+    right: 200px;
+}
+
+.gold-lines .top-line {
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background-color: #8C7250;
+    top: 80px;
+    left: 0;
+}
