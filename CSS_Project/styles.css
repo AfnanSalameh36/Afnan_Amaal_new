@@ -4,7 +4,6 @@
     box-sizing: border-box;
 }
 
-
 body, html {
     height: 100%;
     width: 100%;
@@ -101,6 +100,7 @@ body, html {
 .arrow-right {
     right: 20px;
 }
+
 .numbers-container {
     display: flex;
     justify-content: center;
@@ -114,7 +114,7 @@ body, html {
 }
 
 .num {
-    font-size:10px;
+    font-size: 10px;
     font-weight: bold;
     cursor: pointer;
     position: relative;
@@ -134,7 +134,7 @@ body, html {
     position: absolute;
     left: 50%;
     bottom: -5px;
-    width:15px;
+    width: 15px;
     height: 1px;
     background-color: #CB9953;
     transform: translateX(-50%);
@@ -150,10 +150,6 @@ body, html {
     background-color: #CB9953;
     transform: translateX(-50%);
 }
-
-
-
-
 
 .corner-image {
     position: absolute;
@@ -176,4 +172,61 @@ h1 {
 p {
     font-size: 24px;
     color: white;
+}
+
+.navbar {
+    overflow: hidden;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.navbar a {
+    display: inline-block;
+    padding: 14px 20px;
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    font-family: 'Quicksand', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.navbar a::before,
+.navbar a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #CB9953;
+    transition: all 0.3s ease; /* التأثير السلس للخطين */
+}
+
+.navbar a::before {
+    left: 0;
+    bottom: 0;
+}
+
+.navbar a::after {
+    right: 0;
+    bottom: 0;
+}
+
+.navbar a:hover::before {
+    width: 50%; /* زيادة العرض للخط الأول */
+}
+
+.navbar a:hover::after {
+    width: 50%; /* زيادة العرض للخط الثاني */
+    left: 50%; /* تحريك الخط الثاني إلى الجهة الأخرى */
+}
+
+body {
+    margin: 0;
+    padding-top: 60px; /* لتجنب تغطية النافبار للمحتوى */
 }
