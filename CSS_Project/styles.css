@@ -1,0 +1,55 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: #24252A;
+}
+
+li,a,button,div.logo{
+    font-family: Calibri;
+    font-weight: 500;
+    font-size: 17px;
+    color:#edf0f1;
+    text-decoration: none;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+}
+
+.logo{
+    cursor: pointer;
+}
+
+.nav-links{
+    list-style: none;
+}
+
+.nav-links li{
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.nav-links li a:hover{
+    border-bottom: double darkred 3.5px;
+}
+
+ul li ul.dropdown li {
+    display: block;
+}
+
+ul li ul.dropdown{
+    /*width:100%;*/
+    position: absolute;
+    padding: 7px;
+    /*z-index: 999;*/
+    display: none;
+}
+
+ul li:hover ul.dropdown{
+ display: block;
+}
+
