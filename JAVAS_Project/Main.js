@@ -1,7 +1,8 @@
 let currentIndex = 0;
-const images = ["../image/3.jpg", "../image/4.jpg", "../image/5.jpg"]; // تأكدي من وضع المسارات الصحيحة
+const images = ["../image/3.jpg", "../image/4.jpg", "../image/8.png"]; // تأكدي من وضع المسارات الصحيحة
 const bgImage = document.getElementById("bg1");
 const numbers = document.querySelectorAll(".num");
+
 
 function changeImage(direction) {
     currentIndex += direction;
@@ -17,6 +18,8 @@ function setImage(index) {
 
 function updateBackground() {
     bgImage.src = images[currentIndex];
+    bgImage.style.width = "100%"; // تعديل العرض
+    bgImage.style.height = "700px";
     numbers.forEach((num, i) => {
         num.classList.toggle("selected", i === currentIndex);
     });
