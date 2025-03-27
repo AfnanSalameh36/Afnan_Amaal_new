@@ -235,3 +235,59 @@ body {
     margin: 0;
     padding-top: 60px; /* لتجنب تغطية النافبار للمحتوى */
 }
+
+/*========================================================*/
+@font-face {
+    font-family: 'Heebo'; /* اسم الخط */
+    src: url(https://fonts.gstatic.com/s/heebo/v26/NGS6v5_NC0k9P9H0TbFzsQ.woff2) format('woff2'); /* مكان الخط */
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Heebo', sans-serif; /* استخدام الخط في الموقع */
+}
+
+/*========================================================*/
+.restaurant-name {
+    position: absolute;
+    font-size:79px;
+
+        /*font-family: 'Playfair Display', serif;*/
+
+
+        font-family: 'Great Vibes', cursive;
+    /*font-family: 'Dancing Script', cursive;*/
+    font-weight: bold;
+    color: #CB9953;
+    /*text-shadow: 0px 0px 15px rgba(203, 153, 83, 0.8);*/
+    opacity: 0;
+    transition: all 0.6s ease-in-out;
+    text-align: center;
+    width: 100%;
+    z-index: 10; /* تأكد من أن النص في المقدمة */
+
+}
+
+/* عند الظهور */
+.show-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* عند الاختفاء */
+.hide-text {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+
+
+
+
+
+
+
+
+
+
