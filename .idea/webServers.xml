@@ -2,7 +2,7 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="7a3c68fe-195c-43d0-9c8e-5743f6662cbb" name="XamppServerr" url="http://localhost/wb2025c\Afnan_Amaal_new">
+      <webServer id="894ac3e0-503f-4817-b014-52e651375197" name="localhost" url="http://localhost/wb2025c/Afnan_Amaal_new">
         <fileTransfer accessType="LOCAL" port="0" />
       </webServer>
     </option>
