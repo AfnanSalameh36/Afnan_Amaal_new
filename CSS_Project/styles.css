@@ -277,24 +277,27 @@ body {
 
 .page-1 .line-1 {
     font-family: 'Great Vibes', cursive;
-    font-size: 60px;
+    font-size:100px;
     color: #CB9953;
 }
 .page-1 .line-2 {
-    font-family: 'Quicksand', sans-serif;
-    font-size: 30px;
+    font-family: "Alumni Sans Pinstripe", sans-serif;
+    font-weight: 100;
+    font-size: 50px;
     color: #fff;
+    padding: 20px;
 }
 .page-1 .line-3 {
-    font-family: 'Quicksand', sans-serif;
-    font-size: 26px;
+    font-family: "Alumni Sans Pinstripe", sans-serif;
     color: #fff;
+    font-size: 50px;
+    font-weight: 30;
 }
 
 .page-2 .line-4 {
     font-family: 'Arial', sans-serif;
     font-size: 40px;
-    color: #FF6347;
+    color: #CB9953;
 }
 .page-2 .line-5 {
     font-family: 'Verdana', sans-serif;
@@ -310,7 +313,7 @@ body {
 .page-3 .line-7 {
     font-family: 'Georgia', serif;
     font-size: 50px;
-    color: #32CD32;
+    color: #CB9953;
 }
 .page-3 .line-8 {
     font-family: 'Tahoma', sans-serif;

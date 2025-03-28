@@ -1,7 +1,7 @@
 let currentIndex = 0;
 const images = ["../image/3.jpg", "../image/4.jpg", "../image/8.png"];
 const texts = [
-    ["Golden Bite", "amaaal ferasssss", "afnan salamehhhh"], // النصوص للخلفية 1
+    ["Golden Bite", "Where Every Meal is a Masterpiece", "Where Flavor Meets Passion"], // النصوص للخلفية 1
     ["Welcome to Golden Restaurant", "The best food in town", "Enjoy your meal"], // النصوص للخلفية 2
     ["Fresh Ingredients", "Organic and Tasty", "Healthy Food, Happy Life"] // النصوص للخلفية 3
 ];
