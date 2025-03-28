@@ -1,5 +1,8 @@
 body{
+    font-family: 'Poppins', sans-serif;
     background-color: #0B1315;
+    margin: 0;
+    padding: 0;
 }
 
 .gold-lines {
@@ -15,7 +18,7 @@ body{
 .gold-lines::before,
 .gold-lines::after {
     content: "";
-    position: absolute;
+    position: fixed;
     width: 1px;
     height: 100%;
     background-color: #8C7250;
@@ -27,7 +30,7 @@ body{
 }
 
 .gold-lines::after {
-    right: 200px;
+    right: 80px;
 }
 
 .gold-lines .top-line {
@@ -38,3 +41,109 @@ body{
     top: 80px;
     left: 0;
 }
+
+div.backgroundForOurMenu , div.background1 , div.background2{
+    background-image: url("../image2/background.jpg");
+    background-size: cover; /* Ensures the image covers the full div */
+    background-position: center; /* Centers the image */
+    height: 530PX; /* Set a visible height */
+    width: 100%; /* Full width */
+}
+
+div.background1{
+    background-image: url("../image2/1.jpg");
+    margin-top: 150px;
+}
+
+div.background2{
+    background-image: url("../image2/2.jpg");
+    margin-top: 150px;
+}
+
+p.ourMenuStatement{
+    position:absolute;
+    top:169px;
+    left:600px;
+    font-family: Cormorant, serif;
+    color: #8C7250;
+    font-size: 50px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.MainCourses_statement, .desserts_statement, .drinks_statement{
+    text-align: center;
+    color: #8C7250;
+    position: relative;
+    top: 79px;
+    font-size: 40px;
+    letter-spacing: 5px;
+    margin-top: 80px;
+    margin-bottom: 150px;
+    text-transform: uppercase;
+}
+
+.container_for_mainCourses , .container_for_desserts , .container_for_drinks{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+}
+
+img{
+    width: 120px;
+    height: 120px;
+    float: left;
+    border-radius:12px ;
+    margin-right: 20px;
+    margin-bottom: 30px;
+    margin-left: 50px;
+}
+
+h3.name{
+    color:#8C7250;
+    font-size: 22px;
+    display: flex;
+    justify-content: space-between; /* يوزع العناصر على السطر */
+    align-items: center;
+    position: relative;
+    padding-right: 40px;
+}
+
+h3.name::after{
+    content:"";
+    position: absolute;
+    top:50%;
+    left:26%;
+    width:13vw;
+    height: 1px;
+    background-color: #8C7250;
+    transform: translatey(-50%);
+}
+
+h3.name::before{
+    content:"";
+    position: absolute;
+    top:71%;
+    left:26%;
+    width:13vw;
+    height: 1px;
+    background-color: #8C7250;
+    transform: translatey(-50%);
+}
+.price{
+    color:#8C7250;
+    white-space: nowrap;
+}
+
+p.description{
+    color: #ffffff;
+    font-size: 17px;
+}
+
+
+
+
+
+
+
