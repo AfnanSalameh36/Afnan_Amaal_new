@@ -538,7 +538,6 @@ body {
     }
 }
 
-/* تنسيقات للأجهزة اللوحية */
 @media (min-width: 768px) and (max-width: 1023px) {
     .restaurant-name {
         font-size: 200px;
