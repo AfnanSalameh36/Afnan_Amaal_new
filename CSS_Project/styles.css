@@ -39,14 +39,14 @@ body, html {
     pointer-events: none;
 }
 
-.gold-lines::before{
+.gold-lines::before {
     content: "";
     position: absolute;
     width: 1px;
     height: 100%;
     background-color: #8C7250;
     top: 2px;
-    }
+}
 
 .gold-lines::after {
     content: "";
@@ -94,7 +94,7 @@ body, html {
     height: 40px;
     fill: #CB9953;
     transition: fill 0.3s ease;
-    stroke-width: 2; /* سمك السهم */
+    stroke-width: 2;
 }
 
 .arrow:hover svg {
@@ -133,7 +133,7 @@ body, html {
 
 .num.selected {
     color: #CB9953;
-    transform: translateY(-5px); /* تحريك الرقم للأعلى */
+    transform: translateY(-5px);
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
@@ -192,6 +192,7 @@ p {
     transform: translateX(-50%);
     z-index: 1000;
 }
+
 .navbar a {
     display: inline-block;
     padding: 14px 20px;
@@ -217,38 +218,33 @@ p {
 }
 
 .navbar a::before {
-    bottom:1px ; /* الخط الأول */
+    bottom: 1px;
 }
 
 .navbar a::after {
-    bottom:5px; /* الخط الثاني تحته مباشرة */
+    bottom: 5px;
 }
-
 
 .navbar a:hover::before,
 .navbar a:hover::after {
-    width: 100%; /* توسيع الخطين معًا عند الـ hover */
+    width: 100%;
 }
-
 
 body {
     margin: 0;
-    padding-top: 60px; /* لتجنب تغطية النافبار للمحتوى */
+    padding-top: 60px;
 }
 
-/*========================================================*/
 @font-face {
-    font-family: 'Heebo'; /* اسم الخط */
-    src: url(https://fonts.gstatic.com/s/heebo/v26/NGS6v5_NC0k9P9H0TbFzsQ.woff2) format('woff2'); /* مكان الخط */
+    font-family: 'Heebo';
+    src: url(https://fonts.gstatic.com/s/heebo/v26/NGS6v5_NC0k9P9H0TbFzsQ.woff2) format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 
 body {
-    font-family: 'Heebo', sans-serif; /* استخدام الخط في الموقع */
+    font-family: 'Heebo', sans-serif;
 }
-
-/*========================================================*/
 
 .restaurant-name {
     position: absolute;
@@ -266,7 +262,6 @@ body {
     z-index: 10;
 }
 
-
 .text-line {
     display: block;
     opacity: 1;
@@ -277,9 +272,10 @@ body {
 
 .page-1 .line-1 {
     font-family: 'Great Vibes', cursive;
-    font-size:100px;
+    font-size: 100px;
     color: #CB9953;
 }
+
 .page-1 .line-2 {
     font-family: "Alumni Sans Pinstripe", sans-serif;
     font-weight: 100;
@@ -287,6 +283,7 @@ body {
     color: #fff;
     padding: 20px;
 }
+
 .page-1 .line-3 {
     font-family: "Alumni Sans Pinstripe", sans-serif;
     color: #fff;
@@ -299,11 +296,13 @@ body {
     font-size: 40px;
     color: #CB9953;
 }
+
 .page-2 .line-5 {
     font-family: 'Verdana', sans-serif;
     font-size: 28px;
     color: #FFD700;
 }
+
 .page-2 .line-6 {
     font-family: 'Verdana', sans-serif;
     font-size: 24px;
@@ -315,53 +314,497 @@ body {
     font-size: 50px;
     color: #CB9953;
 }
+
 .page-3 .line-8 {
     font-family: 'Tahoma', sans-serif;
     font-size: 28px;
     color: #FFD700;
 }
+
 .page-3 .line-9 {
     font-family: 'Tahoma', sans-serif;
     font-size: 24px;
     color: #FFD700;
 }
 
-.hide-text .line-1, .hide-text .line-4, .hide-text .line-7 {
+.hide-text .line-1,
+.hide-text .line-4,
+.hide-text .line-7 {
     opacity: 0;
     transform: translateY(100px);
     transition-delay: 0s;
 }
 
-.hide-text .line-2, .hide-text .line-5, .hide-text .line-8 {
+.hide-text .line-2,
+.hide-text .line-5,
+.hide-text .line-8 {
     opacity: 0;
     transform: translateY(100px);
     transition-delay: 0.4s;
 }
 
-.hide-text .line-3, .hide-text .line-6, .hide-text .line-9 {
+.hide-text .line-3,
+.hide-text .line-6,
+.hide-text .line-9 {
     opacity: 0;
     transform: translateY(100px);
     transition-delay: 0.8s;
 }
 
-.show-text .line-1, .show-text .line-4, .show-text .line-7 {
+.show-text .line-1,
+.show-text .line-4,
+.show-text .line-7 {
     opacity: 1;
     transform: translateY(0);
     transition-delay: 0.2s;
 }
 
-.show-text .line-2, .show-text .line-5, .show-text .line-8 {
+.show-text .line-2,
+.show-text .line-5,
+.show-text .line-8 {
     opacity: 1;
     transform: translateY(0);
     transition-delay: 0.4s;
 }
 
-.show-text .line-3, .show-text .line-6, .show-text .line-9 {
+.show-text .line-3,
+.show-text .line-6,
+.show-text .line-9 {
     opacity: 1;
     transform: translateY(0);
     transition-delay: 0.6s;
 }
 
+/* زر القائمة للهواتف */
+.menu-image {
+    position: fixed;
+    top: 40px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    z-index: 1001;
+    cursor: pointer;
+    display: none;
+    border-radius: 50%;
+    border: 1px solid #CB9953;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.menu-image:hover {
+    transform: scale(1.1);
+}
+
+.close-menu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #CB9953;
+    font-size: 24px;
+    cursor: pointer;
+    display: none;
+    z-index: 1002;
+}
+
+/* تنسيقات للهواتف */
+@media (max-width: 767px) {
+    body, html {
+        overflow-x: hidden;
+    }
+
+    .background-container {
+        height: 100vh;
+    }
+
+    .gold-lines::before {
+        left: 20px;
+    }
+
+    .gold-lines::after {
+        right: 20px;
+    }
+
+    .gold-lines .top-line {
+        top: 40px;
+    }
+
+    .arrow {
+        display: none;
+    }
+
+    .numbers-container {
+        bottom: 20px;
+    }
+
+    .corner-image {
+        width: 60px;
+        height: 40px;
+        left: 10%;
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    .menu-image {
+        display: block;
+    }
+
+    /* القائمة الجانبية للهواتف */
+    .navbar.mobile-nav {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 70%;
+        max-width: 300px;
+        height: 100vh;
+        background: rgba(11, 19, 21, 0.98);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    }
+
+    .navbar.mobile-nav.active {
+        transform: translateX(0);
+    }
+
+    .navbar.mobile-nav a {
+        display: block;
+        width: 100%;
+        padding: 15px 0;
+        text-align: center;
+        font-size: 18px;
+        border-bottom: 1px solid rgba(203, 153, 83, 0.2);
+    }
+
+    .navbar.mobile-nav.active .close-menu {
+        display: block;
+    }
+
+    .restaurant-name {
+        font-size: 120px;
+        transform: translate(-50%, 30px);
+    }
+
+    .page-1 .line-1 {
+        font-size: 50px;
+    }
+
+    .page-1 .line-2,
+    .page-1 .line-3 {
+        font-size: 24px;
+        padding: 10px;
+    }
+
+    .page-2 .line-4 {
+        font-size: 28px;
+    }
+
+    .page-2 .line-5,
+    .page-2 .line-6 {
+        font-size: 18px;
+    }
+
+    .page-3 .line-7 {
+        font-size: 30px;
+    }
+
+    .page-3 .line-8,
+    .page-3 .line-9 {
+        font-size: 18px;
+    }
+}
+
+/* تعديلات للهواتف الصغيرة جدًا */
+@media (max-width: 480px) {
+    .restaurant-name {
+        font-size: 80px;
+    }
+
+    .navbar.mobile-nav a {
+        font-size: 16px;
+        padding: 12px 0;
+    }
+
+    .menu-image {
+        width: 35px;
+        height: 35px;
+        top: 35px;
+        right: 15px;
+    }
+}
+
+/* تنسيقات للأجهزة اللوحية */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .restaurant-name {
+        font-size: 200px;
+    }
+
+    .page-1 .line-1 {
+        font-size: 70px;
+    }
+
+    .page-1 .line-2,
+    .page-1 .line-3 {
+        font-size: 35px;
+    }
+
+    .gold-lines::before {
+        left: 40px;
+    }
+
+    .gold-lines::after {
+        right: 40px;
+    }
+    .background-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        transform: scale(1.1); /* تكبير الخلفية قليلاً لضمان ملء الشاشة */
+    }
+}
+
+/* تنسيقات للوضع الأفقي */
+@media (max-width: 767px) and (orientation: landscape) {
+    .navbar.mobile-nav {
+        width: 50%;
+    }
+
+    .menu-image {
+        right: 15px;
+    }
+}
+
+/* لمنع التمرير عند فتح القائمة */
+body.menu-open {
+    overflow: hidden;
+}
 
 
+/* تنسيق أيقونة القائمة */
+.mobile-menu-toggle {
+    position: fixed;
+    top: 40px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 1001;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
 
+.menu-icon {
+    width: 30px;
+    height: 25px;
+}
+
+.line {
+    stroke: #CB9953;
+    stroke-width: 2;
+    transition: all 0.3s ease;
+}
+
+/* تأثيرات الـ Hover */
+.mobile-menu-toggle:hover .line1 {
+    transform: translateY(-2px);
+}
+.mobile-menu-toggle:hover .line2 {
+    transform: translateX(2px);
+}
+.mobile-menu-toggle:hover .line3 {
+    transform: translateX(-2px);
+}
+.mobile-menu-toggle:hover .line4 {
+    transform: translateY(2px);
+}
+
+/* تأثير عند النقر */
+.mobile-menu-toggle.active .line1 {
+    opacity: 0;
+    transform: translateX(-10px);
+}
+.mobile-menu-toggle.active .line2 {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.mobile-menu-toggle.active .line3 {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+.mobile-menu-toggle.active .line4 {
+    opacity: 0;
+    transform: translateX(10px);
+}
+
+/* إظهار الأيقونة فقط على الهاتف */
+@media (max-width:900px) {
+    .mobile-menu-toggle {
+        display: flex;
+    }
+}
+/* أضف هذا الكود في نهاية ملف CSS */
+
+/* تعديلات الخطوط الذهبية للهواتف */
+@media (max-width: 767px) {
+    .gold-lines::before {
+        left: 20px;
+    }
+
+    .gold-lines::after {
+        right: 20px;
+    }
+
+    .gold-lines .top-line {
+        top: 40px;
+    }
+
+    /* تعديل موضع الصورة لتبقى داخل الخطوط */
+    .corner-image {
+        left: 20px; /* نفس موضع الخط العمودي الأيسر */
+        transform: translateX(0);
+        width: 60px;
+        height: 40px;
+        top: 40px; /* نفس موضع الخط الأفقي */
+    }
+
+    /* تعديل زر القائمة ليكون داخل الخطوط */
+    .mobile-menu-toggle {
+        top: 40px; /* نفس موضع الخط الأفقي */
+        right: 20px; /* نفس موضع الخط العمودي الأيمن */
+    }
+}
+
+/* تعديلات إضافية للهواتف الصغيرة جدًا */
+@media (max-width: 480px) {
+    .gold-lines::before {
+        left: 15px;
+    }
+
+    .gold-lines::after {
+        right: 15px;
+    }
+
+    .gold-lines .top-line {
+        top: 35px;
+    }
+
+    .corner-image {
+        left: 15px;
+        top: 35px;
+        width: 50px;
+        height: 35px;
+    }
+
+    .mobile-menu-toggle {
+        top: 35px;
+        right: 15px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .menu-icon {
+        width: 25px;
+        height: 20px;
+    }
+}
+
+/* تعديلات الخطوط الذهبية للهواتف */
+@media (max-width: 767px) {
+    .gold-lines::before {
+        left: 15px; /* تباعد أكثر عن الحافة اليسرى */
+    }
+
+    .gold-lines::after {
+        right: 15px; /* تباعد أكثر عن الحافة اليمينة */
+    }
+
+    .gold-lines .top-line {
+        top: 40px;
+    }
+
+    /* تعديل موضع الصورة بين الخطين */
+    .corner-image {
+        left: calc(15px + 10px); /* 15px موضع الخط + 10px فراغ */
+        top: 40px; /* نفس موضع الخط الأفقي */
+        transform: translateX(0);
+        width: 50px;
+        height: 35px;
+    }
+
+    /* تعديل زر القائمة بين الخطين */
+    .mobile-menu-toggle {
+        top: 40px; /* نفس موضع الخط الأفقي */
+        right: calc(15px + 10px); /* 15px موضع الخط + 10px فراغ */
+        width: 35px;
+        height: 35px;
+    }
+
+    .menu-icon {
+        width: 25px;
+        height: 20px;
+    }
+}
+
+/* تعديلات إضافية للهواتف الصغيرة جدًا */
+/* تعديلات الهاتف الرئيسية */
+@media (max-width: 767px) {
+    /* إخفاء الخطوط الجانبية */
+    .gold-lines::before,
+    .gold-lines::after {
+
+    }
+
+    /* تعديل موضع الصورة */
+    .corner-image {
+        left: 20px; /* على اليسار */
+        top: 15px; /* تحت الخط العلوي */
+        transform: translateX(0);
+        width: 60px;
+        height: 40px;
+    }
+
+    /* تعديل موضع زر القائمة */
+    .mobile-menu-toggle {
+        top: 20px; /* نفس موضع الخط الأفقي */
+        right: 20px; /* على اليمين */
+        width: 40px;
+        height: 40px;
+    }
+
+    /* تعديل الخط العلوي ليكون أقصر */
+    .gold-lines .top-line {
+        width:500px; /* تقليل الطول */
+        /* توسيط الخط */
+        top: 60px;
+        /*width: 100%;!* رفع الخط لأعلى قليلاً *!*/
+        background-color: rgba(140, 114, 80, 0.7);
+    }
+}
+
+/* تعديلات الهواتف الصغيرة جدًا */
+@media (max-width: 480px) {
+    .corner-image {
+        left: 15px;
+        top: 20px;
+        width: 50px;
+        height: 35px;
+    }
+
+    .mobile-menu-toggle {
+        top: 20px;
+        right: 15px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .gold-lines .top-line {
+        /*width: calc(100% - 1px);*/
+        left: 15px;
+        top: 25px;
+    }
+}
