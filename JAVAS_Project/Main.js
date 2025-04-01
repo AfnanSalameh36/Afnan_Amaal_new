@@ -133,3 +133,48 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// التحكم في سلة التسوق
+const shopButton = document.getElementById('shop-button');
+const shopDropdown = document.getElementById('shop-dropdown');
+
+if (shopButton && shopDropdown) {
+    shopButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        shopDropdown.classList.toggle('active');
+    });
+
+    // إغلاق السلة عند النقر خارجها
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.shop-dropdown') &&
+            !e.target.closest('#shop-button') &&
+            e.target.id !== 'shop-button') {
+            shopDropdown.classList.remove('active');
+        }
+    });
+}
+
+// يمكنك إضافة هذه الدالة لإضافة منتجات إلى السلة
+function addToCart(product) {
+    const emptyCartMsg = document.querySelector('.empty-cart-message');
+    const productList = document.querySelector('.product-list');
+    const checkoutBtn = document.querySelector('.checkout');
+
+    if (emptyCartMsg) emptyCartMsg.style.display = 'none';
+
+    const productItem = document.createElement('div');
+    productItem.className = 'product-item';
+    productItem.innerHTML = `
+        <img src="${product.image}" alt="${product.name}">
+        <div class="product-info">
+            <h4>${product.name}</h4>
+            <p>$${product.price}</p>
+            <button class="remove-item">Remove</button>
+        </div>
+    `;
+
+    if (productList) productList.appendChild(productItem);
+    if (checkoutBtn) checkoutBtn.disabled = false;
+
+    // هنا يمكنك تحديث المجموع الكلي
+}
