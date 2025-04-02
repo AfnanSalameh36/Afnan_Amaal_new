@@ -178,5 +178,3 @@ function addToCart(product) {
 
     // هنا يمكنك تحديث المجموع الكلي
 }
-
-
