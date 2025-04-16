@@ -185,7 +185,7 @@ p {
 .navbar {
     overflow: hidden;
     text-align: center;
-    position: fixed;
+    position:absolute;
     width: 100%;
     top: 20px;
     left: 50%;
