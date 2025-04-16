@@ -48,6 +48,7 @@ div.backgroundForOurMenu , div.background1 , div.background2{
     background-position: center; /* Centers the image */
     height: 530PX; /* Set a visible height */
     width: 100%; /* Full width */
+
 }
 
 div.background1{
@@ -61,7 +62,6 @@ div.background2{
 }
 
 p.ourMenuStatement{
-    position:absolute;
     top:169px;
     left:600px;
     font-family: Cormorant, serif;
@@ -69,6 +69,7 @@ p.ourMenuStatement{
     font-size: 50px;
     text-transform: uppercase;
     text-align: center;
+
 }
 
 .MainCourses_statement, .desserts_statement, .drinks_statement{

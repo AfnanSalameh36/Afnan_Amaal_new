@@ -1,0 +1,126 @@
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: #0B1315;
+    margin: 0;
+    padding: 0;
+}
+
+.gold-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.gold-lines::before,
+.gold-lines::after {
+    content: "";
+    position: fixed;
+    width: 1px;
+    height: 100%;
+    background-color: #8C7250;
+    top: 0;
+}
+
+.gold-lines::before {
+    left: 80px;
+}
+
+.gold-lines::after {
+    right: 80px;
+}
+
+.gold-lines .top-line {
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background-color: #8C7250;
+    top: 80px;
+    left: 0;
+}
+
+div.backgroundForShop{
+    display:flex;
+    justify-content: center;
+    background-image: url("../image2/background.jpg");
+    background-size: cover; /* Ensures the image covers the full div */
+    background-position: center; /* Centers the image */
+    height: 530PX; /* Set a visible height */
+    width: 100%; /* Full width */
+    margin-bottom: 50px
+}
+
+p.shopStatement{
+    position: relative;
+    top:169px;
+    font-family: Cormorant, serif;
+    color: #8C7250;
+    font-size: 50px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+div.top_buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+
+}
+
+ul.myListButtons {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Fixed spacing */
+    align-items: center;
+}
+
+
+a.menu-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0B1315;
+    color: #ffffff;
+    text-decoration: none;
+    border: 1px #8C7250 solid;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.selectByOrder{
+    background-color:#0B1315 ;
+    color: #FFFFFF;
+    border: 1px #8C7250 solid;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+.gallary{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.gallary img{
+    width:300px;
+    height: 300px;
+}
+
+.gallary p{
+    color: #8C7250;
+    font-size: 20px;
+    text-align: center;
+}
+
+figure{
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
