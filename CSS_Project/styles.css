@@ -13,6 +13,12 @@ body, html {
     background-color: #0B1315;
     overflow-x: hidden;
 }
+#bg1 {
+    width: 100%; /* يمكنك تحديد العرض كما تحب */
+    height: 780px; /* تحديد ارتفاع ثابت لجميع الصور */
+    object-fit: cover;
+    z-index: -1/* لضمان أن الصورة تغطي المساحة بشكل جيد */
+}
 
 .background-container {
     position: absolute;
@@ -75,7 +81,22 @@ body, html {
     position: fixed;
 
 }
+.golden-text1 {
+    color: #CB9953;
+    transition: color 0.3s ease;
+}
 
+.golden-text1:hover {
+    color: #ffffff;
+}
+.golden-text {
+    color: #ffffff;
+    transition: color 0.3s ease;
+}
+
+.golden-text:hover {
+    color: #CB9953;
+}
 .gold-lines .top-line {
     position: absolute;
     height: 1px;
@@ -911,3 +932,42 @@ body.menu-open {
         width: 100%;
     }
 }
+/*---------------------------------------------------------------------------------*/
+@keyframes gentleMove {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(6px, -4px); }
+    50% { transform: translate(-3px, 6px); }
+    75% { transform: translate(-6px, -3px); }
+    100% { transform: translate(0, 0); }
+}
+
+.gentle-animation {
+    animation: gentleMove 4s ease-in-out infinite;
+}
+
+.learn-more-btn {
+    padding: 12px 60px;
+    font-size: 1em;
+    background-color: transparent;
+    color: white;
+    border: 2px solid #CB9953;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    font-family: 'Quicksand', sans-serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+    width: 250px;
+}
+
+
+.learn-more-btn:hover {
+    color: white;
+    border: 2px solid #CB9953;
+    box-shadow: 0 0 15px rgba(204, 149, 83, 0.5);
+    transform: scale(1.1);
+}
+
+
+
+
+
