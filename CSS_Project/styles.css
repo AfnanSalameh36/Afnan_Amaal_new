@@ -969,14 +969,13 @@ body.menu-open {
 .marquee-wrapper {
     width: 100%;
     height: 50px;
-    background-color: transparent; /* تأكد من أن الخلفية شفافة */
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     z-index: 50;
     position: relative;
-    opacity: 1;  /* تأكد من أن الشفافية عادية */
+    opacity: 1;
 }
 
 .marquee-container {
