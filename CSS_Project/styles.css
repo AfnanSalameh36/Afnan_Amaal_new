@@ -954,7 +954,7 @@ body.menu-open {
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     font-family: 'Quicksand', sans-serif;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 1);
 
     width: 250px;
 }
@@ -965,6 +965,8 @@ body.menu-open {
     border: 2px solid #CB9953;
     box-shadow: 0 0 15px rgba(204, 149, 83, 0.5);
     transform: scale(1.1);
+    font-family: 'Quicksand', sans-serif;
+
 }
 .marquee-container {
     width: 100%;
@@ -972,21 +974,27 @@ body.menu-open {
     background-color: transparent;
     padding: 10px 0;
     position: relative;
+    font-family: 'Quicksand', sans-serif;
+
 }
 
 .marquee-content {
     display: flex;
     width: fit-content;
-    animation: scrollMarquee 20s linear infinite;
+    animation: scrollMarquee 60s linear infinite;
     will-change: transform;
+    font-family: 'Quicksand', sans-serif;
+
 }
 
 .marquee-text {
     white-space: nowrap;
-    color: #CB9953;
+    color: #FFFFFF;
     font-size: 1.5rem;
     font-weight: bold;
     padding-right: 100px;
+    font-family: 'Quicksand', sans-serif;
+
 }
 
 /* الحركة الدائرية */
