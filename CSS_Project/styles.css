@@ -974,28 +974,24 @@ body.menu-open {
     background-color: transparent;
     padding: 10px 0;
     position: relative;
-    font-family: 'Quicksand', sans-serif;
-
+    font-family: 'Great Vibes', cursive;
 }
 
 .marquee-content {
     display: flex;
     width: fit-content;
-    animation: scrollMarquee 60s linear infinite;
+    animation: scrollMarquee 100s linear infinite;
     will-change: transform;
-    font-family: 'Quicksand', sans-serif;
-
 }
 
 .marquee-text {
     white-space: nowrap;
     color: #FFFFFF;
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 2rem; /* كبرنا شوي ليبان الخط بشكل أوضح */
+    font-weight: normal;
     padding-right: 100px;
-    font-family: 'Quicksand', sans-serif;
-
 }
+
 
 /* الحركة الدائرية */
 @keyframes scrollMarquee {
