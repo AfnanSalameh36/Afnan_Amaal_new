@@ -966,6 +966,43 @@ body.menu-open {
     box-shadow: 0 0 15px rgba(204, 149, 83, 0.5);
     transform: scale(1.1);
 }
+.marquee-wrapper {
+    width: 100%;
+    height: 50px;
+    background-color: transparent; /* تأكد من أن الخلفية شفافة */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 50;
+    position: relative;
+    opacity: 1;  /* تأكد من أن الشفافية عادية */
+}
+
+.marquee-container {
+    white-space: nowrap;
+}
+
+.marquee-text {
+    display: inline-block;
+    animation: scrollText 15s linear infinite;
+    color: #CB9953;
+    font-size: 1.8rem;
+    font-weight: 600;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+@keyframes scrollText {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+
+
 
 
 
