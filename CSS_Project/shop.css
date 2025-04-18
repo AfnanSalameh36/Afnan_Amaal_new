@@ -5,6 +5,11 @@ body{
     padding: 0;
 }
 
+@media (max-width: 1285px) {
+    .gold-lines {
+        display: none;
+    }
+}
 .gold-lines {
     position: absolute;
     top: 0;
@@ -50,7 +55,7 @@ div.backgroundForShop{
     background-position: center; /* Centers the image */
     height: 530PX; /* Set a visible height */
     width: 100%; /* Full width */
-    margin-bottom: 50px
+    margin-bottom: 167px
 }
 
 p.shopStatement{
@@ -63,64 +68,120 @@ p.shopStatement{
     text-align: center;
 }
 
-div.top_buttons {
+div.top_section {
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
-
 }
 
-ul.myListButtons {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+#search_container{
     display: flex;
     justify-content: center;
-    gap: 30px; /* Fixed spacing */
-    align-items: center;
+    margin-bottom: 20px;
 }
 
+#search_container input{
+    background-color: transparent;
+    width: 40%;
+    border-bottom: 2px solid #8C7250;
+    padding: 1em 0.3em;
+    color:white;
+    font-size: 15px;
+}
 
-a.menu-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #0B1315;
-    color: #ffffff;
-    text-decoration: none;
-    border: 1px #8C7250 solid;
+#search_container button{
+    padding: 1em 2em;
+    margin-left: 1em;
+    background-color: #8C7250;
+    color: white;
     border-radius: 5px;
-    font-size: 20px;
+    font-size: 15px;
+
+    /*margin-top: 0.5em;*/
+}
+
+.button-value{
+    border:2px solid #8C7250;
+    background-color: transparent;
+    padding: 1em 2.2em;
+    border-radius: 3em;
+    color: honeydew;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.active{
+    background-color: #8C7250;
+    color: white;
 }
 
 .selectByOrder{
     background-color:#0B1315 ;
-    color: #FFFFFF;
     border: 1px #8C7250 solid;
-    font-size: 20px;
-    padding: 10px;
-    border-radius: 5px;
+    color:honeydew;
+    font-size: 15px;
+    padding: 15px;
+    border-radius: 3em;
+    cursor: pointer;
 }
 
-
-.gallary{
-    display: flex;
+#products{
+    display: grid;
+    grid-template-columns: auto auto auto ;
+    grid-column-gap: 2em;
+    padding: 0 0;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px;
 }
 
-.gallary img{
-    width:300px;
-    height: 300px;
+.card{
+    max-width: 18em;
+    margin-top:2em;
+    padding-top: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 0;
+    border-radius: 5px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);;
 }
 
-.gallary p{
-    color: #8C7250;
-    font-size: 20px;
+.image-container{
     text-align: center;
 }
 
-figure{
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+img{
+    max-width: 100%;
+    height: 300px;
+}
+
+.container{
+    /*padding-top: 1em;*/
+    color:#8C7250;
+}
+
+.container h5,h6{
+    font-weight: 500;
+    text-align: center;
+    font-size: 15px;
+}
+
+.hide{
+    display: none;
+}
+
+@media screen and (max-width: 720px) {
+    img{
+        max-width: 100%;
+        object-fit: contain;
+        height: 10em;
+    }
+
+    .card{
+        max-width:10em;
+        margin-top:1em;
+    }
+
+    #products{
+        grid-template-columns: auto auto;
+        grid-column-gap: 1em;
+    }
 }

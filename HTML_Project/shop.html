@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <title>Shop</title>
   <link rel="stylesheet" href="../CSS_Project/shop.css">
-<!--  <script src="../JAVAS_Project/shop.js"></script>-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 
-<body>
+<body >
 <div class="gold-lines">
   <div class="top-line"></div>
 </div>
@@ -18,77 +16,85 @@
   <p class="shopStatement">Shop</p>
 </div>
 <!--********************************************************************-->
-
-<div class="top_buttons">
-  <ul class="myListButtons">
-    <li><a href="#" class="menu-button">All</a></li>
-    <li><a href="#" class="menu-button">Main Courses</a></li>
-    <li><a href="#" class="menu-button">Desserts</a></li>
-    <li><a href="#" class="menu-button">Drinks</a></li>
-
-    <li>
-      <select class="selectByOrder">
-      <option value="latest"><a href="#" >sort by latest           </a></option>
-      <option value="popularity"><a href="#">Sort by popularity        </a></option>
-      <option value="lowToHigh"><a href="#">Sort by price: low to high</a></option>
-      <option value="highToLow"><a href="#">Sort by price: high to low</a></option>
-      </select>
-    </li>
-  </ul>
+<div id="search_container">
+  <input type="search" id="search_input" placeholder="search product name here..">
+  <button id="search">Search</button>
 </div>
 
+<div class="top_section">
 
-<div class="gallary">
+  <div id="buttons">
+    <button class="button-value" onclick="filterProduct('all')">All</button>
+    <button class="button-value" onclick="filterProduct('MainCourses')">MainCourses</button>
+    <button class="button-value" onclick="filterProduct('Desserts')">Desserts</button>
+    <button class="button-value" onclick="filterProduct('Drinks')">Drinks</button>
 
-  <figure>
-    <img src="../image2/pasta.jpeg" alt="pasta">
-    <figcaption>
-      <p class="name">pasta</p>
-      <p class="prise">$25</p>
-    </figcaption>
-  </figure>
-
-  <figure>
-    <img src="../image2/pasta.jpeg" alt="pasta">
-    <figcaption>
-      <p class="name">pasta</p>
-      <p class="prise">$25</p>
-    </figcaption>
-  </figure>
-
-  <figure>
-    <img src="../image2/pasta.jpeg" alt="pasta">
-    <figcaption>
-      <p class="name">pasta</p>
-      <p class="prise">25$</p>
-    </figcaption>
-  </figure>
-
-  <figure>
-    <img src="../image2/pasta.jpeg" alt="pasta">
-    <figcaption>
-      <p class="name">pasta</p>
-      <p class="prise">25$</p>
-    </figcaption>
-  </figure>
-
-  <figure>
-    <img src="../image2/pasta.jpeg" alt="pasta">
-    <figcaption>
-      <p class="name">pasta</p>
-      <p class="prise">25$</p>
-    </figcaption>
-  </figure>
-
-  <figure>
-    <img src="../image2/pasta.jpeg" alt="pasta">
-    <figcaption>
-      <p class="name">pasta</p>
-      <p class="prise">25$</p>
-    </figcaption>
-  </figure>
+    <select class="selectByOrder">
+      <option value="latest">sort by latest               </option>
+      <option value="popularity">Sort by popularity       </option>
+      <option value="lowToHigh">Sort by price: low to high</option>
+      <option value="highToLow">Sort by price: high to low</option>
+    </select>
+  </div>
 
 </div>
+
+<div id="products"></div>
+
+
+
+<script src="../JAVAS_Project/shop.js"></script>
+<!--<div class="gallary">-->
+
+<!--  <figure>-->
+<!--    <img src="../image2/pasta.jpeg" alt="pasta">-->
+<!--    <figcaption>-->
+<!--      <p class="name">pasta</p>-->
+<!--      <p class="prise">$25</p>-->
+<!--    </figcaption>-->
+<!--  </figure>-->
+
+<!--  <figure>-->
+<!--    <img src="../image2/pasta.jpeg" alt="pasta">-->
+<!--    <figcaption>-->
+<!--      <p class="name">pasta</p>-->
+<!--      <p class="prise">$25</p>-->
+<!--    </figcaption>-->
+<!--  </figure>-->
+
+<!--  <figure>-->
+<!--    <img src="../image2/pasta.jpeg" alt="pasta">-->
+<!--    <figcaption>-->
+<!--      <p class="name">pasta</p>-->
+<!--      <p class="prise">25$</p>-->
+<!--    </figcaption>-->
+<!--  </figure>-->
+
+<!--  <figure>-->
+<!--    <img src="../image2/pasta.jpeg" alt="pasta">-->
+<!--    <figcaption>-->
+<!--      <p class="name">pasta</p>-->
+<!--      <p class="prise">25$</p>-->
+<!--    </figcaption>-->
+<!--  </figure>-->
+
+<!--  <figure>-->
+<!--    <img src="../image2/pasta.jpeg" alt="pasta">-->
+<!--    <figcaption>-->
+<!--      <p class="name">pasta</p>-->
+<!--      <p class="prise">25$</p>-->
+<!--    </figcaption>-->
+<!--  </figure>-->
+
+<!--  <figure>-->
+<!--    <img src="../image2/pasta.jpeg" alt="pasta">-->
+<!--    <figcaption>-->
+<!--      <p class="name">pasta</p>-->
+<!--      <p class="prise">25$</p>-->
+<!--    </figcaption>-->
+<!--  </figure>-->
+
+<!--</div>-->
 
 
 
