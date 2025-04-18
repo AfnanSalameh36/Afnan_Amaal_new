@@ -1005,6 +1005,7 @@ body.menu-open {
 /*=====================================================================*/
 
 .fancy-border {
+    font-family: 'Quicksand', sans-serif;
 
     transform: translateX(-50%);
     padding: 10px 20px;
@@ -1018,6 +1019,20 @@ body.menu-open {
     text-align: center;
     transition: all 0.3s ease;
     position: relative;
+    text-decoration: none; /* هذا اللي يشيل الخط */
+}
+
+a,
+a:visited,
+a:hover,
+a:active,
+a:focus {
+    text-decoration: none;
+}
+
+a .fancy-border {
+    text-decoration: none;
+    color: #FFFFFF;
 }
 
 .fancy-border::before,
