@@ -954,7 +954,7 @@ body.menu-open {
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     font-family: 'Quicksand', sans-serif;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 1);
 
     width: 250px;
 }
@@ -965,39 +965,118 @@ body.menu-open {
     border: 2px solid #CB9953;
     box-shadow: 0 0 15px rgba(204, 149, 83, 0.5);
     transform: scale(1.1);
+    font-family: 'Quicksand', sans-serif;
+
 }
-.marquee-wrapper {
+.marquee-container {
     width: 100%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     overflow: hidden;
-    z-index: 50;
+    background-color: transparent;
+    padding: 10px 0;
     position: relative;
-    opacity: 1;
+    font-family: 'Great Vibes', cursive;
 }
 
-.marquee-container {
-    white-space: nowrap;
+.marquee-content {
+    display: flex;
+    width: fit-content;
+    animation: scrollMarquee 100s linear infinite;
+    will-change: transform;
 }
 
 .marquee-text {
-    display: inline-block;
-    animation: scrollText 15s linear infinite;
-    color: #CB9953;
-    font-size: 1.8rem;
-    font-weight: 600;
-    font-family: 'Cormorant Garamond', serif;
+    white-space: nowrap;
+    color: #FFFFFF;
+    font-size: 2rem; /* كبرنا شوي ليبان الخط بشكل أوضح */
+    font-weight: normal;
+    padding-right: 100px;
 }
 
-@keyframes scrollText {
+
+/* الحركة الدائرية */
+@keyframes scrollMarquee {
     0% {
-        transform: translateX(100%);
+        transform: translateX(0%);
     }
     100% {
-        transform: translateX(-100%);
+        transform: translateX(-50%);
     }
+}
+/*=====================================================================*/
+
+.fancy-border {
+    font-family: 'Quicksand', sans-serif;
+
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    border: 2px solid #e0b983;
+    color: #FFFFFF;
+    font-weight: bold;
+    background: none;
+    cursor: pointer;
+    z-index: 3;
+    width: 150px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    text-decoration: none; /* هذا اللي يشيل الخط */
+}
+
+a,
+a:visited,
+a:hover,
+a:active,
+a:focus {
+    text-decoration: none;
+}
+
+a .fancy-border {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.fancy-border::before,
+.fancy-border::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #FFFFFF;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.fancy-border::before {
+    top: -2px;
+    right: -2px;
+    border-left: none;
+    border-bottom: none;
+}
+
+.fancy-border::after {
+    bottom: -2px;
+    left: -2px;
+    border-right: none;
+    border-top: none;
+}
+
+.fancy-border:hover::before,
+.fancy-border:hover::after {
+    opacity: 1;
+}
+.fancy-border:hover {
+    box-shadow: 0 0 25px 5px #e0b983;
+}
+.q{
+    font-size: 48px;
+    z-index:10;
+    color: #CB9953;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 3px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0,0);
+    padding: 10px 30px;
+    background-color: rgba(0, 0, 0, 0);
+    animation: fadeIn 1.5s ease-in-out;
 }
 
 
