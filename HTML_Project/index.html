@@ -24,6 +24,7 @@
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
 
@@ -31,12 +32,24 @@
 
 <!-- Navigation Bar -->
 <nav class="navbar">
-    <a href="menu.html" class="active">Home</a>
-    <a href="menu.html">About us</a>
-    <a href="menu.html">Menu</a>
-    <a href="menu.html">Book A Table</a>
-    <a href="menu.html">Shop</a>
-    <a href="menu.html">Contact</a>
+    <ul>
+        <li><a href="menu.html" class="active">Home</a></li>
+        <li><a href="menu.html">About us</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="menu.html">Book A Table</a></li>
+
+        <li class="dropdown">
+            <a href="#">Shop</a>
+            <ul class="dropdown-content">
+                <li><a href="#">Product List</a></li>
+                <li><a href="#">Cart</a></li>
+                <li><a href="#">Checkout</a></li>
+
+            </ul>
+        </li>
+
+        <li><a href="menu.html">Contact</a></li>
+    </ul>
 </nav>
 
 <div class="main-container">
@@ -240,22 +253,64 @@ Delights
 </div>
 
 
-<div class="bottom-section" style="height:100vh; position:relative; overflow:hidden;">
-    <img src="../image2/background.jpg" alt="Bottom Background"
-         style="width:100%; height:100%; object-fit:cover;">
-    <div style="position:absolute; top:5%; left:50%; transform:translate(-50%, -50%); color:white; text-align:center; z-index:9; width:60%; ">
-        <div style="position:absolute; top:80%; left:48%; transform:translate(-50%, -50%); color:white; text-align:center; z-index:5; width:60%;">
-            <div class="amaal"
-                 style="position: relative; width: 210px; height: 210px; display: inline-block;">
-                <a href="menu.html#drinks_statement">
-                    <img src="../image/11.jpg" width="285" height="336"
-                         style="position: absolute; top:215px; right: 280px; z-index: 2;">
+<footer class="golden-footer">
+    <div class="footer-waves">
+        <div class="wave wave-1"></div>
+        <div class="wave wave-2"></div>
+        <div class="wave wave-3"></div>
+    </div>
 
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3 class="footer-logo">Golden Restaurant</h3>
+            <p class="footer-description">Experience the finest dining with authentic flavors and luxurious ambiance.</p>
+            <div class="footer-social">
+                <a href="https://www.facebook.com" class="social-icon" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-facebook-f"></i>
                 </a>
+                <a href="https://www.instagram.com" class="social-icon" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.twitter.com" class="social-icon" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-twitter"></i>
+                </a>
+
             </div>
+
+        </div>
+
+        <div class="footer-section">
+            <h3 class="footer-title">Quick Links</h3>
+            <ul class="footer-links">
+                <li><a href="menu.html">Home</a></li>
+                <li><a href="menu.html">About Us</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="menu.html">Book a Table</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3 class="footer-title">Contact Us</h3>
+            <ul class="footer-contact">
+                <li><i class="fas fa-map-marker-alt"></i> 71 Madison Ave, New York</li>
+                <li><i class="fas fa-phone"></i> 914-309-7030</li>
+                <li><i class="fas fa-envelope"></i> reservations@golden.com</li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3 class="footer-title">Opening Hours</h3>
+            <ul class="footer-hours">
+                <li>Monday - Friday: 9:00 AM - 11:00 PM</li>
+                <li>Saturday - Sunday: 10:00 AM - 12:00 AM</li>
+            </ul>
         </div>
     </div>
-</div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2023 Golden Restaurant. All Rights Reserved.</p>
+    </div>
+</footer>
 <!-- JavaScript -->
 <script src="../JAVAS_Project/Main.js"></script>
 </body>
