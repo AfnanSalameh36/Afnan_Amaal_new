@@ -265,54 +265,68 @@ body {
 }
 
 .page-1 .line-2 {
-    font-family: "Alumni Sans Pinstripe", sans-serif;
+    font-family: "Cormorant Garamond", serif;
     font-weight: 100;
     font-size: 50px;
     color: #fff;
-    padding: 20px;
+    padding: 11px;
 }
 
 .page-1 .line-3 {
-    font-family: "Alumni Sans Pinstripe", sans-serif;
-    color: #fff;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 100;
     font-size: 50px;
-    font-weight: 30;
+    color: #fff;
+    padding: 11px;
 }
 
 .page-2 .line-4 {
-    font-family: 'Arial', sans-serif;
-    font-size: 40px;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: bold;
+    font-size: 50px;
     color: #CB9953;
+    padding: 11px;
 }
 
 .page-2 .line-5 {
-    font-family: 'Verdana', sans-serif;
-    font-size: 28px;
-    color: #FFD700;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 100;
+    font-size: 50px;
+    color: #fff;
+    padding: 11px;
 }
 
 .page-2 .line-6 {
-    font-family: 'Verdana', sans-serif;
-    font-size: 24px;
-    color: #FFD700;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 100;
+    font-size: 50px;
+    color: #fff;
+    padding: 11px;
 }
 
 .page-3 .line-7 {
-    font-family: 'Georgia', serif;
+    font-family: "Cormorant Garamond", serif;
     font-size: 50px;
     color: #CB9953;
+    padding: 11px;
+    font-weight: bold;
+
 }
 
 .page-3 .line-8 {
-    font-family: 'Tahoma', sans-serif;
-    font-size: 28px;
-    color: #FFD700;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 100;
+    font-size: 50px;
+    color: #fff;
+    padding: 11px;
 }
 
 .page-3 .line-9 {
-    font-family: 'Tahoma', sans-serif;
-    font-size: 24px;
-    color: #FFD700;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 100;
+    font-size: 50px;
+    color: #fff;
+    padding: 11px;
 }
 
 .hide-text .line-1,

@@ -1,9 +1,9 @@
 let currentIndex = 0;
 const images = ["../image/3.jpg", "../image/4.jpg", "../image/8.png"];
 const texts = [
-    ["Golden Bite", "Where Every Meal is a Masterpiece", "Where Flavor Meets Passion"],
-    ["Welcome to Golden Restaurant", "The best food in town", "Enjoy your meal"],
-    ["Fresh Ingredients", "Organic and Tasty", "Healthy Food, Happy Life"]
+    ["Golden Restaurant", "Where Culinary Art Becomes an Experience", "Savor the Gold Standard of Dining"],
+    ["Crafted with Passion, Served with Grace", "Indulge in Luxury, One Bite at a Time", "Enjoy your meal"],
+    ["OElevating Every Bite Into a Memory", "Wholesome Food for a Golden Life", "Where Taste Reigns Supreme"]
 ];
 const textClasses = [
     ['line-1', 'line-2', 'line-3'],
@@ -11,7 +11,7 @@ const textClasses = [
     ['line-7', 'line-8', 'line-9']
 ];
 const positions = [
-    { bottom: "40%", left: "50%", transform: "translateX(-50%)" }
+    { bottom: "30%", left: "50%", transform: "translateX(-50%)" }
 ];
 
 const bgImage = document.getElementById("bg1");
