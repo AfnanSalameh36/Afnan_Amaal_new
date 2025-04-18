@@ -1005,8 +1005,7 @@ body.menu-open {
 /*=====================================================================*/
 
 .fancy-border {
-    top:630px;
-    right: -510px;
+
     transform: translateX(-50%);
     padding: 10px 20px;
     border: 2px solid #e0b983;
@@ -1050,6 +1049,10 @@ body.menu-open {
 .fancy-border:hover::after {
     opacity: 1;
 }
+.fancy-border:hover {
+    box-shadow: 0 0 25px 5px #e0b983;
+}
+
 
 
 
