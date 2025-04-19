@@ -6,9 +6,38 @@
     <link rel="stylesheet" href="../CSS_Project/about.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" >
     <style>
 
+        .gold-ornament {
+            margin: 30px auto;
+            width: 150px;
+            height: 20px;
+            background: linear-gradient(90deg,
+            rgba(154,125,87,0) 0%,
+            rgba(154,125,87,1) 50%,
+            rgba(154,125,87,0) 100%);
+            position: relative;
+        }
+
+        .gold-ornament:before,
+        .gold-ornament:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 40px;
+            height: 40px;
+            border: 2px solid #9A7D57;
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        .gold-ornament:before {
+            left: -20px;
+        }
+
+        .gold-ornament:after {
+            right: -20px;
+        }
     </style>
 </head>
 <body>
@@ -56,10 +85,14 @@
 
                 <p>Cupidatat non proident, sunt in culpa qui cia deserunt mollit anim id est laborum. Sed ursa tat monullamco laboris nisi ut aliquip exe ne com odoconsequat. Duis aute irure dolor in per spiciant vsun operiam, eaque ipsa quae ab illo inventor veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nem odit aut fugit, sed quia consequ un turnagnido lors.</p>
 
+                <div class="gold-ornament"></div>
+
 
             </div>
         </div>
     </div>
+
+
 
 
     <footer class="golden-footer">
@@ -91,10 +124,10 @@
             <div class="footer-section">
                 <h3 class="footer-title">Quick Links</h3>
                 <ul class="footer-links">
-                    <li><a href="menu.html"style="text-decoration: none">Home</a></li>
-                    <li><a href="menu.html"style="text-decoration: none">About Us</a></li>
-                    <li><a href="menu.html"style="text-decoration: none">Menu</a></li>
-                    <li><a href="menu.html"style="text-decoration: none">Book a Table</a></li>
+                    <li><a href="menu.html" style="text-decoration: none">Home</a></li>
+                    <li><a href="menu.html" style="text-decoration: none">About Us</a></li>
+                    <li><a href="menu.html" style="text-decoration: none">Menu</a></li>
+                    <li><a href="menu.html" style="text-decoration: none">Book a Table</a></li>
                 </ul>
             </div>
 
