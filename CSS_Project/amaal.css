@@ -165,8 +165,8 @@ p {
 }
 
 .image-wrapper {
-    position: fixed;
-    top: 20px;
+    position: absolute;
+    top: 25px;
     left: 20px;
     z-index: 2001;
 }
@@ -361,4 +361,6 @@ p {
     top: 80px;
     left: 0;
 }
+
+
 
