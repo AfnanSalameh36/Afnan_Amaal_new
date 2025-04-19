@@ -2,181 +2,209 @@ let products = {
     data:
     [
         {
-            productName:"Beef Pho",
-            category:"MainCourses",
-            price:"15",
-            image:"../image2/shopImage/imgMainCourse/m1.jpg",
-        },
-
-        {
             productName:"Smoky BBQ Chicken Wings",
             category:"MainCourses",
             price:"9.99",
+            discount:"-10%",
             image:"../image2/shopImage/imgMainCourse/m2.jpg",
         },
 
         {
-            productName:"Herb-Grilled Lamb Chops",
-            category:"MainCourses",
-            price:"25",
-            image:"../image2/shopImage/imgMainCourse/m3.jpg",
+            productName:"cheescake with blubarry",
+            category:"Desserts",
+            price:"30.00",
+            discount:"-15%",
+            image:"../image2/shopImage/imgDessert/d7.jpeg",
+        },
+
+        {
+            productName:"Orange Juice",
+            category:"Drinks",
+            discount:"-10%",
+            price:"12.00",
+            image:"../image2/shopImage/imgdrink/dr3.jpeg",
+        },
+
+        {
+            productName:"Berry Cream Cheese Dessert with Mascarpone Mousse",
+            category:"Desserts",
+            price:"20.00",
+            discount:"-10%",
+            image:"../image2/shopImage/imgDessert/d1.jpg",
         },
 
         {
             productName:"Grilled Octopus",
             category:"MainCourses",
-            price:"60",
+            price:"60.00",
+            discount:"-15%",
             image:"../image2/shopImage/imgMainCourse/m4.jpg",
-        },
-
-        {
-            productName:"Mini Lobster Tails with Black Truffle Purée",
-            category:"MainCourses",
-            price:"70",
-            image:"../image2/shopImage/imgMainCourse/m5.jpg",
-        },
-
-        {
-            productName:"i dont know now",
-            category:"MainCourses",
-            price:"50",
-            image:"../image2/shopImage/imgMainCourse/m6.jpeg",
-        },
-
-        {
-            productName:"i dont know now2",
-            category:"MainCourses",
-            price:"30",
-            image:"../image2/shopImage/imgMainCourse/m7.jpeg",
-        },
-
-        {
-            productName:"Braised Duck Leg with Orange Sauce",
-            category:"MainCourses",
-            price:"50",
-            image:"../image2/shopImage/imgMainCourse/m8.jpg",
-        },
-
-        {
-            productName:"Garlic Butter Shrimp Skillet",
-            category:"MainCourses",
-            price:"70",
-            image:"../image2/shopImage/imgMainCourse/m9.jpeg",
-        },
-
-        {
-            productName:"Grilled Ribeye Steak",
-            category:"MainCourses",
-            price:"55",
-            image:"../image2/shopImage/imgMainCourse/m10.jpeg",
-        },
-// ***********************************************************************************************************************
-        {
-            productName:"ine Dining Berry Cream Cheese Dessert with Mascarpone Mousse",
-            category:"Desserts",
-            price:"20",
-            image:"../image2/shopImage/imgDessert/d1.jpg",
-        },
-
-        {
-            productName:"Chocolate Hazelnut Cake with Edible Gold",
-            category:"Desserts",
-            price:"25",
-            image:"../image2/shopImage/imgDessert/d2.jpg",
         },
 
         {
             productName:"Blueberry Cheesecake with Blueberry Compote",
             category:"Desserts",
-            price:"35",
+            price:"35.00",
+            discount:"-20%",
             image:"../image2/shopImage/imgDessert/d3.jpg",
+        },
+
+        {
+            productName:"Individual Berry Cheesecakes",
+            category:"Desserts",
+            price:"50.00",
+            discount:"-15%",
+            image:"../image2/shopImage/imgDessert/d8.jpg",
+        },
+
+        {
+            productName:"Pure Mango Juice",
+            category:"Drinks",
+            price:"15.00",
+            discount:"-15%",
+            image:"../image2/shopImage/imgdrink/dr2.jpeg",
+        },
+
+        {
+            productName:"Mini Lobster Tails with Black Truffle Purée",
+            category:"MainCourses",
+            price:"70.00",
+            discount:"-30%",
+            image:"../image2/shopImage/imgMainCourse/m5.jpg",
+        },
+
+        {
+            productName:"Chocolate Hazelnut Cake with Edible Gold",
+            category:"Desserts",
+            price:"25.00",
+            discount:"-15%",
+            image:"../image2/shopImage/imgDessert/d2.jpg",
+        },
+
+        {
+            productName:"Sparkling Cranberry Mocktails",
+            category:"Drinks",
+            price:"15.00",
+            discount:"-5%",
+            image:"../image2/shopImage/imgdrink/dr5.jpg",
         },
 
         {
             productName:"cake for Knoww",
             category:"Desserts",
-            price:"25",
+            price:"25.00",
+            discount:"-15%",
             image:"../image2/shopImage/imgDessert/d4.jpg",
         },
 
         {
             productName:"Raspberry Coulis with Vanilla Panna Cotta",
             category:"Desserts",
-            price:"30",
+            price:"30.00",
+            discount:"-20%",
             image:"../image2/shopImage/imgDessert/d5.jpg",
         },
 
         {
             productName:"chocolate FOR NOW",
             category:"Desserts",
-            price:"25",
+            price:"25.00",
+            discount:"-40%",
             image:"../image2/shopImage/imgDessert/d6.jpeg",
         },
 
         {
-            productName:"cheescake with blubarry",
-            category:"Desserts",
-            price:"30",
-            image:"../image2/shopImage/imgDessert/d7.jpeg",
-        },
-
-        {
-            productName:"Individual Berry Cheesecakes",
-            category:"Desserts",
-            price:"50",
-            image:"../image2/shopImage/imgDessert/d8.jpg",
+            productName:"Herb-Grilled Lamb Chops",
+            category:"MainCourses",
+            price:"25.00",
+            discount:"-30%",
+            image:"../image2/shopImage/imgMainCourse/m3.jpg",
         },
 
         {
             productName:"Raspberry & Coconut Parfait",
             category:"Desserts",
-            price:"40",
+            price:"40.00",
+            discount:"-15%",
             image:"../image2/shopImage/imgDessert/d9.jpg",
-        },
-// ***********************************************************************************************************************
-        {
-            productName:"Fresh Berry Juice",
-            category:"Drinks",
-            price:"10",
-            image:"../image2/shopImage/imgdrink/dr1.jpeg",
-        },
-
-        {
-            productName:"Pure Mango Juice",
-            category:"Drinks",
-            price:"15",
-            image:"../image2/shopImage/imgdrink/dr2.jpeg",
-        },
-
-        {
-            productName:"Orange Juice",
-            category:"Drinks",
-            price:"12",
-            image:"../image2/shopImage/imgdrink/dr3.jpeg",
-        },
-
-        {
-            productName:"Fresh Strawberry Juice",
-            category:"Drinks",
-            price:"15",
-            image:"../image2/shopImage/imgdrink/dr4.jpeg",
-        },
-
-        {
-            productName:"Sparkling Cranberry Mocktails",
-            category:"Drinks",
-            price:"15",
-            image:"../image2/shopImage/imgdrink/dr5.jpg",
         },
 
         {
             productName:"Hot Cocoa with Caramel Whipped Cream",
             category:"Drinks",
-            price:"7",
+            discount:"-15%",
+            price:"7.00",
             image:"../image2/shopImage/imgdrink/dr6.jpeg",
+        },
+
+        {
+            productName:"Beef Pho",
+            category:"MainCourses",
+            price:"15.00",
+            discount:"-30%",
+            image:"../image2/shopImage/imgMainCourse/m1.jpg",
+        },
+        {
+            productName:"Fresh Strawberry Juice",
+            category:"Drinks",
+            price:"15.00",
+            discount:"-10%",
+            image:"../image2/shopImage/imgdrink/dr4.jpeg",
+        },
+
+        {
+            productName:"i dont know now",
+            category:"MainCourses",
+            price:"50.00",
+            discount:"-50%",
+            image:"../image2/shopImage/imgMainCourse/m6.jpeg",
+        },
+
+        {
+            productName:"i dont know now2",
+            category:"MainCourses",
+            price:"30.00",
+            discount:"-15%",
+            image:"../image2/shopImage/imgMainCourse/m7.jpeg",
+        },
+
+        {
+            productName:"Braised Duck Leg with Orange Sauce",
+            category:"MainCourses",
+            price:"50.00",
+            discount:"-70%",
+            image:"../image2/shopImage/imgMainCourse/m8.jpg",
+        },
+
+        {
+            productName:"Garlic Butter Shrimp Skillet",
+            category:"MainCourses",
+            price:"70.00",
+            discount:"-30%",
+            image:"../image2/shopImage/imgMainCourse/m9.jpeg",
+        },
+        {
+            productName:"Fresh Berry Juice",
+            category:"Drinks",
+            price:"10.00",
+            discount:"-15%",
+            image:"../image2/shopImage/imgdrink/dr1.jpeg",
+        },
+
+        {
+            productName:"Grilled Ribeye Steak",
+            category:"MainCourses",
+            price:"55.00",
+            discount:"-50%",
+            image:"../image2/shopImage/imgMainCourse/m10.jpeg",
         },
     ],
 };
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 
 for(let i of products.data)
 {
@@ -194,16 +222,28 @@ for(let i of products.data)
     let image = document.createElement("img");
     image.setAttribute("src",i.image);
     imageContainer.appendChild(image);
+    //span tag
+    let discount = document.createElement("span");
+    discount.classList.add("discount");
+    discount.innerText=i.discount;
+    imageContainer.appendChild(discount);
+
+
     card.appendChild(imageContainer);
 
     //container
     let container=document.createElement("div");
     container.classList.add("container");
 
+    let buttonAddToCart = document.createElement("button");
+    buttonAddToCart.classList.add("button-addToCart");
+    buttonAddToCart.innerText="ADD TO CART";
+    container.appendChild(buttonAddToCart);
+
     //product name
     let name = document.createElement("h5");
     name.classList.add("product-name");
-    name.innerText=i.productName.toUpperCase();
+    name.innerText=i.productName
     container.appendChild(name);
 
     //price
@@ -211,7 +251,9 @@ for(let i of products.data)
     price.innerText = "$" + i.price;
     container.appendChild(price);
 
-    card.appendChild(container)
+
+    card.appendChild(container);
+
 
     document.getElementById("products").appendChild(card);
 }
@@ -222,7 +264,7 @@ function filterProduct(value) {
     let buttons = document.querySelectorAll(".button-value")
     buttons.forEach((button)=>{
         //check if value equals innerText
-        if(value.toUpperCase()==button.innerText.toUpperCase())
+        if(value == button.innerText)
         {
             button.classList.add("active");
         }
@@ -259,6 +301,29 @@ function filterProduct(value) {
         }
     });
 }
+
+//search button click
+document.getElementById("search").addEventListener
+("click",() => {
+    //initialization
+    let searchInput = document.getElementById("search_input").value;
+    let elements = document.querySelectorAll(".product-name");
+    let cards = document.querySelectorAll(".card");
+
+    //loop through all elements
+    elements.forEach((element,index) => {
+        //check if text include the search value
+        if(element.innerText.includes(searchInput)){
+            //display matching card
+            cards[index].classList.remove("hide");
+        }
+        else
+        {
+            //hide other
+            cards[index].classList.add("hide");
+        }
+    });
+});
 
 //initially display all products
 window.onload = () => {

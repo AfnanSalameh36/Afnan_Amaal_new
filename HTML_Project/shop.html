@@ -4,21 +4,61 @@
     <meta charset="UTF-8">
     <title>Shop</title>
   <link rel="stylesheet" href="../CSS_Project/shop.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+<!--  *****************************************************************************************-->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!--  ********************************************************************************************-->
 </head>
 
 
-<body >
+<body>
+<div class="image-wrapper">
+  <div class="corner-image"></div>
+</div>
+
+<!-- Navigation Bar -->
+<nav class="navbar">
+  <ul>
+    <li><a href="menu.html" class="activee">Home</a></li>
+    <li><a href="menu.html">About us</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="menu.html">Book A Table</a></li>
+
+    <li class="dropdown">
+      <a href="#">Shop</a>
+      <ul class="dropdown-content">
+        <li><a href="#">Product List</a></li>
+        <li><a href="#">Cart</a></li>
+        <li><a href="#">Checkout</a></li>
+
+      </ul>
+    </li>
+
+    <li><a href="menu.html">Contact</a></li>
+  </ul>
+</nav>
+
+
 <div class="gold-lines">
   <div class="top-line"></div>
 </div>
+<!--*********************************************************************************************-->
 
 <div class="backgroundForShop">
-  <p class="shopStatement">Shop</p>
+  <p class="shopStatement">Product List</p>
 </div>
-<!--********************************************************************-->
+
+<!-- زر الرجوع للأعلى -->
+<button class="back-to-top" onclick="scrollToTop()">
+  <i class="ri-arrow-up-circle-line"></i>
+</button>
+
 <div id="search_container">
+  <button id="search"> <i class="ri-search-line" style="font-size: 24px;"></i></button>
   <input type="search" id="search_input" placeholder="search product name here..">
-  <button id="search">Search</button>
+
 </div>
 
 <div class="top_section">
@@ -97,6 +137,63 @@
 <!--</div>-->
 
 
+<footer class="golden-footer">
+  <div class="footer-waves">
+    <div class="wave wave-1"></div>
+    <div class="wave wave-2"></div>
+    <div class="wave wave-3"></div>
+  </div>
 
+  <div class="footer-container">
+    <div class="footer-section">
+      <h3 class="footer-logo">Golden Restaurant</h3>
+      <p class="footer-description">Experience the finest dining with authentic flavors and luxurious ambiance.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com" class="social-icon" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com" class="social-icon" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.twitter.com" class="social-icon" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-twitter"></i>
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="footer-section">
+      <h3 class="footer-title">Quick Links</h3>
+      <ul class="footer-links">
+        <li><a href="menu.html">Home</a></li>
+        <li><a href="menu.html">About Us</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="menu.html">Book a Table</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h3 class="footer-title">Contact Us</h3>
+      <ul class="footer-contact">
+        <li><i class="fas fa-map-marker-alt"></i> 71 Madison Ave, New York</li>
+        <li><i class="fas fa-phone"></i> 914-309-7030</li>
+        <li><i class="fas fa-envelope"></i> reservations@golden.com</li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h3 class="footer-title">Opening Hours</h3>
+      <ul class="footer-hours">
+        <li>Monday - Friday: 9:00 AM - 11:00 PM</li>
+        <li>Saturday - Sunday: 10:00 AM - 12:00 AM</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Golden Restaurant. All Rights Reserved.</p>
+  </div>
+</footer>
 </body>
 </html>
