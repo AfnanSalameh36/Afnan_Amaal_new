@@ -28,15 +28,14 @@ p {
 /* ===== Navbar ===== */
 .navbar {
     position: absolute;  /* make it float */
-    top: 35px;
+    top: 22px;
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
     z-index: 1000;
     text-align: center;
     background: transparent;
-    margin-top: -40px;
-    padding-top: 20px;
+    padding-top: -20px;
 }
 
 .navbar ul {
