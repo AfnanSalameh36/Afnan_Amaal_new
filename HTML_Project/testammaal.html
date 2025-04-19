@@ -1,197 +1,471 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Exquisite Restaurant - Circular Layout</title>-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">-->
+<!--    <style>-->
+<!--        * {-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            box-sizing: border-box;-->
+<!--            font-family: 'Arial', sans-serif;-->
+<!--        }-->
+
+<!--        body {-->
+<!--            background-color: #f5f5f5;-->
+<!--            display: flex;-->
+<!--            justify-content: center;-->
+<!--            align-items: center;-->
+<!--            min-height: 100vh;-->
+<!--            padding: 20px;-->
+<!--        }-->
+
+<!--        .restaurant-container {-->
+<!--            position: relative;-->
+<!--            width: 100%;-->
+<!--            max-width: 800px;-->
+<!--            height: 800px;-->
+<!--            margin: 0 auto;-->
+<!--        }-->
+
+<!--        .main-image {-->
+<!--            position: absolute;-->
+<!--            width: 300px;-->
+<!--            height: 300px;-->
+<!--            border-radius: 50%;-->
+<!--            object-fit: cover;-->
+<!--            top: 50%;-->
+<!--            left: 50%;-->
+<!--            transform: translate(-50%, -50%);-->
+<!--            border: 10px solid white;-->
+<!--            box-shadow: 0 10px 30px rgba(0,0,0,0.1);-->
+<!--            z-index: 10;-->
+<!--        }-->
+
+<!--        .service-item {-->
+<!--            position: absolute;-->
+<!--            width: 200px;-->
+<!--            padding: 20px;-->
+<!--            background: white;-->
+<!--            border-radius: 10px;-->
+<!--            box-shadow: 0 5px 15px rgba(0,0,0,0.1);-->
+<!--            text-align: center;-->
+<!--            transition: all 0.3s ease;-->
+<!--        }-->
+
+<!--        .service-item:hover {-->
+<!--            transform: scale(1.05);-->
+<!--            box-shadow: 0 10px 25px rgba(0,0,0,0.15);-->
+<!--        }-->
+
+<!--        .service-icon {-->
+<!--            font-size: 30px;-->
+<!--            color: #c19a5b;-->
+<!--            margin-bottom: 15px;-->
+<!--        }-->
+
+<!--        .service-title {-->
+<!--            font-size: 18px;-->
+<!--            font-weight: 600;-->
+<!--            color: #333;-->
+<!--            margin-bottom: 10px;-->
+<!--        }-->
+
+<!--        .service-desc {-->
+<!--            font-size: 14px;-->
+<!--            color: #666;-->
+<!--            line-height: 1.5;-->
+<!--        }-->
+
+<!--        /* تحديد مواقع العناصر بشكل دائري */-->
+<!--        .service-1 { top: 15%; left: 50%; transform: translateX(-50%); }-->
+<!--        .service-2 { top: 30%; right: 10%; }-->
+<!--        .service-3 { bottom: 30%; right: 10%; }-->
+<!--        .service-4 { bottom: 15%; left: 50%; transform: translateX(-50%); }-->
+<!--        .service-5 { bottom: 30%; left: 10%; }-->
+<!--        .service-6 { top: 30%; left: 10%; }-->
+
+<!--        .main-title {-->
+<!--            position: absolute;-->
+<!--            top: 5%;-->
+<!--            left: 50%;-->
+<!--            transform: translateX(-50%);-->
+<!--            font-size: 32px;-->
+<!--            font-weight: 700;-->
+<!--            color: #222;-->
+<!--            text-align: center;-->
+<!--            width: 100%;-->
+<!--        }-->
+
+<!--        @media (max-width: 768px) {-->
+<!--            .restaurant-container {-->
+<!--                height: 600px;-->
+<!--            }-->
+
+<!--            .main-image {-->
+<!--                width: 200px;-->
+<!--                height: 200px;-->
+<!--            }-->
+
+<!--            .service-item {-->
+<!--                width: 150px;-->
+<!--                padding: 15px;-->
+<!--            }-->
+
+<!--            .service-2, .service-3, .service-5, .service-6 {-->
+<!--                display: none;-->
+<!--            }-->
+
+<!--            .service-1, .service-4 {-->
+<!--                position: static;-->
+<!--                transform: none;-->
+<!--                margin: 20px auto;-->
+<!--                width: 80%;-->
+<!--            }-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="restaurant-container">-->
+<!--    <h1 class="main-title">Exquisite Restaurant in City</h1>-->
+
+<!--    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVzdGF1cmFudHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80" alt="Restaurant" class="main-image">-->
+
+<!--    <div class="service-item service-1">-->
+<!--        <div class="service-icon">-->
+<!--            <i class="fas fa-truck"></i>-->
+<!--        </div>-->
+<!--        <h3 class="service-title">Door Delivery</h3>-->
+<!--        <p class="service-desc">Lorem Ipsum is simply dummy printing and typeset industry lorem Ipsum has been.</p>-->
+<!--    </div>-->
+
+<!--    <div class="service-item service-2">-->
+<!--        <div class="service-icon">-->
+<!--            <i class="fas fa-utensils"></i>-->
+<!--        </div>-->
+<!--        <h3 class="service-title">Fine Dining</h3>-->
+<!--        <p class="service-desc">Lorem Ipsum is simply dummy printing and typeset industry lorem Ipsum has been.</p>-->
+<!--    </div>-->
+
+<!--    <div class="service-item service-3">-->
+<!--        <div class="service-icon">-->
+<!--            <i class="fas fa-people-carry"></i>-->
+<!--        </div>-->
+<!--        <h3 class="service-title">Outdoor Catering</h3>-->
+<!--        <p class="service-desc">Lorem Ipsum is simply dummy printing and typeset industry lorem Ipsum has been.</p>-->
+<!--    </div>-->
+
+<!--    <div class="service-item service-4">-->
+<!--        <div class="service-icon">-->
+<!--            <i class="fas fa-hotel"></i>-->
+<!--        </div>-->
+<!--        <h3 class="service-title">Banquets Hall</h3>-->
+<!--        <p class="service-desc">Lorem Ipsum is simply dummy printing and typeset industry lorem Ipsum has been.</p>-->
+<!--    </div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!--==============================================================================================================================================================================-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Testimonials Slider</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Dancing+Script&display=swap" rel="stylesheet">
+    <title>Golden Bite - Testimonials</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- إضافة رابط Font Awesome للنجوم -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
     <style>
         body {
             margin: 0;
+            font-family: 'Cinzel', serif;
             background-color: #0B1315;
-            font-family: 'Cinzel', serif;
-        }
-
-        .testimonial-slider {
-            position: relative;
-            width: 90%;
-            max-width: 900px;
-            margin: 100px auto;
-            overflow: hidden;
-            text-align: center;
-            padding: 40px 20px;
-            border-radius: 10px;
-        }
-
-        .testimonial-track {
-            display: flex;
-            transition: transform 0.6s ease;
-            cursor: grab;
-        }
-
-        .testimonial {
-            min-width: 100%;
-            padding: 20px;
-            color: #ccc;
-            font-family: 'Dancing Script', cursive;
-        }
-
-        .testimonial p {
-            font-size: 22px;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .testimonial h3 {
-            color: #CB9953;
-            font-family: 'Cinzel', serif;
-            font-size: 18px;
-            margin-bottom: 5px;
-            letter-spacing: 2px;
-        }
-
-        .testimonial span {
-            font-size: 14px;
-            color: #eee;
-        }
-
-        .numbers {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding-top: 20px;
-        }
-
-        .num {
-            font-size: 18px;
-            color: #CB9953;
-            border-bottom: 2px solid transparent;
-            cursor: pointer;
-        }
-
-        .num.active {
-            border-color: #CB9953;
-        }
-
-        .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 30px;
-            color: #CB9953;
-            cursor: pointer;
-            background: transparent;
-            border: none;
-            padding: 10px;
-            z-index: 2;
-        }
-
-        .arrow.left {
-            left: 10px;
-        }
-
-        .arrow.right {
-            right: 10px;
-        }
-
-        .arrow:hover {
             color: #fff;
         }
 
-        @media (max-width: 600px) {
-            .testimonial p {
-                font-size: 18px;
-            }
+        .testimonials {
+            padding: 40px 20px;
+            text-align: center;
+        }
 
-            .num {
-                font-size: 16px;
-            }
+        .section-title {
+            font-size: 36px;
+            color: #CB9953;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .swiper {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .swiper-slide {
+            background: linear-gradient(to right, #0B1315, #1f1f1f);
+            border-radius: 15px;
+            padding: 30px 20px;
+            font-size: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            white-space: normal;
+            word-break: break-word;
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 2px solid #CB9953;
+        }
+        .swiper-slide {
+            width: 100% !important;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+
+        .review-name {
+            font-weight: bold;
+            margin: 10px 0 5px;
+        }
+        .stars i {
+            color: #fff; /* لون ذهبي فاخر */
+            font-size: 20px;
+            margin-bottom: 10px;
+            /*text-shadow: 0 0 3px rgba(203, 153, 83, 0.6);*/
+            filter: drop-shadow(0 0 0.5px white); /* حواف بيضاء ناعمة */
+
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+
+
+        .review-text {
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #CB9953;
+        }
+
+        .swiper-pagination-bullet {
+            background: #CB9953;
+        }
+
+        .add-review-btn {
+            background-color: #CB9953;
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .add-review-btn:hover {
+            background-color: #b68545;
+        }
+
+        #review-form {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            width: 60%;
+            max-width: 600px;
+            margin: 20px auto 0;
+        }
+        .stars i {
+            font-size: 16px; /* أصغر حجم للنجمة */
+            color: #aaa; /* لون مبدئي رمادي ناعم */
+            margin: 0 2px;
+            transition: transform 0.3s ease, color 0.3s ease;
+            filter: drop-shadow(0 0 0.5px white); /* حواف بيضاء ناعمة */
+        }
+
+        .stars i.fas {
+            color: #FFFFFF; /* الذهبي عند التقييم */
+        }
+
+        .star {
+            font-size: 16px;
+            margin-right: 2px;
+            color: #CB9953;
+            filter: drop-shadow(0 0 1px white);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0.9;
+        }
+
+        .star:hover {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        #review-form input,
+        #review-form textarea {
+            padding: 10px;
+            border: 1px solid #CB9953;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #000;
+            font-size: 14px;
+        }
+
+        #review-form select {
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        #review-form button {
+            background-color: #CB9953;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #review-form button:hover {
+            background-color: #b68545;
         }
     </style>
 </head>
 <body>
 
-<div class="testimonial-slider">
-    <button class="arrow left">&#10094;</button>
-    <div class="testimonial-track" id="track">
-        <div class="testimonial">
-            <p>“Duis aute irure dolor. Lorem ipsum dolor sit amet...”</p>
-            <h3>ANDREA CHUNG</h3>
-            <span>Cook</span>
-        </div>
-        <div class="testimonial">
-            <p>“Ut enim ad minim veniam quis nostrud exercitation...”</p>
-            <h3>MARK SMITH</h3>
-            <span>Chef</span>
-        </div>
-        <div class="testimonial">
-            <p>“Excepteur sint occaecat cupidatat non proident...”</p>
-            <h3>SARA LEE</h3>
-            <span>Baker</span>
-        </div>
-    </div>
-    <button class="arrow right">&#10095;</button>
-    <div class="numbers">
-        <span class="num active">1</span>
-        <span class="num">2</span>
-        <span class="num">3</span>
-    </div>
-</div>
+<section class="testimonials">
+    <h2 class="section-title">Testimonials</h2>
 
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper" id="testimonial-list">
+            <div class="swiper-slide">
+                <img src="https://i.pravatar.cc/60?img=12" alt="avatar" class="avatar">
+                <div class="review-name">Sarah</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                </div>
+                <div class="review-text">The food was amazing! Loved the presentation and the flavors. Definitely coming back!</div>
+            </div>
+
+            <div class="swiper-slide">
+                <img src="https://i.pravatar.cc/60?img=24" alt="avatar" class="avatar">
+                <div class="review-name">Omar</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+                </div>
+                <div class="review-text">Nice ambiance, fast service. The menu could have more options though.</div>
+            </div>
+        </div>
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <button onclick="showForm()" class="add-review-btn">أضف رأيك</button>
+
+    <form id="review-form" onsubmit="addReview(event)">
+        <input type="text" id="username" placeholder="اسمك" required />
+        <input type="file" id="avatar" accept="image/*" />
+        <textarea id="review" placeholder="رأيك" required></textarea>
+        <label for="stars">التقييم:</label>
+        <select id="stars" required>
+            <option value="5">★★★★★</option>
+            <option value="4">★★★★☆</option>
+            <option value="3">★★★☆☆</option>
+            <option value="2">★★☆☆☆</option>
+            <option value="1">★☆☆☆☆</option>
+        </select>
+        <button type="submit">إرسال</button>
+    </form>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-    let current = 0;
-    const track = document.querySelector('#track');
-    const numbers = document.querySelectorAll('.num');
-    const testimonials = document.querySelectorAll('.testimonial');
-    const leftArrow = document.querySelector('.arrow.left');
-    const rightArrow = document.querySelector('.arrow.right');
+    const swiper = new Swiper(".mySwiper", {
+        loop: true,
+        spaceBetween: 0,
+        autoHeight: true,
+        grabCursor: true,
+        autoplay: {
+            delay: 5000, // كل ٥ ثواني
+            disableOnInteraction: false, // يكمل حتى لو المستخدم لمس
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        }
+    });
 
-    function updateSlider(index) {
-        current = (index + testimonials.length) % testimonials.length;
-        track.style.transform = `translateX(-${current * 100}%)`;
-        numbers.forEach((num, i) => {
-            num.classList.toggle('active', i === current);
-        });
+    function showForm() {
+        document.getElementById("review-form").style.display = "flex";
     }
 
-    numbers.forEach((num, idx) => {
-        num.addEventListener('click', () => updateSlider(idx));
-    });
+    function addReview(e) {
+        e.preventDefault();
+        const name = document.getElementById("username").value.trim();
+        const review = document.getElementById("review").value.trim();
+        const avatarInput = document.getElementById("avatar");
+        const stars = parseInt(document.getElementById("stars").value);
 
-    leftArrow.addEventListener('click', () => updateSlider(current - 1));
-    rightArrow.addEventListener('click', () => updateSlider(current + 1));
+        let avatarUrl = "https://i.pravatar.cc/60"; // صورة افتراضية
 
-    setInterval(() => {
-        updateSlider(current + 1);
-    }, 5000);
+        if (avatarInput.files && avatarInput.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                avatarUrl = event.target.result;
+                createReviewSlide(name, review, avatarUrl, stars); // بنرسل عدد النجوم هون
+            };
+            reader.readAsDataURL(avatarInput.files[0]);
+        } else {
+            let starIcons = "";
+            for (let i = 1; i <= 5; i++) {
+                starIcons += i <= stars ? `<span class="star">&#9733;</span>` : `<span class="star">&#9734;</span>`;
+            }
+        }
 
-    // سحب بالماوس أو اللمس
-    let startX = 0;
-    let isDragging = false;
+        document.getElementById("review-form").reset();
+        document.getElementById("review-form").style.display = "none";
+    }
 
-    track.addEventListener('mousedown', e => {
-        isDragging = true;
-        startX = e.pageX;
-    });
 
-    track.addEventListener('mouseup', e => {
-        if (!isDragging) return;
-        isDragging = false;
-        let diff = e.pageX - startX;
-        if (diff > 50) updateSlider(current - 1);
-        else if (diff < -50) updateSlider(current + 1);
-    });
+    function createReviewSlide(name, review, avatarUrl, stars) {
+        const newSlide = document.createElement("div");
+        newSlide.className = "swiper-slide";
 
-    track.addEventListener('touchstart', e => {
-        startX = e.touches[0].clientX;
-    }, { passive: true });
+        let starIcons = "";
+        for (let i = 1; i <= 5; i++) {
+            starIcons += i <= stars ? `<i class="fas fa-star"></i>` : `<i class="far fa-star"></i>`;
+        }
 
-    track.addEventListener('touchend', e => {
-        let diff = e.changedTouches[0].clientX - startX;
-        if (diff > 50) updateSlider(current - 1);
-        else if (diff < -50) updateSlider(current + 1);
-    });
+        newSlide.innerHTML = `
+    <img src="${avatarUrl}" alt="avatar" class="avatar">
+    <div class="review-name">${name}</div>
+    <div class="stars">${starIcons}</div>
+    <div class="review-text">${review}</div>
+  `;
+
+        document.querySelector(".swiper-wrapper").appendChild(newSlide);
+        swiper.update();
+    }
+
 </script>
 
 </body>
 </html>
+

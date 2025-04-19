@@ -24,7 +24,6 @@ setInterval(() => {
     updateSlider(current + 1);
 }, 5000);
 
-// سحب بالماوس أو اللمس
 let startX = 0;
 let isDragging = false;
 
