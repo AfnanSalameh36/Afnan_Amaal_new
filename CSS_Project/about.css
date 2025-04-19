@@ -439,3 +439,102 @@ p {
         gap: 30px;
     }
 }
+.q {
+    font-size: 48px;
+    z-index: 1000;
+    color: #CB9953;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 3px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    padding: 10px 30px;
+    animation: fadeIn 1.5s ease-in-out;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* تأثير اللمعة عند التمرير */
+/*.q:hover {*/
+/*    animation: glow 1.5s ease-in-out infinite alternate;*/
+/*}*/
+
+/* تأثير اللمعة الدائمة (اختر أحد الخيارين) */
+
+.q {
+    animation: glow 2s ease-in-out infinite alternate, fadeIn 1.5s ease-in-out;
+}
+
+
+@keyframes glow {
+    /*0% {*/
+    /*    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0),*/
+    /*    0 0 5px rgba(203, 153, 83, 0.5);*/
+    /*    box-shadow: 0 0 5px rgba(203, 153, 83, 0.3);*/
+    /*}*/
+    100% {
+        text-shadow: 3px 3px 10px rgba(0, 0, 0, 0),
+        0 0 15px rgba(203, 153, 83, 0.9),
+        0 0 25px rgba(203, 153, 83, 0.7);
+    }
+}
+
+.q::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 50%;
+    height: 200%;
+    background: linear-gradient(
+            to bottom right,
+            transparent,
+            transparent,
+            rgba(203, 153, 83, 0.1),
+            rgba(203, 153, 83, 0.3),
+            rgba(203, 153, 83, 0.1),
+            transparent,
+            transparent
+    );
+    transform: rotate(30deg);
+    opacity: 0;
+}
+
+.q:hover::after {
+    animation: shine 2s ease infinite;
+    opacity: 1;
+}
+
+@keyframes shine {
+    0% { left: -60%; }
+    100% { left: 120%; }
+}
+.gold-ornament {
+    margin: 30px auto;
+    width: 150px;
+    height: 20px;
+    background: linear-gradient(90deg,
+    rgba(154,125,87,0) 0%,
+    rgba(154,125,87,1) 50%,
+    rgba(154,125,87,0) 100%);
+    position: relative;
+}
+
+.gold-ornament:before,
+.gold-ornament:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #9A7D57;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.gold-ornament:before {
+    left: -20px;
+}
+
+.gold-ornament:after {
+    right: -20px;
+}
