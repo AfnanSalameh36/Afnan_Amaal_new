@@ -18,7 +18,7 @@ body, html {
     height: 100%;
     width: 100%;
     overflow-x: hidden;
-    font-family: 'Heebo', sans-serif;
+    font-family: 'Cinzel', serif;
     background-color: #0B1315;
     position: relative;
 }
@@ -409,7 +409,7 @@ p {
     flex-wrap: wrap;
     justify-content: center;
     gap: 60px;
-    margin-bottom: 50px;
+    /*margin-bottom:70px;*/
 }
 
 .about-text {
@@ -419,7 +419,7 @@ p {
 }
 
 .about-text p {
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
     font-size: 18px;
     line-height: 1.8;
     text-align: center;
@@ -537,4 +537,101 @@ p {
 
 .gold-ornament:after {
     right: -20px;
+}
+
+/*==============================================محتوى الازاحة*/
+.testimonial-slider {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    margin: 100px auto;
+    overflow: hidden;
+    text-align: center;
+    padding: 40px 20px;
+    border-radius: 10px;
+}
+
+.testimonial-track {
+    display: flex;
+    transition: transform 0.6s ease;
+    cursor: grab;
+}
+
+.testimonial {
+    min-width: 100%;
+    padding: 20px;
+    color: #ccc;
+    font-family: 'Dancing Script', cursive;
+}
+
+.testimonial p {
+    font-size: 22px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.testimonial h3 {
+    color: #CB9953;
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+}
+
+.testimonial span {
+    font-size: 14px;
+    color: #eee;
+}
+
+.numbers {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.num {
+    font-size: 18px;
+    color: #CB9953;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+}
+
+.num.active {
+    border-color: #CB9953;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    color: #CB9953;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 10px;
+    z-index: 2;
+}
+
+.arrow.left {
+    left: 10px;
+}
+
+.arrow.right {
+    right: 10px;
+}
+
+.arrow:hover {
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+    .testimonial p {
+        font-size: 18px;
+    }
+
+    .num {
+        font-size: 16px;
+    }
 }
