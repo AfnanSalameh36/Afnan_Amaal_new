@@ -34,6 +34,7 @@ function changeImage(direction) {
     updateBackground();
 }
 
+
 function setImage(index) {
     currentIndex = index;
     updateBackground();
