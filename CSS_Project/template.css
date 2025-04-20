@@ -28,14 +28,15 @@ p {
 /* ===== Navbar ===== */
 .navbar {
     position: absolute;  /* make it float */
-    top: 22px;
+    top: 35px;
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
     z-index: 1000;
     text-align: center;
     background: transparent;
-    padding-top: -20px;
+    margin-top: -40px;
+    padding-top: 20px;
 }
 
 .navbar ul {
@@ -176,148 +177,27 @@ p {
     background-position: left center;
 }
 
-/*************************************************************************************************************************/
-body{
-    font-family: 'Poppins', sans-serif;
-    background-color: #0B1315;
-    margin: 0;
-    padding: 0;
-    background-image: url("../image2/b1.png");
-    background-position: left 100px top;
-    background-repeat: no-repeat;
-}
-
-div.backgroundForOurMenu {
+/***************************************************************************************************************************/
+div.backgroundForContactUs{
     display: flex;
     justify-content: center;
-    background-image: url("../image2/TopBackground1.jpg");
+    background-image: url("../image2/contactUs/backgroundForContact.jpg");
     background-size: cover; /* Ensures the image covers the full div */
     background-position: center; /* Centers the image */
-    height: 530PX; /* Set a visible height */
+    height: 530px; /* Set a visible height */
     width: 100%; /* Full width */
 }
-
-div.background1 , div.background2{
-    background-size: cover; /* Ensures the image covers the full div */
-    background-position: center; /* Centers the image */
-    height: 530PX; /* Set a visible height */
-    width: 100%; /* Full width */
-}
-
-div.background1{
-    background-image: url("../image2/1.jpg");
-    margin-top: 150px;
-}
-
-div.background2{
-    background-image: url("../image2/2.jpg");
-    margin-top: 150px;
-}
-
-p.ourMenuStatement{
+p.ContactUsStatement{
     margin: 0;
     position: relative;
     top:250px;
     font-family: 'Cinzel', serif;
     letter-spacing: 4px;
-    color:#FFFFFF;
-    font-weight: bold;
+    color: #FFFFFF;
     font-size: 50px;
     text-transform: uppercase;
     text-align: center;
 }
-
-.MainCourses_statement, .desserts_statement, .drinks_statement{
-    text-align: center;
-    font-family: 'Cinzel', serif;
-    font-weight: bold;
-    color: #8C7250;
-    position: relative;
-    top: 120px;
-    font-size: 40px;
-    letter-spacing: 5px;
-    margin-top: 80px;
-    margin-bottom: 150px;
-    text-transform: uppercase;
-}
-
-.container_for_mainCourses , .container_for_desserts , .container_for_drinks{
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: auto;
-}
-
-.menu_item {
-    display: flex;
-    align-items: flex-start;
-    width: 600px;
-    margin: 15px;
-    background-color: transparent; /* أو لون خفيف لو تحب */
-}
-
-.menu_item img {
-    width: 120px;
-    height: 120px;
-    border-radius: 12px;
-    margin-right: 20px;
-    margin-left: 0;
-    margin-bottom: 0;
-    float: none; /* إلغاء تأثير float */
-}
-
-.menu_details {
-    flex: 1;
-}
-
-h3.name {
-    font-family: 'Cinzel', serif;
-    color: #8C7250;
-    font-size: 20px;
-    margin: 0 0 10px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    padding-right: 0;
-}
-
-h3.name span {
-    font-family: 'Josefin Sans', sans-serif;
-    color: #8C7250;
-    font-size: 18px;
-    margin-left: 10px;
-}
-
-h3.name::after {
-    content: "";
-    position: absolute;
-    top: 68%;
-    left: 39%;
-    width: 16vw;
-    height: 1px;
-    background-color: #8C7250;
-    transform: translateY(-50%);
-}
-
-h3.name::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 39%;
-    width: 16vw;
-    height: 1px;
-    background-color: #8C7250;
-    transform: translateY(-50%);
-}
-
-p.description {
-    font-family: 'Josefin Sans', sans-serif;
-    color: #ffffff;
-    font-size: 17px;
-    font-weight: 400;
-}
-
 /***************************************************************************************************************************/
 /* Golden Footer Styles */
 .golden-footer {
@@ -490,7 +370,3 @@ p.description {
         padding: 60px 0 0;
     }
 }
-
-
-
-
