@@ -912,3 +912,202 @@ a .fancy-border {
         padding: 60px 0 0;
     }
 }
+/*===========================================================التقييم*/
+body {
+    color: #fff;
+}
+
+.testimonials {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.section-titlee {
+    font-size: 36px;
+    color: #CB9953;
+    font-family: 'Cinzel', serif;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    text-align: center;
+    position: relative;
+}
+
+.swiper {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto 30px;
+}
+
+.swiper-slide {
+    background: linear-gradient(to right, #0B1315, #1f1f1f);
+    border-radius: 15px;
+    padding: 30px 20px;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    white-space: normal;
+    word-break: break-word;
+    width: 100% !important;
+    box-sizing: border-box;
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 2px solid #CB9953;
+}
+
+.review-name {
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+
+.stars i {
+    font-size: 16px;
+    margin: 0 2px;
+    transition: transform 0.3s ease, color 0.3s ease;
+    filter: drop-shadow(0 0 0.5px white);
+}
+
+.stars i.fas {
+    color: #FFFFFF;
+}
+
+.review-text {
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.add-review-btn {
+    background-color: #CB9953;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-review-btn:hover {
+    background-color: #b68545;
+}
+
+/* 🌟 تصميم الفورم الجديد */
+#review-form {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    width: 90%;
+    max-width: 500px;
+    margin: 30px auto 0;
+    background-color: #1f1f1f;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(203, 153, 83, 0.3);
+    transition: all 0.3s ease;
+}
+
+#review-form input,
+#review-form textarea,
+#review-form select {
+    padding: 12px;
+    border: 1px solid #CB9953;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #000;
+    font-size: 15px;
+    font-family: inherit;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+#review-form input::placeholder,
+#review-form textarea::placeholder {
+    color: #888;
+}
+
+#review-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+#review-form label {
+    color: #CB9953;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: left;
+}
+
+#review-form button {
+    background-color: #CB9953;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#review-form button:hover {
+    background-color: #b68545;
+    transform: scale(1.05);
+}
+
+/* 🔘 النقاط */
+.swiper-pagination-bullet {
+    background: #6A5E5C !important;
+    opacity: 0.5 !important;
+}
+
+.swiper-pagination-bullet-active {
+    background: #CB9953 !important;
+    opacity: 1 !important;
+}
+
+/* 🔄 أسهم التنقل */
+.swiper-button-next,
+.swiper-button-prev {
+    color: #CB9953 !important;
+    fill: #CB9953 !important;
+    transition: transform 0.3s ease, color 0.3s ease, filter 0.3s ease;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    color: #CB9953;
+    font-size: 20px !important;
+}
+
+/* عند التأشير */
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    transform: scale(0.65);
+    color: #FFFFFF !important;
+    filter: drop-shadow(0 0 6px #CB9953);
+}
+/*===============================================================================*/
+.testimonials-section {
+    background-image: url('../image2/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 60px 20px; /* عشان يبين المحتوى */
+    position: relative;
+    z-index: 1;
+}
+
+.testimonials {
+    border-radius: 16px;
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.testimonials-section {
+    font-family: 'Cairo', sans-serif;
+}

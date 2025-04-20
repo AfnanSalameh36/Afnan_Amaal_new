@@ -388,7 +388,6 @@ p {
     font-weight: 300;
     color: #FFFFFF;
     margin-bottom: 20px;
-    text-transform: uppercase;
     letter-spacing: 3px;
     position: relative;
     display: flex;
@@ -641,6 +640,8 @@ p {
 /*===========================================================التقييم*/
 body {
     color: #fff;
+    text-transform: none;!important
+
 }
 
 .testimonials {
@@ -650,14 +651,21 @@ body {
 
 .section-titlee {
     font-size: 36px;
-    color: #CB9953;
+    color: #FFFFFF;
+    font-family: 'Cinzel', serif;
     margin-bottom: 30px;
-    text-transform: uppercase;
     letter-spacing: 2px;
     text-align: center;
     position: relative;
+    text-transform: capitalize;
+}
+.review-name {
+    text-transform: capitalize;!important
 }
 
+.review-text {
+    text-transform: none;
+}
 .swiper {
     width: 90%;
     max-width: 800px;
@@ -777,6 +785,13 @@ body {
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.about-us p,
+.about-us h1,
+.about-us h2,
+.about-us h3,
+.about-us span {
+    text-transform: capitalize;
 }
 
 #review-form button:hover {
