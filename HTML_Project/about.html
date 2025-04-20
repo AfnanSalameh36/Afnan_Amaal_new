@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" >
     <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Dancing+Script&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <style>
 
     </style>
@@ -104,12 +106,98 @@ About Us    </div>
 
 
 
+
+
+
+
+
+
+
+
+
+    <section class="testimonials">
+        <h2 class="section-titlee">Testimonials</h2>
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper" id="testimonial-list">
+                <div class="swiper-slide">
+                    <img src="https://i.pravatar.cc/60?img=12" alt="avatar" class="avatar">
+                    <div class="review-name">Sarah</div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                    </div>
+                    <div class="review-text">The food was amazing! Loved the presentation and the flavors. Definitely coming back!</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://i.pravatar.cc/60?img=1" alt="avatar" class="avatar">
+                    <div class="review-name">Sara Ali</div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="review-text">Amazing food and ambiance!</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="../image/11.jpg" alt="avatar" class="avatar">
+                    <div class="review-name">Ahmed Youssef</div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="review-text">The best steak in town. Will come again!</div>
+                </div>
+
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <button onclick="showForm()" class="add-review-btn">أضف رأيك</button>
+        <form id="review-form" onsubmit="addReview(event)">
+            <input type="text" id="username" placeholder="اسمك" required />
+            <input type="file" id="avatar" accept="image/*" />
+            <textarea id="review" placeholder="رأيك" required></textarea>
+            <label for="stars">التقييم:</label>
+            <select id="stars" required>
+                <option value="5">★★★★★</option>
+                <option value="4">★★★★☆</option>
+                <option value="3">★★★☆☆</option>
+                <option value="2">★★☆☆☆</option>
+                <option value="1">★☆☆☆☆</option>
+            </select>
+            <button type="submit">إرسال</button>
+        </form>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <footer class="golden-footer">
         <div class="footer-waves">
             <div class="wave wave-1"></div>
             <div class="wave wave-2"></div>
             <div class="wave wave-3"></div>
         </div>
+
 
         <div class="footer-container">
             <div class="footer-section">
