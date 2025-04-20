@@ -251,7 +251,7 @@ Delights
 
 
 <section class="testimonials">
-    <h2 class="section-titlee">Testimonials</h2>
+    <h2 class="section-titlee" style="color:#FFFFFF;">Testimonials</h2>
     <div class="swiper mySwiper">
         <div class="swiper-wrapper" id="testimonial-list">
             <div class="swiper-slide">
@@ -292,12 +292,12 @@ Delights
         <div class="swiper-button-prev"></div>
         <div class="swiper-pagination"></div>
     </div>
-    <button onclick="showForm()" class="add-review-btn">أضف رأيك</button>
+    <button onclick="showForm()" class="add-review-btn" style="background-color: transparent ;color: #fff;  border: 1px solid  #b68545;">Add your opinion</button>
     <form id="review-form" onsubmit="addReview(event)">
-        <input type="text" id="username" placeholder="اسمك" required />
+        <input type="text" id="username" placeholder="your name.." required />
         <input type="file" id="avatar" accept="image/*" />
-        <textarea id="review" placeholder="رأيك" required></textarea>
-        <label for="stars">التقييم:</label>
+        <textarea id="review" placeholder="Your opinion.." required></textarea>
+        <label for="stars">Evaluation:</label>
         <select id="stars" required>
             <option value="5">★★★★★</option>
             <option value="4">★★★★☆</option>
@@ -305,7 +305,7 @@ Delights
             <option value="2">★★☆☆☆</option>
             <option value="1">★☆☆☆☆</option>
         </select>
-        <button type="submit">إرسال</button>
+        <button type="submit" style="border: 1px solid #b68545">إرسال</button>
     </form>
 </section>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
