@@ -19,9 +19,12 @@
 
     </style>
 </head>
+
 <body style="background-image: url('../image2/background.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
 <div>
-<div class="content">
+    <div id="top"></div>
+
+    <div class="content">
 
     <div class="image-wrapper">
         <div class="corner-image"></div>
@@ -74,25 +77,28 @@ About Us    </div>
         </div>
 
     </div>
+    <div style="text-align: center;  padding-top: 100px; margin-bottom: 0px;">
+        <img src="../image/chef.jpg" alt="Chef" style="width: 300px; border-radius: 10px;">
+    </div>
 
-
-    <div class="testimonial-slider">
+    <div class="testimonial-slider" style="margin-top: 0px; padding-bottom: 30px; ">
         <button class="arrow left">&#10094;</button>
         <div class="testimonial-track" id="track">
             <div class="testimonial">
-                <p>“Duis aute irure dolor. Lorem ipsum dolor sit amet...”</p>
+                <p>“The head chef at Golden Restaurant,<br> he specializes in creating fine dishes that blend traditional and modern flavors. ”</p>
                 <h3>ANDREA CHUNG</h3>
-                <span>Cook</span>
+                <span style="font-size: 30px">Cook</span>
             </div>
+
             <div class="testimonial">
-                <p>“Ut enim ad minim veniam quis nostrud exercitation...”</p>
+                <p>“Executive Chef at Golden Restaurant,<br> known for blending creativity with culinary excellence.”</p>
                 <h3>MARK SMITH</h3>
-                <span>Chef</span>
+                <span style="font-size: 30px">Chef</span>
             </div>
             <div class="testimonial">
-                <p>“Excepteur sint occaecat cupidatat non proident...”</p>
+                <p>“Head Baker at Golden Restaurant, <br>crafting artisanal pastries with passion and precision”</p>
                 <h3>SARA LEE</h3>
-                <span>Baker</span>
+                <span style="font-size: 30px">Baker</span>
             </div>
         </div>
 
@@ -107,7 +113,6 @@ About Us    </div>
 
 
 
-    <!-- مجموعة الصور الصغيرة عن الأكل -->
     <div class="food-gallery" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 40px;">
         <div class="food-item" style="width: 150px; height: 150px; overflow: hidden; border-radius: 10px;">
             <img src="../image/123333.jpg" alt="Food 1" style="width: 100%; height: 100%; object-fit: cover;">
@@ -178,9 +183,56 @@ About Us    </div>
             <div class="swiper-pagination"></div>
         </div>
 
+
+<br><br>
+
+        <div class="section">
+            <h2 class="section-title1">Our Strength<br></h2>
+
+            <div class="image-row">
+                <div class="image-box">
+                    <img src="../image/Event-Party.jpg" alt="Food 1" class="main" style="width: 250px; right: 3px" />
+                    <div class="icon-overlay">
+                        <img src="../image/EP.png" alt="icon" />
+                        <span>Event Party</span>
+                    </div>
+                </div>
+
+                <div class="image-box">
+                    <img src="../image/Fresh-Environment.jpg" alt="Food 3" class="main" />
+                    <div class="icon-overlay">
+                        <img src="../image/FE.png" alt="icon" />
+                        <span>resh Environment</span>
+                    </div>
+                </div>
+                <div class="image-box">
+                    <img src="../image/Skilled-Chefs.jpg" alt="Food 2" class="main" />
+                    <div class="icon-overlay">
+                        <img src="../image/SC.png" alt="icon" />
+                        <span>Skilled Chefs</span>
+                    </div>
+                </div>
+                <div class="image-box">
+                    <img src="../image/Hygienic-Food.jpg" alt="Food 4" class="main" />
+                    <div class="icon-overlay">
+                        <img src="../image/HF.png" alt="icon" />
+                        <span>Hygienic Food</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
+    <div class="scroll-to-top-container">
+        <a href="#top" class="scroll-to-top">
+            <i class="fas fa-arrow-up"></i>  <!-- سهم صغير -->
+        </a>
+    </div>
 
 
 
@@ -261,5 +313,6 @@ About Us    </div>
 
 <script src="../JAVAS_Project/about.js"></script>
 
+</div>
 </body>
 </html>
