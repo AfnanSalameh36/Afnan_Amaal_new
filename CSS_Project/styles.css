@@ -1156,3 +1156,27 @@ body {
     color: #8C7250;
 }
 
+.hover-effect img {
+    transition: border 0.5s ease, box-shadow 0.5s ease;
+    border: 2px solid transparent; /* بالبداية بدون بوردر */
+}
+
+/* عند المرور بالماوس */
+.hover-effect:hover img {
+    animation: pulse 1.5s infinite; /* نبضة متتالية! */
+    border: 2px solid rgba(203, 153, 83, 0.6); /* بوردر ذهبي فاتح */
+    box-shadow: 0 0 15px rgba(203, 153, 83, 0.4); /* لمعة خفيفة */
+}
+
+/* حركة النبض */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
