@@ -844,7 +844,7 @@ body {
 .image-box {
     position: relative;
     width: 280px;
-    height: 560px;
+    height: 540px;
     overflow: hidden;
     transition: transform 0.3s ease;
 }
@@ -1160,7 +1160,7 @@ html {
 
 .faq-right {
     flex: 1 100 500px;
-    margin-top:100px;
+    margin-top:110px;
 }
 
 .faq-item {
