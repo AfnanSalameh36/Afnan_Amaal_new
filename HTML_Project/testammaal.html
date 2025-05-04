@@ -1,175 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>FAQ Section</title>
+    <title>Golden Bite | مرحبًا</title>
     <style>
-        body {
+        * {
             margin: 0;
-            font-family: 'Georgia', serif;
-            background-color: #0F2C2C;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f8f6f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .welcome-container {
+            text-align: center;
+            background: #ffffffcc;
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .welcome-container h1 {
+            font-size: 48px;
+            color: #CB9953;
+            margin-bottom: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .welcome-container p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .button-group a {
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .signin {
+            background-color: transparent;
+            border: 2px solid #CB9953;
+            color: #CB9953;
+        }
+
+        .signin:hover {
+            background-color: #CB9953;
             color: white;
         }
 
-        .faq-section {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 60px 10%;
-            gap: 40px;
-            align-items: flex-start;
+        .signup {
+            background-color: #CB9953;
+            color: white;
+            border: 2px solid #CB9953;
         }
 
-        .faq-left {
-            flex: 1 1 400px;
+        .signup:hover {
+            background-color: #b78344;
+            border-color: #b78344;
         }
 
-        .faq-left h4 {
-            color: #CB9953;
-            letter-spacing: 2px;
-            font-size: 14px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .faq-left h1 {
-            font-size: 40px;
-            margin: 10px 0;
-        }
+        @media (max-width: 500px) {
+            .welcome-container {
+                padding: 40px 20px;
+            }
 
-        .faq-left p {
-            font-size: 16px;
-            color: #ccc;
-            line-height: 1.6;
-        }
+            .welcome-container h1 {
+                font-size: 32px;
+            }
 
-        .faq-image {
-            margin-top: 30px;
-            border-radius: 20px;
-            overflow: hidden;
-        }
-
-        .faq-image img {
-            width: 100%;
-            display: block;
-        }
-
-        .faq-right {
-            flex: 1 1 500px;
-        }
-
-        .faq-item {
-            border: 1px solid #1e3b3b;
-            background: #0F2C2C;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .faq-question {
-            padding: 20px;
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            padding: 0 20px;
-            color: #bbb;
-            transition: all 0.3s ease;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 200px;
-            padding: 10px 20px 20px;
-        }
-
-        .faq-icon {
-            font-size: 24px;
-            transition: transform 0.3s ease;
-        }
-
-        .faq-item.active .faq-icon {
-            transform: rotate(45deg);
+            .button-group {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="faq-section">
-    <div class="faq-left">
-        <h4>INSTANT HELP</h4>
-        <h1>How Can We Help You?</h1>
-        <p>We understand that you have questions, and we welcome them. Below is the collection of queries which comes frequently from our clients.</p>
-        <div class="faq-image">
-            <img src="cb084f89-3731-4da6-8b13-9e61649bfb73.png" alt="FAQ Image">
-        </div>
-    </div>
-
-    <div class="faq-right">
-
-
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-                <span>Will I Get All The Demos For Single Purchase With Lifetime Validity?</span>
-                <span class="faq-icon">+</span>
-            </div>
-            <div class="faq-answer">
-                Yes! One-time purchase includes all current and future demos with lifetime updates.
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-                <span>Will I Get All The Demos For Single Purchase With Lifetime Validity?</span>
-                <span class="faq-icon">+</span>
-            </div>
-            <div class="faq-answer">
-                Yes! One-time purchase includes all current and future demos with lifetime updates.
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-                <span>Will I Get All The Demos For Single Purchase With Lifetime Validity?</span>
-                <span class="faq-icon">+</span>
-            </div>
-            <div class="faq-answer">
-                Yes! One-time purchase includes all current and future demos with lifetime updates.
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-                <span>Will I Get All The Demos For Single Purchase With Lifetime Validity?</span>
-                <span class="faq-icon">+</span>
-            </div>
-            <div class="faq-answer">
-                Yes! One-time purchase includes all current and future demos with lifetime updates.
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-                <span>Can I Change The Theme Language To My Local Language?</span>
-                <span class="faq-icon">+</span>
-            </div>
-            <div class="faq-answer">
-                Yes, the theme supports translation and is fully compatible with WPML or Loco Translate.
-            </div>
-        </div>
+<div class="welcome-container">
+    <h1>Golden Bite</h1>
+    <p>مرحبًا بك في عالم الفخامة والمذاق الفريد 🍽️</p>
+    <div class="button-group">
+        <a href="#" class="signin">تسجيل الدخول</a>
+        <a href="#" class="signup">إنشاء حساب</a>
     </div>
 </div>
-
-<script>
-    function toggleFAQ(element) {
-        const item = element.parentElement;
-        item.classList.toggle('active');
-        document.querySelectorAll('.faq-item').forEach(faq => {
-            if (faq !== item) faq.classList.remove('active');
-        });
-    }
-</script>
 
 </body>
 </html>

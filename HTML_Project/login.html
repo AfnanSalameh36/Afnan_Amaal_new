@@ -1,249 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign in & Sign up Form</title>
+    <meta charset="UTF-8">
+    <title>Golden Restaurants</title>
     <link rel="stylesheet" href="../CSS_Project/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" >
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Dancing+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <style>
+
+    </style>
 </head>
-<body style=" background-image: url('../image2/background.jpg') ">
+
+<body style="background-image: url('../image2/background.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
 <div>
-<div class="content">
+    <div id="top"></div>
 
-    <div class="image-wrapper">
-        <div class="corner-image"></div>
+    <div class="content">
+
+        <div class="image-wrapper">
+            <div class="corner-image"></div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <ul>
+                <li style="   margin-left:250px; "><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="menu.html">Book A Table</a></li>
+
+                <li class="dropdown">
+                    <a href="#">Shop</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#">Product List</a></li>
+                        <li><a href="#">Cart</a></li>
+                        <li><a href="#">Checkout</a></li>
+                    </ul>
+                </li>
+
+
+                <li><a href="menu.html">Contact</a></li>
+                <li><a href="signup.html" style="   margin-left:90px;"><i class="fas fa-user-plus"></i></a></li>
+                <li><a href="signin.html" style="   margin-left:-20px;"><i class="fas fa-sign-in-alt"></i></a></li>
+            </ul>
+        </nav>
+
+        <div class="gold-lines">
+            <div class="top-line"></div>
+        </div>
     </div>
 
+    <div class="hero-image" >
+        <video autoplay muted loop playsinline>
+        <source src="../image/food-present-bg.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+        <div class="overlay"></div>
+        <img src="../image/2s.png" alt="Overlay Image" class="overlay-image">
+        <img src="../image/1 s.png" alt="Overlay Image" class="overlay-image1">
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <ul>
-            <li  style="   margin-left:250px; "><a href="menu.html" class="active">Home</a></li>
-            <li><a href="menu.html">About us</a></li>
-            <li><a href="menu.html">Menu</a></li>
-            <li><a href="menu.html">Book A Table</a></li>
+        <div class="text-overlay">تجربة فاخرة في كل طبق
 
-            <li class="dropdown">
-                <a href="#">Shop</a>
-                <ul class="dropdown-content">
-                    <li><a href="#">Product List</a></li>
-                    <li><a href="#">Cart</a></li>
-                    <li><a href="#">Checkout</a></li>
-                </ul>
-            </li>
 
-            <li><a href="menu.html">Contact</a></li>
-            <li><a href="signup.html" style="   margin-left:90px;"><i class="fas fa-user-plus"></i></a></li>
-            <li><a href="signin.html" style="   margin-left:-20px;"><i class="fas fa-sign-in-alt"></i></a></li>
-
-        </ul>
-    </nav>
-
-    <div class="gold-lines">
-        <div class="top-line"></div>
+        </div>
     </div>
-</div>
+    <div  class="q" style="position:absolute; top:250px; left:52%; transform:translateX(-50%); color:#CB9953;  font-weight:bold;font-size: 70px; z-index:10;">
 
-<main style="top: 50px;">
-    <div class="box" style="   margin-top: 50px;">
-        <div class="inner-box">
-            <div class="forms-wrap">
-                <form action="index.html" autocomplete="off" class="sign-in-form">
-                    <div class="logo">
-                        <img src="../image/433.jpg" alt="easyclass" />
-                        <h4>easyclass</h4>
-                    </div>
 
-                    <div class="heading">
-                        <h2>Welcome Back</h2>
-                        <h6>Not registered yet?</h6>
-                        <a href="#" class="toggle">Sign up</a>
-                    </div>
+       </div>
 
-                    <div class="actual-form">
-                        <div class="input-wrap">
-                            <input
-                                    type="text"
-                                    minlength="4"
-                                    class="input-field"
-                                    autocomplete="off"
-                                    required
-                            />
-                            <label>Name</label>
-                        </div>
 
-                        <div class="input-wrap">
-                            <input
-                                    type="password"
-                                    minlength="4"
-                                    class="input-field"
-                                    autocomplete="off"
-                                    required
-                            />
-                            <label>Password</label>
-                        </div>
 
-                        <input type="submit" value="Sign In" class="sign-btn" />
 
-                        <p class="text">
-                            Forgotten your password or login details?
-                            <a href="#">Get help</a> signing in
-                        </p>
-                    </div>
-                </form>
 
-                <form action="index.html" autocomplete="off" class="sign-up-form">
-                    <div class="logo">
-                        <img src="../image/login1.jpg" alt="easyclass" />
-                        <h4>easyclass</h4>
-                    </div>
 
-                    <div class="heading">
-                        <h2>Get Started</h2>
-                        <h6>Already have an account?</h6>
-                        <a href="#" class="toggle">Sign in</a>
-                    </div>
 
-                    <div class="actual-form">
-                        <div class="input-wrap">
-                            <input
-                                    type="text"
-                                    minlength="4"
-                                    class="input-field"
-                                    autocomplete="off"
-                                    required
-                            />
-                            <label>Name</label>
-                        </div>
 
-                        <div class="input-wrap">
-                            <input
-                                    type="email"
-                                    class="input-field"
-                                    autocomplete="off"
-                                    required
-                            />
-                            <label>Email</label>
-                        </div>
 
-                        <div class="input-wrap">
-                            <input
-                                    type="password"
-                                    minlength="4"
-                                    class="input-field"
-                                    autocomplete="off"
-                                    required
-                            />
-                            <label>Password</label>
-                        </div>
 
-                        <input type="submit" value="Sign Up" class="sign-btn" />
 
-                        <p class="text">
-                            By signing up, I agree to the
-                            <a href="#">Terms of Services</a> and
-                            <a href="#">Privacy Policy</a>
-                        </p>
-                    </div>
-                </form>
-            </div>
 
-            <div class="carousel">
-                <div class="images-wrapper">
-                    <img src="../image/login1.jpg" class="image img-1 show" alt="" />
-                    <img src="../image/login2.jpg" class="image img-2" alt="" />
-                    <img src="../image/login3.jpg" class="image img-3" alt="" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <footer class="golden-footer">
+                <div class="footer-waves">
+                    <div class="wave wave-1"></div>
+                    <div class="wave wave-2"></div>
+                    <div class="wave wave-3"></div>
                 </div>
 
-                <div class="text-slider">
-                    <div class="text-wrap">
-                        <div class="text-group">
-                            <h2>Create your own courses</h2>
-                            <h2>Customize as you like</h2>
-                            <h2>Invite students to your class</h2>
+
+                <div class="footer-container">
+                    <div class="footer-section">
+                        <h3 class="footer-logo">Golden Restaurant</h3>
+                        <p class="footer-description">Experience the finest dining with authentic flavors and luxurious ambiance.</p>
+                        <div class="footer-social">
+                            <a href="https://www.facebook.com" class="social-icon" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://www.instagram.com" class="social-icon" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.twitter.com" class="social-icon" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+
                         </div>
+
                     </div>
 
-                    <div class="bullets">
-                        <span class="active" data-value="1"></span>
-                        <span data-value="2"></span>
-                        <span data-value="3"></span>
+                    <div class="footer-section">
+                        <h3 class="footer-title">Quick Links</h3>
+                        <ul class="footer-links">
+                            <li><a href="menu.html" style="text-decoration: none">Home</a></li>
+                            <li><a href="menu.html" style="text-decoration: none">About Us</a></li>
+                            <li><a href="menu.html" style="text-decoration: none">Menu</a></li>
+                            <li><a href="menu.html" style="text-decoration: none">Book a Table</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h3 class="footer-title">Contact Us</h3>
+                        <ul class="footer-contact">
+                            <li><i class="fas fa-map-marker-alt"></i> 71 Madison Ave, New York</li>
+                            <li><i class="fas fa-phone"></i> 914-309-7030</li>
+                            <li><i class="fas fa-envelope"></i> reservations@golden.com</li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h3 class="footer-title">Opening Hours</h3>
+                        <ul class="footer-hours">
+                            <li>Monday - Friday: 9:00 AM - 11:00 PM</li>
+                            <li>Saturday - Sunday: 10:00 AM - 12:00 AM</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</main>
 
-
-
-
-
-
-<footer class="golden-footer">
-    <div class="footer-waves">
-        <div class="wave wave-1"></div>
-        <div class="wave wave-2"></div>
-        <div class="wave wave-3"></div>
-    </div>
-
-    <div class="footer-container">
-        <div class="footer-section">
-            <h3 class="footer-logo">Golden Restaurant</h3>
-            <p class="footer-description">Experience the finest dining with authentic flavors and luxurious ambiance.</p>
-            <div class="footer-social">
-                <a href="https://www.facebook.com" class="social-icon" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="https://www.instagram.com" class="social-icon" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.twitter.com" class="social-icon" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-twitter"></i>
-                </a>
-
-            </div>
-
-        </div>
-
-        <div class="footer-section">
-            <h3 class="footer-title">Quick Links</h3>
-            <ul class="footer-links">
-                <li><a href="menu.html"style="text-decoration: none">Home</a></li>
-                <li><a href="menu.html"style="text-decoration: none">About Us</a></li>
-                <li><a href="menu.html"style="text-decoration: none">Menu</a></li>
-                <li><a href="menu.html"style="text-decoration: none">Book a Table</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h3 class="footer-title">Contact Us</h3>
-            <ul class="footer-contact">
-                <li><i class="fas fa-map-marker-alt"></i> 71 Madison Ave, New York</li>
-                <li><i class="fas fa-phone"></i> 914-309-7030</li>
-                <li><i class="fas fa-envelope"></i> reservations@golden.com</li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h3 class="footer-title">Opening Hours</h3>
-            <ul class="footer-hours">
-                <li>Monday - Friday: 9:00 AM - 11:00 PM</li>
-                <li>Saturday - Sunday: 10:00 AM - 12:00 AM</li>
-            </ul>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Golden Restaurant. All Rights Reserved.</p>
+                </div>
+            </footer>
         </div>
     </div>
 
-    <div class="footer-bottom">
-        <p>&copy; 2025 Golden Restaurant. All Rights Reserved.</p>
-    </div>
-</footer>
+    <script src="../JAVAS_Project/about.js"></script>
+
 </div>
-
-<!-- Javascript file -->
-<script src="../JAVAS_Project/app.js"></script>
 </body>
 </html>
