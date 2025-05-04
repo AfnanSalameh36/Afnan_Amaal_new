@@ -188,6 +188,8 @@ p {
 .golden-footer {
     background: linear-gradient(to right, #0B1315, #1a1a1a);
     color: #fff;
+    width: 100%;
+    clear: both;
     padding: 80px 0 0;
     position: relative;
     overflow: hidden;
@@ -841,8 +843,8 @@ body {
 
 .image-box {
     position: relative;
-    width: 200px;
-    height: 300px;
+    width: 280px;
+    height: 560px;
     overflow: hidden;
     transition: transform 0.3s ease;
 }
@@ -873,7 +875,7 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 80px;
+    height:100px;
     background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     flex-direction: column;
@@ -889,7 +891,7 @@ body {
 
 .icon-overlay img {
     width: 50px;
-    height: 30px;
+    height: 70px;
     object-fit: contain;
     margin-bottom: 4px;
 }
@@ -959,4 +961,244 @@ body {
 
 html {
     scroll-behavior: smooth;
+}
+.food-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+    padding: 0 86px; /* زيادة الفراغ من اليمين واليسار */
+}
+
+.food-item {
+    flex: 1 1 calc(18% - 40px); /* تقليل العرض ل 18% مع زيادة الفراغ بين الصور */
+    height: 300px; /* زيادة طول الصورة أكثر لتظهر كاملة */
+    overflow: hidden;
+    border-radius: 15px;
+    position: relative;
+    transition: transform 0.4s ease;
+    max-width: 100%; /* لضمان تكبير الصور مع العرض */
+}
+
+.food-item:hover {
+    transform: scale(1.1); /* تأثير التكبير عند التأشير */
+}
+
+.food-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.4s ease-in-out;
+}
+
+/* تأثير اللمعة diagonal */
+.food-item::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
+    transform: rotate(25deg);
+    transition: 0.8s;
+    pointer-events: none;
+}
+
+.food-item:hover::before {
+    top: 100%;
+    left: 100%;
+}
+/*-------------------------------------------------------------خطين */
+.gold-divider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 60px 0;
+}
+
+.gold-divider .line {
+    position: relative;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, #CB9953, #6A5E5C, #CB9953); /* تدرج ذهبي */
+    overflow: hidden;
+}
+
+.gold-divider .line::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100px;
+    width: 80px;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100px;
+    }
+    50% {
+        left: 100%;
+    }
+    100% {
+        left: -100px;
+    }
+}
+/*===========================================الارقام فوق */
+.stats-section {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 30px 20px;
+    background-color: transparent;
+    color: white;
+}
+
+.stat-box {
+    flex: 1 1 190px;
+    text-align: center;
+    padding: 20px 30px;
+    border-right: 1px solid #6A5E5C;
+}
+
+.stat-box:last-child {
+    border-right: none;
+}
+
+.stat-icon {
+    width: 60px;
+    height: auto;
+    margin-bottom: 20px;
+
+}
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.stat-box:hover .stat-icon {
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.stat-number {
+    font-size: 40px;
+    font-family: 'Playfair Display', serif;
+    color: #CB9953;
+    margin: 0;
+}
+
+.stat-label {
+    font-size: 9px;
+    margin-top: 10px;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .stat-box {
+        border-right: none;
+        border-bottom: 1px solid #6A5E5C;
+    }
+
+    .stat-box:last-child {
+        border-bottom: none;
+    }
+}
+/*========================================================*/
+.faq-section {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 60px 10%;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.faq-left {
+    flex: 1 1 400px;
+}
+
+.faq-left h4 {
+    color: #CB9953;
+    letter-spacing: 2px;
+    font-size: 14px;
+}
+
+.faq-left h1 {
+    font-size: 40px;
+    margin: 10px 0;
+}
+
+.faq-left p {
+    font-size: 16px;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+.faq-image {
+    margin-top: 30px;
+    border-radius: 20px;
+    overflow: hidden;
+
+}
+
+.faq-image img {
+    width: 100%;
+    display: block;
+    height: 520px; /* الطول */
+    object-fit: cover; /* يضمن أن الصورة تبقى مرتبة */
+}
+
+.faq-right {
+    flex: 1 100 500px;
+    margin-top:100px;
+}
+
+.faq-item {
+    border: 1px solid #1e3b3b;
+    background: transparent;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-question {
+    padding: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 20px;
+    color: #bbb;
+    transition: all 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+    padding: 10px 20px 20px;
+}
+
+.faq-icon {
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
 }

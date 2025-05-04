@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../CSS_Project/bookatable.css">
+
+    <title>Sign in & Sign up Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .contact-info {
+            background-color: transparent;
+            color: #e6d6b1;
+            padding: 100px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 60px;
+            font-family: 'Cairo', serif;
+            margin-left: 35px;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            font-family: Georgia, serif;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            color: #f5f0e6;
+            left: 10px;
+        }
+
+        .contact-info .label {
+            color: #aaa;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        .contact-info .info-block {
+            margin-top: 20px; /* رفع الكل للأعلى */
+        }
+
+
+        .contact-info .value {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            font-weight: 300;
+            color: #e6d6b1;
+        }
+
+        @media (max-width: 768px) {
+            .contact-info {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+        .image-gallery {
+            display: flex;
+            width:10%;
+            height: 400px; /* حجم الصور بالطول، عدّليه إذا بدك */
+            overflow: hidden;
+            margin-top: 0;
+        }
+
+        .image-gallery img {
+            flex: 1;
+            height: 100%;
+            object-fit: cover;
+            margin: 0;
+            padding: 0;
+            display: block;
+        }
+
+    </style>
+
+
+</head>
+<body style=" background-image: url('../image2/background.jpg') ">
+<div>
+    <div class="content">
+
+        <div class="image-wrapper">
+            <div class="corner-image"></div>
+        </div>
+
+
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <ul>
+                <li  style="   margin-left:250px; "><a href="menu.html" class="active">Home</a></li>
+                <li><a href="menu.html">About us</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="menu.html">Book A Table</a></li>
+
+                <li class="dropdown">
+                    <a href="#">Shop</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#">Product List</a></li>
+                        <li><a href="#">Cart</a></li>
+                        <li><a href="#">Checkout</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="menu.html">Contact</a></li>
+                <li><a href="signup.html" style="   margin-left:90px;"><i class="fas fa-user-plus"></i></a></li>
+                <li><a href="signin.html" style="   margin-left:-20px;"><i class="fas fa-sign-in-alt"></i></a></li>
+
+            </ul>
+        </nav>
+
+        <div class="gold-lines">
+            <div class="top-line"></div>
+        </div>
+    </div>
+    <div class="image-gallery">
+        <img src="../image/3.jpg" alt="Dining Area">
+        <img src="../image/4.jpg" alt="Special Dish">
+        <img src="../image/8.png" alt="Chef in Action">
+    </div>
+
+
+    <main style="top: 50px;">
+        <div class="box" style="   margin-top: 50px;">
+
+
+
+
+
+
+
+
+            <section class="contact-info">
+                <div class="info-block">
+                    <h2 style="top: 10px">GENERAL INQUIRIES</h2>
+                    <p class="label">GENERAL INQUIRIES</p>
+                    <p class="value">HELLO@ELEMENTRA.COM</p>
+                </div>
+                <div class="info-block">
+                    <p class="label">ADDRESS</p>
+                    <p class="value">GERMANY —<br>
+                        785 15H STREET, OFFICE<br>
+                        47 BERLIN, DE 81566</p>
+                </div>
+                <div class="info-block">
+                    <p class="label">HOURS</p>
+                    <p class="value">MON–FRI 9:00AM — 4:00PM</p>
+                </div>
+                <div class="info-block">
+                    <p class="label">SOCIALS</p>
+                    <p class="value">FACEBOOK<br>X (TWITTER)<br>INSTAGRAM</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+
+
+
+
+
+    <footer class="golden-footer">
+        <div class="footer-waves">
+            <div class="wave wave-1"></div>
+            <div class="wave wave-2"></div>
+            <div class="wave wave-3"></div>
+        </div>
+
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3 class="footer-logo">Golden Restaurant</h3>
+                <p class="footer-description">Experience the finest dining with authentic flavors and luxurious ambiance.</p>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com" class="social-icon" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com" class="social-icon" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.twitter.com" class="social-icon" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="footer-section">
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="menu.html"style="text-decoration: none">Home</a></li>
+                    <li><a href="menu.html"style="text-decoration: none">About Us</a></li>
+                    <li><a href="menu.html"style="text-decoration: none">Menu</a></li>
+                    <li><a href="menu.html"style="text-decoration: none">Book a Table</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3 class="footer-title">Contact Us</h3>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-map-marker-alt"></i> 71 Madison Ave, New York</li>
+                    <li><i class="fas fa-phone"></i> 914-309-7030</li>
+                    <li><i class="fas fa-envelope"></i> reservations@golden.com</li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3 class="footer-title">Opening Hours</h3>
+                <ul class="footer-hours">
+                    <li>Monday - Friday: 9:00 AM - 11:00 PM</li>
+                    <li>Saturday - Sunday: 10:00 AM - 12:00 AM</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Golden Restaurant. All Rights Reserved.</p>
+        </div>
+    </footer>
+</div>
+
+<!-- Javascript file -->
+<script src="../JAVAS_Project/app.js"></script>
+</body>
+</html>
