@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swiper Example with Full Screen Slides</title>
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <style>
+    /* Full width container */
+    .swiper-container {
+      width: 100vw; /* Full width of the screen */
+      height: 300px; /* Adjust height as needed */
+      overflow: hidden;
+    }
+
+    .swiper-wrapper {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      margin: 0; /* Prevent any unwanted margin between slides */
+    }
+
+    /* Full width and height for each slide */
+    .swiper-slide {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      text-decoration: none;
+      color: #000;
+      background-size: cover; /* Ensure the image covers the entire slide */
+      background-position: center;
+      height: 100%;
+      width: 100vw; /* Full screen width */
+      transition: background-image 0.5s ease;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      z-index: 2; /* Ensure the title is on top of the image */
+    }
+
+    .subtitle {
+      font-size: 16px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: 2; /* Ensure the subtitle is on top of the image */
+    }
+
+    .swiper-slide-active .subtitle {
+      opacity: 1;
+    }
+
+    /* Fix swiper issue with slides not filling the screen */
+    .swiper-wrapper {
+      flex-shrink: 0;
+      width: 100%;
+    }
+
+    /* Prevent overflow from previous slide */
+    .swiper-slide {
+      flex-shrink: 0;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    <a href="https://fidalgo.qodeinteractive.com/menu-vertical/" class="swiper-slide" style="background-image: url('../image/resturans.jpg');">
+      <span class="title">Menu</span>
+      <span class="subtitle">Main Courses</span>
+    </a>
+    <a href="https://fidalgo.qodeinteractive.com/menu-small-images/" class="swiper-slide" style="background-image: url('../image/resturans1.jpg');">
+      <span class="title">Wine list</span>
+      <span class="subtitle">Best Offer</span>
+    </a>
+    <a href="https://fidalgo.qodeinteractive.com/menu-simple/" class="swiper-slide" style="background-image: url('https://via.placeholder.com/800x300/32CD32/FFFFFF?text=Cocktails');">
+      <span class="title">Cocktails</span>
+      <span class="subtitle">Favorites</span>
+    </a>
+  </div>
+</div>
+
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  // Initialize Swiper
+  const swiper = new Swiper('.swiper-container', {
+    loop: true,
+    speed: 1000,
+    parallax: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    slidesPerView: 1, // Show one slide at a time
+    spaceBetween: 0, // No space between slides
+    on: {
+      slideChange: function () {
+        // Reset opacity for all subtitles
+        document.querySelectorAll('.subtitle').forEach(el => {
+          el.style.opacity = '0';
+        });
+
+        // Set opacity for active slide subtitle
+        const activeSlide = this.slides[this.activeIndex];
+        const subtitle = activeSlide.querySelector('.subtitle');
+        if (subtitle) {
+          subtitle.style.opacity = '1';
+        }
+      },
+    },
+  });
+</script>
+
+</body>
+</html>
