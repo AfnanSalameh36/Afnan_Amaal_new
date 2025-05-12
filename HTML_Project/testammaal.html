@@ -1,158 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book A Table</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Golden Bite | مرحبًا</title>
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            font-family: 'Playfair Display', serif;
-            background-color: #0B1315;
-            color: #fff;
+            box-sizing: border-box;
         }
 
-        .booking-section {
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f8f6f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .welcome-container {
+            text-align: center;
+            background: #ffffffcc;
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .welcome-container h1 {
+            font-size: 48px;
+            color: #CB9953;
+            margin-bottom: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .welcome-container p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .button-group {
             display: flex;
             justify-content: center;
-            align-items: center;
-            padding: 50px;
-            gap: 40px;
-        }
-
-        .booking-form {
-            background-color: #0B1315;
-            border: 1px solid #CB9953;
-            border-radius: 20px;
-            padding: 40px;
-            width: 600px;
-        }
-
-        .booking-form h5 {
-            color: #CB9953;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            font-size: 14px;
-        }
-
-        .booking-form h1 {
-            font-size: 38px;
-            margin: 0 0 20px;
-            color: #fff;
-        }
-
-        .booking-form p {
-            color: #ccc;
-            font-size: 16px;
-            line-height: 1.6;
-        }
-
-        .form-row {
-            display: flex;
             gap: 20px;
-            margin: 30px 0;
         }
 
-        .form-row input,
-        .form-row select {
-            flex: 1;
-            padding: 15px;
-            border-radius: 10px;
-            border: none;
-            font-size: 16px;
-            background-color: #152021;
-            color: #fff;
-        }
-
-        .form-row input[type="date"]::-webkit-calendar-picker-indicator {
-            filter: invert(1);
-        }
-
-        .book-button {
-            background-color: #CB9953;
-            color: #fff;
-            border: none;
-            padding: 15px 30px;
+        .button-group a {
+            text-decoration: none;
+            padding: 12px 30px;
             border-radius: 25px;
+            font-weight: bold;
             font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
         }
 
-        .book-button:hover {
-            background-color: #b07f3d;
+        .signin {
+            background-color: transparent;
+            border: 2px solid #CB9953;
+            color: #CB9953;
         }
 
-        .powered {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #aaa;
+        .signin:hover {
+            background-color: #CB9953;
+            color: white;
         }
 
-        .booking-image {
-            border-radius: 20px;
-            overflow: hidden;
-            max-width: 450px;
+        .signup {
+            background-color: #CB9953;
+            color: white;
+            border: 2px solid #CB9953;
         }
 
-        .booking-image img {
-            width: 100%;
-            height: auto;
-            display: block;
+        .signup:hover {
+            background-color: #b78344;
+            border-color: #b78344;
         }
 
-        @media (max-width: 992px) {
-            .booking-section {
-                flex-direction: column;
-                text-align: center;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 500px) {
+            .welcome-container {
+                padding: 40px 20px;
             }
 
-            .form-row {
+            .welcome-container h1 {
+                font-size: 32px;
+            }
+
+            .button-group {
                 flex-direction: column;
             }
         }
     </style>
 </head>
-
 <body>
 
-    <section class="booking-section">
-        <div class="booking-form">
-            <h5>BOOK YOUR TABLE NOW</h5>
-            <h1>Book Your Table Today</h1>
-            <p>Integer Effi­citur Dolor Quis Posuere Porta. In Euismod Diam Augue, Vulputate Vehicula Lectus Pulvinar
-                Vitae. Etiam Varius Elementum Mauris, Et Molestie Sem.</p>
-
-            <div class="form-row">
-                <input type="date" value="2025-05-11">
-                <select>
-                    <option>Select Time</option>
-                    <option>12:00 PM</option>
-                    <option>1:00 PM</option>
-                    <option>2:00 PM</option>
-                </select>
-                <select>
-                    <option>No Of Persons</option>
-                    <option>1 Person</option>
-                    <option>2 Persons</option>
-                    <option>3 Persons</option>
-                    <option>4+ Persons</option>
-                </select>
-            </div>
-
-            <button class="book-button">Book A Table</button>
-            <div class="powered">Powered By OpenTable</div>
-        </div>
-
-        <div class="booking-image">
-            <img src="your-image-path.png" alt="Booking Image">
-        </div>
-    </section>
+<div class="welcome-container">
+    <h1>Golden Bite</h1>
+    <p>مرحبًا بك في عالم الفخامة والمذاق الفريد 🍽️</p>
+    <div class="button-group">
+        <a href="#" class="signin">تسجيل الدخول</a>
+        <a href="#" class="signup">إنشاء حساب</a>
+    </div>
+</div>
 
 </body>
-
 </html>
