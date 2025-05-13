@@ -1,0 +1,443 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="ar" dir="rtl">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>حجز طاولة</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            background-color: #f5f5f5;-->
+<!--            display: flex;-->
+<!--            justify-content: center;-->
+<!--            align-items: center;-->
+<!--            height: 100vh;-->
+<!--            margin: 0;-->
+<!--        }-->
+
+<!--        .reservation-container {-->
+<!--            background-color: white;-->
+<!--            border-radius: 8px;-->
+<!--            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);-->
+<!--            padding: 30px;-->
+<!--            width: 350px;-->
+<!--            text-align: center;-->
+<!--        }-->
+
+<!--        .header {-->
+<!--            font-size: 24px;-->
+<!--            font-weight: bold;-->
+<!--            margin-bottom: 20px;-->
+<!--            color: #333;-->
+<!--        }-->
+
+<!--        .subheader {-->
+<!--            font-size: 16px;-->
+<!--            color: #666;-->
+<!--            margin-bottom: 30px;-->
+<!--        }-->
+
+<!--        .recommended {-->
+<!--            font-size: 12px;-->
+<!--            color: #999;-->
+<!--            margin-bottom: 20px;-->
+<!--            text-align: left;-->
+<!--        }-->
+
+<!--        .form-group {-->
+<!--            margin-bottom: 20px;-->
+<!--            text-align: left;-->
+<!--        }-->
+
+<!--        select, input {-->
+<!--            width: 100%;-->
+<!--            padding: 12px;-->
+<!--            border: 1px solid #ddd;-->
+<!--            border-radius: 4px;-->
+<!--            font-size: 14px;-->
+<!--            box-sizing: border-box;-->
+<!--        }-->
+
+<!--        .book-btn {-->
+<!--            background-color: #000;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            padding: 14px;-->
+<!--            width: 100%;-->
+<!--            border-radius: 4px;-->
+<!--            font-size: 16px;-->
+<!--            font-weight: bold;-->
+<!--            cursor: pointer;-->
+<!--            margin-top: 10px;-->
+<!--        }-->
+
+<!--        .powered-by {-->
+<!--            font-size: 12px;-->
+<!--            color: #999;-->
+<!--            margin-top: 20px;-->
+<!--        }-->
+
+<!--        .private-dining {-->
+<!--            font-size: 14px;-->
+<!--            margin-top: 20px;-->
+<!--            text-decoration: underline;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="reservation-container">-->
+<!--    <div class="header">RESERVE</div>-->
+<!--    <div class="subheader">BOOK A TABLE</div>-->
+<!--    <div class="recommended">*restinations recommended</div>-->
+
+<!--    <div class="form-group">-->
+<!--        <select>-->
+<!--            <option>1 Person</option>-->
+<!--            <option>2 People</option>-->
+<!--            <option>3 People</option>-->
+<!--            <option>4 People</option>-->
+<!--            <option>5+ People</option>-->
+<!--        </select>-->
+<!--    </div>-->
+
+<!--    <div class="form-group">-->
+<!--        <input type="text" placeholder="13/09/2023">-->
+<!--    </div>-->
+
+<!--    <div class="form-group">-->
+<!--        <input type="text" placeholder="11:00 am">-->
+<!--    </div>-->
+
+<!--    <button class="book-btn">BOOK NOW</button>-->
+
+<!--    <div class="powered-by">*Powered by OpenTable</div>-->
+
+<!--    <div class="private-dining">Book private dining & dangnet rooms</div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Table - Restaurant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;700&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+        /* التنسيقات العامة */
+        body {
+            margin: 0;
+            font-family: 'Cormorant', serif;
+            background-color: #111;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .main-container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* القسم الأيسر - نموذج الحجز */
+        .booking-section {
+            flex: 1;
+            padding: 80px 5% 80px 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* النص الخلفي "RESERVE" */
+        .background-text {
+            position: absolute;
+            left: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Cormorant', serif;
+            font-size: 100px;
+            line-height: 116px;
+            letter-spacing: 10px;
+            font-weight: 300;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.16);
+            z-index: -1;
+            white-space: nowrap;
+        }
+
+        /* عنوان القسم */
+        .section-title h2 {
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .section-title p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 0;
+            font-style: italic;
+        }
+
+        /* نموذج الحجز */
+        .reservation-form {
+            margin-top: 60px;
+            max-width: 500px;
+        }
+
+        .form-field {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        select, input[type="text"] {
+            width: 100%;
+            padding: 15px 20px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-family: 'Cormorant', serif;
+            font-size: 16px;
+            appearance: none;
+            border-radius: 0;
+        }
+
+        select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10.121' height='5.811' viewBox='0 0 10.121 5.811'%3E%3Cpath fill='none' stroke='white' stroke-linecap='square' stroke-linejoin='round' stroke-width='1.5' d='m1.061 1.061 4 4 4-4'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 20px center;
+        }
+
+        .date-field {
+            position: relative;
+        }
+
+        .date-field:after {
+            content: '';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            pointer-events: none;
+        }
+
+        .submit-btn {
+            background: transparent;
+            color: #fff;
+            border: 1px solid #fff;
+            padding: 15px 40px;
+            font-family: 'Cormorant', serif;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .copyright {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 20px;
+        }
+
+        /* القسم الأيمن - الصورة */
+        .image-section {
+            flex: 1;
+            position: relative;
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 18vw 0 0 0;
+        }
+
+        /* النص المائل على الصورة */
+        .rotated-text {
+            position: absolute;
+            right: 5%;
+            bottom: 15%;
+            transform: rotate(-6deg);
+            font-family: 'Mrs Saint Delafield', cursive;
+            font-size: 55px;
+            line-height: 60px;
+            color: #C49871;
+            white-space: nowrap;
+        }
+
+        /* التنسيق للجوال */
+        @media (max-width: 1024px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .booking-section {
+                padding: 60px 5%;
+            }
+
+            .background-text {
+                font-size: 70px;
+                line-height: 80px;
+                left: 5%;
+                top: 20%;
+            }
+
+            .image-section {
+                height: 60vh;
+            }
+
+            .featured-image {
+                border-radius: 10vw 0 0 0;
+            }
+
+            .rotated-text {
+                font-size: 40px;
+                right: 10%;
+                bottom: 10%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .background-text {
+                font-size: 50px;
+                line-height: 60px;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+
+            .rotated-text {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <!-- قسم نموذج الحجز -->
+    <div class="booking-section">
+        <div class="background-text">reserve</div>
+
+        <div class="section-title">
+            <h2>book a table</h2>
+            <p>*reservations recommended</p>
+        </div>
+
+        <form class="reservation-form" target="_blank" action="https://www.opentable.com/restref/client/">
+            <input type="hidden" name="rid" value="1">
+            <input type="hidden" name="restref" value="1">
+
+            <div class="form-field">
+                <select name="partysize" class="people-select">
+                    <option value="1">1 Person</option>
+                    <option value="2">2 People</option>
+                    <option value="3">3 People</option>
+                    <option value="4">4 People</option>
+                    <option value="5">5 People</option>
+                    <option value="6">6 People</option>
+                    <option value="7">7 People</option>
+                    <option value="8">8 People</option>
+                    <option value="9">9 People</option>
+                    <option value="10">10 People</option>
+                </select>
+            </div>
+
+            <div class="form-field date-field">
+                <input type="text" class="date-picker" name="date" placeholder="Select date">
+            </div>
+
+            <div class="form-field">
+                <select name="time" class="time-select">
+                    <option value="11:00" selected>11:00 am</option>
+                    <option value="11:30">11:30 am</option>
+                    <option value="12:00">12:00 pm</option>
+                    <option value="12:30">12:30 pm</option>
+                    <option value="13:00">01:00 pm</option>
+                    <option value="13:30">01:30 pm</option>
+                    <option value="14:00">02:00 pm</option>
+                    <option value="14:30">02:30 pm</option>
+                    <option value="15:00">03:00 pm</option>
+                    <option value="15:30">03:30 pm</option>
+                    <option value="16:00">04:00 pm</option>
+                    <option value="16:30">04:30 pm</option>
+                    <option value="17:00">05:00 pm</option>
+                    <option value="17:30">05:30 pm</option>
+                    <option value="18:00">06:00 pm</option>
+                    <option value="18:30">06:30 pm</option>
+                    <option value="19:00">07:00 pm</option>
+                    <option value="19:30">07:30 pm</option>
+                    <option value="20:00">08:00 pm</option>
+                    <option value="20:30">08:30 pm</option>
+                    <option value="21:00">09:00 pm</option>
+                    <option value="21:30">09:30 pm</option>
+                    <option value="22:00">10:00 pm</option>
+                    <option value="22:30">10:30 pm</option>
+                    <option value="23:00">11:00 pm</option>
+                    <option value="23:30">11:30 pm</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">Book now</button>
+            <p class="copyright">*Powered by OpenTable</p>
+
+            <input type="hidden" name="datetime" class="datetime" value="">
+        </form>
+    </div>
+
+    <!-- قسم الصورة -->
+    <div class="image-section">
+        <img src="https://fidalgo.qodeinteractive.com/wp-content/uploads/2023/09/h1-img3.jpg" alt="Restaurant Interior" class="featured-image">
+        <div class="rotated-text">Book private dining &amp; banquet rooms</div>
+    </div>
+</div>
+
+<!-- المكتبات المطلوبة -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // تهيئة تاريخ jQuery UI
+        $(".date-picker").datepicker({
+            dateFormat: 'dd/mm/yy',
+            minDate: 0
+        });
+
+
+        $(".people-select, .time-select").select2({
+            minimumResultsForSearch: Infinity,
+            width: '100%',
+            dropdownParent: $('.reservation-form')
+        });
+
+
+        // تحديث التاريخ والوقت المخفي عند التغيير
+        $("form").on("change", "select, input", function() {
+            const date = $(".date-picker").val();
+            const time = $(".time-select").val();
+            $(".datetime").val(`${date} ${time}`);
+        });
+    });
+</script>
+</body>
+</html>
