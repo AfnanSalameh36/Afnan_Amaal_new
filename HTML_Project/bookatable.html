@@ -126,8 +126,10 @@
 
         /* قسم الموقع */
         .location-section {
+
             background-color: #0B1315;
-            padding: 60px 0;
+
+            padding: 60px 0 0 0;
             border-top: 1px solid rgba(196, 152, 113, 0.3);
         }
 
@@ -233,11 +235,7 @@
             }
         }
         .map-wrapper {
-            position: relative;
-            border: 2px solid #c49871;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
         }
 
         .map-wrapper iframe {
@@ -261,24 +259,75 @@
             transform: translateY(-3px);
         }
 
-        .location-images {
+        /*.location-images {*/
+        /*    display: flex;*/
+        /*    flex-direction: row;*/
+        /*    gap: 15px;*/
+        /*}*/
+
+        /*.location-images img {*/
+        /*    width: 140px;*/
+        /*    height: auto;*/
+        /*    border-radius: 12px;*/
+        /*    object-fit: cover;*/
+        /*    box-shadow: 0 4px 15px rgba(0,0,0,0.3);*/
+        /*    transition: transform 0.3s ease;*/
+        /*}*/
+
+        /*.location-images img:hover {*/
+        /*    transform: scale(1.05);*/
+        /*}*/
+
+        .circle-images {
             display: flex;
-            flex-direction: row;
-            gap: 15px;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            flex: 1;
+            min-width: 300px;
         }
 
-        .location-images img {
-            width: 140px;
-            height: auto;
-            border-radius: 12px;
+        .circle-img-container {
+            text-align: center;
+        }
+
+        .circle-img {
+            position: relative;
+            top:-200px;
+            left:400px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
             object-fit: cover;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+
         }
 
-        .location-images img:hover {
+        .circle-img:hover {
             transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
+
+        .img-caption {
+            position: relative;
+            top:-180px;
+            left:400px;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .location-content {
+                flex-direction: column;
+            }
+
+            .circle-images {
+                flex-direction: row;
+                margin-top: 30px;
+            }}
     </style>
 
 
@@ -420,36 +469,52 @@
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3372.716058335722!2d35.26086631516873!3d32.22188198112348!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDEzJzE4LjgiTiAzNcKwMTUnNDMuNiJF!5e0!3m2!1sen!2s!4v1620000000000!5m2!1sen!2s&markers=color:gold%7C32.221882,35.261511"
                                     width="100%"
                                     height="400"
-                                    style="border:0;"
+                                    style="border:0;  position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+border-color: #8c5050"
                                     allowfullscreen=""
                                     loading="lazy">
                             </iframe>
                         </div>
 
-                        <div class="location-wrapper">
-                            <!-- صور بجانب النص -->
-                            <div class="location-images">
-                                <img src="../image/bookatable.jpg" alt="location photo 1">
-                                <img src="../image/bookatable.jpg" alt="location photo 2">
-                                <img src="../image/bookatable.jpg" alt="location photo 3">
+                        <div class="location-section">
+                            <div class="container">
+                                <div class="location-content">
+                                    <!-- معلومات الموقع -->
+                                    <div class="location-info">
+                                        <h2>Address</h2>
+                                        <p><i class="fas fa-map-marker-alt"></i>Tunis Street, near Dahiyat<br>Al-Nakheel, Nablus, Palestine</p>
+                                        <p><i class="fas fa-phone"></i>056821186<br>0597377354</p>
+                                        <p><i class="fas fa-clock"></i>Mon - Fri: 9:00 AM - 11:00 PM<br>Sat - Sun: 10:00 AM - 12:00 AM</p>
+
+                                        <a href="contact.html" class="contact-btn">
+                                            Contact Us
+                                            <i class="fas fa-arrow-left"></i>
+                                        </a>
+                                    </div>
+
+                                    <!-- الصور الدائرية -->
+                                    <div class="circle-images">
+                                        <div class="circle-img-container">
+                                            <img src="../image/View%20of%20Our%20Place.jpg" alt="Restaurant View" class="circle-img">
+                                            <div class="img-caption">View of Our Place</div>
+                                        </div>
+                                        <div class="circle-img-container">
+                                            <img src="../image/Our%20Special%20Dish.jpg" alt="Special Dish" class="circle-img">
+                                            <div class="img-caption">Our Special Dish</div>
+                                        </div>
+                                        <div class="circle-img-container">
+                                            <img src="../image/Professional%20Team.jpg" alt="Our Team" class="circle-img">
+                                            <div class="img-caption">Professional Team</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                            <!-- معلومات الموقع -->
-                            <div class="location-info">
-                                <h2>Address</h2>
-                                <p><i class="fas fa-map-marker-alt"></i> Tunis Street, near Dahiyat<br>Al-Nakheel, Nablus, Palestine</p>
-                                <p><i class="fas fa-phone"></i> 056821186<br>0597377354</p>
-                                <p><i class="fas fa-clock"></i> Mon - Fri: 9:00 AM - 11:00 PM<br>Sat - Sun: 10:00 AM - 12:00 AM</p>
 
-                                <a href="contact.html" class="contact-btn">
-                                    Contact Us
-                                    <i class="fas fa-arrow-left"></i>
-                                </a>
-
-                            </div>
-                        </div>
-
-
+                    </div>
 
                 </section>
 
