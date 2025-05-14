@@ -1,756 +1,112 @@
 <!DOCTYPE html>
-<html lang="ar" dir="ltr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book a Table - Luxury Restaurant</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;700&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Special Offer Section</title>
     <style>
-        :root {
-            --primary-color: #c49871;
-            --secondary-color: #1a1a1a;
-            --text-color: #f5f5f5;
-            --light-text: rgba(245, 245, 245, 0.7);
-            --border-color: rgba(245, 245, 245, 0.3);
-        }
-
         body {
             margin: 0;
-            font-family: 'Cormorant', serif;
-            background-color: var(--secondary-color);
-            color: var(--text-color);
-            overflow-x: hidden;
-        }
-        /* نافذة التأكيد */
-        .confirmation-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
+            background-color: #0B0B0B;
+            font-family: 'Poppins', sans-serif;
+            color: white;
         }
 
-        .confirmation-content {
-            background: var(--secondary-color);
-            padding: 40px;
-            max-width: 500px;
-            width: 90%;
-            border: 1px solid var(--primary-color);
-            position: relative;
-            top: 100px;
-            left: 500px;
-            animation: modalFadeIn 0.5s ease;
+        .services-section {
+            text-align: center;
+            padding: 80px 20px;
         }
 
-        @keyframes modalFadeIn {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
+        .services-section h2 {
+            font-size: 40px;
+            margin-bottom: 10px;
         }
 
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 24px;
-            color: var(--primary-color);
-            cursor: pointer;
-        }
-
-        .confirmation-title {
-            font-size: 28px;
-            color: var(--primary-color);
+        .services-section small {
+            font-family: 'Cursive';
+            color: #CB9953;
+            display: block;
             margin-bottom: 20px;
-            text-align: center;
+            font-size: 18px;
         }
 
-        .confirmation-message {
-            margin-bottom: 30px;
+        .services-container {
+            display: flex;
+            justify-content: space-between;  /* توزيع العناصر بالتساوي */
+            gap: 20px;  /* إضافة فراغ بين الصور */
+            flex-wrap: wrap;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+
+        .service-box {
+            background-color: #111;
+            padding: 40px 25px;
             text-align: center;
+            border: 1px solid transparent;
+            width: 300px;
+            transition: all 0.4s ease-in-out;
+            border-radius: 5px;
+        }
+
+        .service-box:hover {
+            border: 1px solid #CB9953;
+            position: relative;
+
+        }
+
+        .service-box img {
+            height: 60px;
+            margin-bottom: 20px;
+        }
+
+        .service-box h3 {
+            margin: 10px 0;
+            font-size: 22px;
+            color: white;
+        }
+
+        .service-box p {
+            font-size: 15px;
+            color: #ccc;
             line-height: 1.6;
         }
 
-        .email-input {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 20px;
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            font-family: 'Cormorant', serif;
-            font-size: 16px;
-        }
-
-        .confirm-btn {
-            background: var(--primary-color);
-            color: var(--secondary-color);
-            border: none;
-            padding: 15px;
-            width: 100%;
-            font-family: 'Cormorant', serif;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .confirm-btn:hover {
-            background: #d8ae84;
-        }
-
-        /* تحديث أنماط رسالة النجاح */
-        .success-message {
-            display: none;
-            text-align: center;
-            color: var(--primary-color);
-            font-size: 20px;
-            margin: 30px 0;
-            padding: 20px;
-            border: 1px solid var(--primary-color);
-            background: rgba(196, 152, 113, 0.1);
-            position: relative;
-            animation: fadeInScale 0.5s ease;
-        }
-
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .success-message:before {
-            content: "✓";
-            display: block;
-            font-size: 40px;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-
-        .success-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 200px;
-        }
-
-        .success-details {
-            margin-top: 20px;
-            text-align: left;
-            width: 100%;
-            border-top: 1px dashed var(--border-color);
-            padding-top: 15px;
-        }
-
-        .success-details p {
-            margin: 8px 0;
-            font-size: 16px;
-        }
-
-        .success-details strong {
-            color: var(--primary-color);
-            margin-right: 10px;
-        }
-
-        .main-container {
-            display: flex;
-            min-height: 100vh;
-            position: relative;
-        }
-
-        .booking-section {
-            flex: 1;
-            padding: 80px 5% 80px 10%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            z-index: 2;
-            background: linear-gradient(135deg, rgba(26,26,26,0.9) 0%, rgba(17,17,17,0.95) 100%);
-        }
-
-        .background-text {
-            position: absolute;
-            left: 10%;
-            top: 50%;
-            transform: translateY(-50%);
-            font-family: 'Cormorant', serif;
-            font-size: 120px;
-            line-height: 1;
-            letter-spacing: 15px;
-            font-weight: 300;
-            text-transform: uppercase;
-            color: rgba(196, 152, 113, 0.08);
-            z-index: -1;
-            white-space: nowrap;
-            pointer-events: none;
-        }
-
-        .section-title h2 {
-            font-size: 48px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60px;
-            height: 2px;
-            background: var(--primary-color);
-        }
-
-        .section-title p {
-            font-size: 16px;
-            color: var(--light-text);
-            margin-top: 20px;
-            font-style: italic;
-            letter-spacing: 0.5px;
-        }
-
-        .reservation-form {
-            margin-top: 60px;
-            max-width: 500px;
-            animation: fadeIn 1s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .form-field {
-            margin-bottom: 30px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .form-field:hover {
-            transform: translateY(-2px);
-        }
-
-        /* نمط موحد لجميع الحقول */
-        .form-input {
-            width: 100%;
-            padding: 18px 25px;
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            font-family: 'Cormorant', serif;
-            font-size: 18px;
-            appearance: none;
-            border-radius: 0;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px rgba(196, 152, 113, 0.2);
-        }
-
-        /* أيقونات الحقول */
-        .form-field:after {
-            content: '';
-            position: absolute;
-            right: 25px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 18px;
-            height: 18px;
-            pointer-events: none;
-        }
-
-        /* أيقونة الأشخاص */
-        .people-field:after {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c49871'%3E%3Cpath d='M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-        }
-
-        /* أيقونة التاريخ */
-        .date-field:after {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c49871'%3E%3Cpath d='M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-        }
-
-        /* أيقونة الوقت */
-        .time-field:after {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c49871'%3E%3Cpath d='M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-        }
-
-        .submit-btn {
-            background: var(--primary-color);
-            color: var(--secondary-color);
-            border: none;
-            padding: 18px 40px;
-            font-family: 'Cormorant', serif;
-            font-size: 18px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 20px;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .submit-btn:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255,255,255,0.1);
-            transition: all 0.4s ease;
-        }
-
-        .submit-btn:hover:before {
-            left: 100%;
-        }
-
-        .submit-btn:hover {
-            background: #d8ae84;
-            box-shadow: 0 5px 15px rgba(196, 152, 113, 0.4);
-        }
-
-        .copyright {
-            font-size: 14px;
-            color: var(--light-text);
-            margin-top: 30px;
-            text-align: center;
-        }
-
-        .private-dining-link {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-size: 16px;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .private-dining-link:after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 1px;
-            background: var(--primary-color);
-            transition: all 0.3s ease;
-        }
-
-        .private-dining-link:hover:after {
-            width: 100%;
-        }
-
-        .image-section {
-            flex: 1;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .image-section:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(17,17,17,0.3) 0%, rgba(17,17,17,0.1) 100%);
-            z-index: 1;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 0 0 0 20vw;
-            transition: transform 0.5s ease;
-        }
-
-        .image-section:hover .featured-image {
-            transform: scale(1.03);
-        }
-
-        .rotated-text {
-            position: absolute;
-            right: 8%;
-            bottom: 15%;
-            transform: rotate(-6deg);
-            font-family: 'Mrs Saint Delafield', cursive;
-            font-size: 64px;
-            line-height: 1.2;
-            color: var(--primary-color);
-            white-space: nowrap;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            z-index: 2;
-            transition: all 0.4s ease;
-        }
-
-        .rotated-text:hover {
-            transform: rotate(-5deg) scale(1.05);
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
-        }
-
-        /* قوائم الاختيار المخصصة */
-        .ui-widget {
-            font-family: 'Cormorant', serif;
-        }
-
-        .ui-menu {
-            background: var(--secondary-color);
-            border: 1px solid var(--border-color);
-        }
-
-        .ui-menu .ui-menu-item {
-            padding: 8px 20px;
-            color: var(--text-color);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .ui-menu .ui-menu-item:hover {
-            background: rgba(196, 152, 113, 0.2);
-            color: var(--primary-color);
-        }
-
-        .ui-state-active, .ui-widget-content .ui-state-active {
-            background: rgba(196, 152, 113, 0.3);
-            border: none;
-            color: var(--primary-color);
-        }
-
-        @media (max-width: 1024px) {
-            .main-container {
-                flex-direction: column;
-            }
-
-            .booking-section {
-                padding: 80px 8%;
-            }
-
-            .background-text {
-                font-size: 80px;
-                top: 15%;
-                left: 8%;
-            }
-
-            .image-section {
-                height: 50vh;
-            }
-
-            .featured-image {
-                border-radius: 0;
-            }
-
-            .rotated-text {
-                font-size: 48px;
-                right: 10%;
-                bottom: 10%;
-            }
-        }
-
         @media (max-width: 768px) {
-            .background-text {
-                font-size: 60px;
-            }
-
-            .section-title h2 {
-                font-size: 36px;
-            }
-
-            .section-title p {
-                font-size: 14px;
-            }
-
-            .form-input {
-                padding: 15px 20px;
-                font-size: 16px;
-            }
-
-            .submit-btn {
-                padding: 16px;
-                font-size: 16px;
-            }
-
-            .rotated-text {
-                font-size: 36px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .background-text {
-                font-size: 40px;
-                letter-spacing: 8px;
-            }
-
-            .section-title h2 {
-                font-size: 28px;
-            }
-
-            .rotated-text {
-                font-size: 28px;
-                right: 5%;
+            .services-container {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
 </head>
 <body>
-<div class="main-container">
-    <!-- قسم نموذج الحجز -->
-    <div class="booking-section">
-        <div class="background-text">reserve</div>
 
-        <div class="section-title">
-            <h2>book a table</h2>
-            <p>Experience culinary excellence in an intimate setting</p>
+<section class="services-section">
+    <small>Services</small>
+    <h2>Try Our Special Offer</h2>
+
+    <div class="services-container">
+        <div class="service-box">
+            <img src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png" alt="Fries" />
+            <h3>Fresh Product</h3>
+            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin.</p>
         </div>
 
-        <form class="reservation-form" id="booking-form">
-            <div class="form-field people-field">
-                <input type="text" id="people-input" class="form-input" placeholder="Number of guests" readonly>
-                <input type="hidden" name="partysize" id="people-value">
-            </div>
-
-            <div class="form-field date-field">
-                <input type="text" class="form-input date-picker" name="date" placeholder="Select date">
-            </div>
-
-            <div class="form-field time-field">
-                <input type="text" id="time-input" class="form-input" placeholder="Select time" readonly>
-                <input type="hidden" name="time" id="time-value">
-            </div>
-
-            <button type="button" id="reserve-btn" class="submit-btn">Reserve Now</button>
-
-            <a href="#" class="private-dining-link">Book private dining & banquet rooms</a>
-
-            <p class="copyright">*Reservations powered by OpenTable</p>
-        </form>
-    </div>
-
-    <!-- قسم الصورة -->
-    <div class="image-section">
-        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Elegant Restaurant Interior" class="featured-image">
-        <div class="rotated-text">Fine Dining Experience</div>
-    </div>
-</div>
-
-<!!-- نافذة تأكيد الحجز -->
-<div class="confirmation-modal" id="confirmation-modal">
-    <div class="confirmation-content">
-        <span class="close-modal" id="close-modal">&times;</span>
-
-        <div id="confirmation-form">
-            <h2 class="confirmation-title">Confirm Your Reservation</h2>
-            <p class="confirmation-message">Please enter your email address to receive booking confirmation</p>
-            <input type="email" class="email-input" id="guest-email" placeholder="Your email address" required>
-            <button class="confirm-btn" id="confirm-reservation">Confirm Reservation</button>
+        <div class="service-box">
+            <img src="https://cdn-icons-png.flaticon.com/512/1046/1046786.png" alt="Drink" />
+            <h3>Skilled Chefs</h3>
+            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin.</p>
         </div>
 
-        <div class="success-message" id="success-message">
-            <div class="success-content">
-                <h3>Your reservation is confirmed!</h3>
-                <p>Thank you for booking with us.</p>
-
-                <div class="success-details">
-                    <p><strong>Date:</strong> <span id="confirmed-date"></span></p>
-                    <p><strong>Time:</strong> <span id="confirmed-time"></span></p>
-                    <p><strong>Guests:</strong> <span id="confirmed-guests"></span></p>
-                    <p><strong>Email:</strong> <span id="confirmed-email"></span></p>
-                </div>
-
-                <p style="margin-top: 20px;">A confirmation email has been sent to your address.</p>
-            </div>
+        <div class="service-box">
+            <img src="https://cdn-icons-png.flaticon.com/512/1046/1046785.png" alt="Burger" />
+            <h3>Vegan Cuisine</h3>
+            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin.</p>
         </div>
     </div>
-</div>
+</section>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<script>
-    $(document).ready(function() {
-        // تهيئة حقل التاريخ
-        $(".date-picker").datepicker({
-            dateFormat: 'dd/mm/yy',
-            minDate: 0,
-            showAnim: 'fadeIn',
-            beforeShowDay: function(date) {
-                if (date.getDay() === 2) {
-                    return [false, 'closed-day', 'Closed on Tuesdays'];
-                }
-                return [true];
-            }
-        });
-
-        // خيارات عدد الأشخاص
-        const peopleOptions = [
-            { value: "1", label: "1 Person" },
-            { value: "2", label: "2 People" },
-            { value: "3", label: "3 People" },
-            { value: "4", label: "4 People" },
-            { value: "5", label: "5 People" },
-            { value: "6", label: "6 People" },
-            { value: "7", label: "7 People" },
-            { value: "8", label: "8 People" },
-            { value: "9", label: "9 People" },
-            { value: "10", label: "10 People" },
-            { value: "11", label: "Larger party (10+)" }
-        ];
-
-        // خيارات الوقت
-        const timeOptions = [
-            { value: "11:00", label: "11:00 am" },
-            { value: "11:30", label: "11:30 am" },
-            { value: "12:00", label: "12:00 pm" },
-            { value: "12:30", label: "12:30 pm" },
-            { value: "13:00", label: "01:00 pm" },
-            { value: "13:30", label: "01:30 pm" },
-            { value: "14:00", label: "02:00 pm" },
-            { value: "14:30", label: "02:30 pm" },
-            { value: "15:00", label: "03:00 pm" },
-            { value: "15:30", label: "03:30 pm" },
-            { value: "16:00", label: "04:00 pm" },
-            { value: "16:30", label: "04:30 pm" },
-            { value: "17:00", label: "05:00 pm" },
-            { value: "17:30", label: "05:30 pm" },
-            { value: "18:00", label: "06:00 pm" },
-            { value: "18:30", label: "06:30 pm" },
-            { value: "19:00", label: "07:00 pm" },
-            { value: "19:30", label: "07:30 pm" },
-            { value: "20:00", label: "08:00 pm" },
-            { value: "20:30", label: "08:30 pm" },
-            { value: "21:00", label: "09:00 pm" },
-            { value: "21:30", label: "09:30 pm" },
-            { value: "22:00", label: "10:00 pm" },
-            { value: "22:30", label: "10:30 pm" },
-            { value: "23:00", label: "11:00 pm" },
-            { value: "23:30", label: "11:30 pm" }
-        ];
-
-        // تهيئة حقل عدد الأشخاص
-        $("#people-input").autocomplete({
-            source: peopleOptions,
-            minLength: 0,
-            select: function(event, ui) {
-                $("#people-input").val(ui.item.label);
-                $("#people-value").val(ui.item.value);
-                return false;
-            },
-            focus: function(event, ui) {
-                $("#people-input").val(ui.item.label);
-                return false;
-            }
-        }).on('click', function() {
-            $(this).autocomplete("search", "");
-        });
-
-        // تهيئة حقل الوقت
-        $("#time-input").autocomplete({
-            source: timeOptions,
-            minLength: 0,
-            select: function(event, ui) {
-                $("#time-input").val(ui.item.label);
-                $("#time-value").val(ui.item.value);
-                return false;
-            },
-            focus: function(event, ui) {
-                $("#time-input").val(ui.item.label);
-                return false;
-            }
-        }).on('click', function() {
-            $(this).autocomplete("search", "");
-        });
-
-        // فتح نافذة التأكيد عند الضغط على Reserve Now
-        $("#reserve-btn").click(function() {
-            if(!$("#people-value").val() || !$(".date-picker").val() || !$("#time-value").val()) {
-                alert("Please fill all fields before reserving.");
-                return;
-            }
-
-            $("#confirmation-modal").fadeIn();
-        });
-
-        // إغلاق النافذة
-        $("#close-modal").click(function() {
-            $("#confirmation-modal").fadeOut();
-        });
-
-        /// تأكيد الحجز
-        $("#confirm-reservation").click(function() {
-            const email = $("#guest-email").val();
-
-            // التحقق من صحة البريد الإلكتروني
-            if(!email || !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-                alert("Please enter a valid email address.");
-                return;
-            }
-
-            // تعبئة تفاصيل الحجز في رسالة النجاح
-            $("#confirmed-date").text($(".date-picker").val());
-            $("#confirmed-time").text($("#time-input").val());
-            $("#confirmed-guests").text($("#people-input").val());
-            $("#confirmed-email").text(email);
-
-            // إخفاء نموذج التأكيد وإظهار رسالة النجاح
-            $("#confirmation-form").fadeOut(function() {
-                $("#success-message").fadeIn();
-            });
-
-            // محاكاة إرسال البريد الإلكتروني
-            console.log("Reservation Details:", {
-                email: email,
-                guests: $("#people-input").val(),
-                date: $(".date-picker").val(),
-                time: $("#time-input").val()
-            });
-
-            // إغلاق النافذة بعد 5 ثواني
-            setTimeout(function() {
-                $("#confirmation-modal").fadeOut(function() {
-                    $("#confirmation-form").fadeIn();
-                    $("#success-message").fadeOut();
-                    $("#guest-email").val("");
-                    $("#booking-form")[0].reset();
-                    $("#people-input").val("");
-                    $("#time-input").val("");
-                });
-            }, 9000);
-        });
-
-        // إغلاق النافذة عند النقر خارجها
-        $(document).mouseup(function(e) {
-            const modal = $("#confirmation-modal");
-            if (!modal.is(e.target) && modal.has(e.target).length === 0) {
-                modal.fadeOut();
-            }
-        });
-    });
-</script>
 </body>
 </html>
