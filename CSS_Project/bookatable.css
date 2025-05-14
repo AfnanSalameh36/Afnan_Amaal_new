@@ -765,6 +765,14 @@ body {
     font-weight: 500;
     transition: all 0.4s ease;
 }
+@keyframes gentleShake {
+    0%   { transform: rotate(-6deg) translateX(0); }
+    25%  { transform: rotate(-6.5deg) translateX(-1px); }
+    50%  { transform: rotate(-6deg) translateX(0); }
+    75%  { transform: rotate(-5.5deg) translateX(1px); }
+    100% { transform: rotate(-6deg) translateX(0); }
+}
+
 
 .rotated-text:hover {
     transform: rotate(-5deg) scale(1.05);
