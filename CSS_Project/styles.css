@@ -1185,3 +1185,23 @@ body {
         transform: scale(1);
     }
 }
+.top-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 10px 15px;
+    font-size: 14px;
+    background-color: #CB9953;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease;
+    z-index: 1000;
+}
+
+.top-button:hover {
+    background-color: #a87c3d;
+}
+
