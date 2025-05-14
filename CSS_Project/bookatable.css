@@ -740,7 +740,7 @@ body {
 
 .featured-image {
     width: 100%;
-    height: 100%;
+    height: 50%;
     object-fit: cover;
     border-radius: 0 0 0 20vw;
     transition: transform 0.5s ease;
@@ -758,7 +758,7 @@ body {
     font-family: 'Mrs Saint Delafield', cursive;
     font-size: 64px;
     line-height: 1.2;
-    color: #000000;
+    color: #CB9953;
     white-space: nowrap;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     z-index:10000;
