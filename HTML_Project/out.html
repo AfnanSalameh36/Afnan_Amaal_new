@@ -33,6 +33,58 @@
     html {
         scroll-behavior: smooth;
     }
+
+     .whatsapp-section {
+         display: flex;
+         gap: 30px;
+         align-items: flex-start;
+         margin-top: 20px;
+         justify-content: center;
+         flex-wrap: wrap;
+     }
+
+    .whatsapp-chat-box {
+        background: transparent;
+        padding: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.9);
+        width: 300px;
+        font-family: Arial, sans-serif;
+        color: white;
+    }
+
+    .whatsapp-button {
+        background: #1e3b3b;
+        border: 2px solid #1e3b3b;
+        padding: 10px;
+        width: 100%;
+        font-size: 16px;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .whatsapp-button:hover {
+        background: transparent;
+        color: #1e3b3b;
+    }
+
+    .images-with-icon {
+        text-align: center;
+    }
+
+    .images-with-icon img {
+        width: 120px;
+        height: auto;
+        margin-bottom: 10px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .whatsapp-icon {
+        font-size: 40px;
+        color: #25D366;
+    }
+
 </style>
 </head>
 <body>
@@ -41,5 +93,115 @@
 <a href="#top" class="back-to-top1">
     <i class="ri-arrow-up-circle-line"></i>
 </a>
+
+
+<!-- عنوان -->
+<div class="endStatements" style="margin-top: 20px; text-align: center;">
+    <p>Contact us</p>
+    <h2>Chat with us now on WhatsApp for any inquiries or reservations!</h2>
+</div>
+
+<!-- القسم الكامل -->
+<div class="whatsapp-section">
+
+    <!-- الصور + أيقونة -->
+    <div class="images-with-icon">
+        <img src="../image2/contactUs/5end.jpg" alt="whatsapp image 1">
+        <img src="../image2/contactUs/6end.jpg" alt="whatsapp image 2">
+        <div style="margin-top: 10px;">
+            <i class="fab fa-whatsapp whatsapp-icon"></i>
+        </div>
+    </div>
+
+    <div class="whatsapp-chat-box">
+        <h4 style="margin:0 0 10px 0;">Chat with us on WhatsApp</h4>
+
+        <input id="userPhone" type="text"
+               placeholder="Enter your phone number (e.g., 97259xxxxxxx)"
+               style="width: 100%; padding: 8px; border: 1px solid #1e3b3b; color: #FFFFFF; background-color: transparent; margin-bottom: 10px; font-size: 14px;"
+               oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+
+        <textarea id="userMessage"
+                  placeholder="Write your message here..."
+                  rows="3"
+                  style="width: 100%; padding: 8px; border: 1px solid #1e3b3b; margin-bottom: 10px; font-size: 12px;"></textarea>
+
+        <button onclick="sendWhatsApp()" class="whatsapp-button">
+            Send Message on WhatsApp
+        </button>
+
+    </div>
+    <div class="images-with-icon">
+        <img src="../image2/contactUs/5end.jpg" alt="whatsapp image 1">
+        <img src="../image2/contactUs/6end.jpg" alt="whatsapp image 2">
+        <div style="margin-top: 10px;">
+            <i class="fab fa-whatsapp whatsapp-icon"></i>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function checkOpeningHours() {
+        const now = new Date();
+        const day = now.getDay(); // 0 = Sunday
+        const hour = now.getHours();
+        const minute = now.getMinutes();
+        const currentTime = hour + minute / 60;
+
+        let isOpen = false;
+
+        if (day >= 1 && day <= 5) {
+            isOpen = currentTime >= 9 && currentTime < 23;
+        } else {
+            isOpen = currentTime >= 10 || currentTime < 0;
+        }
+
+        const statusText = document.getElementById("statusText");
+        statusText.innerHTML = isOpen
+            ? ' The restaurant is open now <i class="fa-solid fa-check" style="color:white;"></i>'
+            : 'The restaurant is currently closed<i class="fa-solid fa-xmark" style="color:white;"></i> ';
+
+
+        document.getElementById("hoursModal").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("hoursModal").style.display = "none";
+    }
+    function sendWhatsApp() {
+        const restaurantNumber = "972599124302";
+        const userPhone = document.getElementById("userPhone").value.trim();
+        const userMessage = document.getElementById("userMessage").value.trim();
+
+
+        const phoneRegex = /^(970|972)5\d{8}$/;
+
+        if (!phoneRegex.test(userPhone)) {
+            alert("Please enter a valid Palestinian phone number starting with 970 or 972, e.g., 97259xxxxxxx");
+            return;
+        }
+
+
+
+        if (!userMessage) {
+            alert("Please enter a message");
+            return;
+        }
+
+        const message = `Message from number ${userPhone}:\n${userMessage}`;
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappURL = `https://wa.me/${restaurantNumber}?text=${encodedMessage}`;
+        window.open(whatsappURL, "_blank");
+
+        // تنظيف الحقول
+        document.getElementById("userPhone").value = "";
+        document.getElementById("userMessage").value = "";
+    }
+
+
+</script>
+
+
 </body>
 </html>
