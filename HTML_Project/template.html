@@ -11,10 +11,46 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <!--  ********************************************************************************************-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+<style>
+    .back-to-top1 {
+        position: fixed;
+        bottom: 40px;
+        right: 25px;
+        width: 40px;
+        height: 40px;
+        background-color: transparent;
+        color: #8C7250;
+        border: 1px solid #8C7250;
+        border-radius: 50%;
+        font-size: 24px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        z-index: 999;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+    }
+    .back-to-top1:hover {
+        background-color: #a07f58;
+        color: #0B1315;
+        border: 1px solid #0B1315;
+    }
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
 </head>
 
 
 <body>
+<div id="top"></div>
+
+<a href="#top" class="back-to-top1">
+    <i class="ri-arrow-up-circle-line"></i>
+</a>
 <div class="image-wrapper">
     <div class="corner-image"></div>
 </div>
@@ -22,7 +58,7 @@
 <!-- Navigation Bar -->
 <nav class="navbar">
     <ul class="nav-links">
-        <li style="   margin-left:250px; "><a href="index.html" class="active">Home</a></li>
+        <li style="   margin-left:250px; "><a href="index.html" class="active1">Home</a></li>
         <li><a href="about.html">About us</a></li>
         <li><a href="menu.html">Menu</a></li>
         <li><a href="bookatable.html">Book A Table</a></li>
@@ -39,13 +75,6 @@
         <li><a href="contact.html">Contact</a></li>
         <li><a href="login.html" style="   margin-left:90px;"><i class="fas fa-user-plus"></i></a></li>
         <li><a href="out.html" style="   margin-left:-20px;"><i class="fas fa-sign-in-alt"></i></a></li>
-
-    </ul>
-        </li>
-
-        <li><a href="menu.html">Contact</a></li>
-        <li><a href="signup.html" style="   margin-left:90px;"><i class="fas fa-user-plus"></i></a></li>
-        <li><a href="signin.html" style="   margin-left:-20px;"><i class="fas fa-sign-in-alt"></i></a></li>
 
     </ul>
 </nav>

@@ -15,15 +15,47 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
 
     <style>
-
+        .back-to-top1 {
+            position: fixed;
+            bottom: 40px;
+            right: 25px;
+            width: 40px;
+            height: 40px;
+            background-color: transparent;
+            color: #8C7250;
+            border: 1px solid #8C7250;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+        .back-to-top1:hover {
+            background-color: #a07f58;
+            color: #0B1315;
+            border: 1px solid #0B1315;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
+<div id="top"></div>
 
+<a href="#top" class="back-to-top1">
+    <i class="ri-arrow-up-circle-line"></i>
+</a>
 <body style="background-image: url('../image2/background.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
 <div>
-    <div id="top"></div>
 
     <div class="content">
 

@@ -1,3 +1,7 @@
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
     document.addEventListener("DOMContentLoaded", function () {
     // ========= سلايدر الصور وخلفية النصوص =========
     let currentIndex = 0;
@@ -246,8 +250,8 @@
 });
 });
 
-        function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+
+
+
 
 

@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+        scroll-behavior: smooth;
+
 }
 
 body, html {
@@ -9,6 +12,7 @@ body, html {
     width: 100%;
     overflow: scroll;
     position: relative;
+    scroll-behavior: smooth;
     font-family: 'Poppins', sans-serif;
     background-color: #0B1315;
     overflow-x: hidden;
