@@ -177,7 +177,7 @@ p {
 }
 
 /*************************************************************************************************************************/
-body{
+body {
     font-family: 'Poppins', sans-serif;
     background-color: #0B1315;
     margin: 0;
@@ -185,7 +185,29 @@ body{
     background-image: url("../image2/b1.png");
     background-position: left 100px top;
     background-repeat: no-repeat;
+    background-size: contain;
+
+    animation: bgFloat 4s ease-in-out infinite alternate;
 }
+
+@keyframes bgFloat {
+    0% {
+        background-position: left 100px top 0px;
+    }
+    25% {
+        background-position: left 110px top 10px;
+    }
+    50% {
+        background-position: left 120px top 0px;
+    }
+    75% {
+        background-position: left 110px top -10px;
+    }
+    100% {
+        background-position: left 100px top 0px;
+    }
+}
+
 
 div.backgroundForOurMenu {
     display: flex;

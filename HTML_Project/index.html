@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poltawski+Nowy&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
     <style>
@@ -70,7 +70,8 @@
 
         .menu-button {
             color: #fff;
-            font-size: 18px;
+            font-size: 28px;
+            text-align: left;
             text-decoration: none;
             padding: 6px 14px;
             transition: all 0.3s ease;
@@ -81,7 +82,6 @@
             background-color:transparent;
             color: #fff;
             font-weight: bold;
-            box-shadow: 0 0 10px rgba(203, 153, 83, 0.7);
         }
 
         a.swiper-slide {
@@ -90,6 +90,17 @@
             z-index: 0;
         }
 
+
+        .slide-text1 {
+            position: absolute;
+            bottom: 10px; /* أو top: 20px حسب وين بدك النص */
+            left: 1350px;
+            color: white;
+            font-size: 20px;
+            font-family: 'Poltawski Nowy', serif;
+            padding: 10px;
+            border-radius: 8px;
+        }
 
 
     </style>
@@ -105,20 +116,20 @@
             <li style="   margin-left:250px; "><a href="index.html" class="active">Home</a></li>
             <li><a href="about.html">About us</a></li>
             <li><a href="menu.html">Menu</a></li>
-            <li><a href="menu.html">Book A Table</a></li>
+            <li><a href="bookatable.html">Book A Table</a></li>
 
             <li class="dropdown">
                 <a href="shop.html">Shop</a>
                 <ul class="dropdown-content">
                     <li><a href="shop.html">Product List</a></li>
-                    <li><a href="#">Cart</a></li>
+                    <li><a href="cart.html">Cart</a></li>
                     <li><a href="#">Checkout</a></li>
                 </ul>
             </li>
 
             <li><a href="contact.html">Contact</a></li>
         <li><a href="login.html" style="   margin-left:90px;"><i class="fas fa-user-plus"></i></a></li>
-            <li><a href="signin.html" style="   margin-left:-20px;"><i class="fas fa-sign-in-alt"></i></a></li>
+            <li><a href="out.html" style="   margin-left:-20px;"><i class="fas fa-sign-in-alt"></i></a></li>
 
     </ul>
 </nav>
@@ -273,7 +284,7 @@ Delights
                 <img src="../image/img-pattern.svg" width="412" height="470"
                      style="position: absolute;top:140px; right: 230px; z-index:-1;">
 
-                <a href="menu.html#drinks_statement" class="hover-effect">
+                <a href="menu.html#drinks_statement1" class="hover-effect">
                     <img src="../image/11.jpg" width="285" height="336"
                          style="position: absolute; top:215px; right: 280px; z-index: 2;">
                     <div class="fancy-border" style="  top:620px; right:223px;">
@@ -284,7 +295,7 @@ Delights
 
                 <img src="../image/img-pattern.svg" width="412" height="470"
                      style="position: absolute;top:250px; right: -150px; z-index:-1;">
-                <a href="menu.html#MainCourses_statement" class="hover-effect">
+                <a href="menu.html#MainCourses_statement1" class="hover-effect">
                     <img src="../image/433.jpg" width="285" height="336"
                          style="position: absolute; top:330px; right: -80px; z-index: 2;">
                     <div class="fancy-border" style="  top:150px; right:-155px;">
@@ -294,7 +305,7 @@ Delights
 
                 <img src="../image/img-pattern.svg" width="412" height="470"
                      style="position: absolute;top:140px; right: -500px; z-index:-1;">
-                <a href="menu.html#desserts_statement" class="hover-effect">
+                <a href="menu.html#desserts_statement1" class="hover-effect">
                     <img src="../image/333.jpg" width="285" height="336"
                          style="position: absolute; top:215px; right: -450px; z-index: 2;">
                     <div class="fancy-border" style="  top:530px; right: -505px;">
@@ -314,20 +325,35 @@ Delights
 <div>
     <div class="swiper-container">
         <div class="swiper-wrapper">
-            <a href="https://fidalgo.qodeinteractive.com/menu-vertical/" class="swiper-slide" style="background-image: url('../image/111.jpg');"></a>
-            <a href="https://fidalgo.qodeinteractive.com/menu-small-images/" class="swiper-slide" style="background-image: url('../image/89.png');"></a>
-            <a href="https://fidalgo.qodeinteractive.com/menu-simple/" class="swiper-slide" style="background-image: url('../image/backgroung-aboutus.jpg');"></a>
-            <a href="https://fidalgo.qodeinteractive.com/menu-classic/" class="swiper-slide" style="background-image: url('../image2/contactUs/backgroundForContact.jpg');"></a>
-            <a href="https://fidalgo.qodeinteractive.com/menu-specials/" class="swiper-slide" style="background-image: url('../image/3.jpg');"></a>
+            <a href="../HTML_Project/menu.html" class="swiper-slide" style="background-image: url('../image/111.jpg');">
+                <div class="slide-text1">Menu</div>
+            </a>
+
+            <a href="../HTML_Project/shop.html" class="swiper-slide" style="background-image: url('../image/89.png');">
+                <div class="slide-text1">Shop</div>
+            </a>
+            <a href="../HTML_Project/about.html" class="swiper-slide" style="background-image: url('../image/backgroung-aboutus.jpg');">
+                <div class="slide-text1">About Us</div>
+            </a>
+            <a href="../HTML_Project/contact.html" class="swiper-slide" style="background-image: url('../image2/contactUs/backgroundForContact.jpg');">
+                <div class="slide-text1">Contact</div>
+            </a>
+            <a href="../HTML_Project/index.html" class="swiper-slide" style="background-image: url('../image/3.jpg');">
+                <div class="slide-text1">Home</div>
+            </a>
         </div>
 
         <!-- Strip with all options -->
         <div class="menu-strip" id="menuStrip">
-            <a href="../HTML_Project/menu.html" class="menu-button">Menu</a>
-            <a href="../HTML_Project/shop.html" class="menu-button">shop</a>
-            <a href="../HTML_Project/about.html" class="menu-button">about us</a>
-            <a href="../HTML_Project/contact.html" class="menu-button">contact</a>
-            <a href="../HTML_Project/index.html" class="menu-button">home</a>
+            <a href="../HTML_Project/menu.html" class="menu-button" style="font-family: 'Poltawski Nowy';position: relative; left: -470px;">
+                Where Passion For Food <br>
+                Meets Exceptional Service
+            </a>
+
+            <!--            <a href="../HTML_Project/shop.html" class="menu-button">shop</a>-->
+<!--            <a href="../HTML_Project/about.html" class="menu-button">about us</a>-->
+<!--            <a href="../HTML_Project/contact.html" class="menu-button">contact</a>-->
+<!--            <a href="../HTML_Project/index.html" class="menu-button">home</a>-->
         </div>
 
 
@@ -500,19 +526,20 @@ Delights
         <div class="footer-section">
             <h3 class="footer-title">Quick Links</h3>
             <ul class="footer-links">
-                <li><a href="menu.html">Home</a></li>
-                <li><a href="menu.html">About Us</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
                 <li><a href="menu.html">Menu</a></li>
-                <li><a href="menu.html">Book a Table</a></li>
+                <li><a href="bookatable.html">Book a Table</a></li>
             </ul>
         </div>
 
         <div class="footer-section">
             <h3 class="footer-title">Contact Us</h3>
             <ul class="footer-contact">
-                <li><i class="fas fa-map-marker-alt"></i> 71 Madison Ave, New York</li>
-                <li><i class="fas fa-phone"></i> 914-309-7030</li>
-                <li><i class="fas fa-envelope"></i> reservations@golden.com</li>
+                <li><i class="fas fa-map-marker-alt"></i> Tunis Street, near Dahiyat
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Al-Nakheel, Nablus, Palestine</li>
+                <li><i class="fas fa-phone"></i> 059-737-7354</li>
+                <li><i class="fas fa-envelope"></i> golden@gmail.com</li>
             </ul>
         </div>
 
@@ -526,7 +553,8 @@ Delights
     </div>
 
     <div class="footer-bottom">
-        <p>&copy; 2025 Golden Restaurant. All Rights Reserved.</p>
+        <p>&copy; 2025 Golden Restaurant. All rights reserved. Designed & Developed by Eng. Amaal ♥ Eng. Afnan
+        </p>
     </div>
 </footer>
 <script>
