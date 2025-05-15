@@ -83,51 +83,51 @@
 
 
 
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 999;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0,0,0,0.6);
+    /*.modal {*/
+    /*    display: none;*/
+    /*    position: fixed;*/
+    /*    z-index: 999;*/
+    /*    left: 0;*/
+    /*    top: 0;*/
+    /*    width: 100%;*/
+    /*    height: 100%;*/
+    /*    overflow: auto;*/
+    /*    background-color: rgba(0,0,0,0.6);*/
 
-    }
+    /*}*/
 
-    .modal-content {
-        position: relative;
-        margin: 15% auto;
-        padding: 30px;
-        border: 1px solid #c49871;
-        width: 80%;
-        max-width: 400px;
-        text-align: center;
-        background-color: rgba(0,0,0,0.8);
+    /*.modal-content {*/
+    /*    position: relative;*/
+    /*    margin: 15% auto;*/
+    /*    padding: 30px;*/
+    /*    border: 1px solid #c49871;*/
+    /*    width: 80%;*/
+    /*    max-width: 400px;*/
+    /*    text-align: center;*/
+    /*    background-color: rgba(0,0,0,0.8);*/
 
-        font-family: Arial, sans-serif;
-    }
+    /*    font-family: Arial, sans-serif;*/
+    /*}*/
 
 
-    .close-btn {
-        color: #aaa;
-        float: right;
-        font-size: 24px;
-        cursor: pointer;
-        position: absolute;
-        right: 20px;
-        top: 15px;
-    }
+    /*.close-btn {*/
+    /*    color: #aaa;*/
+    /*    float: right;*/
+    /*    font-size: 24px;*/
+    /*    cursor: pointer;*/
+    /*    position: absolute;*/
+    /*    right: 20px;*/
+    /*    top: 15px;*/
+    /*}*/
 
-    .close-btn:hover {
-        color: #000;
-    }
+    /*.close-btn:hover {*/
+    /*    color: #000;*/
+    /*}*/
 
-    #statusText {
-        font-size: 18px;
-        color: #FFFFFF;
-    }
+    /*#statusText {*/
+    /*    font-size: 18px;*/
+    /*    color: #FFFFFF;*/
+    /*}*/
 
     .whatsapp-button {
         background: #1e3b3b;
@@ -348,22 +348,20 @@
 
 <div class="containerForIcons">
     <div class="icon">
-    <a href="#mapSection">
         <div class="iconStyle">
             <i class="fa-solid fa-location-dot"></i>
         </div>
-    </a>
     <div class="contentForIcon">
         <h5 class="theWordForIcon">Address</h5>
         <p class="iconContent">Tunis Street, near Dahiyat<br>Al-Nakheel, Nablus, Palestine</p>
     </div>
 </div>
     <div class="icon">
-        <a href="tel:+972599124302">
+
             <div class="iconStyle">
                 <i class="fa-solid fa-phone-volume"></i>
             </div>
-        </a>
+
         <div class="contentForIcon">
             <h5 class="theWordForIcon">Contact Number</h5>
             <p class="iconContent">
@@ -374,7 +372,6 @@
     </div>
 
 
-    <!-- أيقونة الساعة -->
     <div class="icon" onclick="checkOpeningHours()">
         <div class="iconStyle">
             <i class="fa-solid fa-clock"></i>
@@ -385,7 +382,6 @@
         </div>
     </div>
 
-    <!-- المودال -->
     <div id="hoursModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -395,11 +391,10 @@
 
 
     <div class="icon">
-        <a href="mailto:golden@gmail.com">
             <div class="iconStyle">
                 <i class="fa-solid fa-envelope"></i>
             </div>
-        </a>
+
         <div class="contentForIcon">
             <h5 class="theWordForIcon">Email</h5>
             <p class="iconContent">
@@ -620,33 +615,33 @@
 </footer>
 <script>
 
-        function checkOpeningHours() {
-        const now = new Date();
-        const day = now.getDay(); // 0 = Sunday
-        const hour = now.getHours();
-        const minute = now.getMinutes();
-        const currentTime = hour + minute / 60;
-
-        let isOpen = false;
-
-        if (day >= 1 && day <= 5) {
-        isOpen = currentTime >= 9 && currentTime < 23;
-    } else {
-        isOpen = currentTime >= 10 || currentTime < 0;
-    }
-
-        const statusText = document.getElementById("statusText");
-            statusText.innerHTML = isOpen
-                ? ' The restaurant is open now <i class="fa-solid fa-check" style="color:white;"></i>'
-                : 'The restaurant is currently closed<i class="fa-solid fa-xmark" style="color:white;"></i> ';
-
-
-            document.getElementById("hoursModal").style.display = "block";
-    }
-
-        function closeModal() {
-        document.getElementById("hoursModal").style.display = "none";
-    }
+    //     function checkOpeningHours() {
+    //     const now = new Date();
+    //     const day = now.getDay(); // 0 = Sunday
+    //     const hour = now.getHours();
+    //     const minute = now.getMinutes();
+    //     const currentTime = hour + minute / 60;
+    //
+    //     let isOpen = false;
+    //
+    //     if (day >= 1 && day <= 5) {
+    //     isOpen = currentTime >= 9 && currentTime < 23;
+    // } else {
+    //     isOpen = currentTime >= 10 || currentTime < 0;
+    // }
+    //
+    //     const statusText = document.getElementById("statusText");
+    //         statusText.innerHTML = isOpen
+    //             ? ' The restaurant is open now <i class="fa-solid fa-check" style="color:white;"></i>'
+    //             : 'The restaurant is currently closed<i class="fa-solid fa-xmark" style="color:white;"></i> ';
+    //
+    //
+    //         document.getElementById("hoursModal").style.display = "block";
+    // }
+    //
+    //     function closeModal() {
+    //     document.getElementById("hoursModal").style.display = "none";
+    // }
         function sendWhatsApp() {
             const restaurantNumber = "972599124302";
             const userPhone = document.getElementById("userPhone").value.trim();

@@ -246,12 +246,7 @@ div.iconStyle{
     border-radius: 70%;
     align-items: center;
 }
-.iconStyle:hover {
-    background-color: transparent;
-    color: transparent; /* خلي الأيقونة تصير ذهبية */
-    border: 2px solid #8C7250;
-    cursor: pointer;
-}
+
 .iconStyle i{
     color: #FFFFFF;
     font-size: 22px;
