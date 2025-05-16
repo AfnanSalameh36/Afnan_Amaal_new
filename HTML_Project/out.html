@@ -477,76 +477,291 @@
 
 <!--</body>-->
 <!--</html>-->
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8" />-->
+<!--    <title>Golden Bite Loader</title>-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">-->
+<!--    <style>-->
+<!--        body {-->
+<!--            margin: 0;-->
+<!--            height: 100vh;-->
+<!--            display: flex;-->
+<!--            justify-content: center;-->
+<!--            align-items: center;-->
+<!--            overflow: hidden;-->
+<!--            flex-direction: column;-->
+<!--            position: relative;-->
+<!--            background: linear-gradient(135deg, #101A1C, #2C3E50); /* تدرج أنيق */-->
+<!--        }-->
+
+<!--        /* لمعة متحركة */-->
+<!--        .glow-overlay {-->
+<!--            content: "";-->
+<!--            position: absolute;-->
+<!--            inset: 0;-->
+<!--            background: linear-gradient(-->
+<!--                    120deg,-->
+<!--                    transparent 0%,-->
+<!--                    rgba(255, 255, 255, 0.05) 50%,-->
+<!--                    transparent 100%-->
+<!--            );-->
+<!--            animation: shimmer 2s infinite linear;-->
+<!--            z-index: 0;-->
+<!--            pointer-events: none;-->
+<!--        }-->
+
+<!--        @keyframes shimmer {-->
+<!--            0% { transform: translateX(-100%); }-->
+<!--            100% { transform: translateX(100%); }-->
+<!--        }-->
+
+<!--        .background-gradient {-->
+<!--            position: fixed;-->
+<!--            inset: 0;-->
+<!--            background: transparent;-->
+<!--            z-index: 0;-->
+<!--            animation: fadeOutBackground 2.5s ease forwards;-->
+<!--            animation-delay: 2s;-->
+<!--        }-->
+
+<!--        svg {-->
+<!--            width: 100px;-->
+<!--            height: 250px;-->
+<!--            stroke: #CB9953;-->
+<!--            stroke-width: 3;-->
+<!--            fill: none;-->
+<!--            z-index: 2;-->
+<!--        }-->
+
+<!--        path {-->
+<!--            stroke-dasharray: 200;-->
+<!--            stroke-dashoffset: 200;-->
+<!--            animation: draw 0.5s ease forwards;-->
+<!--        }-->
+
+<!--        g:nth-child(1) path { animation-delay: 0s; }-->
+<!--        g:nth-child(2) path { animation-delay: 0.5s; }-->
+<!--        g:nth-child(3) path { animation-delay: 1s; }-->
+
+<!--        g:nth-child(2) { transform: translate(15px, 15px); }-->
+<!--        g:nth-child(3) { transform: translate(30px, 30px); }-->
+
+<!--        @keyframes draw {-->
+<!--            to { stroke-dashoffset: 0; }-->
+<!--        }-->
+
+<!--        .logo-text {-->
+<!--            font-family: 'Great Vibes', cursive;-->
+<!--            font-size: 32px;-->
+<!--            color: #CB9953;-->
+<!--            margin-top: 15px;-->
+<!--            opacity: 0;-->
+<!--            animation: fadeInText 1s ease forwards;-->
+<!--            animation-delay: 1.2s;-->
+<!--            z-index: 2;-->
+<!--        }-->
+
+<!--        @keyframes fadeInText {-->
+<!--            to {-->
+<!--                opacity: 1;-->
+<!--            }-->
+<!--        }-->
+
+<!--        @keyframes fadeOutBackground {-->
+<!--            to {-->
+<!--                opacity: 0;-->
+<!--                visibility: hidden;-->
+<!--            }-->
+<!--        }-->
+
+<!--        svg.fade-out,-->
+<!--        .logo-text.fade-out {-->
+<!--            animation: fadeOutSVG 0.8s ease forwards;-->
+<!--            animation-delay: 2s;-->
+<!--        }-->
+
+<!--        @keyframes fadeOutSVG {-->
+<!--            to {-->
+<!--                opacity: 0;-->
+<!--                visibility: hidden;-->
+<!--            }-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--&lt;!&ndash; طبقة اللمعة &ndash;&gt;-->
+<!--<div class="glow-overlay"></div>-->
+
+<!--&lt;!&ndash; طبقة لإخفاء كل شيء لاحقًا &ndash;&gt;-->
+<!--<div class="background-gradient"></div>-->
+
+<!--&lt;!&ndash; الرسمة &ndash;&gt;-->
+<!--<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" id="loaderSVG">-->
+<!--    <g><path d="M20 5 V85 H90" /></g>-->
+<!--    <g><path d="M20 5 V85 H90" /></g>-->
+<!--    <g><path d="M20 5 V85 H90" /></g>-->
+<!--</svg>-->
+
+<!--&lt;!&ndash; اسم المطعم &ndash;&gt;-->
+<!--<div class="logo-text" id="logoText">Golden Restaurant</div>-->
+
+<!--<script>-->
+<!--    window.onload = () => {-->
+<!--        setTimeout(() => {-->
+<!--            document.getElementById('loaderSVG').classList.add('fade-out');-->
+<!--            document.getElementById('logoText').classList.add('fade-out');-->
+<!--        }, 2000);-->
+
+<!--        setTimeout(() => {-->
+<!--            window.location.href = "index.html"; // غيري حسب صفحتك-->
+<!--        }, 2900);-->
+<!--    };-->
+<!--</script>-->
+
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <title>Golden Bite Loader</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
-            background-color: #0B1315;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            overflow: hidden;
+            flex-direction: column;
+            position: relative;
+            background: linear-gradient(135deg, #101A1C, #3B4750);
+        }
+
+        /* لمعة متحركة */
+        .glow-overlay {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                    120deg,
+                    transparent 0%,
+                    rgba(255, 255, 255, 0.07) 50%,
+                    transparent 100%
+            );
+            animation: shimmer 2.5s infinite linear;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .background-gradient {
+            position: fixed;
+            inset: 0;
+            background: transparent;
+            z-index: 0;
+            animation: fadeOutBackground 2.5s ease forwards;
+            animation-delay: 2s;
         }
 
         svg {
-            width: 250px;
+            width: 100px;
             height: 250px;
             stroke: #CB9953;
             stroke-width: 3;
             fill: none;
+            z-index: 2;
         }
 
         path {
             stroke-dasharray: 200;
             stroke-dashoffset: 200;
-            animation: draw 5s ease forwards;
+            animation: draw 0.5s ease forwards;
         }
 
-        /* تأخير مختلف لكل خط حتى تظهر الرسم بشكل متتالي */
-        g:nth-child(1) path {
-            animation-delay: 0s;
-        }
-        g:nth-child(2) path {
-            animation-delay: 1.7s;
-        }
-        g:nth-child(3) path {
-            animation-delay: 3.4s;
-        }
+        g:nth-child(1) path { animation-delay: 0s; }
+        g:nth-child(2) path { animation-delay: 0.5s; }
+        g:nth-child(3) path { animation-delay: 1s; }
 
-        /* تحريك كل مجموعة (group) */
-        g:nth-child(2) {
-            transform: translate(15px, 15px);
-        }
-        g:nth-child(3) {
-            transform: translate(30px, 30px);
-        }
+        g:nth-child(2) { transform: translate(15px, 15px); }
+        g:nth-child(3) { transform: translate(30px, 30px); }
 
         @keyframes draw {
+            to { stroke-dashoffset: 0; }
+        }
+
+        .logo-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 50px;
+            color: #CB9953;
+            margin-top: 15px;
+            opacity: 0;
+            animation: fadeInText 5s ease forwards;
+            animation-delay: 0.2s;
+            z-index: 2;
+        }
+
+        @keyframes fadeInText {
             to {
-                stroke-dashoffset: 0;
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOutBackground {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        svg.fade-out,
+        .logo-text.fade-out {
+            animation: fadeOutSVG 0.8s ease forwards;
+            animation-delay: 2s;
+        }
+
+        @keyframes fadeOutSVG {
+            to {
+                opacity: 0;
+                visibility: hidden;
             }
         }
     </style>
 </head>
-<body>
+<body style="scroll-behavior: smooth;">
 
-<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-    <g>
-        <path d="M20 5 V85 H90" />
-    </g>
-    <g>
-        <path d="M20 5 V85 H90" />
-    </g>
-    <g>
-        <path d="M20 5 V85 H90" />
-    </g>
+<div class="glow-overlay"></div>
+<div class="background-gradient"></div>
+
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" id="loaderSVG">
+    <g><path d="M20 5 V85 H90" /></g>
+    <g><path d="M20 5 V85 H90" /></g>
+    <g><path d="M20 5 V85 H90" /></g>
 </svg>
+
+<div class="logo-text" id="logoText">Golden Restaurant</div>
+
+<script>
+    window.onload = () => {
+        setTimeout(() => {
+            document.getElementById('loaderSVG').classList.add('fade-out');
+            document.getElementById('logoText').classList.add('fade-out');
+        }, 2000);
+
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 2900);
+    };
+
+</script>
 
 </body>
 </html>
-
-

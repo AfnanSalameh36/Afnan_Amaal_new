@@ -186,7 +186,6 @@
         overflow: hidden;
     }
 
-    /* قاعدة عامة لكل الشُهُب */
     .shooting-star {
         position: absolute;
         width:700px;
@@ -217,19 +216,19 @@
     .star5  {
         position: absolute;
         left: 50%;
-        top: -150px; /* تبدأ فوق الشاشة */
+        top: -150px;
         width: 2px;
         height: 700px;
         background: linear-gradient(
-                180deg,           /* تدرج عمودي */
+                180deg,
                 rgba(255,255,255,0) 0%,
                 #8C7250 50%,
                 rgba(255,255,255,0) 100%
         );
         opacity: 0;
-        animation: shootDown 5s ease-in-out infinite; /* تكرار لانهائي */
+        animation: shootDown 5s ease-in-out infinite;
 
-        animation-delay: 2s; /* يبدأ بعد النجوم الأفقية */
+        animation-delay: 2s;
         z-index: 5;
     }
 
@@ -302,7 +301,7 @@
     <i class="ri-arrow-up-circle-line"></i>
 </a>
 
-<body>
+<body style="scroll-behavior: smooth;">
 <div class="image-wrapperr">
     <div class="corner-image"></div>
 </div>
