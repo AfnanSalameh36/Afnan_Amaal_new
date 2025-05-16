@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>لعبة التطابقات - مطعمنا</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f8f8f8;
-            color: #333;
+            background-color: #0B1315;  /* خلفية داكنة */
+            color: #CB9953;              /* نص ذهبي */
             text-align: center;
             padding: 20px;
         }
 
         h1 {
-            color: #e74c3c;
+            color: #CB9953;  /* عنوان ذهبي */
             margin-bottom: 30px;
         }
 
         .game-container {
             max-width: 800px;
             margin: 0 auto;
-            background-color: white;
+            background-color: #6A5E5C;  /* خلفية حاوية رمادية داكنة */
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 15px rgba(203, 153, 83, 0.6); /* ظل ذهبي خفيف */
         }
 
         .game-info {
@@ -33,6 +33,7 @@
             justify-content: space-around;
             margin-bottom: 20px;
             font-size: 18px;
+            color: #CB9953;
         }
 
         .memory-board {
@@ -45,7 +46,7 @@
 
         .card {
             height: 120px;
-            background-color: #e74c3c;
+            background-color: #CB9953; /* لون البطاقة الذهبي */
             border-radius: 8px;
             display: flex;
             justify-content: center;
@@ -55,20 +56,25 @@
             transition: all 0.3s ease;
             position: relative;
             transform-style: preserve-3d;
+            color: #0B1315; /* لون النص داكن */
         }
 
         .card.flipped {
-            background-color: white;
+            background-color: #0B1315; /* خلفية البطاقة مقلوبة داكنة */
             font-size: 40px;
             transform: rotateY(180deg);
+            color: #CB9953; /* النص ذهبي */
         }
 
         .card.matched {
-            background-color: #2ecc71;
+            background-color: #CB9953; /* لون البطاقة المطابقة */
             cursor: default;
+            box-shadow: 0 0 10px #CB9953;
+            color: #0B1315;
         }
 
-        .card .front, .card .back {
+        .card .front,
+        .card .back {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -80,18 +86,18 @@
         }
 
         .card .front {
-            background-color: #e74c3c;
-            color: white;
+            background-color: #CB9953; /* الذهبي */
+            color: #0B1315; /* داكن */
             transform: rotateY(180deg);
         }
 
         .card .back {
-            background-color: #e74c3c;
+            background-color: #CB9953; /* الخلف */
         }
 
         .restart-btn {
-            background-color: #e74c3c;
-            color: white;
+            background-color: #CB9953;
+            color: #0B1315;
             border: none;
             padding: 10px 20px;
             font-size: 16px;
@@ -102,19 +108,19 @@
         }
 
         .restart-btn:hover {
-            background-color: #c0392b;
+            background-color: #B2873F; /* لون ذهبي أغمق عند المرور */
         }
 
         .discount-code {
             font-size: 24px;
-            color: #e74c3c;
+            color: #CB9953;
             font-weight: bold;
             margin-top: 20px;
             display: none;
         }
 
         .daily-message {
-            color: #e74c3c;
+            color: #CB9953;
             font-size: 18px;
             margin-bottom: 20px;
             display: none;
@@ -123,7 +129,7 @@
         .discount-info {
             margin-top: 15px;
             font-size: 16px;
-            color: #555;
+            color: #ddd;
         }
 
         @media (max-width: 600px) {
@@ -275,42 +281,48 @@
             }
         }
 
-        // التحقق من التطابق
+        // تحقق من التطابق
         function checkForMatch() {
-            const card1 = flippedCards[0];
-            const card2 = flippedCards[1];
-
-            if (card1.attr('data-value') === card2.attr('data-value')) {
+            const [card1, card2] = flippedCards;
+            if (card1.data('value') === card2.data('value')) {
                 card1.addClass('matched');
                 card2.addClass('matched');
                 matchedCards.push(card1, card2);
+                flippedCards = [];
 
-                const remainingPairs = pairs.length - (matchedCards.length / 2);
-                $('#pairs-left').text(remainingPairs);
+                $('#pairs-left').text(pairs.length - matchedCards.length / 2);
 
                 if (matchedCards.length === cards.length) {
                     gameActive = false;
-                    const discountObj = generateDiscountCode(attempts);
-                    $('#discount-percent').text(discountObj.discount);
-                    $('#code').text(discountObj.code);
-                    $('#discount-code').fadeIn();
-                    saveDiscountCode(discountObj);
+                    showDiscount();
                 }
             } else {
                 setTimeout(() => {
                     card1.removeClass('flipped');
                     card2.removeClass('flipped');
+                    flippedCards = [];
                 }, 1000);
             }
-
-            flippedCards = [];
         }
 
-        // بدء اللعبة
-        createBoard();
+        // عرض كود الخصم
+        function showDiscount() {
+            if (discountUsed) return;
+            discountUsed = true;
 
-        // زر إعادة اللعب
-        $('#restart-btn').click(createBoard);
+            const discountObj = generateDiscountCode(attempts);
+            saveDiscountCode(discountObj);
+
+            $('#discount-percent').text(discountObj.discount);
+            $('#code').text(discountObj.code);
+            $('#discount-code').fadeIn();
+        }
+
+        $('#restart-btn').click(function() {
+            createBoard();
+        });
+
+        createBoard();
     });
 </script>
 </body>
