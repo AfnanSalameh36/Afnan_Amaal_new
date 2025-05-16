@@ -60,3 +60,4 @@ setInterval(autoSlide, 3000);
 bullets.forEach((bullet) => {
     bullet.addEventListener("click", moveSlider);
 });
+

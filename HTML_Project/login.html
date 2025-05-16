@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
     <style>
         .back-to-top1 {
@@ -94,9 +95,9 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
 
     <div class="hero-image" >
         <video autoplay muted loop playsinline>
-        <source src="../image/food-present-bg.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+            <source src="../image/food-present-bg.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
         <div class="overlay"></div>
 
 
@@ -107,13 +108,13 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
     </div>
 
     <main>
-        <div class="box">
+        <div class="box" style="    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7)">
             <div class="inner-box">
                 <div class="forms-wrap">
                     <form action="index.html" autocomplete="off" class="sign-in-form">
                         <div class="logo">
-                            <img src="./img/logo.png" alt="easyclass" />
-                            <h4>easyclass</h4>
+                            <img src="../image/6.png" alt="easyclass" />
+                            <h4>Golden Restaurant</h4>
                         </div>
 
                         <div class="heading">
@@ -134,18 +135,29 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
                                 <label>Name</label>
                             </div>
 
-                            <div class="input-wrap">
+                            <div class="input-wrap" style="position: relative;">
                                 <input
                                         type="password"
                                         minlength="4"
                                         class="input-field"
+                                        id="signin-password"
                                         autocomplete="off"
                                         required
                                 />
                                 <label>Password</label>
+
+                                <i class="fas fa-eye-slash toggle-password" id="toggleSigninPassword" style="
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #a07f58;"></i>
                             </div>
 
-                            <input type="submit" value="Sign In" class="sign-btn" />
+
+
+                            <button type="submit" class="sign-btn">Sign In</button>
 
                             <p class="text">
                                 Forgotten your password or you login datails?
@@ -156,8 +168,8 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
 
                     <form action="index.html" autocomplete="off" class="sign-up-form">
                         <div class="logo">
-                            <img src="./img/logo.png" alt="easyclass" />
-                            <h4>easyclass</h4>
+                            <img src="../image/6.png" alt="easyclass" />
+                            <h4>Golden Restaurant</h4>
                         </div>
 
                         <div class="heading">
@@ -188,15 +200,26 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
                                 <label>Email</label>
                             </div>
 
-                            <div class="input-wrap">
+                            <div class="input-wrap" style="position: relative;">
                                 <input
                                         type="password"
                                         minlength="4"
                                         class="input-field"
+                                        id="signup-password"
                                         autocomplete="off"
                                         required
                                 />
                                 <label>Password</label>
+                                <i class="ri-eye-off-line toggle-password" id="toggleSignupPassword" style="
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #a07f58;
+        font-size: 1.1rem;"></i>
+
+
                             </div>
 
                             <input type="submit" value="Sign Up" class="sign-btn" />
@@ -214,9 +237,9 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
                     <div class="images-wrapper">
                         <div class="hero-image" >
 
-                        <img src="../image/2s.png" alt="Overlay Image" class="overlay-image">
-                        <img src="../image/1 s.png" alt="Overlay Image" class="overlay-image1">
-                    </div>
+                            <img src="../image/2s.png" alt="Overlay Image" class="overlay-image">
+                            <img src="../image/1 s.png" alt="Overlay Image" class="overlay-image1">
+                        </div>
                     </div>
 
                     <div class="text-slider">
@@ -237,7 +260,6 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
         </div>
     </main>
 
-    <!-- Javascript file -->
 
     <script src="../JAVAS_Project/app.js"></script>
 
@@ -327,11 +349,35 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
             </p>
         </div>
     </footer>
-        </div>
-    </div>
-
-    <script src="../JAVAS_Project/about.js"></script>
-
 </div>
+
+
+<script src="../JAVAS_Project/about.js"></script>
+<script>
+    // Toggle for Sign Up
+    const toggleSignupPassword = document.getElementById("toggleSignupPassword");
+    const signupPassword = document.getElementById("signup-password");
+
+    toggleSignupPassword.addEventListener("click", function () {
+        const isPassword = signupPassword.getAttribute("type") === "password";
+        signupPassword.setAttribute("type", isPassword ? "text" : "password");
+        this.classList.toggle("fa-eye");
+        this.classList.toggle("fa-eye-slash");
+    });
+
+    // Toggle for Sign In
+    const toggleSigninPassword = document.getElementById("toggleSigninPassword");
+    const signinPassword = document.getElementById("signin-password");
+
+    toggleSigninPassword.addEventListener("click", function () {
+        const isPassword = signinPassword.getAttribute("type") === "password";
+        signinPassword.setAttribute("type", isPassword ? "text" : "password");
+        this.classList.toggle("fa-eye");
+        this.classList.toggle("fa-eye-slash");
+    });
+</script>
+
+
+
 </body>
 </html>

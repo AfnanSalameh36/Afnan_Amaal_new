@@ -1,0 +1,759 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="ar" dir="rtl">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>معرض السلايدرات المبتكرة</title>-->
+<!--    <style>-->
+<!--        * {-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            box-sizing: border-box;-->
+<!--            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;-->
+<!--        }-->
+
+<!--        body {-->
+<!--            background: #f5f5f5;-->
+<!--            color: #333;-->
+<!--            padding: 20px;-->
+<!--        }-->
+
+<!--        h1, h2 {-->
+<!--            text-align: center;-->
+<!--            margin: 20px 0;-->
+<!--            color: #2c3e50;-->
+<!--        }-->
+
+<!--        .slider-section {-->
+<!--            background: white;-->
+<!--            border-radius: 10px;-->
+<!--            box-shadow: 0 4px 15px rgba(0,0,0,0.1);-->
+<!--            padding: 20px;-->
+<!--            margin: 30px auto;-->
+<!--            max-width: 900px;-->
+<!--        }-->
+
+<!--        .slider-desc {-->
+<!--            text-align: center;-->
+<!--            margin-bottom: 20px;-->
+<!--            color: #7f8c8d;-->
+<!--        }-->
+
+<!--        /* 1. سلايدر ثلاثي الأبعاد */-->
+<!--        .slider-3d {-->
+<!--            perspective: 1000px;-->
+<!--            height: 300px;-->
+<!--            position: relative;-->
+<!--            margin: 0 auto;-->
+<!--            width: 80%;-->
+<!--        }-->
+
+<!--        .slider-3d-container {-->
+<!--            position: relative;-->
+<!--            width: 100%;-->
+<!--            height: 100%;-->
+<!--            transform-style: preserve-3d;-->
+<!--            transition: transform 1s;-->
+<!--        }-->
+
+<!--        .slide-3d {-->
+<!--            position: absolute;-->
+<!--            width: 60%;-->
+<!--            height: 80%;-->
+<!--            left: 20%;-->
+<!--            top: 10%;-->
+<!--            background: linear-gradient(45deg, #3498db, #9b59b6);-->
+<!--            border-radius: 10px;-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--            color: white;-->
+<!--            font-size: 24px;-->
+<!--            box-shadow: 0 10px 30px rgba(0,0,0,0.2);-->
+<!--            transition: all 0.5s;-->
+<!--        }-->
+
+<!--        /* 2. سلايدر تفاعلي مع الماوس */-->
+<!--        .mouse-slider {-->
+<!--            height: 300px;-->
+<!--            width: 100%;-->
+<!--            display: flex;-->
+<!--            overflow: hidden;-->
+<!--            position: relative;-->
+<!--            cursor: grab;-->
+<!--        }-->
+
+<!--        .mouse-slide {-->
+<!--            min-width: 100%;-->
+<!--            height: 100%;-->
+<!--            background: linear-gradient(45deg, #e74c3c, #e67e22);-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--            color: white;-->
+<!--            font-size: 24px;-->
+<!--            transition: transform 0.3s ease-out;-->
+<!--        }-->
+
+<!--        /* 3. سلايدر قطع ورقية */-->
+<!--        .paper-slider {-->
+<!--            height: 300px;-->
+<!--            position: relative;-->
+<!--            margin: 0 auto;-->
+<!--            width: 80%;-->
+<!--        }-->
+
+<!--        .paper-slide {-->
+<!--            position: absolute;-->
+<!--            width: 70%;-->
+<!--            height: 80%;-->
+<!--            background: white;-->
+<!--            border-radius: 5px;-->
+<!--            box-shadow: 0 5px 15px rgba(0,0,0,0.2);-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--            font-size: 24px;-->
+<!--            transition: all 0.5s ease;-->
+<!--            transform-origin: bottom center;-->
+<!--            padding: 20px;-->
+<!--            text-align: center;-->
+<!--        }-->
+
+<!--        /* 4. سلايدر دائري */-->
+<!--        .circular-slider {-->
+<!--            height: 400px;-->
+<!--            width: 400px;-->
+<!--            margin: 0 auto;-->
+<!--            position: relative;-->
+<!--        }-->
+
+<!--        .circular-slide {-->
+<!--            position: absolute;-->
+<!--            width: 120px;-->
+<!--            height: 120px;-->
+<!--            background: linear-gradient(45deg, #2ecc71, #1abc9c);-->
+<!--            border-radius: 50%;-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--            color: white;-->
+<!--            font-size: 18px;-->
+<!--            transform-origin: center;-->
+<!--            box-shadow: 0 5px 15px rgba(0,0,0,0.2);-->
+<!--            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);-->
+<!--        }-->
+
+<!--        /* 5. سلايدر خلفية متحركة */-->
+<!--        .bg-slider {-->
+<!--            height: 300px;-->
+<!--            width: 100%;-->
+<!--            position: relative;-->
+<!--            overflow: hidden;-->
+<!--        }-->
+
+<!--        .bg-slide {-->
+<!--            position: absolute;-->
+<!--            width: 100%;-->
+<!--            height: 100%;-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--            color: white;-->
+<!--            font-size: 24px;-->
+<!--            transition: background-position 1s ease;-->
+<!--            background-size: cover;-->
+<!--        }-->
+
+<!--        /* 6. سلايدر مغناطيسي */-->
+<!--        .magnetic-slider {-->
+<!--            display: flex;-->
+<!--            overflow-x: scroll;-->
+<!--            scroll-snap-type: x mandatory;-->
+<!--            height: 300px;-->
+<!--            width: 100%;-->
+<!--            scroll-behavior: smooth;-->
+<!--            -webkit-overflow-scrolling: touch;-->
+<!--        }-->
+
+<!--        .magnetic-slide {-->
+<!--            scroll-snap-align: center;-->
+<!--            min-width: 80%;-->
+<!--            height: 100%;-->
+<!--            margin: 0 10px;-->
+<!--            background: linear-gradient(45deg, #9b59b6, #34495e);-->
+<!--            border-radius: 10px;-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--            color: white;-->
+<!--            font-size: 24px;-->
+<!--            transition: transform 0.3s;-->
+<!--        }-->
+
+<!--        .magnetic-slide:hover {-->
+<!--            transform: scale(1.05);-->
+<!--        }-->
+
+<!--        /* 7. سلايدر عمودي */-->
+<!--        .vertical-slider {-->
+<!--            height: 400px;-->
+<!--            width: 100%;-->
+<!--            overflow-y: scroll;-->
+<!--            scroll-snap-type: y mandatory;-->
+<!--        }-->
+
+<!--        .vertical-slide {-->
+<!--            height: 100%;-->
+<!--            scroll-snap-align: start;-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--            color: white;-->
+<!--            font-size: 24px;-->
+<!--        }-->
+
+<!--        /* أزرار التحكم */-->
+<!--        .slider-controls {-->
+<!--            display: flex;-->
+<!--            justify-content: center;-->
+<!--            margin-top: 20px;-->
+<!--        }-->
+
+<!--        button {-->
+<!--            background: #3498db;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            padding: 10px 20px;-->
+<!--            margin: 0 10px;-->
+<!--            border-radius: 5px;-->
+<!--            cursor: pointer;-->
+<!--            transition: background 0.3s;-->
+<!--        }-->
+
+<!--        button:hover {-->
+<!--            background: #2980b9;-->
+<!--        }-->
+
+<!--        /* إخفاء شريط التمرير */-->
+<!--        .magnetic-slider::-webkit-scrollbar,-->
+<!--        .vertical-slider::-webkit-scrollbar {-->
+<!--            display: none;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>معرض السلايدرات المبتكرة</h1>-->
+
+<!--&lt;!&ndash; 1. سلايدر ثلاثي الأبعاد &ndash;&gt;-->
+<!--<div class="slider-section">-->
+<!--    <h2>سلايدر ثلاثي الأبعاد</h2>-->
+<!--    <p class="slider-desc">سلايدر بزوايا ثلاثية الأبعاد مع تأثيرات دوران</p>-->
+<!--    <div class="slider-3d">-->
+<!--        <div class="slider-3d-container" id="slider3d">-->
+<!--            <div class="slide-3d" style="transform: rotateY(-30deg) translateZ(-100px)">شريحة 1</div>-->
+<!--            <div class="slide-3d" style="transform: rotateY(0deg) translateZ(0px)">شريحة 2</div>-->
+<!--            <div class="slide-3d" style="transform: rotateY(30deg) translateZ(-100px)">شريحة 3</div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="slider-controls">-->
+<!--        <button onclick="prev3dSlide()">السابق</button>-->
+<!--        <button onclick="next3dSlide()">التالي</button>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; 2. سلايدر تفاعلي مع الماوس &ndash;&gt;-->
+<!--<div class="slider-section">-->
+<!--    <h2>سلايدر تفاعلي مع حركة الماوس</h2>-->
+<!--    <p class="slider-desc">حرك الماوس داخل السلايدر لرؤية التأثير</p>-->
+<!--    <div class="mouse-slider" id="mouseSlider">-->
+<!--        <div class="mouse-slide">الشريحة 1 (جرب تحريك الماوس)</div>-->
+<!--        <div class="mouse-slide">الشريحة 2</div>-->
+<!--        <div class="mouse-slide">الشريحة 3</div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; 3. سلايدر قطع ورقية &ndash;&gt;-->
+<!--<div class="slider-section">-->
+<!--    <h2>سلايدر قطع ورقية متداخلة</h2>-->
+<!--    <p class="slider-desc">تأثير الأوراق المتداخلة مع ظل وإمالة</p>-->
+<!--    <div class="paper-slider" id="paperSlider">-->
+<!--        <div class="paper-slide" style="transform: rotate(-5deg) translateY(20px); z-index: 1;">ورقة 1</div>-->
+<!--        <div class="paper-slide" style="transform: rotate(0deg) translateY(0); z-index: 2; background: #f1c40f; color: #333;">ورقة 2 (الرئيسية)</div>-->
+<!--        <div class="paper-slide" style="transform: rotate(5deg) translateY(20px); z-index: 1;">ورقة 3</div>-->
+<!--    </div>-->
+<!--    <div class="slider-controls">-->
+<!--        <button onclick="prevPaperSlide()">السابق</button>-->
+<!--        <button onclick="nextPaperSlide()">التالي</button>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; 4. سلايدر دائري &ndash;&gt;-->
+<!--<div class="slider-section">-->
+<!--    <h2>سلايدر دائري (كاروسيل)</h2>-->
+<!--    <p class="slider-desc">شرائح تدور في مسار دائري</p>-->
+<!--    <div class="circular-slider" id="circularSlider">-->
+<!--        <div class="circular-slide">1</div>-->
+<!--        <div class="circular-slide">2</div>-->
+<!--        <div class="circular-slide">3</div>-->
+<!--        <div class="circular-slide">4</div>-->
+<!--        <div class="circular-slide">5</div>-->
+<!--    </div>-->
+<!--    <div class="slider-controls">-->
+<!--        <button onclick="rotateCircularSlider(-1)">السابق</button>-->
+<!--        <button onclick="rotateCircularSlider(1)">التالي</button>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; 5. سلايدر خلفية متحركة &ndash;&gt;-->
+<!--<div class="slider-section">-->
+<!--    <h2>سلايدر بخلفية متحركة</h2>-->
+<!--    <p class="slider-desc">المحتوى ثابت بينما تتحرك الخلفيات</p>-->
+<!--    <div class="bg-slider" id="bgSlider">-->
+<!--        <div class="bg-slide" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://picsum.photos/1000/500?random=1') center/cover;">المحتوى يبقى ثابتًا</div>-->
+<!--        <div class="bg-slide" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://picsum.photos/1000/500?random=2') center/cover;">بينما الخلفية تتحرك</div>-->
+<!--        <div class="bg-slide" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://picsum.photos/1000/500?random=3') center/cover;">تأثير جذاب</div>-->
+<!--    </div>-->
+<!--    <div class="slider-controls">-->
+<!--        <button onclick="prevBgSlide()">السابق</button>-->
+<!--        <button onclick="nextBgSlide()">التالي</button>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; 6. سلايدر مغناطيسي &ndash;&gt;-->
+<!--<div class="slider-section">-->
+<!--    <h2>سلايدر مغناطيسي</h2>-->
+<!--    <p class="slider-desc">الشرائح تنجذب عند التمرير</p>-->
+<!--    <div class="magnetic-slider" id="magneticSlider">-->
+<!--        <div class="magnetic-slide">شريحة 1</div>-->
+<!--        <div class="magnetic-slide">شريحة 2</div>-->
+<!--        <div class="magnetic-slide">شريحة 3</div>-->
+<!--        <div class="magnetic-slide">شريحة 4</div>-->
+<!--        <div class="magnetic-slide">شريحة 5</div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; 7. سلايدر عمودي &ndash;&gt;-->
+<!--<div class="slider-section">-->
+<!--    <h2>سلايدر عمودي</h2>-->
+<!--    <p class="slider-desc">تمرير عمودي مع تأثير parallax</p>-->
+<!--    <div class="vertical-slider" id="verticalSlider">-->
+<!--        <div class="vertical-slide" style="background: #3498db;">شريحة 1</div>-->
+<!--        <div class="vertical-slide" style="background: #e74c3c;">شريحة 2</div>-->
+<!--        <div class="vertical-slide" style="background: #2ecc71;">شريحة 3</div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<script>-->
+<!--    // 1. سلايدر ثلاثي الأبعاد-->
+<!--    let current3dSlide = 1;-->
+<!--    const slider3d = document.getElementById('slider3d');-->
+
+<!--    function update3dSlider() {-->
+<!--        const slides = document.querySelectorAll('.slide-3d');-->
+<!--        slides.forEach((slide, index) => {-->
+<!--            const angle = (index - current3dSlide) * 30;-->
+<!--            const z = -Math.abs(index - current3dSlide) * 100;-->
+<!--            slide.style.transform = `rotateY(${angle}deg) translateZ(${z}px)`;-->
+<!--            slide.style.opacity = index === current3dSlide ? '1' : '0.7';-->
+<!--        });-->
+<!--    }-->
+
+<!--    function next3dSlide() {-->
+<!--        current3dSlide = (current3dSlide + 1) % 3;-->
+<!--        update3dSlider();-->
+<!--    }-->
+
+<!--    function prev3dSlide() {-->
+<!--        current3dSlide = (current3dSlide - 1 + 3) % 3;-->
+<!--        update3dSlider();-->
+<!--    }-->
+
+<!--    // 2. سلايدر تفاعلي مع الماوس-->
+<!--    const mouseSlider = document.getElementById('mouseSlider');-->
+<!--    let isMouseDown = false;-->
+<!--    let startX, scrollLeft;-->
+
+<!--    mouseSlider.addEventListener('mousedown', (e) => {-->
+<!--        isMouseDown = true;-->
+<!--        startX = e.pageX - mouseSlider.offsetLeft;-->
+<!--        scrollLeft = mouseSlider.scrollLeft;-->
+<!--        mouseSlider.style.cursor = 'grabbing';-->
+<!--    });-->
+
+<!--    mouseSlider.addEventListener('mouseleave', () => {-->
+<!--        isMouseDown = false;-->
+<!--        mouseSlider.style.cursor = 'grab';-->
+<!--    });-->
+
+<!--    mouseSlider.addEventListener('mouseup', () => {-->
+<!--        isMouseDown = false;-->
+<!--        mouseSlider.style.cursor = 'grab';-->
+<!--    });-->
+
+<!--    mouseSlider.addEventListener('mousemove', (e) => {-->
+<!--        if(!isMouseDown) return;-->
+<!--        e.preventDefault();-->
+<!--        const x = e.pageX - mouseSlider.offsetLeft;-->
+<!--        const walk = (x - startX) * 2;-->
+<!--        mouseSlider.scrollLeft = scrollLeft - walk;-->
+
+<!--        // تأثير المغناطيسية عند التوقف-->
+<!--        clearTimeout(window.mouseSliderTimeout);-->
+<!--        window.mouseSliderTimeout = setTimeout(() => {-->
+<!--            const slideWidth = mouseSlider.clientWidth;-->
+<!--            const slideIndex = Math.round(mouseSlider.scrollLeft / slideWidth);-->
+<!--            mouseSlider.scrollTo({-->
+<!--                left: slideIndex * slideWidth,-->
+<!--                behavior: 'smooth'-->
+<!--            });-->
+<!--        }, 100);-->
+<!--    });-->
+
+<!--    // 3. سلايدر قطع ورقية-->
+<!--    let currentPaperSlide = 1;-->
+<!--    const paperSlides = document.querySelectorAll('.paper-slide');-->
+
+<!--    function updatePaperSlider() {-->
+<!--        paperSlides.forEach((slide, index) => {-->
+<!--            if(index < currentPaperSlide) {-->
+<!--                slide.style.transform = 'rotate(-5deg) translateY(20px)';-->
+<!--                slide.style.zIndex = '1';-->
+<!--            } else if(index > currentPaperSlide) {-->
+<!--                slide.style.transform = 'rotate(5deg) translateY(20px)';-->
+<!--                slide.style.zIndex = '1';-->
+<!--            } else {-->
+<!--                slide.style.transform = 'rotate(0deg) translateY(0)';-->
+<!--                slide.style.zIndex = '2';-->
+<!--                slide.style.background = '#f1c40f';-->
+<!--                slide.style.color = '#333';-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+
+<!--    function nextPaperSlide() {-->
+<!--        if(currentPaperSlide < paperSlides.length - 1) {-->
+<!--            currentPaperSlide++;-->
+<!--            updatePaperSlider();-->
+<!--        }-->
+<!--    }-->
+
+<!--    function prevPaperSlide() {-->
+<!--        if(currentPaperSlide > 0) {-->
+<!--            currentPaperSlide&#45;&#45;;-->
+<!--            updatePaperSlider();-->
+<!--        }-->
+<!--    }-->
+
+<!--    // 4. سلايدر دائري-->
+<!--    const circularSlides = document.querySelectorAll('.circular-slide');-->
+<!--    let circularAngle = 0;-->
+
+<!--    function updateCircularSlider() {-->
+<!--        const radius = 150;-->
+<!--        const centerX = 200;-->
+<!--        const centerY = 200;-->
+
+<!--        circularSlides.forEach((slide, index) => {-->
+<!--            const angle = circularAngle + (index * (360 / circularSlides.length)) * (Math.PI / 180);-->
+<!--            const x = centerX + radius * Math.cos(angle) - 60;-->
+<!--            const y = centerY + radius * Math.sin(angle) - 60;-->
+
+<!--            slide.style.transform = `translate(${x}px, ${y}px)`;-->
+<!--            slide.style.opacity = Math.abs(angle % (2 * Math.PI)) < 0.5 ? '1' : '0.6';-->
+<!--        });-->
+<!--    }-->
+
+<!--    function rotateCircularSlider(direction) {-->
+<!--        circularAngle += direction * (2 * Math.PI / circularSlides.length);-->
+<!--        updateCircularSlider();-->
+<!--    }-->
+
+<!--    // تهيئة السلايدر الدائري-->
+<!--    updateCircularSlider();-->
+
+<!--    // 5. سلايدر خلفية متحركة-->
+<!--    let currentBgSlide = 0;-->
+<!--    const bgSlides = document.querySelectorAll('.bg-slide');-->
+
+<!--    function showBgSlide(index) {-->
+<!--        bgSlides.forEach((slide, i) => {-->
+<!--            slide.style.opacity = i === index ? '1' : '0';-->
+<!--            slide.style.zIndex = i === index ? '1' : '0';-->
+<!--        });-->
+<!--    }-->
+
+<!--    function nextBgSlide() {-->
+<!--        currentBgSlide = (currentBgSlide + 1) % bgSlides.length;-->
+<!--        showBgSlide(currentBgSlide);-->
+<!--    }-->
+
+<!--    function prevBgSlide() {-->
+<!--        currentBgSlide = (currentBgSlide - 1 + bgSlides.length) % bgSlides.length;-->
+<!--        showBgSlide(currentBgSlide);-->
+<!--    }-->
+
+<!--    // تهيئة سلايدر الخلفية-->
+<!--    showBgSlide(0);-->
+
+<!--    // 6. سلايدر مغناطيسي (يعمل بالتمرير)-->
+<!--    // 7. سلايدر عمودي (يعمل بالتمرير)-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سلايدر ورقى متداخل</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .paper-slider-container {
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+            height: 400px;
+            margin: 30px auto;
+        }
+
+        .paper-slider {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .paper-slide {
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            background: white;
+            border-radius: 2px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2),
+            0 0 0 1px rgba(0,0,0,0.05),
+            inset 0 -10px 20px -10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.6s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+            transform-origin: bottom center;
+            cursor: pointer;
+        }
+
+        .paper-slide h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .paper-slide p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        .slider-btn {
+            background: #4a6fa5;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .slider-btn:hover {
+            background: #3a5a80;
+            transform: translateY(-2px);
+        }
+
+        .slider-btn:active {
+            transform: translateY(0);
+        }
+
+        .slide-indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .indicator.active {
+            background: #4a6fa5;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+<div class="paper-slider-container">
+    <div class="paper-slider" id="paperSlider">
+        <div class="paper-slide" data-index="0">
+            <h3>الورقة الأولى</h3>
+            <p>هذه هي الورقة الرئيسية في المقدمة مع تأثير الظل والإمالة البسيطة</p>
+        </div>
+        <div class="paper-slide" data-index="1">
+            <h3>الورقة الثانية</h3>
+            <p>يمكنك إضافة أي محتوى تريده هنا داخل هذه الورقة المتداخلة</p>
+        </div>
+        <div class="paper-slide" data-index="2">
+            <h3>الورقة الثالثة</h3>
+            <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</p>
+        </div>
+        <div class="paper-slide" data-index="3">
+            <h3>الورقة الرابعة</h3>
+            <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء</p>
+        </div>
+    </div>
+
+    <div class="slider-controls">
+        <button class="slider-btn" id="prevBtn">السابق</button>
+        <button class="slider-btn" id="nextBtn">التالي</button>
+    </div>
+
+    <div class="slide-indicators" id="indicators">
+        <!-- سيتم إضافة المؤشرات ديناميكيًا -->
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const slider = document.getElementById('paperSlider');
+        const slides = document.querySelectorAll('.paper-slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const indicatorsContainer = document.getElementById('indicators');
+
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+
+        // إنشاء مؤشرات الشرائح
+        slides.forEach((_, index) => {
+            const indicator = document.createElement('div');
+            indicator.classList.add('indicator');
+            if(index === currentSlide) indicator.classList.add('active');
+            indicator.addEventListener('click', () => goToSlide(index));
+            indicatorsContainer.appendChild(indicator);
+        });
+
+        const indicators = document.querySelectorAll('.indicator');
+
+        // تحديث مواضع الشرائح
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                const diff = index - currentSlide;
+                const zIndex = totalSlides - Math.abs(diff);
+
+                if(diff < 0) {
+                    // شرائح قبل الحالية
+                    slide.style.transform = `rotate(-5deg) translateY(20px) translateX(${-40 * Math.abs(diff)}px)`;
+                    slide.style.zIndex = zIndex;
+                    slide.style.opacity = 0.8 - (Math.abs(diff) * 0.2);
+                }
+                else if(diff > 0) {
+                    // شرائح بعد الحالية
+                    slide.style.transform = `rotate(5deg) translateY(20px) translateX(${40 * diff}px)`;
+                    slide.style.zIndex = zIndex;
+                    slide.style.opacity = 0.8 - (diff * 0.2);
+                }
+                else {
+                    // الشريحة الحالية
+                    slide.style.transform = 'rotate(0deg) translateY(0)';
+                    slide.style.zIndex = totalSlides;
+                    slide.style.opacity = '1';
+                    slide.style.boxShadow = '0 10px 25px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05)';
+                }
+            });
+
+            // تحديث المؤشرات
+            indicators.forEach((indicator, index) => {
+                if(index === currentSlide) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+
+        // الانتقال لشريحة محددة
+        function goToSlide(index) {
+            if(index < 0) index = totalSlides - 1;
+            if(index >= totalSlides) index = 0;
+
+            currentSlide = index;
+            updateSlides();
+        }
+
+        // الأزرار
+        prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
+        nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
+
+        // التبديل بالسحب (Swipe)
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        slider.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+
+        slider.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+
+        function handleSwipe() {
+            if(touchEndX < touchStartX - 50) {
+                goToSlide(currentSlide + 1); // سحب لليسار - التالي
+            }
+            if(touchEndX > touchStartX + 50) {
+                goToSlide(currentSlide - 1); // سحب لليمين - السابق
+            }
+        }
+
+        // التهيئة الأولية
+        updateSlides();
+
+        // تبديل تلقائي كل 5 ثواني (اختياري)
+        setInterval(() => {
+            goToSlide(currentSlide + 1);
+        }, 5000);
+    });
+</script>
+</body>
+</html>
