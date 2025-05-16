@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لعبة التطابقات - مطعمنا</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #e74c3c;
+            margin-bottom: 30px;
+        }
+
+        .game-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .game-info {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .memory-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        .card {
+            height: 120px;
+            background-color: #e74c3c;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .card.flipped {
+            background-color: white;
+            font-size: 40px;
+            transform: rotateY(180deg);
+        }
+
+        .card.matched {
+            background-color: #2ecc71;
+            cursor: default;
+        }
+
+        .card .front, .card .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+        }
+
+        .card .front {
+            background-color: #e74c3c;
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .card .back {
+            background-color: #e74c3c;
+        }
+
+        .restart-btn {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .restart-btn:hover {
+            background-color: #c0392b;
+        }
+
+        .discount-code {
+            font-size: 24px;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .daily-message {
+            color: #e74c3c;
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .discount-info {
+            margin-top: 15px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        @media (max-width: 600px) {
+            .memory-board {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .card {
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="game-container">
+    <h1>لعبة التطابقات - اربح خصمًا في مطعمنا!</h1>
+
+    <div class="daily-message" id="daily-message">
+        لقد لعبت اليوم بالفعل! يمكنك المحاولة مرة أخرى غدًا.
+    </div>
+
+    <div class="discount-info">
+        <p>كلما قللت عدد المحاولات، زاد خصمك!</p>
+        <p>1-5 محاولات: خصم 20% | 6-10: خصم 15% | 11-15: خصم 10% | 16+: خصم 5%</p>
+    </div>
+
+    <div class="game-info">
+        <div>المحاولات: <span id="attempts">0</span></div>
+        <div>الأزواج المتبقية: <span id="pairs-left">8</span></div>
+    </div>
+
+    <div class="memory-board" id="memory-board"></div>
+
+    <button class="restart-btn" id="restart-btn">إعادة اللعب</button>
+
+    <div class="discount-code" id="discount-code">
+        تهانينا! فزت بخصم <span id="discount-percent">15</span>% - استخدم الكود: <span id="code">MATCH15</span>
+        <p>الكود صالح لاستخدام واحد فقط عند الدفع</p>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        // الأزواج المحتملة
+        const pairs = ['🍕', '🍔', '🥗', '🍟', '🍝', '🍣', '🍩', '☕'];
+        let cards = [...pairs, ...pairs];
+
+        let flippedCards = [];
+        let matchedCards = [];
+        let attempts = 0;
+        let gameActive = true;
+        let today = new Date().toDateString();
+        let discountUsed = false;
+
+        // تحقق إذا كان قد لعب اليوم
+        function checkDailyPlay() {
+            const lastPlayDate = localStorage.getItem('lastPlayDate');
+            if (lastPlayDate === today) {
+                $('#daily-message').show();
+                $('#memory-board').hide();
+                $('#restart-btn').hide();
+                return false;
+            }
+            return true;
+        }
+
+        // توليد كود خصم فريد
+        function generateDiscountCode(attempts) {
+            let discount = 5;
+            if (attempts <= 5) discount = 20;
+            else if (attempts <= 10) discount = 15;
+            else if (attempts <= 15) discount = 10;
+
+            const randomNum = Math.floor(Math.random() * 9000) + 1000;
+            return {
+                code: `MATCH${randomNum}`,
+                discount: discount,
+                used: false,
+                date: new Date().toISOString()
+            };
+        }
+
+        // حفظ الكود في localStorage
+        function saveDiscountCode(codeObj) {
+            localStorage.setItem('discountCode', JSON.stringify(codeObj));
+            localStorage.setItem('lastPlayDate', today);
+        }
+
+        // خلط البطاقات
+        function shuffleCards() {
+            for (let i = cards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [cards[i], cards[j]] = [cards[j], cards[i]];
+            }
+        }
+
+        // إنشاء لوحة اللعبة
+        function createBoard() {
+            if (!checkDailyPlay()) return;
+
+            $('#memory-board').show();
+            $('#restart-btn').show();
+            $('#daily-message').hide();
+
+            $('#memory-board').empty();
+            flippedCards = [];
+            matchedCards = [];
+            attempts = 0;
+            gameActive = true;
+            discountUsed = false;
+
+            $('#attempts').text(attempts);
+            $('#pairs-left').text(pairs.length);
+            $('#discount-code').hide();
+
+            shuffleCards();
+
+            cards.forEach((card, index) => {
+                const cardElement = $('<div class="card"></div>')
+                    .attr('data-index', index)
+                    .attr('data-value', card)
+                    .append(
+                        $('<div class="front"></div>').text(card),
+                        $('<div class="back"></div>')
+                    )
+                    .click(function() {
+                        if (!gameActive || $(this).hasClass('flipped') || $(this).hasClass('matched')) {
+                            return;
+                        }
+
+                        flipCard($(this));
+                    });
+
+                $('#memory-board').append(cardElement);
+            });
+        }
+
+        // قلب البطاقة
+        function flipCard(card) {
+            if (flippedCards.length < 2) {
+                card.addClass('flipped');
+                flippedCards.push(card);
+
+                if (flippedCards.length === 2) {
+                    attempts++;
+                    $('#attempts').text(attempts);
+                    checkForMatch();
+                }
+            }
+        }
+
+        // التحقق من التطابق
+        function checkForMatch() {
+            const card1 = flippedCards[0];
+            const card2 = flippedCards[1];
+
+            if (card1.attr('data-value') === card2.attr('data-value')) {
+                card1.addClass('matched');
+                card2.addClass('matched');
+                matchedCards.push(card1, card2);
+
+                const remainingPairs = pairs.length - (matchedCards.length / 2);
+                $('#pairs-left').text(remainingPairs);
+
+                if (matchedCards.length === cards.length) {
+                    gameActive = false;
+                    const discountObj = generateDiscountCode(attempts);
+                    $('#discount-percent').text(discountObj.discount);
+                    $('#code').text(discountObj.code);
+                    $('#discount-code').fadeIn();
+                    saveDiscountCode(discountObj);
+                }
+            } else {
+                setTimeout(() => {
+                    card1.removeClass('flipped');
+                    card2.removeClass('flipped');
+                }, 1000);
+            }
+
+            flippedCards = [];
+        }
+
+        // بدء اللعبة
+        createBoard();
+
+        // زر إعادة اللعب
+        $('#restart-btn').click(createBoard);
+    });
+</script>
+</body>
+</html>
