@@ -637,13 +637,11 @@ border-color: #8c5050"
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script>
     $(document).ready(function() {
-        // تهيئة حقل التاريخ مع تعطيل الثلاثاء
         $(".date-picker").datepicker({
             dateFormat: 'dd/mm/yy',
             minDate: 0,
             showAnim: 'fadeIn',
             beforeShowDay: function(date) {
-                // تعطيل أيام الثلاثاء (2)
                 if (date.getDay() === 2) {
                     return [false, 'closed-day', 'Closed on Tuesdays'];
                 }
@@ -651,7 +649,6 @@ border-color: #8c5050"
             }
         });
 
-        // خيارات عدد الأشخاص
         const peopleOptions = [
             { value: "1", label: "1 Person" },
             { value: "2", label: "2 People" },
@@ -666,7 +663,6 @@ border-color: #8c5050"
             { value: "11", label: "Larger party (10+)" }
         ];
 
-        // خيارات الوقت
         const timeOptions = [
             { value: "11:00", label: "11:00 am" },
             { value: "11:30", label: "11:30 am" },
@@ -696,7 +692,6 @@ border-color: #8c5050"
             { value: "23:30", label: "11:30 pm" }
         ];
 
-        // تهيئة حقل عدد الأشخاص باستخدام autocomplete
         $("#people-input").autocomplete({
             source: peopleOptions,
             minLength: 0,
@@ -713,7 +708,6 @@ border-color: #8c5050"
             $(this).autocomplete("search", "");
         });
 
-        // تهيئة حقل الوقت باستخدام autocomplete
         $("#time-input").autocomplete({
             source: timeOptions,
             minLength: 0,
@@ -730,34 +724,30 @@ border-color: #8c5050"
             $(this).autocomplete("search", "");
         });
 
-        // فتح مودال التأكيد عند الضغط على زر الحجز
         $("#reserve-btn").click(function() {
             if(!$("#people-value").val() || !$(".date-picker").val() || !$("#time-value").val()) {
-                alert("يرجى ملء جميع الحقول قبل الحجز.");
+                alert("Please fill in all fields before making a reservation.");
                 return;
             }
             $("#confirmation-modal").fadeIn();
         });
 
-        // إغلاق المودال عند الضغط على زر الإغلاق
         $("#close-modal").click(function() {
             $("#confirmation-modal").fadeOut();
         });
 
-        // تأكيد الحجز وإرسال البيانات إلى PHP
         $("#confirm-reservation").click(function() {
             const email = $("#guest-email").val().trim();
             const specialRequest = $("textarea.form-input").val().trim();
 
-            // التحقق من صحة البريد الإلكتروني
             if (!email || !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-                alert("يرجى إدخال بريد إلكتروني صحيح!");
+                alert("Please enter a valid email address!");
                 return;
             }
 
             $.ajax({
                 type: "POST",
-                url: "../PHP_Project/send_email.php", // عدلي المسار حسب موقع ملف PHP
+                url: "../PHP_Project/send_email.php",
                 data: {
                     email: email,
                     date: $(".date-picker").val(),
@@ -769,19 +759,16 @@ border-color: #8c5050"
                 success: function(response) {
                     alert(response.message);
                     if (response.success) {
-                        // عرض تفاصيل الحجز في مودال النجاح
                         $("#confirmed-date").text($(".date-picker").val());
                         $("#confirmed-time").text($("#time-input").val());
                         $("#confirmed-guests").text($("#people-input").val());
                         $("#confirmed-email").text(email);
-                        $("#confirmed-request").text(specialRequest || "لا يوجد");
+                        $("#confirmed-request").text(specialRequest ||  "None");
 
-                        // إظهار رسالة النجاح وإخفاء نموذج التأكيد
                         $("#confirmation-form").fadeOut(function() {
                             $("#success-message").fadeIn();
                         });
 
-                        // تنظيف النموذج وإغلاق المودال بعد 9 ثواني
                         setTimeout(function() {
                             $("#confirmation-modal").fadeOut(function() {
                                 $("#confirmation-form").show();
@@ -794,18 +781,17 @@ border-color: #8c5050"
                                 $("#time-input").val("");
                                 $("#time-value").val("");
                             });
-                        }, 9000);
+                        }, 7000);
                     } else {
                         alert(response.message);
                     }
                 },
                 error: function() {
-                    alert("حدث خطأ أثناء الاتصال بالخادم!");
+                    alert("An error occurred while connecting to the server!");
                 }
             });
         });
 
-        // إغلاق المودال عند النقر خارج النافذة
         $(document).mouseup(function(e) {
             const modal = $("#confirmation-modal");
             if (!modal.is(e.target) && modal.has(e.target).length === 0) {

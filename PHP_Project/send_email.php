@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $special_request = isset($_POST['special_request']) ? $_POST['special_request'] : '';
 
     if (empty($email) || empty($date) || empty($time) || empty($guests)) {
-        echo json_encode(["success" => false, "message" => "جميع الحقول مطلوبة!"]);
+        echo json_encode(["success" => false, "message" => "All fields are required!"]);
         exit;
     }
 
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'amaalferas31@gmail.com'; // إيميل المطعم
+        $mail->Username = 'amaalferas31@gmail.com'; // Restaurant email
         $mail->Password = 'lojrfjsdwbpezmsn';
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
@@ -37,26 +37,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->addAddress($email);
 
         $mail->isHTML(true);
-        $mail->Subject = 'تأكيد حجزك في Golden Restaurant';
+        $mail->Subject = 'Your Reservation Confirmation at Golden Restaurant';
         $mail->Body = "
-            <html dir='rtl'>
+            <html dir='ltr'>
             <body style='font-family: Arial, sans-serif;'>
-                <h2 style='color: #c49871;'>تم تأكيد حجزك بنجاح!</h2>
-                <p><strong>التاريخ:</strong> $date</p>
-                <p><strong>الوقت:</strong> $time</p>
-                <p><strong>عدد الضيوف:</strong> $guests</p>
-                <p><strong>الطلب الخاص:</strong> " . ($special_request ? htmlspecialchars($special_request) : "لا يوجد") . "</p>
+                <h2 style='color: #c49871;'>Your reservation has been successfully confirmed!</h2>
+                <p><strong>Date:</strong> $date</p>
+                <p><strong>Time:</strong> $time</p>
+                <p><strong>Number of Guests:</strong> $guests</p>
+                <p><strong>Special Request:</strong> " . ($special_request ? htmlspecialchars($special_request) : "None") . "</p>
                 <hr>
-                <p>نرحب بك في مطعمنا الذهبي، يرجى الحضور قبل 10 دقائق من الوقت المحدد.</p>
+                <p>We look forward to welcoming you at our Golden Restaurant. Please arrive 10 minutes before the scheduled time.</p>
             </body>
             </html>
         ";
 
         $mail->send();
-        echo json_encode(["success" => true, "message" => "تم إرسال التأكيد إلى بريدك!"]);
+        echo json_encode(["success" => true, "message" => "Confirmation has been sent to your email!"]);
     } catch (Exception $e) {
-        echo json_encode(["success" => false, "message" => "فشل في الإرسال: {$mail->ErrorInfo}"]);
+        echo json_encode(["success" => false, "message" => "Failed to send: {$mail->ErrorInfo}"]);
     }
 } else {
-    echo json_encode(["success" => false, "message" => "طلب غير صالح!"]);
+    echo json_encode(["success" => false, "message" => "Invalid request!"]);
 }
