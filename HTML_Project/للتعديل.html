@@ -8,69 +8,85 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #0B1315;  /* خلفية داكنة */
-            color: #CB9953;              /* نص ذهبي */
+            background-color: #0B1315;
+            color: #E8E8E8;
             text-align: center;
             padding: 20px;
+            line-height: 1.6;
         }
 
         h1 {
-            color: #CB9953;  /* عنوان ذهبي */
+            color: #D4AF37;
             margin-bottom: 30px;
+            font-weight: 300;
+            font-size: 28px;
         }
 
         .game-container {
-            max-width: 800px;
+            max-width: 600px;
             margin: 0 auto;
-            background-color: #6A5E5C;  /* خلفية حاوية رمادية داكنة */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(203, 153, 83, 0.6); /* ظل ذهبي خفيف */
+            background-color: rgba(11, 19, 21, 0.8);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.1);
         }
 
         .game-info {
             display: flex;
             justify-content: space-around;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-size: 18px;
-            color: #CB9953;
+            color: #D4AF37;
+            background-color: rgba(11, 19, 21, 0.6);
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
         }
 
         .memory-board {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
             margin: 0 auto;
-            max-width: 600px;
+            max-width: 500px;
         }
 
         .card {
-            height: 120px;
-            background-color: #CB9953; /* لون البطاقة الذهبي */
-            border-radius: 8px;
+            height: 100px;
+            background-color: rgba(212, 175, 55, 0.1);
+            border-radius: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 0;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             position: relative;
             transform-style: preserve-3d;
-            color: #0B1315; /* لون النص داكن */
+            color: #0B1315;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
         }
 
         .card.flipped {
-            background-color: #0B1315; /* خلفية البطاقة مقلوبة داكنة */
-            font-size: 40px;
-            transform: rotateY(180deg);
-            color: #CB9953; /* النص ذهبي */
+            background-color: rgba(11, 19, 21, 0.9);
+            font-size: 36px;
+            transform: rotateY(180deg) translateY(-3px);
+            color: #D4AF37;
         }
 
         .card.matched {
-            background-color: #CB9953; /* لون البطاقة المطابقة */
+            background-color: rgba(212, 175, 55, 0.2);
             cursor: default;
-            box-shadow: 0 0 10px #CB9953;
-            color: #0B1315;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            color: #D4AF37;
+            border: 1px solid rgba(212, 175, 55, 0.4);
         }
 
         .card .front,
@@ -83,53 +99,92 @@
             justify-content: center;
             align-items: center;
             border-radius: 8px;
+            transition: all 0.3s ease;
         }
 
         .card .front {
-            background-color: #CB9953; /* الذهبي */
-            color: #0B1315; /* داكن */
+            background-color: rgba(212, 175, 55, 0.9);
+            color: #0B1315;
             transform: rotateY(180deg);
         }
 
         .card .back {
-            background-color: #CB9953; /* الخلف */
+            background-color: rgba(212, 175, 55, 0.1);
+            background-image: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(11, 19, 21, 0.3) 100%);
         }
 
         .restart-btn {
-            background-color: #CB9953;
+            background-color: rgba(212, 175, 55, 0.8);
             color: #0B1315;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 25px;
             font-size: 16px;
-            border-radius: 5px;
+            border-radius: 30px;
             cursor: pointer;
-            margin-top: 20px;
-            transition: background-color 0.3s;
+            margin-top: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
         }
 
         .restart-btn:hover {
-            background-color: #B2873F; /* لون ذهبي أغمق عند المرور */
+            background-color: rgba(212, 175, 55, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
         }
 
         .discount-code {
-            font-size: 24px;
-            color: #CB9953;
-            font-weight: bold;
-            margin-top: 20px;
+            font-size: 20px;
+            color: #D4AF37;
+            font-weight: 300;
+            margin-top: 25px;
             display: none;
+            background-color: rgba(11, 19, 21, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            line-height: 1.8;
         }
 
         .daily-message {
-            color: #CB9953;
+            color: #D4AF37;
             font-size: 18px;
             margin-bottom: 20px;
             display: none;
+            padding: 15px;
+            background-color: rgba(11, 19, 21, 0.6);
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
         }
 
         .discount-info {
             margin-top: 15px;
             font-size: 16px;
-            color: #ddd;
+            color: #B0B0B0;
+            background-color: rgba(11, 19, 21, 0.6);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            line-height: 1.7;
+        }
+
+        .use-coupon-btn {
+            background-color: rgba(11, 19, 21, 0.8);
+            color: #D4AF37;
+            border: 1px solid #D4AF37;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        .use-coupon-btn:hover {
+            background-color: rgba(212, 175, 55, 0.2);
         }
 
         @media (max-width: 600px) {
@@ -139,6 +194,14 @@
 
             .card {
                 height: 80px;
+            }
+
+            .game-container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 24px;
             }
         }
     </style>
@@ -158,7 +221,7 @@
 
     <div class="game-info">
         <div>المحاولات: <span id="attempts">0</span></div>
-        <div>الأزواج المتبقية: <span id="pairs-left">8</span></div>
+        <div>الأزواج المتبقية: <span id="pairs-left">6</span></div>
     </div>
 
     <div class="memory-board" id="memory-board"></div>
@@ -169,12 +232,14 @@
         تهانينا! فزت بخصم <span id="discount-percent">15</span>% - استخدم الكود: <span id="code">MATCH15</span>
         <p>الكود صالح لاستخدام واحد فقط عند الدفع</p>
     </div>
+
+    <button class="use-coupon-btn" id="use-coupon-btn">استخدم الكوبون الآن</button>
 </div>
 
 <script>
     $(document).ready(function() {
-        // الأزواج المحتملة
-        const pairs = ['🍕', '🍔', '🥗', '🍟', '🍝', '🍣', '🍩', '☕'];
+        // الأزواج المحتملة (6 أزواج لتصبح 12 بطاقة)
+        const pairs = ['🍕', '🍔', '🥗', '🍟', '🍝', '🍣'];
         let cards = [...pairs, ...pairs];
 
         let flippedCards = [];
@@ -183,6 +248,7 @@
         let gameActive = true;
         let today = new Date().toDateString();
         let discountUsed = false;
+        let currentDiscountCode = '';
 
         // تحقق إذا كان قد لعب اليوم
         function checkDailyPlay() {
@@ -216,6 +282,7 @@
         function saveDiscountCode(codeObj) {
             localStorage.setItem('discountCode', JSON.stringify(codeObj));
             localStorage.setItem('lastPlayDate', today);
+            currentDiscountCode = codeObj.code;
         }
 
         // خلط البطاقات
@@ -244,6 +311,7 @@
             $('#attempts').text(attempts);
             $('#pairs-left').text(pairs.length);
             $('#discount-code').hide();
+            $('#use-coupon-btn').hide();
 
             shuffleCards();
 
@@ -285,23 +353,25 @@
         function checkForMatch() {
             const [card1, card2] = flippedCards;
             if (card1.data('value') === card2.data('value')) {
-                card1.addClass('matched');
-                card2.addClass('matched');
-                matchedCards.push(card1, card2);
-                flippedCards = [];
+                setTimeout(() => {
+                    card1.addClass('matched');
+                    card2.addClass('matched');
+                    matchedCards.push(card1, card2);
+                    flippedCards = [];
 
-                $('#pairs-left').text(pairs.length - matchedCards.length / 2);
+                    $('#pairs-left').text(pairs.length - matchedCards.length / 2);
 
-                if (matchedCards.length === cards.length) {
-                    gameActive = false;
-                    showDiscount();
-                }
+                    if (matchedCards.length === cards.length) {
+                        gameActive = false;
+                        showDiscount();
+                    }
+                }, 300);
             } else {
                 setTimeout(() => {
                     card1.removeClass('flipped');
                     card2.removeClass('flipped');
                     flippedCards = [];
-                }, 1000);
+                }, 800);
             }
         }
 
@@ -315,8 +385,20 @@
 
             $('#discount-percent').text(discountObj.discount);
             $('#code').text(discountObj.code);
-            $('#discount-code').fadeIn();
+            $('#discount-code').fadeIn(1000);
+            $('#use-coupon-btn').fadeIn(1000);
         }
+
+        // الانتقال إلى صفحة السلة مع الكوبون
+        $('#use-coupon-btn').click(function() {
+            // هنا يمكنك تغيير الرابط إلى صفحة السلة في موقعك
+            window.location.href = '' + currentDiscountCode;
+
+            // أو يمكنك استخدام:
+            // window.location.href = '/checkout?discount=' + currentDiscountCode;
+
+            // أو أي صفحة أخرى تريد نقل المستخدم إليها لاستخدام الكوبون
+        });
 
         $('#restart-btn').click(function() {
             createBoard();
