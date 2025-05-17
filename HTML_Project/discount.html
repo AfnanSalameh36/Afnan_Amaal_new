@@ -1,10 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Golden Bite - Featured Dishes</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #0B1315;
+            color: white;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .gallery {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding-bottom: 20px;
+        }
+
+        .gallery img {
+            width: 200px;
+            height: 150px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+        }
+
+        .details-box {
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            background-color: #1c2326;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(203, 153, 83, 0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .details-box.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .details-box img {
+            width: 220px;
+            height: 160px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .details-box .text {
+            max-width: 400px;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #CB9953;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #CB9953;
+        }
+    </style>
 </head>
 <body>
+
+<h2>✨ Featured Dishes</h2>
+
+<div class="gallery">
+    <img src="../image/resturans.jpg" alt="Steak" data-text="Tender grilled steak with garlic butter sauce." />
+    <img src="../image/wow.jpg" alt="Salmon" data-text="Fresh salmon fillet served with lemon herbs." />
+    <img src="../image/myphoto.jpg" alt="Pasta" data-text="Italian pasta with creamy truffle sauce." />
+    <img src="../image/shape-6.png" alt="Chicken" data-text="Spicy roasted chicken with side veggies." />
+    <img src="../image/myphoto.jpg" alt="Pasta" data-text="Italian pasta with creamy truffle sauce." />
+    <img src="../image/myphoto.jpg" alt="Pasta" data-text="Italian pasta with creamy truffle sauce." />
+    <img src="../image/myphoto.jpg" alt="Pasta" data-text="Italian pasta with creamy truffle sauce." />
+    <img src="../image/myphoto.jpg" alt="Pasta" data-text="Italian pasta with creamy truffle sauce." />
+    <img src="../image/myphoto.jpg" alt="Pasta" data-text="Italian pasta with creamy truffle sauce." />
+    <img src="../image/wow.jpg" alt="Salmon" data-text="Fresh salmon fillet served with lemon herbs." />
+    <img src="../image/wow.jpg" alt="Salmon" data-text="Fresh salmon fillet served with lemon herbs." />
+    <img src="../image/wow.jpg" alt="Salmon" data-text="Fresh salmon fillet served with lemon herbs." />
+    <img src="../image/wow.jpg" alt="Salmon" data-text="Fresh salmon fillet served with lemon herbs." />
+    <img src="../image/wow.jpg" alt="Salmon" data-text="Fresh salmon fillet served with lemon herbs." />
+
+</div>
+
+<div class="details-box" id="detailsBox">
+    <img id="detailsImg" src="" alt="Selected Dish">
+    <div class="text" id="detailsText">Dish description will appear here.</div>
+</div>
+
+<script>
+    const images = document.querySelectorAll('.gallery img');
+    const detailsBox = document.getElementById('detailsBox');
+    const detailsImg = document.getElementById('detailsImg');
+    const detailsText = document.getElementById('detailsText');
+
+    images.forEach(img => {
+        img.addEventListener('click', () => {
+            detailsImg.src = img.src;
+            detailsText.textContent = img.getAttribute('data-text');
+            detailsBox.classList.add('active');
+        });
+    });
+</script>
 
 </body>
 </html>

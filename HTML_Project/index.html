@@ -133,6 +133,73 @@
         html {
             scroll-behavior: smooth;
         }
+        .mobile-menu-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 3000;
+            font-size: 28px;
+            color: #8C7250;
+            display: none;
+            cursor: pointer;
+        }
+
+
+        .navbar .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-icon {
+                display: block;
+            }
+            .navbar ul {
+                display: none;
+                flex-direction: column;
+                align-items: flex-end;
+                background-color: rgba(11, 19, 21, 0.95);
+                position: fixed;
+                top: 60px;
+                right: 0;
+                width: 220px;
+                padding: 15px;
+                z-index: 2000;
+            }
+            .navbar.mobile-active ul {
+                display: flex;
+            }
+            .navbar ul li {
+                margin: 10px 0;
+                width: 100%;
+            }
+            .navbar ul li a {
+                font-size: 18px;
+                padding: 10px;
+                text-align: right;
+                position: relative;
+                z-index: 1;
+            }
+            .navbar .dropdown-content {
+                position: static;
+                border: none;
+                border-radius: 0;
+                padding-left: 15px;
+                margin-top: 5px;
+                background-color: transparent;
+                display: none;
+            }
+            .navbar .dropdown-content.show {
+                display: block;
+            }
+        }
+        @media (max-width: 768px) {
+            .gold-lines::before,
+            .gold-lines::after {
+                display: none;
+            }
+
+
+        }
 
     </style>
 
@@ -198,6 +265,9 @@
         </div>
 
         <div class="corner-image"></div>
+        <div class="mobile-menu-icon" onclick="toggleResponsiveMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
 
         <!-- Navigation Arrows -->
         <div class="arrow arrow-left" onclick="changeImage(-1)">
@@ -597,7 +667,10 @@ Delights
 <script>
 
 </script>
-<!-- JavaScript -->
-<script src="../JAVAS_Project/Main.js"></script>
+<script src="../JAVAS_Project/Main.js">
+
+
+
+</script>
 </body>
 </html>

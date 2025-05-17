@@ -185,11 +185,7 @@ body{
     padding: 0;
 }
 
-@media (max-width: 1285px) {
-    .gold-lines {
-        display: none;
-    }
-}
+
 
 div.backgroundForShop{
     display:flex;

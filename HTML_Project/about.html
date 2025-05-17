@@ -47,6 +47,74 @@
         html {
             scroll-behavior: smooth;
         }
+
+        .mobile-menu-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 3000;
+            font-size: 28px;
+            color: #8C7250;
+            display: none;
+            cursor: pointer;
+        }
+
+
+        .navbar .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-icon {
+                display: block;
+            }
+            .navbar ul {
+                display: none;
+                flex-direction: column;
+                align-items: flex-end;
+                background-color: rgba(11, 19, 21, 0.95);
+                position: fixed;
+                top: 60px;
+                right: 0;
+                width: 220px;
+                padding: 15px;
+                z-index: 2000;
+            }
+            .navbar.mobile-active ul {
+                display: flex;
+            }
+            .navbar ul li {
+                margin: 10px 0;
+                width: 100%;
+            }
+            .navbar ul li a {
+                font-size: 18px;
+                padding: 10px;
+                text-align: right;
+                position: relative;
+                z-index: 1;
+            }
+            .navbar .dropdown-content {
+                position: static;
+                border: none;
+                border-radius: 0;
+                padding-left: 15px;
+                margin-top: 5px;
+                background-color: transparent;
+                display: none;
+            }
+            .navbar .dropdown-content.show {
+                display: block;
+            }
+        }
+        @media (max-width: 768px) {
+            .gold-lines::before,
+            .gold-lines::after {
+                display: none;
+            }
+
+
+        }
     </style>
 </head>
 <div id="top"></div>
@@ -59,9 +127,12 @@
 
     <div class="content">
 
-    <div class="image-wrapper">
-        <div class="corner-image"></div>
-    </div>
+        <div class="image-wrapper">
+            <div class="corner-image"></div>
+        </div>
+        <div class="mobile-menu-icon" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
 
     <!-- Navigation Bar -->
     <nav class="navbar">
@@ -327,6 +398,37 @@ About Us    </div>
                     if (faq !== item) faq.classList.remove('active');
                 });
             }
+
+            function toggleMobileMenu() {
+                const navbar = document.querySelector('.navbar');
+                navbar.classList.toggle('mobile-active');
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                const dropdownToggle = document.querySelector('.navbar .dropdown > a');
+                const dropdownContent = document.querySelector('.navbar .dropdown .dropdown-content');
+
+                dropdownToggle.addEventListener('click', function (e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault(); // منع فتح الرابط الأصلي
+                        dropdownContent.classList.toggle('show');
+                    }
+                });
+            });
+
+
+            // إغلاق القائمة عند الضغط في أي مكان خارجها
+            document.addEventListener('click', function(event) {
+                const navbar = document.querySelector('.navbar');
+                const mobileIcon = document.querySelector('.mobile-menu-icon');
+                const isClickInsideNavbar = navbar.contains(event.target);
+                const isClickOnIcon = mobileIcon.contains(event.target);
+
+                // إذا الكليك خارج النافبار ولم يكن على أيقونة القائمة، أغلق القائمة
+                if (!isClickInsideNavbar && !isClickOnIcon) {
+                    navbar.classList.remove('mobile-active');
+                }
+            });
         </script>
 
 
