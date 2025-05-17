@@ -255,7 +255,7 @@
 
     <tr class="theLastRow">
         <td colspan="2" style="border-bottom: none;padding-top: 30px">
-            <input type="text" class="inputForCouponCode" name="couponCode" placeholder="Coupon Code">
+            <input type="text" class="inputForCouponCode" name="couponCode" placeholder="Coupon Code" id="couponInput">
             <button class="button">Apply Coupon</button>
         </td>
         <td colspan="3" class="button-cell" style="border-bottom: none;">
@@ -379,6 +379,17 @@
         // إذا الكليك خارج النافبار ولم يكن على أيقونة القائمة، أغلق القائمة
         if (!isClickInsideNavbar && !isClickOnIcon) {
             navbar.classList.remove('mobile-active');
+        }
+    });
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const coupon = getQueryParam('coupon');
+        if (coupon) {
+            document.getElementById('couponInput').value = coupon;
         }
     });
 </script>

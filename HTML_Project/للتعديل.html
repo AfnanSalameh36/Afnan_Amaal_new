@@ -8,15 +8,15 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #0B1315;
-            color: #E8E8E8;
+            background-image: url("../image2/background.jpg");
+            color: #D7C7A9; /* لون ذهبي فاتح مريح للعين */
             text-align: center;
             padding: 20px;
             line-height: 1.6;
         }
 
         h1 {
-            color: #D4AF37;
+            color: #8C7250; /* ذهبي هادي */
             margin-bottom: 30px;
             font-weight: 300;
             font-size: 28px;
@@ -25,11 +25,10 @@
         .game-container {
             max-width: 600px;
             margin: 0 auto;
-            background-color: rgba(11, 19, 21, 0.8);
+            background-color:transparent;
             padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(212, 175, 55, 0.1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
+
         }
 
         .game-info {
@@ -37,11 +36,11 @@
             justify-content: space-around;
             margin-bottom: 25px;
             font-size: 18px;
-            color: #D4AF37;
-            background-color: rgba(11, 19, 21, 0.6);
+            color: #FFFFFF;
             padding: 12px;
             border-radius: 8px;
-            border: 1px solid rgba(212, 175, 55, 0.1);
+            border: 2px solid rgba(30, 59, 59, 0.3);
+
         }
 
         .memory-board {
@@ -54,7 +53,7 @@
 
         .card {
             height: 100px;
-            background-color: rgba(212, 175, 55, 0.1);
+            background-color: rgba(140, 114, 80, 0.15);
             border-radius: 10px;
             display: flex;
             justify-content: center;
@@ -65,28 +64,28 @@
             position: relative;
             transform-style: preserve-3d;
             color: #0B1315;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(140, 114, 80, 0.3);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
         }
 
         .card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 5px 15px rgba(140, 114, 80, 0.4);
         }
 
         .card.flipped {
-            background-color: rgba(11, 19, 21, 0.9);
+            background-color: rgba(30, 59, 59, 0.9);
             font-size: 36px;
             transform: rotateY(180deg) translateY(-3px);
-            color: #D4AF37;
+            color: #8C7250;
         }
 
         .card.matched {
-            background-color: rgba(212, 175, 55, 0.2);
+            background-color: rgba(140, 114, 80, 0.25);
             cursor: default;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-            color: #D4AF37;
-            border: 1px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 0 0 15px rgba(140, 114, 80, 0.45);
+            color: #8C7250;
+            border: 1px solid rgba(140, 114, 80, 0.5);
         }
 
         .card .front,
@@ -103,18 +102,18 @@
         }
 
         .card .front {
-            background-color: rgba(212, 175, 55, 0.9);
+            background-color: rgba(140, 114, 80, 0.9);
             color: #0B1315;
             transform: rotateY(180deg);
         }
 
         .card .back {
-            background-color: rgba(212, 175, 55, 0.1);
-            background-image: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(11, 19, 21, 0.3) 100%);
+            background-color: rgba(140, 114, 80, 0.1);
+            background-image: linear-gradient(135deg, rgba(140, 114, 80, 0.1) 0%, rgba(30, 59, 59, 0.4) 100%);
         }
 
-        .restart-btn {
-            background-color: rgba(212, 175, 55, 0.8);
+        .use-coupon-btn {
+            background-color: rgba(140, 114, 80, 0.85);
             color: #0B1315;
             border: none;
             padding: 12px 25px;
@@ -125,67 +124,55 @@
             transition: all 0.3s ease;
             font-weight: 500;
             letter-spacing: 0.5px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
         }
 
-        .restart-btn:hover {
-            background-color: rgba(212, 175, 55, 1);
+        .use-coupon-btn:hover {
+            background-color: rgba(140, 114, 80, 1);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 5px 15px rgba(140, 114, 80, 0.5);
         }
 
         .discount-code {
             font-size: 20px;
-            color: #D4AF37;
+            color: #FFFFFF;
             font-weight: 300;
             margin-top: 25px;
             display: none;
-            background-color: rgba(11, 19, 21, 0.6);
+            background-color: transparent;
             padding: 15px;
             border-radius: 10px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            border: 2px solid rgba(30, 59, 59, 0.3);
+
             line-height: 1.8;
         }
 
         .daily-message {
-            color: #D4AF37;
+            color: #FFFFFF;
             font-size: 18px;
             margin-bottom: 20px;
             display: none;
             padding: 15px;
-            background-color: rgba(11, 19, 21, 0.6);
+            background-color: transparent;
             border-radius: 10px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            border: 2px solid rgba(30, 59, 59, 0.3);
+        ;
         }
 
         .discount-info {
             margin-top: 15px;
             font-size: 16px;
             color: #B0B0B0;
-            background-color: rgba(11, 19, 21, 0.6);
+            background-color: transparent;
             padding: 12px;
             border-radius: 8px;
             margin-bottom: 25px;
-            border: 1px solid rgba(212, 175, 55, 0.1);
+            border:2px solid rgba(30, 59, 59, 0.3);
+        ;
             line-height: 1.7;
         }
 
-        .use-coupon-btn {
-            background-color: rgba(11, 19, 21, 0.8);
-            color: #D4AF37;
-            border: 1px solid #D4AF37;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 30px;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: all 0.3s ease;
-            display: none;
-        }
 
-        .use-coupon-btn:hover {
-            background-color: rgba(212, 175, 55, 0.2);
-        }
 
         @media (max-width: 600px) {
             .memory-board {
@@ -208,37 +195,34 @@
 </head>
 <body>
 <div class="game-container">
-    <h1>لعبة التطابقات - اربح خصمًا في مطعمنا!</h1>
+    <h1>Match Game - Win a Discount at Our Restaurant!</h1>
 
     <div class="daily-message" id="daily-message">
-        لقد لعبت اليوم بالفعل! يمكنك المحاولة مرة أخرى غدًا.
+        You have already played today! Come back and try again tomorrow.
     </div>
 
     <div class="discount-info">
-        <p>كلما قللت عدد المحاولات، زاد خصمك!</p>
-        <p>1-5 محاولات: خصم 20% | 6-10: خصم 15% | 11-15: خصم 10% | 16+: خصم 5%</p>
+        <p>The fewer attempts you make, the bigger your discount!</p>
+        <p>  6-10 attempts: 15% off | 11-15 attempts: 10% off | 16+ attempts: 5% off</p>
     </div>
 
     <div class="game-info">
-        <div>المحاولات: <span id="attempts">0</span></div>
-        <div>الأزواج المتبقية: <span id="pairs-left">6</span></div>
+        <div>Attempts: <span id="attempts">0</span></div>
+        <div>Pairs Left: <span id="pairs-left">6</span></div>
     </div>
 
     <div class="memory-board" id="memory-board"></div>
 
-    <button class="restart-btn" id="restart-btn">إعادة اللعب</button>
-
     <div class="discount-code" id="discount-code">
-        تهانينا! فزت بخصم <span id="discount-percent">15</span>% - استخدم الكود: <span id="code">MATCH15</span>
-        <p>الكود صالح لاستخدام واحد فقط عند الدفع</p>
+        Congratulations! You won a <span id="discount-percent">15</span>% discount - Use code: <span id="code">MATCH15</span>
+        <p>The code is valid for one-time use only at checkout.</p>
     </div>
 
-    <button class="use-coupon-btn" id="use-coupon-btn">استخدم الكوبون الآن</button>
+    <button class="use-coupon-btn" id="use-coupon-btn">Use Coupon Now</button>
 </div>
 
 <script>
     $(document).ready(function() {
-        // الأزواج المحتملة (6 أزواج لتصبح 12 بطاقة)
         const pairs = ['🍕', '🍔', '🥗', '🍟', '🍝', '🍣'];
         let cards = [...pairs, ...pairs];
 
@@ -250,7 +234,6 @@
         let discountUsed = false;
         let currentDiscountCode = '';
 
-        // تحقق إذا كان قد لعب اليوم
         function checkDailyPlay() {
             const lastPlayDate = localStorage.getItem('lastPlayDate');
             if (lastPlayDate === today) {
@@ -265,8 +248,7 @@
         // توليد كود خصم فريد
         function generateDiscountCode(attempts) {
             let discount = 5;
-            if (attempts <= 5) discount = 20;
-            else if (attempts <= 10) discount = 15;
+           if (attempts <= 10) discount = 15;
             else if (attempts <= 15) discount = 10;
 
             const randomNum = Math.floor(Math.random() * 9000) + 1000;
@@ -392,13 +374,14 @@
         // الانتقال إلى صفحة السلة مع الكوبون
         $('#use-coupon-btn').click(function() {
             // هنا يمكنك تغيير الرابط إلى صفحة السلة في موقعك
-            window.location.href = '' + currentDiscountCode;
-
+            document.getElementById('use-coupon-btn').addEventListener('click', function() {
+                window.location.href = 'cart.html';});
             // أو يمكنك استخدام:
             // window.location.href = '/checkout?discount=' + currentDiscountCode;
 
             // أو أي صفحة أخرى تريد نقل المستخدم إليها لاستخدام الكوبون
         });
+
 
         $('#restart-btn').click(function() {
             createBoard();
@@ -406,6 +389,17 @@
 
         createBoard();
     });
+    document.getElementById('use-coupon-btn').addEventListener('click', function() {
+        // نقرأ الكود المخزن من localStorage
+        const savedCodeObj = JSON.parse(localStorage.getItem('discountCode'));
+        if(savedCodeObj && savedCodeObj.code) {
+            // ننقل المستخدم مع تمرير الكود في الرابط
+            window.location.href = 'cart.html?coupon=' + encodeURIComponent(savedCodeObj.code);
+        } else {
+            alert('لم يتم العثور على كوبون مستخدم.');
+        }
+    });
+
 </script>
 </body>
 </html>
