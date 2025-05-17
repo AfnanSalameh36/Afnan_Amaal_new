@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
         .back-to-top1 {
@@ -218,6 +220,42 @@
                 text-align: center;
             }
         }
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            background-color: rgba(196, 152, 113, 0.1); /* لون ذهبي خفيف */
+            padding: 15px 0;
+            border-top: 1px solid #c49871;
+            border-bottom: 1px solid #c49871;
+
+        }
+
+        .marquee-content {
+            display: inline-block;
+        }
+
+        .marquee-text {
+
+            color: #e6d6b1;
+            font-family: 'Cormorant', serif;
+            font-size: 24px;
+            letter-spacing: 3px;
+            animation: marquee 60s linear infinite;
+            padding-right: 50px; /* مسافة بين التكرارات */
+        }
+
+        .marquee-text pre {
+            margin: 0;
+            display: inline;
+            font-family: inherit;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
     </style>
 </head>
 <div id="top"></div>
@@ -272,7 +310,7 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
         <div class="overlay"></div>
 
 
-        <div class="text-overlay">تجربة فاخرة في كل طبق
+        <div class="text-overlay">sign in & sign up
 
 
         </div>
@@ -432,27 +470,31 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
     </main>
 
     <script src="../JAVAS_Project/app.js"></script>
-
+    <div class="marquee-container">
+        <div class="marquee-content">
+            <div class="marquee-text" style=""><pre>
+             G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t  🍴 G o l d e n  R e s t a u r a n t   🍴   G o l d e n   R e s t a u r a n t 🍴  G o l d e n   R e s t a u r a n t   G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t  🍴 G o l d e n  R e s t a u r a n t   🍴   G o l d e n   R e s t a u r a n t 🍴  G o l d e n   R e s t a u r a n t   G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t  🍴 G o l d e n  R e s t a u r a n t   🍴   G o l d e n   R e s t a u r a n t 🍴  G o l d e n   R e s t a u r a n t   G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t  🍴 G o l d e n  R e s t a u r a n t   🍴   G o l d e n   R e s t a u r a n t 🍴  G o l d e n   R e s t a u r a n t   G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t  🍴 G o l d e n  R e s t a u r a n t   🍴   G o l d e n   R e s t a u r a n t 🍴  G o l d e n   R e s t a u r a n t   G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t  🍴 G o l d e n  R e s t a u r a n t   🍴   G o l d e n   R e s t a u r a n t 🍴  G o l d e n   R e s t a u r a n t   G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t  🍴 G o l d e n  R e s t a u r a n t   🍴   G o l d e n   R e s t a u r a n t 🍴  G o l d e n   R e s t a u r a n t </pre>
+            </div>
+        </div>
+    </div>
     <div class="slider-wrapper" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin: 0 auto;">
 
-        <!-- السلايدر على اليسار -->
         <div class="paper-slider-container" style="flex: 1; min-width: 300px; max-width: 600px; margin-right: 20px;">
             <div class="paper-slider" id="paperSlider">
                 <div class="paper-slide" data-index="0">
-                    <img src="../image/resturans.jpg" alt="صورة طبيعة" class="slide-image">
+                    <img src="../image/amaal1.jpg" alt="" class="slide-image">
                 </div>
                 <div class="paper-slide" data-index="1">
-                    <img src="../image/myphoto.jpg" alt="صورة مدينة" class="slide-image">
+                    <img src="../image/amaal4.jpg" alt="" class="slide-image">
                 </div>
                 <div class="paper-slide" data-index="2">
-                    <img src="../image/service-3.jpg" alt="صورة تكنولوجيا" class="slide-image">
+                    <img src="../image/amaal3.jpg" alt="" class="slide-image">
                 </div>
                 <div class="paper-slide" data-index="3">
-                    <img src="https://source.unsplash.com/random/800x500?animals,1" alt="صورة حيوانات" class="slide-image">
+                    <img src="../image/amaal2.jpg" alt="" class="slide-image">
                 </div>
             </div>
 
-            <!-- عناصر التحكم تحت السلايدر -->
             <div class="slider-controls-container">
                 <button class="slider-arrow" id="prevBtn">←</button>
                 <div class="slide-indicators" id="indicators"></div>
@@ -460,16 +502,18 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
             </div>
         </div>
 
-        <!-- القسم النصي على اليمين -->
-        <div class="text-content" style="flex: 1; min-width: 300px; max-width: 500px; padding: 50px;">
-            <h2 style="color: #333; margin-bottom: 15px;">عنوان النص الجانبي</h2>
-            <p style="color: #666; line-height: 1.6;">هذا نص وصفي يمكنك كتابة أي محتوى تريده هنا. يمكنك إضافة وصف للصور في السلايدر أو أي معلومات أخرى تريد عرضها بجانب السلايدر.</p>
-            <ul style="margin-top: 15px; padding-right: 20px;">
-                <li style="margin-bottom: 8px;">ميزة أو نقطة أولى</li>
-                <li style="margin-bottom: 8px;">ميزة أو نقطة ثانية</li>
-                <li style="margin-bottom: 8px;">ميزة أو نقطة ثالثة</li>
-            </ul>
+        <div class="text-content" style="flex: 1; min-width: 300px; max-width: 500px; padding: 50px; font-family: 'Poppins', sans-serif;">
+            <h2 style="color: #c49871; margin-bottom: 15px; font-weight: 600;">Join the Flavor Challenge!</h2>
+            <p style="color: #666; line-height: 1.6; font-weight: 400;">
+                We've launched a delicious challenge with an irresistible offer! Enjoy a special discount for a limited time and experience our gourmet flavors at an amazing price.
+            </p>
+            <form action="discount.html" method="get">
+                <input type="submit" value="Receive a discount" class="sign-btn" />
+            </form>
+
         </div>
+
+
     </div>
 
     <br>

@@ -428,16 +428,18 @@ html, body {
     z-index: 1;
 }
 
+
 .hero-image .text-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 2rem;
-    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    position: relative;
+    top:250px;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 4px;
+    color: #FFFFFF;
+    font-size: 50px;
+    text-transform: uppercase;
     text-align: center;
-    z-index: 2;
+    font-weight: 400;
 }
 
 .hero-image .overlay-image {
