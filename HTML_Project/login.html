@@ -47,6 +47,177 @@
         html {
             scroll-behavior: smooth;
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        .paper-slider-container {
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            height: 500px;
+            margin-top: 30px ;
+            margin-right: auto;
+            margin-left: 200px;
+        }
+
+        .paper-slider {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .paper-slide {
+            position: absolute;
+            width: 80%;
+            height: 90%;
+            background: white;
+            border-radius: 2px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2),
+            0 0 0 1px rgba(0,0,0,0.05),
+            inset 0 -10px 20px -10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+            transform-origin: bottom center;
+            cursor: pointer;
+        }
+
+        .slide-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .paper-slide:hover .slide-image {
+            transform: scale(1.05);
+        }
+
+        .slider-controls-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            gap: 30px;
+        }
+
+        /* أسهم التنقل */
+        .slider-arrow {
+            background: none;
+            color: #CB9953;
+            border: none;
+            cursor: pointer;
+            font-size: 28px;
+            transition: all 0.3s;
+            padding: 5px 15px;
+        }
+
+        .slider-arrow:hover {
+            color: #CB9953;
+            transform: scale(1.2);
+        }
+
+        .slider-arrow:active {
+            transform: scale(0.9);
+        }
+
+        /* مؤشرات مربعة */
+        .slide-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .indicator {
+            width: 8px;
+            height: 8px;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .indicator.active {
+            background: #CB9953;
+            transform: rotate(45deg) scale(1.2);
+            box-shadow: 0 0 0 2px rgba(203, 153, 83, 0.3)
+
+        }
+        @media (max-width: 768px) {
+            .paper-slider {
+                height: 40vh;
+                min-height: 200px;
+            }
+
+            .paper-slide {
+                width: 90%;
+                left: 5%;
+                height: 75%;
+                top: 12.5%;
+            }
+
+            .slider-arrow {
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
+            }
+
+            .indicator {
+                width: 8px;
+                height: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .paper-slider {
+                height: 35vh;
+                min-height: 180px;
+            }
+            .paper-slider-container {
+                margin: 0 auto;
+                width: 95%;
+            }
+
+            .slider-controls-container {
+                margin-top: 15px;
+                gap: 10px;
+            }
+            .text-content {
+                max-width: 100%;
+                padding: 0 15px;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <div id="top"></div>
@@ -107,7 +278,7 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
         </div>
     </div>
 
-    <main>
+    <main style="margin-top: 30px">
         <div class="box" style="    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7)">
             <div class="inner-box">
                 <div class="forms-wrap">
@@ -260,9 +431,53 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
         </div>
     </main>
 
-
     <script src="../JAVAS_Project/app.js"></script>
 
+    <div class="slider-wrapper" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin: 0 auto;">
+
+        <!-- السلايدر على اليسار -->
+        <div class="paper-slider-container" style="flex: 1; min-width: 300px; max-width: 600px; margin-right: 20px;">
+            <div class="paper-slider" id="paperSlider">
+                <div class="paper-slide" data-index="0">
+                    <img src="../image/resturans.jpg" alt="صورة طبيعة" class="slide-image">
+                </div>
+                <div class="paper-slide" data-index="1">
+                    <img src="../image/myphoto.jpg" alt="صورة مدينة" class="slide-image">
+                </div>
+                <div class="paper-slide" data-index="2">
+                    <img src="../image/service-3.jpg" alt="صورة تكنولوجيا" class="slide-image">
+                </div>
+                <div class="paper-slide" data-index="3">
+                    <img src="https://source.unsplash.com/random/800x500?animals,1" alt="صورة حيوانات" class="slide-image">
+                </div>
+            </div>
+
+            <!-- عناصر التحكم تحت السلايدر -->
+            <div class="slider-controls-container">
+                <button class="slider-arrow" id="prevBtn">←</button>
+                <div class="slide-indicators" id="indicators"></div>
+                <button class="slider-arrow" id="nextBtn">→</button>
+            </div>
+        </div>
+
+        <!-- القسم النصي على اليمين -->
+        <div class="text-content" style="flex: 1; min-width: 300px; max-width: 500px; padding: 50px;">
+            <h2 style="color: #333; margin-bottom: 15px;">عنوان النص الجانبي</h2>
+            <p style="color: #666; line-height: 1.6;">هذا نص وصفي يمكنك كتابة أي محتوى تريده هنا. يمكنك إضافة وصف للصور في السلايدر أو أي معلومات أخرى تريد عرضها بجانب السلايدر.</p>
+            <ul style="margin-top: 15px; padding-right: 20px;">
+                <li style="margin-bottom: 8px;">ميزة أو نقطة أولى</li>
+                <li style="margin-bottom: 8px;">ميزة أو نقطة ثانية</li>
+                <li style="margin-bottom: 8px;">ميزة أو نقطة ثالثة</li>
+            </ul>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
 
 
@@ -375,6 +590,103 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
         this.classList.toggle("fa-eye");
         this.classList.toggle("fa-eye-slash");
     });
+    document.addEventListener('DOMContentLoaded', function() {
+        const slider = document.getElementById('paperSlider');
+        const slides = document.querySelectorAll('.paper-slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const indicatorsContainer = document.getElementById('indicators');
+
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+
+        // إنشاء مؤشرات الشرائح
+        slides.forEach((_, index) => {
+            const indicator = document.createElement('div');
+            indicator.classList.add('indicator');
+            if(index === currentSlide) indicator.classList.add('active');
+            indicator.addEventListener('click', () => goToSlide(index));
+            indicatorsContainer.appendChild(indicator);
+        });
+
+        const indicators = document.querySelectorAll('.indicator');
+
+        // تحديث مواضع الشرائح
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                const diff = index - currentSlide;
+                const zIndex = totalSlides - Math.abs(diff);
+
+                if(diff < 0) {
+                    slide.style.transform = `rotate(-5deg) translateY(20px) translateX(${-40 * Math.abs(diff)}px)`;
+                    slide.style.zIndex = zIndex;
+                    slide.style.opacity = 0.8 - (Math.abs(diff) * 0.2);
+                }
+                else if(diff > 0) {
+                    // شرائح بعد الحالية
+                    slide.style.transform = `rotate(5deg) translateY(20px) translateX(${40 * diff}px)`;
+                    slide.style.zIndex = zIndex;
+                    slide.style.opacity = 0.8 - (diff * 0.2);
+                }
+                else {
+                    // الشريحة الحالية
+                    slide.style.transform = 'rotate(0deg) translateY(0)';
+                    slide.style.zIndex = totalSlides;
+                    slide.style.opacity = '1';
+                    slide.style.boxShadow = '0 10px 25px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05)';
+                }
+            });
+
+            indicators.forEach((indicator, index) => {
+                if(index === currentSlide) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+
+        function goToSlide(index) {
+            if(index < 0) index = totalSlides - 1;
+            if(index >= totalSlides) index = 0;
+
+            currentSlide = index;
+            updateSlides();
+        }
+
+        prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
+        nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        slider.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+
+        slider.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+
+        function handleSwipe() {
+            if(touchEndX < touchStartX - 50) {
+                goToSlide(currentSlide -1); // سحب لليسار - التالي
+            }
+            if(touchEndX > touchStartX + 50) {
+                goToSlide(currentSlide + 1); // سحب لليمين - السابق
+            }
+        }
+
+        // التهيئة الأولية
+        updateSlides();
+
+        // تبديل تلقائي كل 5 ثواني (اختياري)
+        setInterval(() => {
+            goToSlide(currentSlide + 1);
+        }, 5000);
+    });
+
 </script>
 
 
