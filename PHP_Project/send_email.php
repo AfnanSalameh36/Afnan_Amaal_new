@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+//if (!isset($_SESSION['user_id'])) {
+//    // منع المستخدم من الحجز إذا ما سجل دخول
+//    header("Location: ../html_project/login.html"); // أو الصفحة اللي فيها تسجيل الدخول
+//    exit;
+//}
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 

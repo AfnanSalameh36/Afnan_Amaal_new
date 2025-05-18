@@ -390,7 +390,7 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
         <div class="box" style="    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7)">
             <div class="inner-box">
                 <div class="forms-wrap">
-                    <form action="index.html" autocomplete="off" class="sign-in-form">
+                    <form action="signin.php" method="POST" autocomplete="off" class="sign-in-form">
                         <div class="logo">
                             <img src="../image/6.png" alt="easyclass" />
                             <h4>Golden Restaurant</h4>
@@ -405,6 +405,7 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
                         <div class="actual-form">
                             <div class="input-wrap">
                                 <input
+                                        name="login_name"
                                         type="text"
                                         minlength="4"
                                         class="input-field"
@@ -416,6 +417,7 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
 
                             <div class="input-wrap" style="position: relative;">
                                 <input
+                                        name="login_password"
                                         type="password"
                                         minlength="4"
                                         class="input-field"
@@ -446,7 +448,7 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
                         </div>
                     </form>
 
-                    <form action="index.html" autocomplete="off" class="sign-up-form">
+                    <form action="signup.php" method="POST" autocomplete="off" class="sign-up-form">
                         <div class="logo">
                             <img src="../image/6.png" alt="easyclass" />
                             <h4>Golden Restaurant</h4>
@@ -461,6 +463,7 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
                         <div class="actual-form">
                             <div class="input-wrap">
                                 <input
+                                        name="signup_name"
                                         type="text"
                                         minlength="4"
                                         class="input-field"
@@ -472,6 +475,7 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
 
                             <div class="input-wrap">
                                 <input
+                                        name="signup_email"
                                         type="email"
                                         class="input-field"
                                         autocomplete="off"
@@ -482,6 +486,7 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
 
                             <div class="input-wrap" style="position: relative;">
                                 <input
+                                        name="signup_password"
                                         type="password"
                                         minlength="4"
                                         class="input-field"
