@@ -898,6 +898,34 @@ border-color: #8c5050"
             navbar.classList.remove('mobile-active');
         }
     });
+
+
+    $.ajax({
+        type: 'POST',
+        url: 'send-reservation.php',
+        data: formData,
+        dataType: 'json',
+        success: function(response) {
+            if (response.success) {
+                alert(response.message);
+                $('#reservation-form')[0].reset();
+            } else {
+                alert(response.message);
+
+                // 👇 الحل الإضافي لتفعيل الزر مرة ثانية بدون ريفرش
+                $('#reserve-btn').prop('disabled', false);
+            }
+        },
+        error: function(xhr, status, error) {
+            alert('Something went wrong!');
+            $('#reserve-btn').prop('disabled', false);
+        },
+        beforeSend: function() {
+            // 🚫 ممكن تكوني عملتي تعطيل للزر هون
+            $('#reserve-btn').prop('disabled', true);
+        }
+    });
+
 </script>
 
 

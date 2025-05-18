@@ -216,6 +216,70 @@ function scrollToTop() {
                 reader.onload({target: {result: "https://i.pravatar.cc/60"}});
             }
         }
+
+        document.addEventListener('click', function (e) {
+            const form = document.getElementById('review-form');
+            const button = document.querySelector('.add-review-btn');
+            if (form.style.display === 'flex' &&
+                !form.contains(e.target) &&
+                !button.contains(e.target)) {
+                form.style.display = 'none';
+            }
+        });
+
+// عند تحميل الصفحة
+        window.onload = function () {
+            const savedReviews = JSON.parse(localStorage.getItem('reviews') || '[]');
+            savedReviews.forEach(review => {
+                addReviewToSwiper(review);
+            });
+        };
+
+        function addReviewToSwiper({name, review, stars, avatar}) {
+            const newSlide = document.createElement("div");
+            newSlide.classList.add("swiper-slide");
+            let starsHTML = "";
+            for (let i = 1; i <= 5; i++) {
+                starsHTML += `<i class="${i <= stars ? 'fas' : 'far'} fa-star"></i>`;
+            }
+            newSlide.innerHTML = `
+    <img src="${avatar}" alt="avatar" class="avatar">
+    <div class="review-name">${name}</div>
+    <div class="stars">${starsHTML}</div>
+    <div class="review-text">${review}</div>
+  `;
+            reviewSwiper.appendSlide(newSlide);
+        }
+
+// تعديل addReview ليخزن في localStorage بدل من مجرد الإضافة فقط
+        window.addReview = function (e) {
+            e.preventDefault();
+            const name = document.getElementById("username").value;
+            const review = document.getElementById("review").value;
+            const stars = +document.getElementById("stars").value;
+            const avatarFile = document.getElementById("avatar").files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+                const avatarData = event.target.result || "https://i.pravatar.cc/60";
+                // أضف الشريحة للسلايدر
+                addReviewToSwiper({name, review, stars, avatar: avatarData});
+
+                // خزّن التعليق في localStorage
+                const savedReviews = JSON.parse(localStorage.getItem('reviews') || '[]');
+                savedReviews.push({name, review, stars, avatar: avatarData});
+                localStorage.setItem('reviews', JSON.stringify(savedReviews));
+
+                document.getElementById("review-form").reset();
+                document.getElementById("review-form").style.display = "none";
+            };
+
+            if (avatarFile) {
+                reader.readAsDataURL(avatarFile);
+            } else {
+                reader.onload({target: {result: "https://i.pravatar.cc/60"}});
+            }
+        };
     });
 
 
