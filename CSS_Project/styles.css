@@ -1208,4 +1208,294 @@ body {
 .top-button:hover {
     background-color: #a87c3d;
 }
+/*======================================================================================================*/
+/*======================================================================================================*/
+/*======================================================================================================*/
+/*======================================================================================================*/
+/*======================================================================================================*/
+@media (max-width: 768px) {
+    #bg1 {
+        height: 100vh;
+    }
 
+    .restaurant-name {
+        font-size: 50px;
+        bottom: 40%;
+    }
+
+    .text-line {
+        font-size: 16px !important;
+        padding: 5px;
+    }
+
+    .page-1 .line-1,
+    .page-2 .line-4,
+    .page-3 .line-7 {
+        font-size: 36px !important;
+    }
+
+    .page-1 .line-2,
+    .page-1 .line-3,
+    .page-2 .line-5,
+    .page-2 .line-6,
+    .page-3 .line-8,
+    .page-3 .line-9 {
+        font-size: 18px !important;
+    }
+
+    .corner-image {
+        top: 10px;
+        left: 10px;
+        width: 60px;
+        height: 40px;
+    }
+
+    .arrow svg {
+        width: 25px;
+        height: 25px;
+    }
+
+    .arrow-left {
+        left: 10px;
+    }
+
+    .arrow-right {
+        right: 10px;
+    }
+
+    .numbers-container {
+        bottom: 15px;
+    }
+
+    .num {
+        font-size: 12px;
+        padding: 4px 6px;
+    }
+}
+
+/* ريسبونسف */
+@media (max-width: 768px) {
+
+    .golden-text {
+        font-size: 1.5em !important; /* نص الحجم الأصلي */
+    }
+
+    .centered-text {
+        top: -10% !important;
+        left: 2% !important; /* رفع النص لفوق */
+        right: 10% !important;
+
+    }
+
+    .bottom-section {
+    }
+}
+
+@keyframes gentleMove {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(6px, -4px); }
+    50% { transform: translate(-3px, 6px); }
+    75% { transform: translate(-6px, -3px); }
+    100% { transform: translate(0, 0); }
+}
+
+.gentle-animation {
+    animation: gentleMove 4s ease-in-out infinite;
+}
+
+.learn-more-btn {
+    padding: 10px 30px;
+    font-size: 0.9em;
+    background-color: transparent;
+    color: white;
+    border: 2px solid #CB9953;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    font-family: 'Quicksand', sans-serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 1);
+    width: 180px;
+}
+
+.learn-more-btn:hover {
+    color: white;
+    border: 2px solid #CB9953;
+    box-shadow: 0 0 15px rgba(204, 149, 83, 0.5);
+    transform: scale(1.1);
+    font-family: 'Quicksand', sans-serif;
+}
+@media only screen and (max-width: 768px) {
+    /* إخفاء الصورة الكبيرة */
+    div[style*="top:53%"][style*="left:70%"] {
+        display: none !important;
+    }
+
+    /* جعل باقي المحتوى فوق بعضه وبمنتصف الشاشة */
+    .bottom-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 20px;
+        padding-bottom: 40px;
+        min-height: 100vh;
+        gap: 20px;
+    }
+
+    /* تصغير الصورة الصغيرة مع الإطار */
+    .gentle-animation {
+        width: 130px !important;
+        height: 130px !important;
+        margin-bottom: 10px;
+    }
+
+    .gentle-animation img {
+        width: 120px !important;
+        height: 120px !important;
+        top: 5px !important;
+        left: 5px !important;
+    }
+
+    .gentle-animation > div {
+        width: 130px !important;
+        height: 130px !important;
+        top: -10px !important;
+        left: -10px !important;
+    }
+
+    /* النص */
+    .golden-text1 {
+        font-size: 1.4em !important;
+        white-space: normal !important;
+        text-align: center !important;
+        margin-bottom: 10px !important;
+    }
+
+    /* زر Learn More */
+    .learn-more-btn {
+        position: static !important;
+        transform: none !important;
+        margin: 10px auto 0 auto !important;
+        display: block;
+        width: 160px !important;
+        font-size: 0.85em !important;
+        padding: 8px 16px !important;
+    }
+
+    /* تعديل أماكن العناصر النسبية */
+    div[style*="top:80%"][style*="left:48%"],
+    div[style*="top: -80%"][style*="left: 10%"] {
+        all: unset !important;
+        text-align: center !important;
+        margin: 0 auto !important;
+    }
+
+    .wright {
+        padding: 5px;
+    }
+}
+@media only screen and (max-width: 768px) {
+
+    /* اخفاء الصور فقط */
+    .bottom-section .w img {
+        display: none !important;
+    }
+
+    /* تأكد من أن العناصر تتدفق رأسيًا وتكون ظاهرة */
+    .bottom-section {
+        position: relative !important; /* أو unset لو فيه absolute */
+        height: auto !important;
+        min-height: auto !important;
+        overflow: visible !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    /* لو فيه عناصر داخل .w تتطلب عرض كامل */
+    .bottom-section .w {
+        width: 100% !important;
+        margin: 10px 0 !important;
+    }
+
+    /* إذا العناصر تحتوي على position absolute، اعيديها لوضع طبيعي */
+    .bottom-section .w > * {
+        position: static !important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .bottom-section .w img {
+        display: none !important;
+    }
+}
+@media only screen and (max-width: 768px) {
+    /* اخفاء صورة الخلفية الكبيرة */
+    .bottom-section > img {
+        display: none !important;
+    }
+
+    /* حذف ارتفاع 100vh وخلي الحاوية تتوسع حسب المحتوى */
+    .bottom-section {
+        height: auto !important;
+        overflow: visible !important;
+        position: relative !important;
+        padding: 20px 10px !important;
+    }
+
+    /* اجعل المحتوى الداخلي يتدفق عمودياً مع محاذاة مركزية */
+    .bottom-section > div {
+        position: static !important;
+        width: 100% !important;
+        text-align: center !important;
+        transform: none !important;
+        top: auto !important;
+        left: auto !important;
+    }
+
+    /* العنصر .amaal داخل .bottom-section يتعدل */
+    .amaal {
+        position: relative !important;
+        width: 90% !important;
+        max-width: 300px !important;
+        height: auto !important;
+        margin: 0 auto !important;
+        display: block !important;
+    }
+
+    /* صور داخل .amaal تترتب بشكل طبيعي */
+    .amaal img,
+    .amaal a img {
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        max-width: 300px !important;
+        margin: 10px auto !important;
+        display: block !important;
+    }
+
+    /* نصوص الـ fancy-border تتحرك للنص العادي */
+    .fancy-border {
+        position: static !important;
+        margin-top: 5px !important;
+        text-align: center !important;
+        right: auto !important;
+        top: auto !important;
+    }
+}
+@media only screen and (max-width: 768px) {
+    /* اخفاء صور الخلفية ذات المصدر img-pattern.svg */
+    .bottom-section img[src="../image/img-pattern.svg"] {
+        display: none !important;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .q {
+        position: absolute !important;
+        top: 99% !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        font-size: 28px !important;
+        z-index: 15 !important;
+    }
+}

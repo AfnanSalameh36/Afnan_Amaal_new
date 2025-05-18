@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>لوحة تحكم الأدمن - Golden Bite</title>
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #0B1315;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #CB9953;
+      padding: 20px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .container {
+      padding: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #1e1e1e;
+      box-shadow: 0 0 15px rgba(203, 153, 83, 0.3);
+    }
+
+    th, td {
+      border: 1px solid #CB9953;
+      padding: 15px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #CB9953;
+      color: #fff;
+    }
+
+    tr:hover {
+      background-color: #2c2c2c;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  لوحة تحكم الأدمن - Golden Bite
+</header>
+
+<div class="container">
+  <h2>قائمة الحجوزات</h2>
+  <table>
+    <tr>
+      <th>الرقم</th>
+      <th>الاسم</th>
+      <th>الإيميل</th>
+      <th>عدد الأشخاص</th>
+      <th>التاريخ</th>
+      <th>الوقت</th>
+    </tr>
+
+    <?php
+        // الاتصال بقاعدة البيانات
+        $conn = new mysqli("localhost", "root", "", "golden_bite");
+
+        if ($conn->connect_error) {
+    die("فشل الاتصال: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT * FROM reservations ORDER BY date, time";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+    $num = 1;
+    while($row = $result->fetch_assoc()) {
+    echo "<tr>
+    <td>" . $num++ . "</td>
+    <td>" . htmlspecialchars($row["name"]) . "</td>
+    <td>" . htmlspecialchars($row["email"]) . "</td>
+    <td>" . $row["guests"] . "</td>
+    <td>" . $row["date"] . "</td>
+    <td>" . $row["time"] . "</td>
+  </tr>";
+    }
+    } else {
+    echo "<tr><td colspan='6'>لا توجد حجوزات حالياً.</td></tr>";
+    }
+
+    $conn->close();
+    ?>
+  </table>
+</div>
+
+</body>
+</html>
