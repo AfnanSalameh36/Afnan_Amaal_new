@@ -505,7 +505,7 @@
                             </div>
 
                             <div class="form-field date-field">
-                                <input type="text" class="form-input date-picker" name="date" placeholder="Select date">
+                                <input type="text" class="form-input date-picker" name="date" id="date-input" placeholder="Select date">
                             </div>
 
                             <div class="form-field time-field">
@@ -899,31 +899,16 @@ border-color: #8c5050"
         }
     });
 
+    document.getElementById("confirm-reservation").addEventListener("click", function () {
+        const originalDate = document.getElementById("date-input").value; // 23/05/2025
+        const parts = originalDate.split("/"); // [23, 05, 2025]
 
-    $.ajax({
-        type: 'POST',
-        url: 'send-reservation.php',
-        data: formData,
-        dataType: 'json',
-        success: function(response) {
-            if (response.success) {
-                alert(response.message);
-                $('#reservation-form')[0].reset();
-            } else {
-                alert(response.message);
-
-                // 👇 الحل الإضافي لتفعيل الزر مرة ثانية بدون ريفرش
-                $('#reserve-btn').prop('disabled', false);
-            }
-        },
-        error: function(xhr, status, error) {
-            alert('Something went wrong!');
-            $('#reserve-btn').prop('disabled', false);
-        },
-        beforeSend: function() {
-            // 🚫 ممكن تكوني عملتي تعطيل للزر هون
-            $('#reserve-btn').prop('disabled', true);
+        if (parts.length === 3) {
+            const formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}`; // 2025-05-23
+            document.querySelector("input[name='date']").value = formattedDate;
         }
+
+        // الآن يمكن إرسال البيانات بعد تحويل التاريخ بشكل صحيح
     });
 
 </script>

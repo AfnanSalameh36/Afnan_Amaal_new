@@ -1,11 +1,12 @@
 <?php
 session_start();
 
-//if (!isset($_SESSION['user_id'])) {
-//    // منع المستخدم من الحجز إذا ما سجل دخول
-//    header("Location: ../html_project/login.html"); // أو الصفحة اللي فيها تسجيل الدخول
-//    exit;
-//}
+// if (!isset($_SESSION['user_id'])) {
+//     // منع المستخدم من الحجز إذا ما سجل دخول
+//     header("Location: ../html_project/login.html"); // أو الصفحة اللي فيها تسجيل الدخول
+//     exit;
+// }
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -34,6 +35,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
+    // تحقق من تنسيق التاريخ (YYYY-MM-DD)
+    if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $date)) {
+        echo json_encode(["success" => false, "message" => "التاريخ غير صحيح. الرجاء اختيار تاريخ صالح."]);
+        exit;
+    }
+
+    // تحقق من تنسيق الوقت (HH:MM أو HH:MM:SS)
+    if (!preg_match('/^\d{2}:\d{2}(:\d{2})?$/', $time)) {
+        echo json_encode(["success" => false, "message" => "الوقت غير صحيح. الرجاء اختيار وقت صالح."]);
+        exit;
+    }
+
+    // إذا الوقت بدون ثواني، نضيف :00
+    if (strlen($time) == 5) {  // بصيغة HH:MM فقط
+        $time .= ":00";
+    }
+
     // إعدادات الاتصال بقاعدة البيانات
     $servername = "localhost";
     $username = "root";
@@ -59,7 +77,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn->close();
         exit;
     }
-
 
     // إدخال بيانات الحجز
     $stmt = $conn->prepare("INSERT INTO reservations (email, date, time, guests, special_request) VALUES (?, ?, ?, ?, ?)");
@@ -107,7 +124,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </body>
 </html>
 ";
-
 
         $mail->send();
         echo json_encode(["success" => true, "message" => "Confirmation has been sent to your email!"]);
