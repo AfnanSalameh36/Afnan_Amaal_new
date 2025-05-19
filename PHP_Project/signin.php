@@ -1,18 +1,20 @@
 <?php
 global $conn;
-session_start();
-include("db_connection.php"); // يتصل بقاعدة البيانات
+include("../PHP_Project/db_connection.php");
+
+$response = ['status' => '', 'message' => ''];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = isset($_POST['login_name']) ? $_POST['login_name'] : '';
+    $name = isset($_POST['login_name']) ? trim($_POST['login_name']) : '';
     $password = isset($_POST['login_password']) ? $_POST['login_password'] : '';
 
     if (empty($name) || empty($password)) {
-        echo "يرجى تعبئة جميع الحقول.";
+        $response['status'] = 'error';
+        $response['message'] = 'Please fill in all fields.';
+        echo json_encode($response);
         exit;
     }
 
-    // استعلام للبحث عن المستخدم باسم أو إيميل
     $sql = "SELECT * FROM users WHERE name = ? OR email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $name, $name);
@@ -22,21 +24,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows === 1) {
         $user = $result->fetch_assoc();
 
-        // تحقق من كلمة المرور
         if (password_verify($password, $user['password'])) {
-            // تسجيل بيانات المستخدم في الجلسة
             $_SESSION['user'] = [
                 'id' => $user['id'],
                 'name' => $user['name'],
                 'email' => $user['email']
             ];
-            header("Location: ../HTML_Project/index.html"); // تحويل لصفحة داخل الموقع
-            exit;
+            $response['status'] = 'success';
+            $response['message'] = 'Login successful.';
         } else {
-            echo "كلمة المرور غير صحيحة.";
+            $response['status'] = 'error';
+            $response['message'] = 'Incorrect password.';
         }
     } else {
-        echo "المستخدم غير موجود.";
+        $response['status'] = 'error';
+        $response['message'] = 'User not found.';
     }
+
+    echo json_encode($response);
+    exit;
 }
 ?>
