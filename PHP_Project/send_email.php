@@ -4,7 +4,7 @@ session_start();
 
 
 if (!isset($_SESSION['user'])) {
-    echo json_encode(["success" => false, "message" => "الرجاء تسجيل الدخول للتتمكن من الحجز"]);
+    echo json_encode(["success" => false, "message" => "Please log in to complete your reservation"]);
     exit;
 }
 use PHPMailer\PHPMailer\PHPMailer;
