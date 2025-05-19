@@ -1,12 +1,6 @@
 <?php
 session_start();
 
-// if (!isset($_SESSION['user_id'])) {
-//     // منع المستخدم من الحجز إذا ما سجل دخول
-//     header("Location: ../html_project/login.html"); // أو الصفحة اللي فيها تسجيل الدخول
-//     exit;
-// }
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -20,39 +14,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $date = $_POST['date'];
     $time = $_POST['time'];
-    $guests = intval($_POST['guests']); // تأكد من تحويله لعدد صحيح
+    $guests = intval($_POST['guests']);
     $special_request = isset($_POST['special_request']) ? $_POST['special_request'] : '';
 
-    // تحقق من الحقول المطلوبة
     if (empty($email) || empty($date) || empty($time) || empty($guests)) {
         echo json_encode(["success" => false, "message" => "All fields are required!"]);
         exit;
     }
 
-    // تحقق من صحة الإيميل
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo json_encode(["success" => false, "message" => "Invalid email format!"]);
         exit;
     }
 
-    // تحقق من تنسيق التاريخ (YYYY-MM-DD)
     if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $date)) {
-        echo json_encode(["success" => false, "message" => "التاريخ غير صحيح. الرجاء اختيار تاريخ صالح."]);
+        echo json_encode(["success" => false, "message" => "Invalid date format. Please select a valid date."]);
         exit;
     }
 
-    // تحقق من تنسيق الوقت (HH:MM أو HH:MM:SS)
     if (!preg_match('/^\d{2}:\d{2}(:\d{2})?$/', $time)) {
-        echo json_encode(["success" => false, "message" => "الوقت غير صحيح. الرجاء اختيار وقت صالح."]);
+        echo json_encode(["success" => false, "message" => "Invalid time format. Please select a valid time."]);
         exit;
     }
 
-    // إذا الوقت بدون ثواني، نضيف :00
-    if (strlen($time) == 5) {  // بصيغة HH:MM فقط
+    if (strlen($time) == 5) {
         $time .= ":00";
     }
 
-    // إعدادات الاتصال بقاعدة البيانات
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -64,7 +52,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // تحقق من عدم تداخل الحجز
     $stmt = $conn->prepare("SELECT COUNT(*) FROM reservations WHERE date = ? AND time = ?");
     $stmt->bind_param("ss", $date, $time);
     $stmt->execute();
@@ -72,13 +59,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->fetch();
     $stmt->close();
 
-    if ($count > 0) {
-        echo json_encode(["success" => false, "message" => "This date and time is already booked. Please choose another."]);
+    if ($count >= 6) {
+        echo json_encode(["success" => false, "message" => "This date and time is fully booked. Please choose another."]);
         $conn->close();
         exit;
     }
 
-    // إدخال بيانات الحجز
     $stmt = $conn->prepare("INSERT INTO reservations (email, date, time, guests, special_request) VALUES (?, ?, ?, ?, ?)");
     $stmt->bind_param("sssis", $email, $date, $time, $guests, $special_request);
     if (!$stmt->execute()) {
@@ -89,7 +75,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $stmt->close();
 
-    // إرسال إيميل التأكيد
     $mail = new PHPMailer(true);
 
     try {
@@ -136,3 +121,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
     echo json_encode(["success" => false, "message" => "Invalid request!"]);
 }
+?>
