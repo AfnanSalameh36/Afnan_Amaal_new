@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>لوحة التحكم الشخصية</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #8B5A2B;
+      --secondary-color: #D4A76A;
+      --dark-color: #1E1E1E;
+      --light-color: #F5F5F5;
+      --accent-color: #E8C39E;
+      --success-color: #4CAF50;
+      --danger-color: #F44336;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      min-height: 100vh;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    /* القائمة الجانبية */
+    .sidebar {
+      width: 280px;
+      background: linear-gradient(135deg, var(--dark-color), #2a2a2a);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar-header {
+      padding: 25px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+
+    .sidebar-header h2 {
+      font-weight: 600;
+      font-size: 1.5rem;
+      margin-bottom: 5px;
+      color: var(--secondary-color);
+    }
+
+    .sidebar-header .user-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 15px;
+    }
+
+    .user-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 15px;
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .user-name {
+      font-size: 0.9rem;
+      color: #eee;
+    }
+
+    .sidebar-menu {
+      padding: 20px 0;
+      flex-grow: 1;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      padding: 15px 25px;
+      margin: 5px 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      color: #ddd;
+      text-decoration: none;
+    }
+
+    .menu-item:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: var(--secondary-color);
+    }
+
+    .menu-item.active {
+      background-color: rgba(139, 90, 43, 0.2);
+      color: var(--secondary-color);
+      border-right: 4px solid var(--secondary-color);
+    }
+
+    .menu-item i {
+      margin-left: 15px;
+      font-size: 1.1rem;
+      width: 24px;
+      text-align: center;
+    }
+
+    .menu-item .badge {
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: 10px;
+      padding: 2px 8px;
+      font-size: 0.7rem;
+      position: absolute;
+      left: 25px;
+    }
+
+    .sidebar-footer {
+      padding: 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+
+    .logout-btn {
+      background-color: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ddd;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+
+    .logout-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--secondary-color);
+      border-color: var(--secondary-color);
+    }
+
+    .logout-btn i {
+      margin-left: 8px;
+    }
+
+    /* المحتوى الرئيسي */
+    .main-content {
+      flex-grow: 1;
+      padding: 30px;
+      overflow-y: auto;
+      background-image: url('../image2/background.jpg');
+      background-size: cover;       /* عشان تغطي كامل العنصر */
+      background-position: center;  /* عشان تتركز الصورة */
+      background-repeat: no-repeat;    }
+
+    .content-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .content-header h2 {
+
+      color:#f8f4f0;
+      font-weight: 600;
+      font-size: 1.8rem;
+    }
+
+    .notification-icon {
+      position: relative;
+      cursor: pointer;
+      color: var(--dark-color);
+      font-size: 1.2rem;
+    }
+
+    .notification-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background-color: var(--danger-color);
+      color: white;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+    }
+
+    /* بطاقات المحتوى */
+    .content-card {
+      color: #f8f4f0;
+      background-color: #0B1315;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, .8);
+      padding: 25px;
+      margin-bottom: 30px;
+
+    }
+
+    /* نموذج تعديل الملف الشخصي */
+    .profile-form .form-group {
+      margin-bottom: 20px;
+    }
+
+    .profile-form label {
+      display: block;
+      margin-bottom: 8px;
+      color: #FFFFFF;
+      font-weight: 500;
+      font-family: 'Cormorant', serif !important;
+
+    }
+
+
+
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 30px;
+    }
+
+    .btn {
+      padding: 10px 25px;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+      font-size: 0.95rem;
+      border-color: #e6d6b1 !important;
+      box-shadow: 0 0 0 2px rgba(230,214,177,0.2) !important;
+    }
+
+    .btn-primary {
+      background-color: transparent;
+      color: white;
+    }
+
+
+
+    .btn-outline {
+      background-color: transparent;
+      margin-left: 15px;
+      color: #FFFFFF;
+    }
+
+
+
+    /* قائمة الحجوزات */
+    .booking-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .booking-card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      padding: 20px;
+      border-left: 4px solid var(--primary-color);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .booking-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .booking-card h3 {
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+
+    .booking-detail {
+      display: flex;
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    .booking-detail i {
+      color: var(--primary-color);
+      margin-left: 10px;
+      width: 20px;
+      text-align: center;
+    }
+
+    .booking-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+
+    .btn-danger {
+      background-color: var(--danger-color);
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background-color: #d32f2f;
+    }
+
+    /* صفحة تسجيل الخروج */
+    .logout-container {
+      max-width: 500px;
+      margin: 50px auto;
+      text-align: center;
+    }
+
+    .logout-icon {
+      font-size: 4rem;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+
+    .logout-message {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #555;
+    }
+
+    /* تأثيرات إضافية */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .content-card {
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    /* تصميم متجاوب */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        height: auto;
+      }
+
+      .sidebar-menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .menu-item {
+        padding: 10px 15px;
+        margin: 5px;
+        border-radius: 5px;
+      }
+
+      .menu-item.active {
+        border-right: none;
+        border-bottom: 3px solid var(--secondary-color);
+      }
+
+      .main-content {
+        padding: 20px;
+      }
+    }
+    .fas.fa-bell {
+      color: white;
+    }
+    .profile-form .form-group input {
+      width: 100% !important;
+      padding: 15px 20px !important;
+      background-color: rgba(11, 19, 21, 0.8) !important;
+      color: white !important;
+      font-family: 'Cormorant', serif !important;
+      font-size: 18px !important;
+      border-radius: 4px !important;
+      transition: all 0.3s ease !important;
+    }
+
+    .profile-form .form-group input:focus {
+    outline: none !important;
+    border-color: #e6d6b1 !important;
+    box-shadow: 0 0 0 2px rgba(230,214,177,0.2) !important;}
+
+  </style>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-header">
+    <h2>لوحة التحكم</h2>
+    <div class="user-info">
+      <div class="user-avatar">أ</div>
+      <div class="user-name">آمال أفنان</div>
+    </div>
+  </div>
+
+  <div class="sidebar-menu">
+    <a href="#" class="menu-item active" data-section="profile">
+      <i class="fas fa-user-edit"></i>
+      <span>Edit Profile</span>
+    </a>
+    <a href="#" class="menu-item" data-section="bookings">
+      <i class="fas fa-calendar-alt"></i>
+      <span>حجوزاتي</span>
+      <span class="badge">2</span>
+    </a>
+    <a href="#" class="menu-item" data-section="favorites">
+      <i class="fas fa-heart"></i>
+      <span>المفضلة</span>
+    </a>
+    <a href="#" class="menu-item" data-section="settings">
+      <i class="fas fa-cog"></i>
+      <span>الإعدادات</span>
+    </a>
+    <a href="#" class="menu-item" data-section="messages">
+      <i class="fas fa-envelope"></i>
+      <span>الرسائل</span>
+      <span class="badge">3</span>
+    </a>
+  </div>
+
+  <div class="sidebar-footer">
+    <button class="logout-btn" id="logout-btn">
+      <span>تسجيل الخروج</span>
+      <i class="fas fa-sign-out-alt"></i>
+    </button>
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="content-header">
+    <h2 id="content-title">Edit Profile </h2>
+    <div class="notification-icon">
+      <i class="fas fa-bell"></i>
+      <span class="notification-badge">2</span>
+    </div>
+  </div>
+  <!-- Profile Edit Section -->
+  <div class="content-section" id="profile-section">
+    <div class="content-card">
+
+      <form method="POST" action="../PHP_Project/update_profile.php">
+        <div class="profile-form">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" value="" placeholder="Enter your name">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" value="" placeholder="Enter your email address">
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-outline" type="button" onclick="resetForm()">Cancel</button>
+            <button class="btn btn-primary" type="submit" name="update_profile">Save Changes</button>
+          </div>
+        </div>
+      </form>
+      <div id="profile-message" style="margin-bottom: 10px;"></div>
+
+    </div>
+
+    <div class="content-card" style="margin-top: 20px;">
+      <h3 style="margin-bottom: 20px;">Change Password</h3>
+
+      <form method="POST" action="../PHP_Project/change_password.php" id="change-password-form">
+        <div class="profile-form">
+          <div class="form-group">
+            <label for="current-password">Current Password</label>
+            <input type="password" id="current-password" name="current_password" placeholder="Enter current password">
+          </div>
+
+          <div class="form-group">
+            <label for="new-password">New Password</label>
+            <input type="password" id="new-password" name="new_password" placeholder="Enter new password">
+          </div>
+
+          <div class="form-group">
+            <label for="confirm-password">Confirm New Password</label>
+            <input type="password" id="confirm-password" name="confirm_password" placeholder="Re-enter new password">
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit" name="change_password">Change Password</button>
+          </div>
+        </div>
+      </form>
+      <div id="password-message" style="margin-top: 15px; color: red;"></div>
+
+    </div>
+  </div>
+
+
+  <!-- قسم الحجوزات -->
+  <div class="content-section" id="bookings-section" style="display: none;">
+    <div class="content-card">
+      <h3>الحجوزات القادمة</h3>
+      <div class="booking-list">
+        <div class="booking-card">
+          <h3>حجز مطعم</h3>
+          <div class="booking-detail">
+            <i class="fas fa-calendar-day"></i>
+            <span>السبت، 20 مايو 2025</span>
+          </div>
+          <div class="booking-detail">
+            <i class="fas fa-clock"></i>
+            <span>07:00 مساءً</span>
+          </div>
+          <div class="booking-detail">
+            <i class="fas fa-users"></i>
+            <span>2 أشخاص</span>
+          </div>
+          <div class="booking-detail">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>مطعم اللوفر، الرياض</span>
+          </div>
+          <div class="booking-actions">
+            <button class="btn btn-danger">إلغاء الحجز</button>
+          </div>
+        </div>
+
+        <div class="booking-card">
+          <h3>حجز مطعم</h3>
+          <div class="booking-detail">
+            <i class="fas fa-calendar-day"></i>
+            <span>الثلاثاء، 25 مايو 2025</span>
+          </div>
+          <div class="booking-detail">
+            <i class="fas fa-clock"></i>
+            <span>08:00 مساءً</span>
+          </div>
+          <div class="booking-detail">
+            <i class="fas fa-users"></i>
+            <span>4 أشخاص</span>
+          </div>
+          <div class="booking-detail">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>مطعم النخيل، جدة</span>
+          </div>
+          <div class="booking-actions">
+            <button class="btn btn-danger">إلغاء الحجز</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <h3>الحجوزات السابقة</h3>
+      <p style="color: #777; text-align: center;">لا توجد حجوزات سابقة</p>
+    </div>
+  </div>
+
+  <!-- قسم المفضلة -->
+  <div class="content-section" id="favorites-section" style="display: none;">
+    <div class="content-card">
+      <h3>قائمة المفضلة</h3>
+      <p style="color: #777; text-align: center;">لا توجد عناصر في المفضلة حالياً</p>
+    </div>
+  </div>
+
+  <!-- قسم الإعدادات -->
+  <div class="content-section" id="settings-section" style="display: none;">
+    <div class="content-card">
+      <h3>الإعدادات العامة</h3>
+      <p>هنا يمكنك تعديل إعدادات حسابك وتفضيلاتك الشخصية.</p>
+    </div>
+  </div>
+
+  <!-- قسم الرسائل -->
+  <div class="content-section" id="messages-section" style="display: none;">
+    <div class="content-card">
+      <h3>الرسائل</h3>
+      <p style="color: #777; text-align: center;">لا توجد رسائل جديدة</p>
+    </div>
+  </div>
+
+  <!-- قسم تسجيل الخروج -->
+  <div class="content-section" id="logout-section" style="display: none;">
+    <div class="content-card logout-container">
+      <div class="logout-icon">
+        <i class="fas fa-sign-out-alt"></i>
+      </div>
+      <h3>تسجيل الخروج</h3>
+      <p class="logout-message">هل أنت متأكد من رغبتك في تسجيل الخروج من حسابك؟</p>
+      <div>
+        <button class="btn btn-outline" id="cancel-logout">إلغاء</button>
+        <button class="btn btn-primary" id="confirm-logout">نعم، تسجيل الخروج</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // اختيار العناصر
+  const menuItems = document.querySelectorAll('.menu-item');
+  const contentSections = document.querySelectorAll('.content-section');
+  const contentTitle = document.getElementById('content-title');
+  const logoutBtn = document.getElementById('logout-btn');
+  const cancelLogout = document.getElementById('cancel-logout');
+  const confirmLogout = document.getElementById('confirm-logout');
+
+  // عناوين الأقسام
+  const sectionTitles = {
+    'profile': 'Edit Profile',
+    'bookings': 'حجوزاتي',
+    'favorites': 'المفضلة',
+    'settings': 'الإعدادات',
+    'messages': 'الرسائل',
+    'logout': 'تسجيل الخروج'
+  };
+  function resetForm() {
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+  }
+  // دالة لعرض القسم المحدد
+  function showSection(sectionId) {
+    contentSections.forEach(section => {
+      section.style.display = section.id === `${sectionId}-section` ? 'block' : 'none';
+    });
+
+    // تحديث العنوان
+    contentTitle.textContent = sectionTitles[sectionId];
+
+    // تحديث العنصر النشط في القائمة
+    menuItems.forEach(item => {
+      if (item.dataset.section === sectionId) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+  }
+
+  // استماع للنقر على عناصر القائمة
+  menuItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const sectionId = item.dataset.section;
+      showSection(sectionId);
+    });
+  });
+
+  // استماع للنقر على زر تسجيل الخروج في القائمة الجانبية
+  logoutBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    showSection('logout');
+  });
+
+  // استماع للنقر على زر إلغاء في قسم تسجيل الخروج
+  cancelLogout.addEventListener('click', () => {
+    showSection('profile');
+  });
+
+  // استماع للنقر على زر تأكيد تسجيل الخروج
+  confirmLogout.addEventListener('click', () => {
+    alert('تم تسجيل الخروج بنجاح!');
+    // هنا يمكنك إضافة كود تسجيل الخروج الفعلي
+  });
+
+  // عرض قسم الملف الشخصي عند تحميل الصفحة
+  showSection('profile');
+  document.querySelector('form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+
+    fetch('../PHP_Project/update_profile.php', {
+      method: 'POST',
+      body: formData
+    })
+            .then(res => res.json())
+            .then(data => {
+              const msgDiv = document.getElementById('profile-message');
+              msgDiv.innerHTML = data.message;
+              msgDiv.style.color = (data.status === 'success') ? 'green' : 'red';
+            })
+            .catch(err => {
+              const msgDiv = document.getElementById('profile-message');
+              msgDiv.innerHTML = "Unexpected error occurred.";
+              msgDiv.style.color = 'red';
+              console.error(err);
+            });
+  });document.getElementById("change-password-form").addEventListener("submit", function(e) {
+    e.preventDefault(); // منع الإرسال الافتراضي
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    fetch("../PHP_Project/change_password.php", {
+      method: "POST",
+      body: formData
+    })
+            .then(response => response.json())
+            .then(data => {
+              const messageDiv = document.getElementById("password-message");
+              if (data.status === "success") {
+                messageDiv.style.color = "green";
+              } else {
+                messageDiv.style.color = "red";
+              }
+              messageDiv.innerText = data.message;
+            })
+            .catch(error => {
+              document.getElementById("password-message").innerText = "Unexpected error occurred.";
+            });
+  });
+</script>
+
+</body>
+</html>

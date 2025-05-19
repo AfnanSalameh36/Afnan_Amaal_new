@@ -1,16 +1,19 @@
-global$conn; global$conn; // signup.php
 <?php
+global $conn;
 session_start();
 include("db_connection.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    echo "📥 POST Received<br>";
+    $name = isset($_POST['signup_name']) ? $_POST['signup_name'] : '';
+    $email = isset($_POST['signup_email']) ? $_POST['signup_email'] : '';
+    $password = isset($_POST['signup_password']) ? $_POST['signup_password'] : '';
 
-    $name = $_POST['signup_name'];
-    $email = $_POST['signup_email'];
-    $password = $_POST['signup_password'];
+    if (empty($name) || empty($email) || empty($password)) {
+        echo "يرجى تعبئة جميع الحقول.";
+        exit;
+    }
 
-    // تحقق من وجود الإيميل
+    // تحقق من وجود الإيميل مسبقاً
     $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -27,8 +30,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sss", $name, $email, $hashed_password);
 
     if ($stmt->execute()) {
-        $_SESSION['user'] = $name;
-        echo "✅ تم التسجيل بنجاح!";
+        $newUserId = $stmt->insert_id;
+
+        $_SESSION['user'] = [
+            'id' => $newUserId,
+            'name' => $name,
+            'email' => $email
+        ];
+
         header("Location: ../HTML_Project/index.html");
         exit;
     } else {
