@@ -1,5 +1,12 @@
 <?php
+
 session_start();
+
+//if (!isset($_SESSION['user'])) {
+//
+//    header("Location:../HTML_Project/login.html");
+//    exit;
+//}
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
