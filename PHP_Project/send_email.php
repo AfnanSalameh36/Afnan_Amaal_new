@@ -2,12 +2,11 @@
 
 session_start();
 
-//if (!isset($_SESSION['user'])) {
-//
-//    header("Location:../HTML_Project/login.html");
-//    exit;
-//}
 
+if (!isset($_SESSION['user'])) {
+    echo json_encode(["success" => false, "message" => "الرجاء تسجيل الدخول للتتمكن من الحجز"]);
+    exit;
+}
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -18,7 +17,7 @@ require 'PHPMailer/Exception.php';
 header('Content-Type: application/json; charset=utf-8');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
+    $email = $_SESSION['user']['email'];
     $date = $_POST['date'];
     $time = $_POST['time'];
     $guests = intval($_POST['guests']);

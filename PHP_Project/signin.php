@@ -20,7 +20,10 @@ if ($result->num_rows === 1) {
 
     // تحقق من كلمة المرور
     if (password_verify($password, $user['password'])) {
-        $_SESSION['user'] = $user['name'];
+        $_SESSION['user'] = [
+            'name' => $user['name'],
+            'email' => $user['email']
+        ];
         header("Location: ../HTML_Project/index.html");
         exit;
     } else {
