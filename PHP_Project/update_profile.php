@@ -1,10 +1,8 @@
 <?php
 session_start();
-
-global $conn;
-
-include("db_connection.php");
 header('Content-Type: application/json');
+include("db_connection.php");
+global $conn;
 
 if (!isset($_SESSION['user']['id'])) {
     echo json_encode(["status" => "error", "message" => "You must be logged in first."]);
@@ -30,7 +28,6 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("si", $email, $userId);
 $stmt->execute();
 $result = $stmt->get_result();
-
 if ($result->num_rows > 0) {
     echo json_encode(["status" => "error", "message" => "Email is already used by another user."]);
     exit;
@@ -43,9 +40,17 @@ $updateStmt->bind_param("ssi", $name, $email, $userId);
 if ($updateStmt->execute()) {
     $_SESSION['user']['name'] = $name;
     $_SESSION['user']['email'] = $email;
-    echo json_encode(["status" => "success", "message" => "Profile updated successfully!"]);
+
+    if (!isset($_SESSION['notifications'])) {
+        $_SESSION['notifications'] = [];
+    }
+
+    $_SESSION['notifications'][] = "تم تعديل معلومات الحساب بنجاح.";
+
+
+    echo json_encode(["status" => "success", "message" => "تم تعديل معلوماتك بنجاح!"]);
 } else {
-    echo json_encode(["status" => "error", "message" => "An error occurred during update."]);
+    echo json_encode(["status" => "error", "message" => "حدث خطأ أثناء التحديث."]);
 }
 exit;
 ?>

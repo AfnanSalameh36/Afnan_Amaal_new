@@ -724,6 +724,75 @@
               document.getElementById("password-message").innerText = "Unexpected error occurred.";
             });
   });
+  function fetchNotifications() {
+    fetch('../PHP_Project/get_notifications.php')
+            .then(response => response.json())
+            .then(data => {
+              const badge = document.querySelector('.notification-badge');
+              badge.textContent = data.count;
+              badge.style.display = data.count > 0 ? 'inline-block' : 'none';
+
+              const messagesCard = document.querySelector('#messages-section .content-card');
+              if (data.count === 0) {
+                messagesCard.innerHTML = `<h3>الرسائل</h3><p style="color:#777; text-align:center;">لا توجد رسائل جديدة</p>`;
+              } else {
+                let html = '<h3>الرسائل</h3><ul>';
+                data.notifications.forEach(msg => {
+                  html += `<li>${msg}</li>`;
+                });
+                html += '</ul>';
+                messagesCard.innerHTML = html;
+              }
+            });
+  }
+
+  // يتم استدعاؤها عند فتح الصفحة
+  fetchNotifications();
+  setInterval(fetchNotifications, 5000);
+
+  // عند الضغط على رمز الإشعارات
+  document.querySelector('.notification-icon').addEventListener('click', () => {
+    // إظهار قسم الرسائل
+    showSection('messages');
+
+    // تحديث عرض الرسائل
+    fetchNotifications();
+
+    // إخفاء الرقم من فوق الجرس
+    const badge = document.querySelector('.notification-badge');
+    badge.textContent = '';
+    badge.style.display = 'none';
+  });
+
+
+  document.getElementById('profile-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+
+    fetch('../PHP_Project/update_profile.php', {
+      method: 'POST',
+      body: formData
+    })
+            .then(res => res.json())
+            .then(data => {
+              const msgDiv = document.getElementById('profile-message');
+              msgDiv.innerHTML = data.message;
+              msgDiv.style.color = (data.status === 'success') ? 'green' : 'red';
+
+              if (data.status === 'success') {
+                fetchNotifications(); // حتى يظهر الرقم الجديد
+              }
+            })
+            .catch(err => {
+              const msgDiv = document.getElementById('profile-message');
+              msgDiv.innerHTML = "Unexpected error occurred.";
+              msgDiv.style.color = 'red';
+              console.error(err);
+            });
+  });
+
+
 </script>
 
 </body>
