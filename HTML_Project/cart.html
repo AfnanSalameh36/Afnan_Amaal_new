@@ -283,12 +283,67 @@
         <td class="price2">	£167.00</td>
     </tr>
 
-    <tr>
-      <td colspan="2" style="border-bottom: none"> <button class="button">Proceed To Checkout</button> </td>
-    </tr>
 </table>
 
+<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+
+<div class="backgroundForCheckout">
+    <div class="containerForForm">
+        <form method="get" action="">
+            <table class="tableForCheckout">
+                <tr>
+                    <td colspan="2"><p class="statementOfCheckout">Checkout</p></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="name" placeholder="First Name" required autocomplete="off" style="width: 150px;"></td>
+                    <td><input type="text" name="name" placeholder="Last Name" required autocomplete="off" style="width: 150px;"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="tel" name="phoneNum" placeholder="Phone Number" required autocomplete="off" style="width: 320px;"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="text" name="name" placeholder="Address" required autocomplete="off" style="width: 320px;"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <select class="custom-select" id="city-select" onchange="changeSelectColor(this)">
+                            <option value="" disabled selected hidden class="placeholder-option">City</option>
+                            <option value="Nablus">Nablus</option>
+                            <option value="Ramallah">Ramallah</option>
+                            <option value="Bethlehem">Bethlehem</option>
+                            <option value="Jenin">Jenin</option>
+                            <option value="Tulkarm">Tulkarm</option>
+                            <option value="Qalqilya">Qalqilya</option>
+                            <option value="Salfit">Salfit</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" style="border-bottom: none"> <button class="button">Place order</button> </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    function changeSelectColor(select) {
+        if (select.value === "") {
+            select.classList.remove("selected");
+            select.style.color = "#6c757d"; // Placeholder gray
+        } else {
+            select.classList.add("selected");
+            select.style.color = "#cccccc"; // Selected color
+        }
+    }
+</script>
+
 <script src="../JAVAS_Project/cart.js"></script>
+
+
+
 <!--*********************************************************************************************-->
 <footer class="golden-footer">
     <div class="footer-waves">

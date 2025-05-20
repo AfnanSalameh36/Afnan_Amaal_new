@@ -337,7 +337,7 @@ input.quantity::-webkit-outer-spin-button {
     margin-right: 100px;
 }
 .button {
-    background-color: #0B1315; /* Green background */
+    background-color: #0B1315;
     font-family: 'Quicksand', sans-serif;
     font-weight: 500;
     letter-spacing: .20em;
@@ -371,9 +371,80 @@ input.quantity::-webkit-outer-spin-button {
 .inputForCouponCode:focus{
     border: 1px solid #8C7250;
 }
+/*+++++++++++++++++++++++++++++++++++++++++add checkout+++++++++++++++++++++++++++++++++++++*/
 
+div.backgroundForCheckout {
+    display: flex;
+    justify-content: end;
+    background-image: url("../image2/checkout/bgforcheckout.jpg");
+    background-size: cover;
+    /*background-position: center 50px;*/
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    margin-top: 80px;
+}
 
+.containerForForm {
+    background-color: #0B1315;
+    padding: 65px;
+    margin-right: 160px;
+    margin-top: 140px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
+    height: 500px;
+}
 
+.statementOfCheckout {
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    font-size: 40px;
+    color: #8C7250;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+input {
+    background-color: #0B1315;
+    border: 1px solid #8C7250;
+    font-size: 20px;
+    margin: 10px;
+    padding: 7px;
+    cursor: pointer;
+    color: #cccccc;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+select:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.custom-select {
+    width: 320px;
+    background-color: #0B1315;
+    border: 1px solid #8C7250;
+    font-size: 20px;
+    margin: 10px;
+    padding: 7px;
+    cursor: pointer;
+    font-family: 'Josefin Sans', sans-serif;
+    color: #6c757d;
+}
+
+.custom-select.selected {
+    color: #cccccc;
+}
+
+.tableForCheckout button{
+
+    margin-top: 7px;
+    margin-left: 78px;
+}
 
 
 
