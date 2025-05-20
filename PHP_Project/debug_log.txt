@@ -1,0 +1,10 @@
+Array
+(
+    [user] => Array
+        (
+            [id] => 22
+            [name] => enas
+            [email] => enas@gmail.com
+        )
+
+)

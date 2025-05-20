@@ -568,10 +568,10 @@
                     <div class="image-section">
                         <div class="image-section">
 
-                        <img src="../image/bookatable.jpg" alt="Elegant Restaurant Interior" class="featured-image">
-                        <div class="rotated-text">Amaal-Afnan</div>
+                            <img src="../image/bookatable.jpg" alt="Elegant Restaurant Interior" class="featured-image">
+                            <div class="rotated-text">Amaal-Afnan</div>
+                        </div>
                     </div>
-                </div>
                 </div>
 
                 <!!-- نافذة تأكيد الحجز -->
@@ -585,7 +585,7 @@
                             <input type="email" class="email-input" id="guest-email" placeholder="Your email address" required>
                             <button class="confirm-btn" id="confirm-reservation">Confirm Reservation</button>
 
-                    </div>
+                        </div>
                         <div id="login-required-message" style="display:none;">
                             <p>You must be logged in to reserve a table.</p>
                             <button onclick="window.location.href='../HTML_Project/login.html'" class="login-btn">Login Now</button>
@@ -959,7 +959,7 @@ border-color: #8c5050"
     //
     //     // الآن يمكن إرسال البيانات بعد تحويل التاريخ بشكل صحيح
     // });
-        $(document).ready(function() {
+    $(document).ready(function() {
         // Date picker
         $(".date-picker").datepicker({
             dateFormat: 'dd/mm/yy',
@@ -975,170 +975,170 @@ border-color: #8c5050"
 
         // Options
         const peopleOptions = [
-    { value: "1", label: "1 Person" }, { value: "2", label: "2 People" },
-    { value: "3", label: "3 People" }, { value: "4", label: "4 People" },
-    { value: "5", label: "5 People" }, { value: "6", label: "6 People" },
-    { value: "7", label: "7 People" }, { value: "8", label: "8 People" },
-    { value: "9", label: "9 People" }, { value: "10", label: "10 People" },
-    { value: "11", label: "Larger party (10+)" }
+            { value: "1", label: "1 Person" }, { value: "2", label: "2 People" },
+            { value: "3", label: "3 People" }, { value: "4", label: "4 People" },
+            { value: "5", label: "5 People" }, { value: "6", label: "6 People" },
+            { value: "7", label: "7 People" }, { value: "8", label: "8 People" },
+            { value: "9", label: "9 People" }, { value: "10", label: "10 People" },
+            { value: "11", label: "Larger party (10+)" }
         ];
 
         const timeOptions = [
-    { value: "11:00", label: "11:00 am" }, { value: "11:30", label: "11:30 am" },
-    { value: "12:00", label: "12:00 pm" }, { value: "12:30", label: "12:30 pm" },
-    { value: "13:00", label: "01:00 pm" }, { value: "13:30", label: "01:30 pm" },
-    { value: "14:00", label: "02:00 pm" }, { value: "14:30", label: "02:30 pm" },
-    { value: "15:00", label: "03:00 pm" }, { value: "15:30", label: "03:30 pm" },
-    { value: "16:00", label: "04:00 pm" }, { value: "16:30", label: "04:30 pm" },
-    { value: "17:00", label: "05:00 pm" }, { value: "17:30", label: "05:30 pm" },
-    { value: "18:00", label: "06:00 pm" }, { value: "18:30", label: "06:30 pm" },
-    { value: "19:00", label: "07:00 pm" }, { value: "19:30", label: "07:30 pm" },
-    { value: "20:00", label: "08:00 pm" }, { value: "20:30", label: "08:30 pm" },
-    { value: "21:00", label: "09:00 pm" }, { value: "21:30", label: "09:30 pm" },
-    { value: "22:00", label: "10:00 pm" }, { value: "22:30", label: "10:30 pm" },
-    { value: "23:00", label: "11:00 pm" }, { value: "23:30", label: "11:30 pm" }
+            { value: "11:00", label: "11:00 am" }, { value: "11:30", label: "11:30 am" },
+            { value: "12:00", label: "12:00 pm" }, { value: "12:30", label: "12:30 pm" },
+            { value: "13:00", label: "01:00 pm" }, { value: "13:30", label: "01:30 pm" },
+            { value: "14:00", label: "02:00 pm" }, { value: "14:30", label: "02:30 pm" },
+            { value: "15:00", label: "03:00 pm" }, { value: "15:30", label: "03:30 pm" },
+            { value: "16:00", label: "04:00 pm" }, { value: "16:30", label: "04:30 pm" },
+            { value: "17:00", label: "05:00 pm" }, { value: "17:30", label: "05:30 pm" },
+            { value: "18:00", label: "06:00 pm" }, { value: "18:30", label: "06:30 pm" },
+            { value: "19:00", label: "07:00 pm" }, { value: "19:30", label: "07:30 pm" },
+            { value: "20:00", label: "08:00 pm" }, { value: "20:30", label: "08:30 pm" },
+            { value: "21:00", label: "09:00 pm" }, { value: "21:30", label: "09:30 pm" },
+            { value: "22:00", label: "10:00 pm" }, { value: "22:30", label: "10:30 pm" },
+            { value: "23:00", label: "11:00 pm" }, { value: "23:30", label: "11:30 pm" }
         ];
 
         // Autocomplete setup
         $("#people-input").autocomplete({
-        source: peopleOptions,
-        minLength: 0,
-        select: function(event, ui) {
-        $("#people-input").val(ui.item.label);
-        $("#people-value").val(ui.item.value);
-        return false;
-    },
-        focus: function(event, ui) {
-        $("#people-input").val(ui.item.label);
-        return false;
-    }
-    }).on('click', function() {
-        $(this).autocomplete("search", "");
-    });
+            source: peopleOptions,
+            minLength: 0,
+            select: function(event, ui) {
+                $("#people-input").val(ui.item.label);
+                $("#people-value").val(ui.item.value);
+                return false;
+            },
+            focus: function(event, ui) {
+                $("#people-input").val(ui.item.label);
+                return false;
+            }
+        }).on('click', function() {
+            $(this).autocomplete("search", "");
+        });
 
         $("#time-input").autocomplete({
-        source: timeOptions,
-        minLength: 0,
-        select: function(event, ui) {
-        $("#time-input").val(ui.item.label);
-        $("#time-value").val(ui.item.value);
-        return false;
-    },
-        focus: function(event, ui) {
-        $("#time-input").val(ui.item.label);
-        return false;
-    }
-    }).on('click', function() {
-        $(this).autocomplete("search", "");
-    });
+            source: timeOptions,
+            minLength: 0,
+            select: function(event, ui) {
+                $("#time-input").val(ui.item.label);
+                $("#time-value").val(ui.item.value);
+                return false;
+            },
+            focus: function(event, ui) {
+                $("#time-input").val(ui.item.label);
+                return false;
+            }
+        }).on('click', function() {
+            $(this).autocomplete("search", "");
+        });
 
         // Show confirmation modal
         $("#reserve-btn").click(function() {
-        if(!$("#people-value").val() || !$(".date-picker").val() || !$("#time-value").val()) {
-        alert("Please fill in all fields before making a reservation.");
-        return;
-    }
-        $("#confirmation-modal").fadeIn();
-    });
+            if(!$("#people-value").val() || !$(".date-picker").val() || !$("#time-value").val()) {
+                alert("Please fill in all fields before making a reservation.");
+                return;
+            }
+            $("#confirmation-modal").fadeIn();
+        });
 
         // Close modal
         $("#close-modal").click(function() {
-        $("#confirmation-modal").fadeOut();
-    });
+            $("#confirmation-modal").fadeOut();
+        });
 
         // Confirm reservation
-            $("#confirm-reservation").click(function() {
-                const email = $("#guest-email").val().trim();
-                const specialRequest = $("textarea.form-input").val().trim();
+        $("#confirm-reservation").click(function() {
+            const email = $("#guest-email").val().trim();
+            const specialRequest = $("textarea.form-input").val().trim();
 
-                if (!email || !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-                    alert("Please enter a valid email address!");
-                    return;
-                }
+            if (!email || !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                alert("Please enter a valid email address!");
+                return;
+            }
 
-                // تحويل التاريخ
-                const originalDate = $(".date-picker").val();
-                const parts = originalDate.split("/");
-                let formattedDate = originalDate;
-                if (parts.length === 3) {
-                    formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
-                    $("input[name='date']").val(formattedDate);
-                }
+            // تحويل التاريخ
+            const originalDate = $(".date-picker").val();
+            const parts = originalDate.split("/");
+            let formattedDate = originalDate;
+            if (parts.length === 3) {
+                formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+                $("input[name='date']").val(formattedDate);
+            }
 
-                $.ajax({
-                    type: "POST",
-                    url: "../PHP_Project/send_email.php",
-                    data: {
-                        email: email,
-                        date: formattedDate,
-                        time: $("#time-value").val(),
-                        guests: $("#people-value").val(),
-                        special_request: specialRequest
-                    },
-                    dataType: "json",
-                    success: function(response) {
-                        if (response.success) {
-                            // أخفي رسالة تسجيل الدخول لو ظاهرة
-                            $("#login-required-message").hide();
+            $.ajax({
+                type: "POST",
+                url: "../PHP_Project/send_email.php",
+                data: {
+                    email: email,
+                    date: formattedDate,
+                    time: $("#time-value").val(),
+                    guests: $("#people-value").val(),
+                    special_request: specialRequest
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.success) {
+                        // أخفي رسالة تسجيل الدخول لو ظاهرة
+                        $("#login-required-message").hide();
 
-                            $("#confirmed-date").text($(".date-picker").val());
-                            $("#confirmed-time").text($("#time-input").val());
-                            $("#confirmed-guests").text($("#people-input").val());
-                            $("#confirmed-email").text(email);
-                            $("#confirmed-request").text(specialRequest || "None");
+                        $("#confirmed-date").text($(".date-picker").val());
+                        $("#confirmed-time").text($("#time-input").val());
+                        $("#confirmed-guests").text($("#people-input").val());
+                        $("#confirmed-email").text(email);
+                        $("#confirmed-request").text(specialRequest || "None");
 
-                            $("#confirmation-form").fadeOut(function () {
-                                $("#success-message").fadeIn();
+                        $("#confirmation-form").fadeOut(function () {
+                            $("#success-message").fadeIn();
+                        });
+
+                        setTimeout(function () {
+                            $("#confirmation-modal").fadeOut(function () {
+                                $("#confirmation-form").show();
+                                $("#success-message").hide();
+                                $("#guest-email").val("");
+                                $("textarea.form-input").val("");
+                                $("#booking-form")[0].reset();
+                                $("#people-input").val("");
+                                $("#people-value").val("");
+                                $("#time-input").val("");
+                                $("#time-value").val("");
                             });
+                        }, 7000);
 
-                            setTimeout(function () {
-                                $("#confirmation-modal").fadeOut(function () {
-                                    $("#confirmation-form").show();
-                                    $("#success-message").hide();
-                                    $("#guest-email").val("");
-                                    $("textarea.form-input").val("");
-                                    $("#booking-form")[0].reset();
-                                    $("#people-input").val("");
-                                    $("#people-value").val("");
-                                    $("#time-input").val("");
-                                    $("#time-value").val("");
-                                });
-                            }, 7000);
-
-                        } else {
-                            // المستخدم غير مسجل أو حدث خطأ، نظهر رسالة تسجيل الدخول
-                            $("#login-required-message").show();
-                            // إذا بدك تقدر تحط رسالة الخطأ هنا في نص الرسالة مثلا
-                            $("#login-required-message p").text(response.message || "You must be logged in to reserve a table.");
-                            // أخفي باقي النوافذ
-                            $("#confirmation-form").hide();
-                            $("#success-message").hide();
-                        }
-                    },
-                    error: function() {
-                        alert("An error occurred while connecting to the server!");
+                    } else {
+                        // المستخدم غير مسجل أو حدث خطأ، نظهر رسالة تسجيل الدخول
+                        $("#login-required-message").show();
+                        // إذا بدك تقدر تحط رسالة الخطأ هنا في نص الرسالة مثلا
+                        $("#login-required-message p").text(response.message || "You must be logged in to reserve a table.");
+                        // أخفي باقي النوافذ
+                        $("#confirmation-form").hide();
+                        $("#success-message").hide();
                     }
-                });
+                },
+                error: function() {
+                    alert("An error occurred while connecting to the server!");
+                }
             });
+        });
 
         // Close modal when clicking outside
         $(document).mouseup(function(e) {
-        const modal = $("#confirmation-modal");
-        if (!modal.is(e.target) && modal.has(e.target).length === 0) {
-        modal.fadeOut();
-    }
-    });
+            const modal = $("#confirmation-modal");
+            if (!modal.is(e.target) && modal.has(e.target).length === 0) {
+                modal.fadeOut();
+            }
+        });
 
         // وظيفة عرض رسالة تسجيل الدخول
         function showLoginMessage(msg) {
-        $("#confirmation-form").hide();
-        $("#login-required-message").html(`
+            $("#confirmation-form").hide();
+            $("#login-required-message").html(`
             <div class="login-alert-box">
                 <p>${msg || "You must be logged in to reserve a table."}</p>
                 <button onclick="window.location.href='login.php'" class="login-btn">Login Now</button>
             </div>
         `).fadeIn();
-    }
+        }
     });
 </script>
 
