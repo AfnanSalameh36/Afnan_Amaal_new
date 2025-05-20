@@ -586,9 +586,11 @@
                             <button class="confirm-btn" id="confirm-reservation">Confirm Reservation</button>
 
                     </div>
-                        <div class="login-alert-box">
-                            <p>You must be logged in to reserve a table.</p>
-                            <button onclick="window.location.href='../HTML_Project/login.html'" class="login-btn">Login Now</button>
+                        <div id="login-required-message" style="display:none;">
+                            <div class="login-alert-box">
+                                <p>You must be logged in to reserve a table.</p>
+                                <button onclick="window.location.href='../HTML_Project/login.html'" class="login-btn">Login Now</button>
+                            </div>
                         </div>
 
                         <div class="success-message" id="success-message">
