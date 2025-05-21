@@ -523,6 +523,18 @@
 
             const discountObj = generateDiscountCode(attempts);
             saveDiscountCode(discountObj);
+// إرسال الكود إلى قاعدة البيانات
+            fetch('../PHP_Project/save_coupon.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    code: discountObj.code,
+                    discount: discountObj.discount,
+                    user_email: 'dummy@example.com' // سيتم استبداله من السيشن في PHP
+                })
+            });
 
             $('#discount-percent').text(discountObj.discount);
             $('#code').text(discountObj.code);
