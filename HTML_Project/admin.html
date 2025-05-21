@@ -6,6 +6,8 @@
     <title>Golden Bite Dashboard</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -68,6 +70,18 @@
             max-width: 100%;
             height: 250px !important; /* أو أي ارتفاع أصغر من الحالي */
         }
+        #reservationsTableContainer table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid #333;
+        }
+
+        #reservationsTableContainer th,
+        #reservationsTableContainer td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: center;
+        }
 
 
     </style>
@@ -91,7 +105,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="reservations.php">
+                    <a class="nav-link" id="reservationsLink" href="#">
                         <i class="fas fa-calendar-check me-1"></i>Reservations
                     </a>
                 </li>
@@ -158,10 +172,86 @@
 </div>
 <!-- Line Chart --><canvas id="usersLineChart" height="100"></canvas>
 </div>
+
+
+
+
+
+
+
+
+
+<div id="reservationsContent" style="display:none; padding: 20px;">
+    <button id="backToDashboardBtn" class="btn btn-secondary mb-3">رجوع للإحصائيات</button>
+
+
+    <div id="reservationsTableContainer">
+        <!-- هنا سيتم تحميل الجدول -->
+    </div>
+    <!-- مودال التعديل -->
+    <div id="editModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.5); justify-content:center; align-items:center;">
+        <div style="background:#fff; padding:20px; border-radius:8px; width:400px; position:relative;">
+            <h3>تعديل الحجز</h3>
+            <form id="editForm">
+                <input type="hidden" id="editId" />
+                <label>الإيميل:</label><br>
+                <input type="email" id="editEmail" class="form-control" readonly>
+
+                <label>الاسم:</label><br>
+                <input type="text" id="editName" class="form-control" readonly>
+
+                <label>التاريخ:</label><br>
+                <input type="date" id="editDate" required style="width:100%; margin-bottom:10px;" /><br>
+
+                <label>الوقت:</label><br>
+                <input type="time" id="editTime" required style="width:100%; margin-bottom:10px;" /><br>
+
+                <label>عدد الأشخاص:</label><br>
+                <input type="number" id="editGuests" required min="1" style="width:100%; margin-bottom:10px;" /><br>
+
+                <label>ملاحظات:</label><br>
+                <textarea id="editSpecialRequest" rows="3" style="width:100%; margin-bottom:10px;"></textarea><br>
+
+                <button type="submit" style="background:#007bff; color:#fff; padding:8px 15px; border:none; border-radius:5px; cursor:pointer;">حفظ</button>
+                <button type="button" id="closeModal" style="background:#ccc; color:#000; padding:8px 15px; border:none; border-radius:5px; cursor:pointer; margin-left:10px;">إلغاء</button>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- Chart.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
+
+
+
+    document.getElementById('reservationsLink').addEventListener('click', function(e) {
+        e.preventDefault(); // لمنع التنقل بالرابط
+        document.querySelector('.page-wrapper').style.display = 'none'; // نخفي الإحصائيات كلها
+        document.getElementById('reservationsContent').style.display = 'block'; // نعرض محتوى الحجوزات
+    });
+
+    // زر الرجوع للإحصائيات
+    document.getElementById('backToDashboardBtn').addEventListener('click', function() {
+        document.getElementById('reservationsContent').style.display = 'none'; // نخفي الحجوزات
+        document.querySelector('.page-wrapper').style.display = 'block'; // نعيد عرض الإحصائيات
+    });
+
     document.addEventListener("DOMContentLoaded", () => {
         fetch("../PHP_Admin/admin_stats.php")
             .then(res => res.json())
@@ -306,6 +396,149 @@
                 });
             });
     });
+
+
+
+
+    // ===================================================================
+    function renderTable(data) {
+        if (data.length === 0) {
+            document.getElementById('reservationsTableContainer').innerHTML = '<p>لا توجد حجوزات.</p>';
+            return;
+        }
+
+        let html = `<table style="width:100%; border-collapse: collapse; border: 2px solid #333;">
+        <thead><tr>`;
+
+        const columns = ['id', 'email', 'name', 'date', 'time', 'guests', 'special_request'];
+
+        columns.forEach(key => {
+            html += `<th style="border:1px solid #333; padding:8px; text-align:center;">${key}</th>`;
+        });
+
+        html += `<th style="border:1px solid #333; padding:8px; text-align:center;">تعديل</th>
+                 <th style="border:1px solid #333; padding:8px; text-align:center;">حذف</th>
+                 </tr></thead><tbody>`;
+
+        data.forEach(row => {
+            html += '<tr>';
+
+            columns.forEach(key => {
+                html += `<td style="border:1px solid #333; padding:8px; text-align:center;">${row[key]}</td>`;
+            });
+
+            html += `<td style="border:1px solid #333; padding:8px; text-align:center;">
+                        <button class="editBtn" data-id="${row.id}" title="تعديل" style="background:none; border:none; cursor:pointer; font-size:18px; color:#007bff;">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </td>`;
+
+            html += `<td style="border:1px solid #333; padding:8px; text-align:center;">
+                        <button class="deleteBtn" data-id="${row.id}" title="حذف" style="background:none; border:none; cursor:pointer; font-size:18px; color:red;">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </td>`;
+
+            html += '</tr>';
+        });
+
+        html += '</tbody></table>';
+        document.getElementById('reservationsTableContainer').innerHTML = html;
+
+        // حذف
+        document.querySelectorAll('.deleteBtn').forEach(btn => {
+            btn.onclick = () => {
+                if (confirm('هل أنت متأكد من الحذف؟')) {
+                    deleteReservation(btn.dataset.id);
+                }
+            };
+        });
+
+        // تعديل
+        document.querySelectorAll('.editBtn').forEach(btn => {
+            btn.onclick = () => {
+                const row = btn.closest('tr');
+                document.getElementById('editId').value = row.children[0].textContent;
+                document.getElementById('editEmail').value = row.children[1].textContent;
+                document.getElementById('editName').value = row.children[2].textContent;
+                document.getElementById('editDate').value = row.children[3].textContent;
+                document.getElementById('editTime').value = row.children[4].textContent;
+                document.getElementById('editGuests').value = row.children[5].textContent;
+                document.getElementById('editSpecialRequest').value = row.children[6].textContent;
+
+                editModal.style.display = 'flex';
+            };
+        });
+    }
+
+    function fetchReservations() {
+        fetch('../PHP_Admin/reservations.php')
+            .then(res => res.json())
+            .then(data => renderTable(data))
+            .catch(() => {
+                document.getElementById('reservationsTableContainer').innerHTML = 'حدث خطأ أثناء تحميل البيانات';
+            });
+    }
+
+    function deleteReservation(id) {
+        fetch(`../PHP_Admin/delete_reservation.php?id=${id}`, {
+            method: 'GET'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    alert('تم حذف الحجز بنجاح');
+                    fetchReservations();
+                } else {
+                    alert('فشل الحذف');
+                }
+            })
+            .catch(() => {
+                alert('حدث خطأ أثناء الحذف');
+            });
+    }
+
+    // مودال التعديل
+    const editModal = document.getElementById('editModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    closeModalBtn.onclick = () => {
+        editModal.style.display = 'none';
+    };
+
+    // تحديث الحجز
+    document.getElementById('editForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const data = {
+            id: document.getElementById('editId').value.trim(),
+            email: document.getElementById('editEmail').value.trim(),
+            name: document.getElementById('editName').value.trim(),
+            date: document.getElementById('editDate').value,
+            time: document.getElementById('editTime').value,
+            guests: document.getElementById('editGuests').value,
+            special_request: document.getElementById('editSpecialRequest').value.trim(),
+        };
+
+        fetch('../PHP_Admin/update_reservation.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        })
+            .then(res => res.json())
+            .then(resData => {
+                if (resData.success) {
+                    alert('تم تحديث الحجز بنجاح');
+                    editModal.style.display = 'none';
+                    fetchReservations();
+                } else {
+                    alert('حدث خطأ: ' + (resData.message || 'خطأ غير معروف'));
+                }
+            })
+            .catch(() => alert('حدث خطأ في الاتصال بالخادم'));
+    });
+
+    // تحميل الحجوزات عند تحميل الصفحة
+    fetchReservations();
 </script>
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
