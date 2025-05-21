@@ -536,6 +536,8 @@
         <th>Time</th>
         <th>Number of Guests</th>
         <th>Special Request</th>
+        <th>إلغاء الطلب</th> <!-- إذا بدك تضيف عمود الإلغاء -->
+
       </tr>
 
       </thead>
@@ -847,6 +849,8 @@
             <td>${reservation.time}</td>
             <td>${reservation.guests}</td>
             <td>${reservation.special_request || '-'}</td>
+              <td><button onclick="confirmCancel(${reservation.id})">إلغاء الطلب</button></td>
+
           `;
                   tbody.appendChild(row);
                 });
@@ -861,6 +865,33 @@
             });});
 
 
+
+  function confirmCancel(reservationId) {
+    const userName = document.getElementById('name').value; // أو أي مكان فيه الاسم
+
+    if (confirm('هل أنت متأكد من إلغاء هذا الطلب؟')) {
+      fetch('../PHP_Project/cancel_reservation.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id: reservationId, username: userName })
+      })
+              .then(response => response.json())
+              .then(result => {
+                if (result.status === "success") {
+                  alert('تم إلغاء الطلب بنجاح');
+                  loadReservations(); // تحديث الحجوزات
+                } else {
+                  alert('حدث خطأ: ' + result.message);
+                }
+              })
+              .catch(error => {
+                alert('حدث خطأ أثناء التواصل مع الخادم.');
+                console.error(error);
+              });
+    }
+  }
 
 
 

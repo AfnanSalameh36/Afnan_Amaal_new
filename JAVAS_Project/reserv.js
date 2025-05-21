@@ -22,6 +22,8 @@ function loadReservations() {
             <td>${reservation.time}</td>
             <td>${reservation.guests}</td>
             <td>${reservation.special_request || '-'}</td>
+<td><button onclick="confirmCancel(${reservation.id})" aria-label="إلغاء الحجز" style="font-size: 20px; color: red; background: none; border: none; cursor: pointer;">&times;</button></td>
+
           `;
                     tbody.appendChild(row);
                 });
