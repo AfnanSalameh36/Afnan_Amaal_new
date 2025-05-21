@@ -366,7 +366,6 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
                 <li class="dropdown">
                     <a href="login.html" style="   margin-left:90px;"><i class="fas fa-user-plus"></i></a>
                     <ul class="dropdown-content">
-                        <li><a href="admin.html">admin</a></li>
                         <li><a href="acount.html">My Profile</a></li>
                     </ul>
                 </li>
@@ -728,7 +727,7 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
         }
 
         // ==== Login Form AJAX ====
-        const loginForm = document.getElementById("login-form");
+        const loginForm = document.querySelector(".sign-in-form");
         const loginMessage = document.getElementById("login-message");
 
         if (loginForm && loginMessage) {
@@ -737,7 +736,7 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
 
                 const formData = new FormData(this);
 
-                fetch("php/login.php", {
+                fetch("../PHP_Project/signin.php", {
                     method: "POST",
                     body: formData
                 })
@@ -748,7 +747,11 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
 
                         if (data.status === "success") {
                             setTimeout(() => {
-                                window.location.href = "../HTML_Project/index.html";
+                                if (data.role === "admin") {
+                                    window.location.href = "../HTML_Project/admin.html";
+                                } else {
+                                    window.location.href = "../HTML_Project/index.html";
+                                }
                             }, 1000);
                         }
                     })
@@ -759,191 +762,42 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
             });
         }
 
-        // ==== Slider Logic ====
-        const slider = document.getElementById('paperSlider');
-        const slides = document.querySelectorAll('.paper-slide');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const indicatorsContainer = document.getElementById('indicators');
+        // ==== Sign Up Form AJAX ====
+        const signupForm = document.querySelector(".sign-up-form");
+        const signupMessage = document.getElementById("signup-message");
 
-        let currentSlide = 0;
-        const totalSlides = slides.length;
+        if (signupForm && signupMessage) {
+            signupForm.addEventListener("submit", function (e) {
+                e.preventDefault();
 
-        // إنشاء مؤشرات الشرائح
-        slides.forEach((_, index) => {
-            const indicator = document.createElement('div');
-            indicator.classList.add('indicator');
-            if (index === currentSlide) indicator.classList.add('active');
-            indicator.addEventListener('click', () => goToSlide(index));
-            indicatorsContainer.appendChild(indicator);
-        });
+                const formData = new FormData(this);
 
-        const indicators = document.querySelectorAll('.indicator');
+                fetch("../PHP_Project/signup.php", {
+                    method: "POST",
+                    body: formData
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        signupMessage.textContent = data.message;
+                        signupMessage.style.color = data.status === "success" ? "green" : "red";
 
-        function updateSlides() {
-            slides.forEach((slide, index) => {
-                const diff = index - currentSlide;
-                const zIndex = totalSlides - Math.abs(diff);
-
-                if (diff < 0) {
-                    slide.style.transform = `rotate(-5deg) translateY(20px) translateX(${-40 * Math.abs(diff)}px)`;
-                    slide.style.zIndex = zIndex;
-                    slide.style.opacity = 0.8 - (Math.abs(diff) * 0.2);
-                } else if (diff > 0) {
-                    slide.style.transform = `rotate(5deg) translateY(20px) translateX(${40 * diff}px)`;
-                    slide.style.zIndex = zIndex;
-                    slide.style.opacity = 0.8 - (diff * 0.2);
-                } else {
-                    slide.style.transform = 'rotate(0deg) translateY(0)';
-                    slide.style.zIndex = totalSlides;
-                    slide.style.opacity = '1';
-                    slide.style.boxShadow = '0 10px 25px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05)';
-                }
-            });
-
-            indicators.forEach((indicator, index) => {
-                if (index === currentSlide) {
-                    indicator.classList.add('active');
-                } else {
-                    indicator.classList.remove('active');
-                }
+                        if (data.status === "success") {
+                            this.reset();
+                            setTimeout(() => {
+                                window.location.href = '../HTML_Project/index.html';
+                            }, 1500);
+                        }
+                    })
+                    .catch(err => {
+                        signupMessage.textContent = "Something went wrong.";
+                        signupMessage.style.color = "red";
+                    });
             });
         }
 
-        function goToSlide(index) {
-            if (index < 0) index = totalSlides - 1;
-            if (index >= totalSlides) index = 0;
-            currentSlide = index;
-            updateSlides();
-        }
-
-        if (prevBtn) prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
-        if (nextBtn) nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
-
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        if (slider) {
-            slider.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-            }, false);
-
-            slider.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            }, false);
-        }
-
-        function handleSwipe() {
-            if (touchEndX < touchStartX - 50) goToSlide(currentSlide - 1);
-            if (touchEndX > touchStartX + 50) goToSlide(currentSlide + 1);
-        }
-
-        updateSlides();
-        setInterval(() => {
-            goToSlide(currentSlide + 1);
-        }, 5000);
-
-        // ==== Toggle Mobile Menu ====
-        function toggleMobileMenu() {
-            const navbar = document.querySelector('.navbar');
-            navbar.classList.toggle('mobile-active');
-        }
-
-        // ==== Dropdown Menu for Mobile ====
-        const dropdownToggle = document.querySelector('.navbar .dropdown > a');
-        const dropdownContent = document.querySelector('.navbar .dropdown .dropdown-content');
-
-        if (dropdownToggle && dropdownContent) {
-            dropdownToggle.addEventListener('click', function (e) {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    dropdownContent.classList.toggle('show');
-                }
-            });
-        }
-
-        // إغلاق القائمة عند الضغط خارجها
-        document.addEventListener('click', function (event) {
-            const navbar = document.querySelector('.navbar');
-            const mobileIcon = document.querySelector('.mobile-menu-icon');
-            const isClickInsideNavbar = navbar.contains(event.target);
-            const isClickOnIcon = mobileIcon.contains(event.target);
-
-            if (!isClickInsideNavbar && !isClickOnIcon) {
-                navbar.classList.remove('mobile-active');
-            }
-        });
+        // باقي الكود الخاص بالـ slider والقوائم المحمولة (Mobile menu) هنا إذا تحبي تضيفيهم
     });
-    // ==== Sign Up Form AJAX ====
-    const signupForm = document.querySelector(".sign-up-form");
-    const signupMessage = document.getElementById("signup-message");
-
-    if (signupForm && signupMessage) {
-        signupForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-
-            const formData = new FormData(this);
-
-            fetch("../PHP_Project/signup.php", {
-                method: "POST",
-                body: formData
-            })
-                .then(res => res.json())
-                .then(data => {
-                    signupMessage.textContent = data.message;
-                    signupMessage.style.color = data.status === "success" ? "green" : "red";
-
-                    if (data.status === "success") {
-                        this.reset(); // تفريغ النموذج بعد التسجيل الناجح
-                        setTimeout(() => {
-                            window.location.href = '../HTML_Project/index.html';
-                        }, 1500);
-                    }
-                })
-
-                .catch(err => {
-                    signupMessage.textContent = "Something went wrong.";
-                    signupMessage.style.color = "red";
-                });
-        });
-    }
-    // ==== Login Form AJAX ====
-    const loginForm = document.querySelector(".sign-in-form");
-    const loginMessage = document.getElementById("login-message");
-
-    if (loginForm && loginMessage) {
-        loginForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-
-            const formData = new FormData(this);
-
-            fetch("../PHP_Project/signin.php", {
-                method: "POST",
-                body: formData
-            })
-                .then(res => res.json())
-                .then(data => {
-                    loginMessage.textContent = data.message;
-                    loginMessage.style.color = data.status === "success" ? "green" : "red";
-
-                    if (data.status === "success") {
-                        setTimeout(() => {
-                            window.location.href = "../HTML_Project/index.html";
-                        }, 1000); // تأخير صغير للإظهار
-                    }
-                })
-                .catch(err => {
-                    loginMessage.textContent = "Something went wrong.";
-                    loginMessage.style.color = "red";
-                });
-        });
-    }
-
-
 </script>
 
-
-
-</body>
+    </body>
 </html>

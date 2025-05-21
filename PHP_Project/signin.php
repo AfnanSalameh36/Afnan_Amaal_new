@@ -30,10 +30,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user'] = [
                 'id' => $user['id'],
                 'name' => $user['name'],
-                'email' => $user['email']
+                'email' => $user['email'],
+                'role' => $user['role'] // 🟢 ضفنا الدور هنا
             ];
             $response['status'] = 'success';
-            $response['message'] = 'Login successful.';
+
+            if ($user['role'] === 'admin') {
+                $response['message'] = 'Logged in successfully as admin';
+            } else {
+                $response['message'] = 'Logged in successfully as user';
+            }
+
+            $response['role'] = $user['role'];
+
+
         } else {
             $response['status'] = 'error';
             $response['message'] = 'Incorrect password.';
