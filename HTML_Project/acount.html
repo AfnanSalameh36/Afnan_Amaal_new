@@ -553,21 +553,22 @@
       <a href="../HTML_Project/bookatable.html" class="btn btn-primary">Book a new table</a>
     </div>
   </div>
+
+
   <div class="content-section" id="messages-section" style="display: none;">
-    <div class="content-card">
-      <h3>Messages </h3>
-
+    <div class="content-card" id="general-messages">
+      <h3>Messages</h3>
       <p style="color: #777; text-align: center;">No new messages</p>
-
     </div>
-    <div class="content-card">
-      <h3>الحجز </h3>
 
-      <p style="color: #777; text-align: center;">No new messages</p>
-
+    <div class="content-card" id="booking-messages">
+      <h3>الحجز</h3>
+      <p style="color: #777; text-align: center;">لا توجد رسائل حجز</p>
     </div>
 
   </div>
+
+
 
 
 
@@ -906,7 +907,37 @@
     }
   }
 
+// =====================================================
+  function fetchBookingMessages() {
+    fetch('../PHP_Project/get_booking_messages.php')
+            .then(response => response.text())  // اقرأ النص الخام
+            .then(text => {
+              console.log("Raw response text:", text);  // اطبع الرد الخام
+              try {
+                const data = JSON.parse(text);
+                console.log("Parsed JSON:", data);
+                const bookingSection = document.getElementById('booking-messages');
 
+                if (data.status === "success" && data.messages.length > 0) {
+                  let html = "<h3>الحجز</h3><ul>";
+                  data.messages.forEach(msg => {
+                    html += `<li>${msg}</li>`;
+                  });
+                  html += "</ul>";
+                  bookingSection.innerHTML = html;
+                } else {
+                  bookingSection.innerHTML = `<h3>الحجز</h3><p style="color: #777; text-align: center;">لا توجد رسائل حجز</p>`;
+                }
+              } catch (e) {
+                console.error("Error parsing JSON:", e);
+              }
+            })
+            .catch(error => {
+              console.error('Error fetching booking messages:', error);
+            });
+  }
+
+  document.addEventListener("DOMContentLoaded", fetchBookingMessages);
 
 </script>
 <script src="../JAVAS_Project/reserv.js"></script>

@@ -40,3 +40,30 @@ function loadReservations() {
             console.error(err);
         });
 }
+function fetchBookingMessages() {
+    const bookingSection = document.getElementById('booking-messages');
+    if (!bookingSection) {
+        console.error("العنصر booking-messages غير موجود!");
+        return;
+    }
+
+    fetch('../PHP_Project/get_booking_messages.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success" && data.messages.length > 0) {
+                let html = "<h3>الحجز</h3><ul>";
+                data.messages.forEach(msg => {
+                    html += `<li>${msg}</li>`;
+                });
+                html += "</ul>";
+                bookingSection.innerHTML = html;
+            } else {
+                bookingSection.innerHTML = `<h3>الحجز</h3><p style="color: #777; text-align: center;">لا توجد رسائل حجز</p>`;
+            }
+        })
+        .catch(error => {
+            console.error('خطأ في جلب رسائل الحجز:', error);
+        });
+}
+
+document.addEventListener("DOMContentLoaded", fetchBookingMessages);
