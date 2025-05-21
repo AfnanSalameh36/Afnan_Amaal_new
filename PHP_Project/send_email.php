@@ -71,8 +71,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    $stmt = $conn->prepare("INSERT INTO reservations (email, date, time, guests, special_request) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssis", $email, $date, $time, $guests, $special_request);
+    $user_name = $_SESSION['user']['name'];
+
+    $stmt = $conn->prepare("INSERT INTO reservations (email, date, time, guests, special_request, name) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssiss", $email, $date, $time, $guests, $special_request, $user_name);
+
     if (!$stmt->execute()) {
         echo json_encode(["success" => false, "message" => "Failed to save reservation: " . $stmt->error]);
         $stmt->close();
