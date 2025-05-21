@@ -33,7 +33,6 @@ if ($result->num_rows > 0) {
     echo json_encode(["status" => "error", "message" => "Email is already used by another user."]);
     exit;
 }
-
 // تحديث جدول users
 $updateSql = "UPDATE users SET name = ?, email = ? WHERE id = ?";
 $updateStmt = $conn->prepare($updateSql);
@@ -44,21 +43,28 @@ if ($updateStmt->execute()) {
     $_SESSION['user']['name'] = $name;
     $_SESSION['user']['email'] = $email;
 
-    // تحديث الاسم في جدول الحجوزات
-    $updateReservationSql = "UPDATE reservations SET name = ? WHERE email = ?";
+    // ✅ تحديث الاسم والإيميل في جدول الحجوزات
+    $updateReservationSql = "UPDATE reservations SET name = ?, email = ? WHERE email = ?";
     $updateReservationStmt = $conn->prepare($updateReservationSql);
-    $updateReservationStmt->bind_param("ss", $name, $old_email);
+    $updateReservationStmt->bind_param("sss", $name, $email, $old_email);
     $updateReservationStmt->execute();
     $updateReservationStmt->close();
 
+    // ✅ تحديث الإيميل في جدول الرسائل
+    $updateMessageSql = "UPDATE messages SET user_email = ? WHERE user_email = ?";
+    $updateMessageStmt = $conn->prepare($updateMessageSql);
+    $updateMessageStmt->bind_param("ss", $email, $old_email);
+    $updateMessageStmt->execute();
+    $updateMessageStmt->close();
+
+    // إشعار ناجح
     if (!isset($_SESSION['notifications'])) {
         $_SESSION['notifications'] = [];
     }
-
     $_SESSION['notifications'][] = "Account information updated successfully.";
     echo json_encode(["status" => "success", "message" => "Your information has been successfully updated!"]);
 } else {
     echo json_encode(["status" => "error", "message" => "An error occurred during the update."]);
 }
-exit;
+
 ?>

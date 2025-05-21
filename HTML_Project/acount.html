@@ -68,7 +68,7 @@
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      background-color: var(--primary-color);
+      border-color: var(--primary-color);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -428,15 +428,20 @@
   </style>
 </head>
 <body>
-
 <div class="sidebar">
-  <div class="sidebar-header">
-    <h2>لوحة التحكم</h2>
-    <div class="user-info">
-      <div class="user-avatar">أ</div>
-      <div class="user-name">آمال أفنان</div>
+<div class="sidebar-header">
+  <h2>Dashboard</h2>
+  <div class="user-info">
+    <!-- شعار المطعم بدل الحرف -->
+    <div class="user-avatar">
+      <img src="../image/6.png" alt="Restaurant Logo" style="width: 40px; height: 40px; border-radius: 50%;">
+    </div>
+    <!-- اسم المستخدم من PHP -->
+    <div class="user-name">
+      <?php echo htmlspecialchars($_SESSION['user']['name']); ?>
     </div>
   </div>
+</div>
 
   <div class="sidebar-menu">
     <a href="#" class="menu-item active" data-section="profile">
@@ -446,7 +451,6 @@
     <a href="#" class="menu-item" data-section="bookings">
       <i class="fas fa-calendar-alt"></i>
       <span>My Reservations</span>
-      <span class="badge">2</span>
     </a>
 
     <a href="#" class="menu-item" data-section="messages">
@@ -457,7 +461,7 @@
 
   <div class="sidebar-footer">
     <button class="logout-btn" id="logout-btn">
-      <span>تسجيل الخروج</span>
+      <span> logout   </span>
       <i class="fas fa-sign-out-alt"></i>
     </button>
   </div>
@@ -536,7 +540,7 @@
         <th>Time</th>
         <th>Number of Guests</th>
         <th>Special Request</th>
-        <th>إلغاء الطلب</th> <!-- إذا بدك تضيف عمود الإلغاء -->
+        <th>Cancel Reservation</th> <!-- إذا بدك تضيف عمود الإلغاء -->
 
       </tr>
 
@@ -554,6 +558,13 @@
       <h3>Messages </h3>
 
       <p style="color: #777; text-align: center;">No new messages</p>
+
+    </div>
+    <div class="content-card">
+      <h3>الحجز </h3>
+
+      <p style="color: #777; text-align: center;">No new messages</p>
+
     </div>
 
   </div>
@@ -566,17 +577,16 @@
 
 
 
-<!-- قسم تسجيل الخروج -->
-<div class="content-section" id="logout-section" style="display: none;">
+<!-- قسم تسجيل الخروج --><div class="content-section" id="logout-section" style="display: none;">
   <div class="content-card logout-container">
     <div class="logout-icon">
       <i class="fas fa-sign-out-alt"></i>
     </div>
-    <h3>تسجيل الخروج</h3>
-    <p class="logout-message">هل أنت متأكد من رغبتك في تسجيل الخروج من حسابك؟</p>
+    <h3>Logout</h3>
+    <p class="logout-message">Are you sure you want to log out of your account?</p>
     <div>
-      <button class="btn btn-outline" id="cancel-logout">إلغاء</button>
-      <button class="btn btn-primary" id="confirm-logout">نعم، تسجيل الخروج</button>
+      <button class="btn btn-outline" id="cancel-logout">Cancel</button>
+      <button class="btn btn-primary" id="confirm-logout">Yes, Log Out</button>
     </div>
   </div>
 </div>
@@ -592,12 +602,15 @@
   const cancelLogout = document.getElementById('cancel-logout');
   const confirmLogout = document.getElementById('confirm-logout');
 
+  document.getElementById("confirm-logout").addEventListener("click", function () {
+    window.location.href = "../HTML_Project/out.html"; // أو مسار صفحة الخروج الصحيح عندك
+  });
   // عناوين الأقسام
   const sectionTitles = {
     'profile': 'Edit Profile',
     'bookings': 'My Reservations',
     'messages': 'messages',
-    'logout': 'تسجيل الخروج'
+    'logout': 'logout'
   };
   function resetForm() {
     document.getElementById("name").value = "";

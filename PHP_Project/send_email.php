@@ -1,12 +1,11 @@
 <?php
-
 session_start();
-
 
 if (!isset($_SESSION['user'])) {
     echo json_encode(["success" => false, "message" => "Please log in to complete your reservation"]);
     exit;
 }
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -87,6 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail = new PHPMailer(true);
 
     try {
+        // إعدادات SMTP
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
@@ -119,9 +119,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </html>
 ";
 
-
         $mail->send();
-        echo json_encode(["success" => true, "message" => "Confirmation has been sent to your email!"]);
+
+        // حفظ الرسالة في جدول messages
+        $msg_text = "لقد قمت بعمل حجز بتاريخ $date الساعة $time لعدد $guests ضيوف.";
+
+        $msg_stmt = $conn->prepare("INSERT INTO messages (user_email, message) VALUES (?, ?)");
+        $msg_stmt->bind_param("ss", $email, $msg_text);
+
+        if (!$msg_stmt->execute()) {
+            // نجاح الإيميل والحجز ولكن فشل الحفظ في جدول الرسائل
+            echo json_encode(["success" => true, "message" => "Confirmation sent, but failed to save message: " . $msg_stmt->error]);
+        } else {
+            echo json_encode(["success" => true, "message" => "Confirmation has been sent to your email and message saved!"]);
+        }
+        $msg_stmt->close();
+
     } catch (Exception $e) {
         echo json_encode(["success" => false, "message" => "Failed to send confirmation email: {$mail->ErrorInfo}"]);
     }
