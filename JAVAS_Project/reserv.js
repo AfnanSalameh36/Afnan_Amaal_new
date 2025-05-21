@@ -51,14 +51,15 @@ function fetchBookingMessages() {
         .then(response => response.json())
         .then(data => {
             if (data.status === "success" && data.messages.length > 0) {
-                let html = "<h3>الحجز</h3><ul>";
+                let html = "<h3>Booking Messages</h3><ul>";
                 data.messages.forEach(msg => {
                     html += `<li>${msg}</li>`;
                 });
                 html += "</ul>";
                 bookingSection.innerHTML = html;
             } else {
-                bookingSection.innerHTML = `<h3>الحجز</h3><p style="color: #777; text-align: center;">لا توجد رسائل حجز</p>`;
+                bookingSection.innerHTML = `<h3>Booking</h3><p style="color: #777; text-align: center;">No booking messages</p>`;
+
             }
         })
         .catch(error => {

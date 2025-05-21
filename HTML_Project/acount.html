@@ -455,12 +455,12 @@
 
     <a href="#" class="menu-item" data-section="messages">
       <i class="fas fa-envelope"></i>
-      <span> messages</span>
+      <span> Edit Messages</span>
 
 
     </a>
     <a href="#" class="menu-item" data-section="back">
-      <i class="fas fa-envelope"></i>
+      <i class="fas fa-arrow-left"></i>
       <span> back</span>
     </a>
   </div>
@@ -566,13 +566,13 @@
 
   <div class="content-section" id="messages-section" style="display: none;">
     <div class="content-card" id="general-messages">
-      <h3>Messages</h3>
+      <h3>Edit Messages</h3>
       <p style="color: #777; text-align: center;">No new messages</p>
     </div>
 
     <div class="content-card" id="booking-messages">
-      <h3>الحجز</h3>
-      <p style="color: #777; text-align: center;">لا توجد رسائل حجز</p>
+      <h3>Booking Messages</h3>
+      <p style="color: #777; text-align: center;">There are no booking messages</p>
     </div>
 
   </div>
@@ -1011,34 +1011,35 @@ document.querySelectorAll('.menu-item').forEach(item => {
 
 
 
-  function confirmCancel(reservationId) {
-    const userName = document.getElementById('name').value; // أو أي مكان فيه الاسم
+    function confirmCancel(reservationId) {
+      const userName = document.getElementById('name').value; // or any element containing the username
 
-    if (confirm('هل أنت متأكد من إلغاء هذا الطلب؟')) {
-      fetch('../PHP_Project/cancel_reservation.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ id: reservationId, username: userName })
-      })
-              .then(response => response.json())
-              .then(result => {
-                if (result.status === "success") {
-                  alert('تم إلغاء الطلب بنجاح');
-                  loadReservations(); // تحديث الحجوزات
-                } else {
-                  alert('حدث خطأ: ' + result.message);
-                }
-              })
-              .catch(error => {
-                alert('حدث خطأ أثناء التواصل مع الخادم.');
-                console.error(error);
-              });
+      if (confirm('Are you sure you want to cancel this reservation?')) {
+        fetch('../PHP_Project/cancel_reservation.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ id: reservationId, username: userName })
+        })
+                .then(response => response.json())
+                .then(result => {
+                  if (result.status === "success") {
+                    alert('Reservation cancelled successfully');
+                    loadReservations(); // Refresh reservations
+                  } else {
+                    alert('Error occurred: ' + result.message);
+                  }
+                })
+                .catch(error => {
+                  alert('An error occurred while communicating with the server.');
+                  console.error(error);
+                });
+      }
     }
-  }
 
-// =====================================================
+
+    // =====================================================
   function fetchBookingMessages() {
     fetch('../PHP_Project/get_booking_messages.php')
             .then(response => response.text())  // اقرأ النص الخام
@@ -1050,14 +1051,14 @@ document.querySelectorAll('.menu-item').forEach(item => {
                 const bookingSection = document.getElementById('booking-messages');
 
                 if (data.status === "success" && data.messages.length > 0) {
-                  let html = "<h3>الحجز</h3><ul>";
+                  let html = "<h3>Booking Messages</h3><ul>";
                   data.messages.forEach(msg => {
                     html += `<li>${msg}</li>`;
                   });
                   html += "</ul>";
                   bookingSection.innerHTML = html;
                 } else {
-                  bookingSection.innerHTML = `<h3>الحجز</h3><p style="color: #777; text-align: center;">لا توجد رسائل حجز</p>`;
+                  bookingSection.innerHTML = `<h3>Booking</h3><p style="color: #777; text-align: center;">No booking messages</p>`;
                 }
               } catch (e) {
                 console.error("Error parsing JSON:", e);

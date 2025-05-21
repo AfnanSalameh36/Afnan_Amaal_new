@@ -122,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->send();
 
         // حفظ الرسالة في جدول messages
-        $msg_text = "لقد قمت بعمل حجز بتاريخ $date الساعة $time لعدد $guests ضيوف.";
+        $msg_text = "Your reservation has been made for $guests guest(s) on $date at $time.";
 
         $msg_stmt = $conn->prepare("INSERT INTO messages (user_email, message) VALUES (?, ?)");
         $msg_stmt->bind_param("ss", $email, $msg_text);

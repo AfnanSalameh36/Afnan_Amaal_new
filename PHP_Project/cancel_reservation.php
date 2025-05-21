@@ -34,6 +34,7 @@ $stmt->bind_param("is", $reservationId, $userName); // id = int, name = string
 $stmt->execute();
 
 if ($stmt->affected_rows > 0) {
+
     echo json_encode(["status" => "success"]);
 } else {
     echo json_encode(["status" => "error", "message" => "Reservation not found or not yours"]);
