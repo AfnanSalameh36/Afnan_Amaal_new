@@ -1,10 +1,312 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Bite Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --main-color: #0B1315;
+            --accent-color: #CB9953;
+            --gray-color: #6A5E5C;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+        }
+
+        .navbar {
+            background-color: var(--main-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand, .nav-link {
+            color: white !important;
+            font-weight: 500;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent-color) !important;
+        }
+
+        .dashboard-header {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .dashboard-header h3 {
+            color: var(--main-color);
+        }
+
+        .dashboard-header p {
+            color: var(--gray-color);
+        }
+
+        .content-area {
+            min-height: 300px;
+        }
+        .page-wrapper {
+            transform: scale(0.85); /* تصغير بنسبة 85% */
+            transform-origin: top center; /* يكون التصغير من أعلى الصفحة */
+        }
+
+        @media (max-width: 768px) {
+            .page-wrapper {
+                transform: scale(1); /* على الموبايل ما نصغر */
+            }
+        }
+        canvas {
+            max-width: 100%;
+            height: 250px !important; /* أو أي ارتفاع أصغر من الحالي */
+        }
+
+
+    </style>
 </head>
 <body>
 
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="dashboard.php">
+            <i class="fas fa-utensils me-2"></i>Golden Bite Admin
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="dashboard.php">
+                        <i class="fas fa-chart-line me-1"></i>Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="reservations.php">
+                        <i class="fas fa-calendar-check me-1"></i>Reservations
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="menu.php">
+                        <i class="fas fa-book me-1"></i>Menu
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="shop.php">
+                        <i class="fas fa-store me-1"></i>Shop
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="users.php">
+                        <i class="fas fa-users-cog me-1"></i>Users
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.php">
+                        <i class="fas fa-sign-out-alt me-1"></i>Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="page-wrapper">
+
+<div class="container py-4">
+    <div class="dashboard-header">
+        <h3><i class="fas fa-chart-line me-2"></i>Dashboard</h3>
+        <p class="mb-0">Welcome! You can manage Golden Bite statistics here.</p>
+    </div>
+
+    <!-- Stats Boxes -->
+    <div class="row" id="stats-container">
+        <!-- Boxes will be inserted here by JS -->
+    </div>
+</div>
+<!-- Charts Section -->
+<div class="row mt-4">
+    <!-- Bar Chart -->
+    <div class="col-lg-6 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Reservations Overview</h5>
+                <canvas id="reservationsChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie Chart -->
+    <div class="col-lg-6 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Coupons Usage</h5>
+                <canvas id="couponsChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Line Chart --><canvas id="usersLineChart" height="100"></canvas>
+</div>
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        fetch("../PHP_Admin/admin_stats.php")
+            .then(res => res.json())
+            .then(data => {
+                const stats = [
+                    {
+                        icon: "fa-calendar-day",
+                        label: "Today's Reservations",
+                        value: data.reservations_today,
+                        color: "#CB9953"
+                    },
+                    {
+                        icon: "fa-calendar-week",
+                        label: "This Week's Reservations",
+                        value: data.reservations_week,
+                        color: "#6A5E5C"
+                    },
+                    {
+                        icon: "fa-users",
+                        label: "Total Users",
+                        value: data.users_count,
+                        color: "#0B1315"
+                    },
+                    {
+                        icon: "fa-ticket-alt",
+                        label: "Used Coupons",
+                        value: data.used_coupons,
+                        color: "#CB9953"
+                    },
+                    {
+                        icon: "fa-ticket",
+                        label: "New Coupons",
+                        value: data.new_coupons,
+                        color: "#6A5E5C"
+                    }
+                ];
+
+                const container = document.getElementById("stats-container");
+                stats.forEach(stat => {
+                    const col = document.createElement("div");
+                    col.className = "col-md-6 col-lg-4 mb-4";
+
+                    col.innerHTML = `
+            <div class="card shadow-sm border-0 h-100">
+              <div class="card-body d-flex align-items-center">
+                <div class="me-3">
+                  <i class="fas ${stat.icon} fa-2x" style="color: ${stat.color};"></i>
+                </div>
+                <div>
+                  <h6 class="mb-1">${stat.label}</h6>
+                  <h4 class="mb-0" style="color: var(--main-color); font-weight: bold;">${stat.value}</h4>
+                </div>
+              </div>
+            </div>
+          `;
+                    container.appendChild(col);
+                });
+            })
+            .catch(error => {
+                console.error("Error loading statistics:", error);
+            });
+    });
+    document.addEventListener("DOMContentLoaded", () => {
+        fetch("../PHP_Admin/admin_stats.php")
+            .then(res => res.json())
+            .then(data => {
+                // Bar Chart: Reservations
+                const ctx1 = document.getElementById('reservationsChart').getContext('2d');
+                new Chart(ctx1, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Today', 'This Week'],
+                        datasets: [{
+                            label: 'Reservations',
+                            data: [data.reservations_today, data.reservations_week],
+                            backgroundColor: ['#CB9953', '#6A5E5C']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { display: false }
+                        }
+                    }
+                });
+
+                // Pie Chart: Coupons
+                const ctx2 = document.getElementById('couponsChart').getContext('2d');
+                new Chart(ctx2, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Used Coupons', 'New Coupons'],
+                        datasets: [{
+                            data: [data.used_coupons, data.new_coupons],
+                            backgroundColor: ['#CB9953', '#0B1315']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            });
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch("../PHP_Admin/admin_stats.php")
+            .then(response => response.json())
+            .then(data => {
+                const ctx3 = document.getElementById('usersLineChart').getContext('2d');
+                const usersLabels = Object.keys(data.users_last_week);
+                const usersData = Object.values(data.users_last_week);
+
+                new Chart(ctx3, {
+                    type: 'line',
+                    data: {
+                        labels: usersLabels,
+                        datasets: [{
+                            label: 'New Users',
+                            data: usersData,
+                            fill: false,
+                            borderColor: '#CB9953',
+                            backgroundColor: '#CB9953',
+                            tension: 0.3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { display: true }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
+    });
+</script>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
