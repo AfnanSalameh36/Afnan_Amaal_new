@@ -753,6 +753,46 @@
     fetchNotifications();
 
     // إخفاء الرقم من فوق الجرس
+    // const badge = document.querySelector('.notification-badge');
+    // badge.textContent = '';
+    // badge.style.display = 'none';
+  });
+  let badgeHidden = false;
+
+  function fetchNotifications() {
+    fetch('../PHP_Project/get_notifications.php')
+            .then(response => response.json())
+            .then(data => {
+              const badge = document.querySelector('.notification-badge');
+
+              if (!badgeHidden) {  // فقط إذا لم يتم الضغط على الجرس
+                badge.textContent = data.count;
+                badge.style.display = data.count > 0 ? 'inline-block' : 'none';
+              }
+
+              const messagesCard = document.querySelector('#messages-section .content-card');
+              if (data.count === 0) {
+                messagesCard.innerHTML = `<h3>messages</h3><p style="color:#777; text-align:center;">No new messages</p>`;
+              } else {
+                let html = '<h3>messages</h3><ul>';
+                data.notifications.forEach(msg => {
+                  html += `<li>${msg}</li>`;
+                });
+                html += '</ul>';
+                messagesCard.innerHTML = html;
+              }
+            });
+  }
+
+  fetchNotifications();
+  setInterval(fetchNotifications, 5000);
+
+  document.querySelector('.notification-icon').addEventListener('click', () => {
+    showSection('messages');
+    fetchNotifications();
+
+    // أخفي الرقم وعلّم أنه تم الضغط
+    badgeHidden = true;
     const badge = document.querySelector('.notification-badge');
     badge.textContent = '';
     badge.style.display = 'none';
@@ -938,6 +978,37 @@
   }
 
   document.addEventListener("DOMContentLoaded", fetchBookingMessages);
+  Promise.all([notificationsPromise, bookingMessagesPromise, profileMessagesPromise])
+          .then(([notifCount, bookingCount, profileCount]) => {
+            const totalCount = notifCount + bookingCount + profileCount;
+            localStorage.setItem('notifTotalCount', totalCount); // تخزين العدد
+
+            const notifBadge = document.querySelector('.notification-badge');
+            if (notifBadge) {
+              if (totalCount > 0) {
+                notifBadge.textContent = totalCount;
+                notifBadge.style.display = 'inline-block';
+              } else {
+                notifBadge.textContent = '';
+                notifBadge.style.display = 'none';
+              }
+            }
+          });
+
+  // عند تحميل الصفحة، استرجع الرقم من التخزين
+  window.addEventListener('load', () => {
+    const savedCount = localStorage.getItem('notifTotalCount');
+    const notifBadge = document.querySelector('.notification-badge');
+    if (savedCount && notifBadge) {
+      if (parseInt(savedCount) > 0) {
+        notifBadge.textContent = savedCount;
+        notifBadge.style.display = 'inline-block';
+      } else {
+        notifBadge.textContent = '';
+        notifBadge.style.display = 'none';
+      }
+    }
+  });
 
 </script>
 <script src="../JAVAS_Project/reserv.js"></script>
