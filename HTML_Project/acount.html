@@ -456,6 +456,12 @@
     <a href="#" class="menu-item" data-section="messages">
       <i class="fas fa-envelope"></i>
       <span> messages</span>
+
+
+    </a>
+    <a href="#" class="menu-item" data-section="back">
+      <i class="fas fa-envelope"></i>
+      <span> back</span>
     </a>
   </div>
 
@@ -530,6 +536,9 @@
 
     </div>
   </div>
+
+
+
   <div id="bookings-section" class="content-section" style="display:none;">
     <p id="loading-message">Loading reservations...</p>
     <table id="reservations-table" style="width:100%; border-collapse:collapse; display:none;       box-shadow: 0 5px 15px rgba(0, 0, 0, .8);
@@ -573,30 +582,110 @@
 
 
 
+  <div class="content-section" id="back" style="display: none;">
+    <div class="content-card logout-container">
+      <div class="logout-icon">
+        <i class="fas fa-sign-out-alt"></i>
+      </div>
+
+      <h3>Logout</h3>
+      <p class="logout-message">Are you sure you want to log out of your account?</p>
+      <div>
+        <button class="btn btn-outline" id="cancel-logout1">Cancel</button>
+        <button class="btn btn-primary" id="confirm-logout">Yes, Log Out</button>
+
+      </div>
+    </div>
+  </div>
+
+
+    <!-- محتوى الباك هنا -->
+  <div class="content-section" id="back-section" style="
+  display: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh; /* عشان يتوسّط بالصفحة كلها */
+  padding: 20px;
+">
+
+    <img src="../image/resturans.jpg" alt="Back Icon" style="width: 720px; margin-bottom: 15px;">
+    <h3 style="margin-bottom: 10px; color: #FFFFFF">Back</h3>
+
+    <button class="btn btn-primary" id="return-restaurant-btn" style="margin-bottom: 15px;">
+back    </button>
+
+  </div>
 
 
 
 
 
-<!-- قسم تسجيل الخروج --><div class="content-section" id="logout-section" style="display: none;">
+
+
+
+  <!-- قسم تسجيل الخروج --><div class="content-section" id="logout-section" style="display: none;">
   <div class="content-card logout-container">
     <div class="logout-icon">
       <i class="fas fa-sign-out-alt"></i>
     </div>
+
     <h3>Logout</h3>
     <p class="logout-message">Are you sure you want to log out of your account?</p>
     <div>
       <button class="btn btn-outline" id="cancel-logout">Cancel</button>
-      <button class="btn btn-primary" id="confirm-logout">Yes, Log Out</button>
+      <button class="btn btn-primary" id="confirm-logout1">Yes, Log Out</button>
+
     </div>
   </div>
-</div>
+
 </div>
 
+</div>
+
+
 <script>
+    document.getElementById('confirm-logout1').addEventListener('click', function () {
+    window.location.href = '../HTML_Project/out.html'; // غيّري الرابط حسب مكان صفحة تسجيل الدخول عندك
+  });
+
+document.querySelectorAll('.menu-item').forEach(item => {
+    item.addEventListener('click', e => {
+      e.preventDefault();
+
+      const section = item.getAttribute('data-section');
+
+      // أخفي كل الأقسام
+      document.querySelectorAll('.content-section').forEach(sec => {
+        sec.style.display = 'none';
+      });
+
+      // أظهر القسم المطلوب فقط
+      const sectionToShow = document.getElementById(section + '-section') || document.getElementById(section);
+      if(sectionToShow){
+        sectionToShow.style.display = 'block';
+      }
+
+      // إذا عندك عنوان (مثل h2) تغير حسب القسم
+      const title = item.querySelector('span')?.textContent || '';
+      const contentTitle = document.getElementById('content-title');
+      if(contentTitle && title){
+        contentTitle.textContent = title;
+      }
+    });
+  });
+  document.getElementById('return-restaurant-btn').addEventListener('click', () => {
+    // هنا تكتب الوظيفة التي تريدها، مثلاً الرجوع لصفحة المطعم الرئيسية
+    window.location.href = '../HTML_Project/index.html'; // عدل الرابط حسب موقع الصفحة الرئيسية
+  });
 
   // اختيار العناصر
   const menuItems = document.querySelectorAll('.menu-item');
+
+
+
   const contentSections = document.querySelectorAll('.content-section');
   const contentTitle = document.getElementById('content-title');
   const logoutBtn = document.getElementById('logout-btn');
@@ -611,7 +700,9 @@
     'profile': 'Edit Profile',
     'bookings': 'My Reservations',
     'messages': 'messages',
-    'logout': 'logout'
+    'logout': 'logout',
+    'back': 'back'
+
   };
   function resetForm() {
     document.getElementById("name").value = "";
