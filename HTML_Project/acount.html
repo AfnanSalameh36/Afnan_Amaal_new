@@ -445,7 +445,7 @@
     </a>
     <a href="#" class="menu-item" data-section="bookings">
       <i class="fas fa-calendar-alt"></i>
-      <span>حجوزاتي</span>
+      <span>My Reservations</span>
       <span class="badge">2</span>
     </a>
 
@@ -527,23 +527,24 @@
     </div>
   </div>
   <div id="bookings-section" class="content-section" style="display:none;">
-    <p id="loading-message">جاري تحميل الحجوزات...</p>
+    <p id="loading-message">Loading reservations...</p>
     <table id="reservations-table" style="width:100%; border-collapse:collapse; display:none;       box-shadow: 0 5px 15px rgba(0, 0, 0, .8);
 ">
       <thead>
       <tr>
-        <th>التاريخ</th>
-        <th>الوقت</th>
-        <th>عدد الضيوف</th>
-        <th>الطلب الخاص</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Number of Guests</th>
+        <th>Special Request</th>
       </tr>
+
       </thead>
       <tbody id="reservations-body"></tbody>
     </table>
     <br>
     <br>
     <div style="text-align: center; margin-top: 20px;">
-      <a href="../HTML_Project/bookatable.html" class="btn btn-primary">احجز طاولة جديدة</a>
+      <a href="../HTML_Project/bookatable.html" class="btn btn-primary">Book a new table</a>
     </div>
   </div>
   <div class="content-section" id="messages-section" style="display: none;">
@@ -592,7 +593,7 @@
   // عناوين الأقسام
   const sectionTitles = {
     'profile': 'Edit Profile',
-    'bookings': 'حجوزاتي',
+    'bookings': 'My Reservations',
     'messages': 'messages',
     'logout': 'تسجيل الخروج'
   };
@@ -711,9 +712,9 @@
 
               const messagesCard = document.querySelector('#messages-section .content-card');
               if (data.count === 0) {
-                messagesCard.innerHTML = `<h3>الرسائل</h3><p style="color:#777; text-align:center;">لا توجد رسائل جديدة</p>`;
+                messagesCard.innerHTML = `<h3>messages</h3><p style="color:#777; text-align:center;">No new messages</p>`;
               } else {
-                let html = '<h3>الرسائل</h3><ul>';
+                let html = '<h3>messages</h3><ul>';
                 data.notifications.forEach(msg => {
                   html += `<li>${msg}</li>`;
                 });
@@ -851,13 +852,17 @@
                 });
                 document.getElementById('reservations-table').style.display = 'table';
               } else {
-                document.getElementById('reservations-section').innerHTML = '<p>لا توجد حجوزات حالياً.</p>';
+                document.getElementById('reservations-section').innerHTML = '<p>"There are no reservations at the moment."\n</p>';
               }
             })
             .catch(err => {
-              document.getElementById('reservations-section').innerHTML = '<p>حدث خطأ أثناء جلب الحجوزات.</p>';
+              document.getElementById('reservations-section').innerHTML = '<p>"An error occurred while fetching the reservations.".</p>';
               console.error(err);
             });});
+
+
+
+
 
 </script>
 <script src="../JAVAS_Project/reserv.js"></script>

@@ -119,6 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </html>
 ";
 
+
         $mail->send();
         echo json_encode(["success" => true, "message" => "Confirmation has been sent to your email!"]);
     } catch (Exception $e) {

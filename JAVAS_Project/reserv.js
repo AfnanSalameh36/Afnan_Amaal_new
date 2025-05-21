@@ -28,12 +28,13 @@ function loadReservations() {
                 table.style.display = 'table';
             } else {
                 // إذا ما في حجوزات
-                tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;">لا توجد حجوزات حالياً.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;">There are currently no reservations.</td></tr>`;
                 table.style.display = 'table';
             }
         })
         .catch(err => {
-            loadingMsg.textContent = 'حدث خطأ أثناء جلب الحجوزات.';
+            loadingMsg.textContent = 'An error occurred while fetching the reservations.'
+
             console.error(err);
         });
 }

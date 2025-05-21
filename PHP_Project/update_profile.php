@@ -55,10 +55,10 @@ if ($updateStmt->execute()) {
         $_SESSION['notifications'] = [];
     }
 
-    $_SESSION['notifications'][] = "تم تعديل معلومات الحساب بنجاح.";
-    echo json_encode(["status" => "success", "message" => "تم تعديل معلوماتك بنجاح!"]);
+    $_SESSION['notifications'][] = "Account information updated successfully.";
+    echo json_encode(["status" => "success", "message" => "Your information has been successfully updated!"]);
 } else {
-    echo json_encode(["status" => "error", "message" => "حدث خطأ أثناء التحديث."]);
+    echo json_encode(["status" => "error", "message" => "An error occurred during the update."]);
 }
 exit;
 ?>
