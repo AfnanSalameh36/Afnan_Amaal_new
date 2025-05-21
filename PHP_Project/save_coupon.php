@@ -1,37 +1,54 @@
 <?php
-global $conn;
-include("db_connection.php");
 session_start();
+header('Content-Type: application/json');
+include("db_connection.php");
+global $conn;
 
+// تحقق إذا المستخدم مسجل الدخول
+if (!isset($_SESSION['user']['email'])) {
+    echo json_encode([
+        "status" => "error",
+        "message" => "You must be logged in to receive a discount coupon."
+    ]);
+    exit;
+}
+
+$user_email = $_SESSION['user']['email'];
+
+// استلام البيانات القادمة من fetch
 $data = json_decode(file_get_contents("php://input"), true);
+$code = isset($data['code']) ? $data['code'] : '';
+$discount = isset($data['discount']) ? $data['discount'] : 0;
 
-$code = $data['code'];
-$discount = $data['discount'];
-$email = isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : null;
+if (empty($code) || $discount <= 0) {
+    echo json_encode(["status" => "error", "message" => "Invalid input."]);
+    exit;
+}
 
-if ($email && $code && $discount) {
-    // 🔐 تحقق إذا المستخدم لعب اليوم
-    $today = date('Y-m-d');
-    $stmt = $conn->prepare("SELECT id FROM discount_coupons WHERE user_email = ? AND DATE(created_at) = ?");
-    $stmt->bind_param("ss", $email, $today);
-    $stmt->execute();
-    $result = $stmt->get_result();
+// التحقق هل الكوبون محفوظ مسبقًا لنفس المستخدم بنفس اليوم
+$today = date('Y-m-d');
+$check_sql = "SELECT * FROM discount_coupons WHERE user_email = ? AND DATE(created_at) = ?";
+$stmt = $conn->prepare($check_sql);
+$stmt->bind_param("ss", $user_email, $today);
+$stmt->execute();
+$result = $stmt->get_result();
 
-    if ($result->num_rows > 0) {
-        echo json_encode(["status" => "error", "message" => "You have already played today."]);
-        exit;
-    }
+if ($result->num_rows > 0) {
+    echo json_encode([
+        "status" => "error",
+        "message" => "You have already played today."
+    ]);
+    exit;
+}
 
-    // 💾 احفظ الكوبون
-    $stmt = $conn->prepare("INSERT INTO discount_coupons (code, discount_percent, user_email) VALUES (?, ?, ?)");
-    $stmt->bind_param("sis", $code, $discount, $email);
+// حفظ الكوبون
+$insert_sql = "INSERT INTO discount_coupons (code, discount, user_email, created_at) VALUES (?, ?, ?, NOW())";
+$stmt = $conn->prepare($insert_sql);
+$stmt->bind_param("sis", $code, $discount, $user_email);
 
-    if ($stmt->execute()) {
-        echo json_encode(["status" => "success"]);
-    } else {
-        echo json_encode(["status" => "error", "message" => "DB Error"]);
-    }
+if ($stmt->execute()) {
+    echo json_encode(["status" => "success"]);
 } else {
-    echo json_encode(["status" => "error", "message" => "Missing data"]);
+    echo json_encode(["status" => "error", "message" => "Database error."]);
 }
 ?>
