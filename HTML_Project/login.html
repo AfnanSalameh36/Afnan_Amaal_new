@@ -398,7 +398,7 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
         <div class="box" style="    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7)">
             <div class="inner-box">
                 <div class="forms-wrap">
-                    <form action="../PHP_Project/signin.php" method="POST" autocomplete="off" class="sign-in-form">
+                    <form action="../PHP_Project/signin.php" method="POST" autocomplete="off" class="sign-in-form" id="loginForm">
                         <div class="logo">
                             <img src="../image/6.png" alt="easyclass" />
                             <h4>Golden Restaurant</h4>
@@ -458,7 +458,7 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
 
                     </form>
 
-                    <form action="../PHP_Project/signup.php" method="POST" autocomplete="off" class="sign-up-form">
+                    <form action="../PHP_Project/signup.php" method="POST" autocomplete="off" class="sign-up-form" >
                         <div class="logo">
                             <img src="../image/6.png" alt="easyclass" />
                             <h4>Golden Restaurant</h4>
@@ -697,6 +697,7 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
         </div>
     </footer>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -896,7 +897,11 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
                     if (data.status === "success") {
                         this.reset(); // تفريغ النموذج بعد التسجيل الناجح
                         setTimeout(() => {
-                            window.location.href = '../HTML_Project/index.html';
+                            if (data.role === "admin") {
+                                window.location.href = '../HTML_Project/admin.html'; // 🟢 توجيه الأدمن
+                            } else {
+                                window.location.href = '../HTML_Project/index.html'; // 🔵 توجيه المستخدم العادي
+                            }
                         }, 1500);
                     }
                 })
@@ -925,19 +930,52 @@ background-image: url('../image2/background.jpg'); background-size: cover; backg
                 .then(data => {
                     loginMessage.textContent = data.message;
                     loginMessage.style.color = data.status === "success" ? "green" : "red";
-
                     if (data.status === "success") {
+                        this.reset(); // تفريغ النموذج بعد النجاح
+
                         setTimeout(() => {
-                            window.location.href = "../HTML_Project/index.html";
-                        }, 1000); // تأخير صغير للإظهار
-                    }
-                })
+                            if (data.role === "admin") {
+                                window.location.href = '../HTML_Project/admin.html'; // 🟢 توجيه الأدمن
+                            } else {
+                                window.location.href = '../HTML_Project/index.html'; // 🔵 توجيه المستخدم العادي
+                            }
+                        }, 1500);
+                    }})
+
                 .catch(err => {
                     loginMessage.textContent = "Something went wrong.";
                     loginMessage.style.color = "red";
                 });
         });
     }
+    $(document).ready(function () {
+        $('#loginForm').on('submit', function (e) {
+            e.preventDefault();
+
+            const formData = $(this).serialize();
+
+            $.ajax({
+                type: 'POST',
+                url: '../PHP_Project/signin.php',
+                data: formData,
+                dataType: 'json',
+                success: function (response) {
+                    if (response.status === 'success') {
+                        if (response.role === 'admin') {
+                            window.location.href = '../HTML_Project/admin.html'; // ✅ صفحة الأدمن
+                        } else {
+                            window.location.href = '../HTML_Project/index.html'; // ✅ صفحة المستخدم العادي
+                        }
+                    } else {
+                        alert(response.message); // خطأ في تسجيل الدخول
+                    }
+                },
+                error: function () {
+                    alert('An error occurred while processing the login.');
+                }
+            });
+        });
+    });
 
 
 </script>
