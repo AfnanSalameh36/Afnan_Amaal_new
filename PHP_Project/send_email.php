@@ -13,6 +13,7 @@ require 'PHPMailer/PHPMailer.php';
 require 'PHPMailer/SMTP.php';
 require 'PHPMailer/Exception.php';
 
+
 header('Content-Type: application/json; charset=utf-8');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
