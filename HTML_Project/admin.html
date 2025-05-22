@@ -83,6 +83,11 @@
             text-align: center;
         }
 
+        #usersTable, #usersTable th, #usersTable td {
+            border: 1px solid #333; /* نوع الحدود ولونها */
+            border-collapse: collapse; /* حتى تكون الحدود متصلة */
+            padding: 8px; /* تباعد داخل الخلايا */
+        }
 
     </style>
 </head>
@@ -231,7 +236,7 @@
             <th>password</th>
             <th>created_at</th>
             <th>role</th>
-            <th>حذف</th>
+            <th>delete</th>
         </tr>
         </thead>
         <tbody>
@@ -642,7 +647,12 @@ function loadUsers() {
                         <td>${user.password}</td>
                         <td>${user.created_at}</td>
                         <td>${user.role}</td>
-                        <td><button class="btn btn-danger btn-sm delete-btn" data-id="${user.id}">حذف</button></td>
+                        <td>
+  <button class="btn btn-danger btn-sm delete-btn" data-id="${user.id}">
+    <i class="fas fa-trash-alt"></i>
+  </button>
+</td>
+</button>
                     </tr>
                 `;
             });
