@@ -455,7 +455,7 @@
 
     <a href="#" class="menu-item" data-section="messages">
       <i class="fas fa-envelope"></i>
-      <span> Edit Messages</span>
+      <span> Messages</span>
 
 
     </a>
@@ -564,6 +564,10 @@
   </div>
 
 
+
+
+
+
   <div class="content-section" id="messages-section" style="display: none;">
     <div class="content-card" id="general-messages">
       <h3>Edit Messages</h3>
@@ -575,7 +579,19 @@
       <p style="color: #777; text-align: center;">There are no booking messages</p>
     </div>
 
+    <!-- قسم الردود -->
+    <div class="content-card" id="reply-messages">
+      <h3>Replies</h3>
+      <div id="repliesContainer">
+
+        <p style="color: #777; text-align: center;">There are no replies yet</p>
+      </div>
+    </div>
   </div>
+
+
+
+
 
 
 
@@ -647,6 +663,7 @@ back    </button>
 
 
 <script>
+
     document.getElementById('confirm-logout1').addEventListener('click', function () {
     window.location.href = '../HTML_Project/out.html'; // غيّري الرابط حسب مكان صفحة تسجيل الدخول عندك
   });
@@ -656,6 +673,22 @@ document.querySelectorAll('.menu-item').forEach(item => {
       e.preventDefault();
 
       const section = item.getAttribute('data-section');
+      if (section === 'messages') {
+        const badge = item.querySelector('.badge');
+        if (badge) {
+          badge.textContent = '0';
+          badge.style.display = 'none';
+        }
+
+        const notifBadge = document.querySelector('.notification-badge');
+        if (notifBadge) {
+          notifBadge.textContent = '0';
+          notifBadge.style.display = 'none';
+        }
+
+        // ⭐⭐ الحل هون ⭐⭐
+        loadReplies(); // استدعاء دالة تحميل الردود
+      }
 
       // أخفي كل الأقسام
       document.querySelectorAll('.content-section').forEach(sec => {
@@ -1101,6 +1134,56 @@ document.querySelectorAll('.menu-item').forEach(item => {
       }
     }
   });
+
+// ================================================================
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      return text.replace(/[&<>"']/g, function(match) {
+        const escapeMap = {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        };
+        return escapeMap[match];
+      });
+    }
+
+    function loadReplies() {
+      fetch('../PHP_Project/get_replies.php')
+              .then(response => response.json())
+              .then(data => {
+                const container = document.getElementById('repliesContainer');
+                if (!data || data.length === 0) {
+                  container.innerHTML = '<p style="color: #777; text-align: center;">There are no replies yet</p>';
+                  return;
+                }
+
+                let content = '';
+                data.forEach(item => {
+                  content += `
+          <div class="reply-box">
+            <p><strong>Message:</strong><br>${escapeHtml(item.message)}</p>
+            <p><strong>Sent on:</strong> ${item.message_created}</p>
+            ${item.reply_text ? `
+              <hr>
+              <p><strong>Reply:</strong><br>${escapeHtml(item.reply_text)}</p>
+              <p style="font-size:13px; color:#888;"><i class="fas fa-clock"></i> ${item.reply_created}</p>
+            ` : '<p style="color:#999;">No reply yet</p>'}
+          </div>
+        `;
+                });
+
+                container.innerHTML = content;
+              })
+              .catch(err => {
+                console.error('Error loading replies:', err);
+                document.getElementById('repliesContainer').innerHTML = '<p style="color:red;">Failed to load replies.</p>';
+              });
+    }
+
 
 </script>
 <script src="../JAVAS_Project/reserv.js"></script>

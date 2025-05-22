@@ -127,6 +127,12 @@
                         <i class="fas fa-users-cog me-1"></i> Users
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="messagesLink">
+                        <i class="fas fa-envelope me-1"></i> Messages
+                    </a>
+                </li>
+
             </ul>
         </div>
     </div>
@@ -246,15 +252,56 @@
 </div>
 
 
+
+
+
+
+<!-- قسم عرض الرسائل -->
+<div id="messagesContent" style="display:none; padding: 20px;">
+    <button id="backToDashboardFromMessagesBtn" class="btn btn-secondary mb-3">
+        <i class="fas fa-arrow-left me-1"></i> Back to Dashboard
+    </button>
+
+    <div id="messagesTableContainer">
+        <!-- هنا سيتم تحميل قائمة الرسائل -->
+    </div>
+</div>
+
+<!-- مودال الرد -->
+<div id="replyModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+background: rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index: 9999;">
+    <div style="background:#fff; padding:20px; border-radius:8px; width:450px; position:relative;">
+        <h4 class="mb-3">رد على الرسالة</h4>
+        <form id="replyForm">
+            <input type="hidden" name="message_id" id="message_id" value="">
+
+            <label for="email">البريد الإلكتروني:</label><br>
+            <input type="email" name="email" id="email" readonly><br><br>
+
+            <label for="reply_text">الرد:</label><br>
+            <textarea name="reply_text" id="reply_text" rows="4" required></textarea><br><br>
+
+            <button type="submit">إرسال الرد</button>
+            <button type="button" id="closeReplyModal" style="margin-left: 10px;">إغلاق</button>
+        </form>
+
+        <div id="responseMessage" style="margin-top: 10px;"></div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-
-
-
 
 <!-- Chart.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 <script>
 
@@ -336,6 +383,27 @@ document.getElementById('backToDashboardFromUsersBtn').addEventListener('click',
 
     setActiveNav('dashboardLink');
 });
+// عرض قسم الرسائل
+document.getElementById('messagesLink').addEventListener('click', e => {
+    e.preventDefault();
+    hideAllSections();
+    document.getElementById('messagesContent').style.display = 'block';
+
+    loadMessages(); // راح نكتبها بعد شوي
+    setActiveNav('messagesLink');
+});
+
+// زر الرجوع من الرسائل للداشبورد
+document.getElementById('backToDashboardFromMessagesBtn').addEventListener('click', () => {
+    document.getElementById('messagesContent').style.display = 'none';
+    document.querySelector('.dashboard-header').style.display = 'block';
+    document.getElementById('stats-container').style.display = 'flex';
+    document.querySelector('.row.mt-4').style.display = 'flex';
+    document.getElementById('usersLineChart').style.display = 'block';
+
+    setActiveNav('dashboardLink');
+});
+
 
 // تحديث رابط مفعّل
 function setActiveNav(id) {
@@ -690,6 +758,133 @@ $(document).ready(function() {
         });
     });
 });
+
+
+
+//
+// ==========================================================
+// ==========================================================
+// تحميل الرسائل وعرضها مع زر رد لكل رسالة
+function loadMessages() {
+    $.ajax({
+        url: '../PHP_Admin/get_messages.php',
+        method: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            if (data.length === 0) {
+                $('#messagesTableContainer').html('<p style="color: #777; text-align: center;">لا توجد رسائل جديدة</p>');
+                return;
+            }
+
+            let html = '<table border="1" cellpadding="10" cellspacing="0" width="100%">';
+            html += '<thead><tr><th>الاسم</th><th>البريد الإلكتروني</th><th>الرسالة</th><th>الوقت</th><th>رد</th></tr></thead><tbody>';
+
+            data.forEach(msg => {
+                html += `<tr>
+          <td>${msg.name}</td>
+          <td>${msg.email}</td>
+          <td>${msg.message}</td>
+          <td>${msg.created_at}</td>
+          <td><button class="reply-btn" data-id="${msg.id}" data-email="${msg.email}">رد</button></td>
+        </tr>`;
+            });
+
+            html += '</tbody></table>';
+            $('#messagesTableContainer').html(html);
+        },
+        error: function() {
+            $('#messagesTableContainer').html('<p style="color: red; text-align: center;">فشل تحميل الرسائل</p>');
+        }
+    });
+}
+
+// فتح مودال الرد وملء البيانات
+$(document).on('click', '.reply-btn', function() {
+    const messageId = $(this).data('id');
+    const email = $(this).data('email');
+
+    $('#message_id').val(messageId);
+    $('#email').val(email);
+    $('#reply_text').val('');
+    $('#responseMessage').text('');
+    $('#replyModal').fadeIn();
+});
+
+// إغلاق المودال
+$('#closeReplyModal').click(function() {
+    $('#replyModal').fadeOut();
+});
+
+// إرسال الرد
+$('#replyForm').on('submit', function(e) {
+    e.preventDefault();
+
+    const message_id = $('#message_id').val();
+    const email = $('#email').val();
+    const reply_text = $('#reply_text').val();
+
+    $.ajax({
+        url: '../PHP_Admin/save_reply.php',
+        method: 'POST',
+        dataType: 'json',
+        data: { message_id, email, reply_text },
+        success: function(response) {
+            if (response.status === 'success') {
+                $('#responseMessage').css('color', 'green').text(response.message);
+                $('#reply_text').val('');
+                loadReplies(); // لو عندك دالة لعرض الردود حدّثها
+                $('#replyModal').fadeOut();
+            } else {
+                $('#responseMessage').css('color', 'red').text(response.message);
+            }
+        },
+        error: function() {
+            $('#responseMessage').css('color', 'red').text('حدث خطأ أثناء الإرسال.');
+        }
+    });
+});
+
+// تحميل الردود مع الرسالة الأصلية
+function loadReplies() {
+    $.ajax({
+        url: '../PHP_Project/get_replies.php',
+        method: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            if (data.length === 0) {
+                $('#repliesContainer').html('<p style="color: #777; text-align: center;">لا توجد ردود حتى الآن</p>');
+                return;
+            }
+
+            let content = '';
+            data.forEach(reply => {
+                content += `
+          <div class="reply-box" style="border:1px solid #ddd; padding:15px; margin-bottom:15px; border-radius:8px;">
+            <p><strong>الرسالة الأصلية:</strong><br>${reply.message}</p>
+            <p><strong>الرد المرسل:</strong><br>${reply.reply_text}</p>
+            <p style="font-size:13px; color:#888;"><i class="fas fa-clock"></i> ${reply.created_at}</p>
+          </div>
+        `;
+            });
+
+            $('#repliesContainer').html(content);
+        },
+        error: function() {
+            $('#repliesContainer').html('<p style="color: red; text-align: center;">فشل تحميل الردود.</p>');
+        }
+    });
+}
+
+// عند تحميل الصفحة
+$(document).ready(function() {
+    loadMessages();
+    loadReplies();
+});
+
+
+
+
+
 </script>
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
