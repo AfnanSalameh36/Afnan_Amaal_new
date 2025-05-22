@@ -16,7 +16,7 @@ require 'PHPMailer/Exception.php';
 header('Content-Type: application/json; charset=utf-8');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_SESSION['user']['email'];
+    $email = $_POST['email'];
     $date = $_POST['date'];
     $time = $_POST['time'];
     $guests = intval($_POST['guests']);
