@@ -422,7 +422,16 @@
       font-weight: bold;
       font-size: 16px;
     }
-
+    @keyframes moveSideToSide {
+      0%   { transform: translateX(0); }
+      50%  { transform: translateX(20px); }
+      100% { transform: translateX(0); }
+    }
+    .moving-image {
+      width: 720px;
+      margin-bottom: 15px;
+      animation: moveSideToSide 4s ease-in-out infinite;
+    }
 
 
   </style>
@@ -627,7 +636,7 @@
   padding: 20px;
 ">
 
-    <img src="../image/resturans.jpg" alt="Back Icon" style="width: 720px; margin-bottom: 15px;">
+    <img src="../image/resturans.jpg" alt="Back Icon" class="moving-image">
     <h3 style="margin-bottom: 10px; color: #FFFFFF">Back</h3>
 
     <button class="btn btn-primary" id="return-restaurant-btn" style="margin-bottom: 15px;">
@@ -642,7 +651,8 @@ back    </button>
 
 
 
-  <!-- قسم تسجيل الخروج --><div class="content-section" id="logout-section" style="display: none;">
+  <!-- قسم تسجيل الخروج -->
+  <div class="content-section" id="logout-section" style="display: none;">
   <div class="content-card logout-container">
     <div class="logout-icon">
       <i class="fas fa-sign-out-alt"></i>
@@ -686,7 +696,6 @@ document.querySelectorAll('.menu-item').forEach(item => {
           notifBadge.style.display = 'none';
         }
 
-        // ⭐⭐ الحل هون ⭐⭐
         loadReplies(); // استدعاء دالة تحميل الردود
       }
 

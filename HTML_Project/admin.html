@@ -88,6 +88,19 @@
             border-collapse: collapse; /* حتى تكون الحدود متصلة */
             padding: 8px; /* تباعد داخل الخلايا */
         }
+        #messagesTableContainer table {
+            width: 100%;
+            border-collapse: collapse; /* تدمج حدود الخلايا بشكل مرتب */
+            border: 2px solid #333; /* حد خارجي للجدول */
+        }
+
+        #messagesTableContainer th,
+        #messagesTableContainer td {
+            border: 1px solid #333; /* حدود داخلية للخلايا */
+            padding: 10px;
+            text-align: center;
+        }
+
 
     </style>
 </head>
@@ -182,46 +195,46 @@
 
 
 
-
 <div id="reservationsContent" style="display:none; padding: 20px;">
-    <button id="backToDashboardBtn" class="btn btn-secondary mb-3" style="color: #FFFFFF"></button>
-
+    <button id="backToDashboardBtn" class="btn btn-secondary mb-3" style="color: #FFFFFF">
+        <i class="fas fa-arrow-left me-1"></i> Back to Dashboard
+    </button>
 
     <div id="reservationsTableContainer">
-        <!-- هنا سيتم تحميل الجدول -->
+        <!-- Reservation table will be loaded here -->
     </div>
-    <!-- مودال التعديل -->
+
+    <!-- Edit Modal -->
     <div id="editModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
     background: rgba(0,0,0,0.5); justify-content:center; align-items:center;">
         <div style="background:#fff; padding:20px; border-radius:8px; width:400px; position:relative;">
-            <h3>تعديل الحجز</h3>
+            <h3>Edit Reservation</h3>
             <form id="editForm">
                 <input type="hidden" id="editId" />
-                <label>الإيميل:</label><br>
+
+                <label>Email:</label><br>
                 <input type="email" id="editEmail" class="form-control" readonly>
 
-                <label>الاسم:</label><br>
+                <label>Name:</label><br>
                 <input type="text" id="editName" class="form-control" readonly>
 
-                <label>التاريخ:</label><br>
+                <label>Date:</label><br>
                 <input type="date" id="editDate" required style="width:100%; margin-bottom:10px;" /><br>
 
-                <label>الوقت:</label><br>
+                <label>Time:</label><br>
                 <input type="time" id="editTime" required style="width:100%; margin-bottom:10px;" /><br>
 
-                <label>عدد الأشخاص:</label><br>
+                <label>Number of Guests:</label><br>
                 <input type="number" id="editGuests" required min="1" style="width:100%; margin-bottom:10px;" /><br>
 
-                <label>ملاحظات:</label><br>
+                <label>Special Requests:</label><br>
                 <textarea id="editSpecialRequest" rows="3" style="width:100%; margin-bottom:10px;"></textarea><br>
 
-                <button type="submit" style="background:#007bff; color:#fff; padding:8px 15px; border:none; border-radius:5px; cursor:pointer;">حفظ</button>
-                <button type="button" id="closeModal" style="background:#ccc; color:#000; padding:8px 15px; border:none; border-radius:5px; cursor:pointer; margin-left:10px;">إلغاء</button>
+                <button type="submit" style="background:#007bff; color:#fff; padding:8px 15px; border:none; border-radius:5px; cursor:pointer;">Save</button>
+                <button type="button" id="closeModal" style="background:#ccc; color:#000; padding:8px 15px; border:none; border-radius:5px; cursor:pointer; margin-left:10px;">Cancel</button>
             </form>
-
         </div>
     </div>
-
 </div>
 
 
@@ -231,7 +244,9 @@
 
 
 <div id="usersContent" style="display:none; padding: 20px;">
-    <button id="backToDashboardFromUsersBtn" class="btn btn-secondary mb-3"></button>
+    <button id="backToDashboardFromUsersBtn" class="btn btn-secondary mb-3">
+        <i class="fas fa-arrow-left me-1"></i> Back to Dashboard
+    </button>
 
     <table id="usersTable" class="table">
         <thead>
@@ -266,29 +281,44 @@
         <!-- هنا سيتم تحميل قائمة الرسائل -->
     </div>
 </div>
-
-<!-- مودال الرد -->
-<div id="replyModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
-background: rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index: 9999;">
-    <div style="background:#fff; padding:20px; border-radius:8px; width:450px; position:relative;">
-        <h4 class="mb-3">رد على الرسالة</h4>
+<!-- Reply Modal -->
+<div id="replyModal" style="
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+">
+    <div class="bg-white p-4 rounded shadow" style="width: 450px; position: relative;">
+        <h4 class="mb-3 text-center">Reply to Message</h4>
         <form id="replyForm">
             <input type="hidden" name="message_id" id="message_id" value="">
 
-            <label for="email">البريد الإلكتروني:</label><br>
-            <input type="email" name="email" id="email" readonly><br><br>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Address:</label>
+                <input type="email" name="email" id="email" class="form-control" readonly>
+            </div>
 
-            <label for="reply_text">الرد:</label><br>
-            <textarea name="reply_text" id="reply_text" rows="4" required></textarea><br><br>
+            <div class="mb-3">
+                <label for="reply_text" class="form-label">Your Reply:</label>
+                <textarea name="reply_text" id="reply_text" rows="4" class="form-control" required></textarea>
+            </div>
 
-            <button type="submit">إرسال الرد</button>
-            <button type="button" id="closeReplyModal" style="margin-left: 10px;">إغلاق</button>
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary">Send Reply</button>
+                <button type="button" id="closeReplyModal" class="btn btn-secondary ms-2">Cancel</button>
+            </div>
         </form>
 
-        <div id="responseMessage" style="margin-top: 10px;"></div>
+        <div id="responseMessage" class="mt-3"></div>
     </div>
 </div>
-
 
 
 
@@ -306,6 +336,9 @@ background: rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index
 <script>
 
 
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('replyModal').style.display = 'none';
+    });
 
 //    document.getElementById('reservationsLink').addEventListener('click', function(e) {
 //        e.preventDefault(); // لمنع التنقل بالرابط
@@ -324,10 +357,13 @@ function hideAllSections() {
     document.getElementById('stats-container').style.display = 'none';
     document.querySelector('.row.mt-4').style.display = 'none';  // Charts
     document.getElementById('usersLineChart').style.display = 'none';
+    document.getElementById('replyModal').style.display = 'none'; // مهم إخفاء المودال
 
     document.getElementById('reservationsContent').style.display = 'none';
     document.getElementById('usersContent').style.display = 'none';
+    document.getElementById('messagesContent').style.display = 'none';  // **أضفت هذا السطر**
 }
+
 
 // عرض داشبورد
 document.getElementById('dashboardLink').addEventListener('click', e => {
@@ -337,6 +373,7 @@ document.getElementById('dashboardLink').addEventListener('click', e => {
     document.getElementById('stats-container').style.display = 'flex';
     document.querySelector('.row.mt-4').style.display = 'flex';
     document.getElementById('usersLineChart').style.display = 'block';
+    document.getElementById('replyModal').style.display = 'none'; // هذا مهم
 
     // تعديل تفعيل الروابط بالنافبار
     setActiveNav('dashboardLink');
@@ -348,7 +385,10 @@ document.getElementById('reservationsLink').addEventListener('click', e => {
     hideAllSections();
     document.getElementById('reservationsContent').style.display = 'block';
     setActiveNav('reservationsLink');
+    document.getElementById('replyModal').style.display = 'none'; // هذا مهم
+
 });
+
 
 // عرض قسم المستخدمين
 document.getElementById('usersLink').addEventListener('click', e => {
@@ -359,7 +399,10 @@ document.getElementById('usersLink').addEventListener('click', e => {
     // جلب بيانات المستخدمين (ممكن جلبها من API أو PHP)
     loadUsers();
 
+
     setActiveNav('usersLink');
+    document.getElementById('replyModal').style.display = 'none'; // هذا مهم
+
 });
 
 // زر الرجوع من الحجز للداشبورد
@@ -368,6 +411,8 @@ document.getElementById('backToDashboardBtn').addEventListener('click', () => {
     document.querySelector('.dashboard-header').style.display = 'block';
     document.getElementById('stats-container').style.display = 'flex';
     document.querySelector('.row.mt-4').style.display = 'flex';
+    document.getElementById('replyModal').style.display = 'none'; // هذا مهم
+
     document.getElementById('usersLineChart').style.display = 'block';
 
     setActiveNav('dashboardLink');
@@ -379,6 +424,8 @@ document.getElementById('backToDashboardFromUsersBtn').addEventListener('click',
     document.querySelector('.dashboard-header').style.display = 'block';
     document.getElementById('stats-container').style.display = 'flex';
     document.querySelector('.row.mt-4').style.display = 'flex';
+    document.getElementById('replyModal').style.display = 'none'; // هذا مهم
+
     document.getElementById('usersLineChart').style.display = 'block';
 
     setActiveNav('dashboardLink');
@@ -575,9 +622,10 @@ function setActiveNav(id) {
             html += `<th style="border:1px solid #333; padding:8px; text-align:center;">${key}</th>`;
         });
 
-        html += `<th style="border:1px solid #333; padding:8px; text-align:center;">تعديل</th>
-                 <th style="border:1px solid #333; padding:8px; text-align:center;">حذف</th>
-                 </tr></thead><tbody>`;
+        html += `<th style="border:1px solid #333; padding:8px; text-align:center;">Edit</th>
+         <th style="border:1px solid #333; padding:8px; text-align:center;">Delete</th>
+         </tr></thead><tbody>`;
+
 
         data.forEach(row => {
             html += '<tr>';
@@ -587,16 +635,17 @@ function setActiveNav(id) {
             });
 
             html += `<td style="border:1px solid #333; padding:8px; text-align:center;">
-                        <button class="editBtn" data-id="${row.id}" title="تعديل" style="background:none; border:none; cursor:pointer; font-size:18px; color:#007bff;">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                    </td>`;
+            <button class="editBtn" data-id="${row.id}" title="Edit" style="background:none; border:none; cursor:pointer; font-size:18px; color:#007bff;">
+                <i class="fas fa-edit"></i>
+            </button>
+        </td>`;
 
             html += `<td style="border:1px solid #333; padding:8px; text-align:center;">
-                        <button class="deleteBtn" data-id="${row.id}" title="حذف" style="background:none; border:none; cursor:pointer; font-size:18px; color:red;">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                    </td>`;
+            <button class="deleteBtn" data-id="${row.id}" title="Delete" style="background:none; border:none; cursor:pointer; font-size:18px; color:red;">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+        </td>`;
+
 
             html += '</tr>';
         });
@@ -604,14 +653,15 @@ function setActiveNav(id) {
         html += '</tbody></table>';
         document.getElementById('reservationsTableContainer').innerHTML = html;
 
-        // حذف
+        // Delete
         document.querySelectorAll('.deleteBtn').forEach(btn => {
             btn.onclick = () => {
-                if (confirm('هل أنت متأكد من الحذف؟')) {
+                if (confirm('Are you sure you want to delete?')) {
                     deleteReservation(btn.dataset.id);
                 }
             };
         });
+
 
         // تعديل
         document.querySelectorAll('.editBtn').forEach(btn => {
@@ -630,34 +680,34 @@ function setActiveNav(id) {
         });
     }
 
-    function fetchReservations() {
-        fetch('../PHP_Admin/reservations.php')
-            .then(res => res.json())
-            .then(data => renderTable(data))
-            .catch(() => {
-                document.getElementById('reservationsTableContainer').innerHTML = 'حدث خطأ أثناء تحميل البيانات';
-            });
-    }
+function fetchReservations() {
+    fetch('../PHP_Admin/reservations.php')
+        .then(res => res.json())
+        .then(data => renderTable(data))
+        .catch(() => {
+            document.getElementById('reservationsTableContainer').innerHTML = 'An error occurred while loading the data';
+        });
+}
 
-    function deleteReservation(id) {
-        fetch(`../PHP_Admin/delete_reservation.php?id=${id}`, {
-            method: 'GET'
+function deleteReservation(id) {
+    fetch(`../PHP_Admin/delete_reservation.php?id=${id}`, {
+        method: 'GET'
+    })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                alert('Reservation deleted successfully');
+                fetchReservations();
+            } else {
+                alert('Failed to delete');
+            }
         })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    alert('تم حذف الحجز بنجاح');
-                    fetchReservations();
-                } else {
-                    alert('فشل الحذف');
-                }
-            })
-            .catch(() => {
-                alert('حدث خطأ أثناء الحذف');
-            });
-    }
+        .catch(() => {
+            alert('An error occurred while deleting');
+        });
+}
 
-    // مودال التعديل
+// مودال التعديل
     const editModal = document.getElementById('editModal');
     const closeModalBtn = document.getElementById('closeModal');
     closeModalBtn.onclick = () => {
@@ -680,23 +730,23 @@ function setActiveNav(id) {
 
         fetch('../PHP_Admin/update_reservation.php', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data),
         })
             .then(res => res.json())
             .then(resData => {
                 if (resData.success) {
-                    alert('تم تحديث الحجز بنجاح');
+                    alert('Reservation updated successfully');
                     editModal.style.display = 'none';
                     fetchReservations();
                 } else {
-                    alert('حدث خطأ: ' + (resData.message || 'خطأ غير معروف'));
+                    alert('Error: ' + (resData.message || 'Unknown error'));
                 }
             })
-            .catch(() => alert('حدث خطأ في الاتصال بالخادم'));
+            .catch(() => alert('Error connecting to the server'));
     });
 
-    // تحميل الحجوزات عند تحميل الصفحة
+        // تحميل الحجوزات عند تحميل الصفحة
     fetchReservations();
     // ********************************************************
 function loadUsers() {
@@ -727,33 +777,33 @@ function loadUsers() {
             $('#usersTable tbody').html(tbody);
         },
         error: function() {
-            alert('فشل تحميل بيانات المستخدمين');
+            alert('Failed to load user data');
         }
+
     });
 }
-
 $(document).ready(function() {
     loadUsers();
 
-    // حدث الحذف عند الضغط على زر حذف
+    // Delete event when clicking the delete button
     $('#usersTable').on('click', '.delete-btn', function() {
-        if (!confirm('هل أنت متأكد من حذف المستخدم؟')) return;
+        if (!confirm('Are you sure you want to delete the user?')) return;
 
         let userId = $(this).data('id');
         $.ajax({
-            url: '../PHP_Admin/delete_user.php?id=' + userId,  // رابط ملف الحذف اللي كتبته
+            url: '../PHP_Admin/delete_user.php?id=' + userId,  // Your delete PHP file URL
             method: 'GET',
             dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    alert('تم حذف المستخدم');
-                    loadUsers(); // إعادة تحميل الجدول
+                    alert('User deleted successfully');
+                    loadUsers(); // Reload the table
                 } else {
-                    alert('فشل الحذف: ' + (response.message || 'حدث خطأ'));
+                    alert('Deletion failed: ' + (response.message || 'An error occurred'));
                 }
             },
             error: function() {
-                alert('حدث خطأ أثناء الاتصال بالخادم');
+                alert('Error occurred while communicating with the server');
             }
         });
     });
@@ -765,19 +815,21 @@ $(document).ready(function() {
 // ==========================================================
 // ==========================================================
 // تحميل الرسائل وعرضها مع زر رد لكل رسالة
+// Load messages
 function loadMessages() {
+    $('#messagesTableContainer').html('');
     $.ajax({
         url: '../PHP_Admin/get_messages.php',
         method: 'GET',
         dataType: 'json',
         success: function(data) {
             if (data.length === 0) {
-                $('#messagesTableContainer').html('<p style="color: #777; text-align: center;">لا توجد رسائل جديدة</p>');
+                $('#messagesTableContainer').html('<p style="color: #777; text-align: center;">No new messages</p>');
                 return;
             }
 
             let html = '<table border="1" cellpadding="10" cellspacing="0" width="100%">';
-            html += '<thead><tr><th>الاسم</th><th>البريد الإلكتروني</th><th>الرسالة</th><th>الوقت</th><th>رد</th></tr></thead><tbody>';
+            html += '<thead><tr><th>Name</th><th>Email</th><th>Message</th><th>Time</th><th>Reply</th></tr></thead><tbody>';
 
             data.forEach(msg => {
                 html += `<tr>
@@ -785,7 +837,11 @@ function loadMessages() {
           <td>${msg.email}</td>
           <td>${msg.message}</td>
           <td>${msg.created_at}</td>
-          <td><button class="reply-btn" data-id="${msg.id}" data-email="${msg.email}">رد</button></td>
+<td>
+  <button class="reply-btn" data-id="${msg.id}" data-email="${msg.email}" title="Reply" style="background:none; border:none; cursor:pointer; color:#007bff; font-size:18px;">
+    <i class="fas fa-reply"></i>
+  </button>
+</td>
         </tr>`;
             });
 
@@ -793,12 +849,12 @@ function loadMessages() {
             $('#messagesTableContainer').html(html);
         },
         error: function() {
-            $('#messagesTableContainer').html('<p style="color: red; text-align: center;">فشل تحميل الرسائل</p>');
+            $('#messagesTableContainer').html('<p style="color: red; text-align: center;">Failed to load messages</p>');
         }
     });
 }
 
-// فتح مودال الرد وملء البيانات
+// Open reply modal and fill in data
 $(document).on('click', '.reply-btn', function() {
     const messageId = $(this).data('id');
     const email = $(this).data('email');
@@ -810,12 +866,12 @@ $(document).on('click', '.reply-btn', function() {
     $('#replyModal').fadeIn();
 });
 
-// إغلاق المودال
+// Close modal
 $('#closeReplyModal').click(function() {
     $('#replyModal').fadeOut();
 });
 
-// إرسال الرد
+// Send reply
 $('#replyForm').on('submit', function(e) {
     e.preventDefault();
 
@@ -832,19 +888,19 @@ $('#replyForm').on('submit', function(e) {
             if (response.status === 'success') {
                 $('#responseMessage').css('color', 'green').text(response.message);
                 $('#reply_text').val('');
-                loadReplies(); // لو عندك دالة لعرض الردود حدّثها
+                loadReplies(); // If you have a function to load replies, refresh it
                 $('#replyModal').fadeOut();
             } else {
                 $('#responseMessage').css('color', 'red').text(response.message);
             }
         },
         error: function() {
-            $('#responseMessage').css('color', 'red').text('حدث خطأ أثناء الإرسال.');
+            $('#responseMessage').css('color', 'red').text('An error occurred while sending.');
         }
     });
 });
 
-// تحميل الردود مع الرسالة الأصلية
+// Load replies with the original message
 function loadReplies() {
     $.ajax({
         url: '../PHP_Project/get_replies.php',
@@ -852,7 +908,7 @@ function loadReplies() {
         dataType: 'json',
         success: function(data) {
             if (data.length === 0) {
-                $('#repliesContainer').html('<p style="color: #777; text-align: center;">لا توجد ردود حتى الآن</p>');
+                $('#repliesContainer').html('<p style="color: #777; text-align: center;">No replies yet</p>');
                 return;
             }
 
@@ -860,8 +916,8 @@ function loadReplies() {
             data.forEach(reply => {
                 content += `
           <div class="reply-box" style="border:1px solid #ddd; padding:15px; margin-bottom:15px; border-radius:8px;">
-            <p><strong>الرسالة الأصلية:</strong><br>${reply.message}</p>
-            <p><strong>الرد المرسل:</strong><br>${reply.reply_text}</p>
+            <p><strong>Original Message:</strong><br>${reply.message}</p>
+            <p><strong>Sent Reply:</strong><br>${reply.reply_text}</p>
             <p style="font-size:13px; color:#888;"><i class="fas fa-clock"></i> ${reply.created_at}</p>
           </div>
         `;
@@ -870,17 +926,16 @@ function loadReplies() {
             $('#repliesContainer').html(content);
         },
         error: function() {
-            $('#repliesContainer').html('<p style="color: red; text-align: center;">فشل تحميل الردود.</p>');
+            $('#repliesContainer').html('<p style="color: red; text-align: center;">Failed to load replies.</p>');
         }
     });
 }
 
-// عند تحميل الصفحة
+// On page load
 $(document).ready(function() {
     loadMessages();
     loadReplies();
 });
-
 
 
 
