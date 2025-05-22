@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Golden Restaurants</title>
-  <link rel="stylesheet" href="../CSS_Project/amaal.css">
+  <link rel="stylesheet" href="../CSS_Project/login.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" >
@@ -15,453 +15,314 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;700&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
   <style>
-    :root {
-      --primary-color: #c49871;
-      --secondary-color: #1a1a1a;
-      --text-color: #f5f5f5;
-      --light-text: rgba(245, 245, 245, 0.7);
-      --border-color: rgba(245, 245, 245, 0.3);
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Cormorant', serif;
-      background-color: var(--secondary-color);
-      color: var(--text-color);
-      overflow-x: hidden;
-    }
-    /* نافذة التأكيد */
-    .confirmation-modal {
-      display: none;
+    .back-to-top1 {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.8);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .confirmation-content {
-      background: var(--secondary-color);
-      padding: 40px;
-      max-width: 500px;
-      width: 90%;
-      border: 1px solid var(--primary-color);
-      position: relative;
-      top: 100px;
-      left: 500px;
-      animation: modalFadeIn 0.5s ease;
-    }
-
-    @keyframes modalFadeIn {
-      from { opacity: 0; transform: translateY(-50px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    :root {
-      --primary-color: #8B5A2B;
-      --secondary-color: #D4A76A;
-      --dark-color: #1E1E1E;
-      --light-color: #F5F5F5;
-      --accent-color: #E8C39E;
-      --success-color: #4CAF50;
-      --danger-color: #F44336;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      min-height: 100vh;
-      background-color: #f9f9f9;
-      color: #333;
-    }
-
-    /* القائمة الجانبية */
-    .sidebar {
-      width: 280px;
-      background: linear-gradient(135deg, var(--dark-color), #2a2a2a);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
-      z-index: 10;
-      transition: all 0.3s ease;
-    }
-
-    .sidebar-header {
-      padding: 25px;
-      text-align: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      position: relative;
-    }
-
-    .sidebar-header h2 {
-      font-weight: 600;
-      font-size: 1.5rem;
-      margin-bottom: 5px;
-      color: var(--secondary-color);
-    }
-
-    .sidebar-header .user-info {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 15px;
-    }
-
-    .user-avatar {
-      width: 50px;
-      height: 50px;
+      bottom: 40px;
+      right: 25px;
+      width: 40px;
+      height: 40px;
+      background-color: transparent;
+      color: #8C7250;
+      border: 1px solid #8C7250;
       border-radius: 50%;
-      background-color: var(--primary-color);
+      font-size: 24px;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-left: 15px;
-      color: white;
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
-
-    .user-name {
-      font-size: 0.9rem;
-      color: #eee;
-    }
-
-    .sidebar-menu {
-      padding: 20px 0;
-      flex-grow: 1;
-    }
-
-    .menu-item {
-      display: flex;
-      align-items: center;
-      padding: 15px 25px;
-      margin: 5px 0;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
-      color: #ddd;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      z-index: 999;
+      transition: background-color 0.3s ease;
       text-decoration: none;
     }
-
-    .menu-item:hover {
-      background-color: rgba(255, 255, 255, 0.05);
-      color: var(--secondary-color);
+    .back-to-top1:hover {
+      background-color: #a07f58;
+      color: #0B1315;
+      border: 1px solid #0B1315;
     }
-
-    .menu-item.active {
-      background-color: rgba(139, 90, 43, 0.2);
-      color: var(--secondary-color);
-      border-right: 4px solid var(--secondary-color);
-    }
-
-    .menu-item i {
-      margin-left: 15px;
-      font-size: 1.1rem;
-      width: 24px;
-      text-align: center;
-    }
-
-    .menu-item .badge {
-      background-color: var(--primary-color);
-      color: white;
-      border-radius: 10px;
-      padding: 2px 8px;
-      font-size: 0.7rem;
-      position: absolute;
-      left: 25px;
-    }
-
-    .sidebar-footer {
-      padding: 15px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      text-align: center;
-    }
-
-    .logout-btn {
-      background-color: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #ddd;
-      padding: 8px 20px;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      font-size: 0.9rem;
-    }
-
-    .logout-btn:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-      color: var(--secondary-color);
-      border-color: var(--secondary-color);
-    }
-
-    .logout-btn i {
-      margin-left: 8px;
-    }
-
-    /* المحتوى الرئيسي */
-    .main-content {
-      flex-grow: 1;
-      padding: 30px;
-      overflow-y: auto;
-      background-image: url('../image2/background.jpg');
-      background-size: cover;       /* عشان تغطي كامل العنصر */
-      background-position: center;  /* عشان تتركز الصورة */
-      background-repeat: no-repeat;    }
-
-    .content-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 30px;
-      padding-bottom: 15px;
-      border-bottom: 1px solid #e0e0e0;
-    }
-
-    .content-header h2 {
-
-      color:#f8f4f0;
-      font-weight: 600;
-      font-size: 1.8rem;
-    }
-
-    .notification-icon {
-      position: relative;
-      cursor: pointer;
-      color: var(--dark-color);
-      font-size: 1.2rem;
-    }
-
-    .notification-badge {
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      background-color: var(--danger-color);
-      color: white;
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.6rem;
-    }
-
-    /* بطاقات المحتوى */
-    .content-card {
-      color: #f8f4f0;
-      background-color: #0B1315;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, .8);
-      padding: 25px;
-      margin-bottom: 30px;
-
-    }
-
-    /* نموذج تعديل الملف الشخصي */
-    .profile-form .form-group {
-      margin-bottom: 20px;
-    }
-
-    .profile-form label {
-      display: block;
-      margin-bottom: 8px;
-      color: #FFFFFF;
-      font-weight: 500;
-      font-family: 'Cormorant', serif !important;
-
+    html {
+      scroll-behavior: smooth;
     }
 
 
 
-    .form-actions {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 30px;
-    }
-
-    .btn {
-      padding: 10px 25px;
-      border-radius: 6px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      border: none;
-      font-size: 0.95rem;
-      border-color: #e6d6b1 !important;
-      box-shadow: 0 0 0 2px rgba(230,214,177,0.2) !important;
-    }
-
-    .btn-primary {
-      background-color: transparent;
-      color: white;
-    }
 
 
 
-    .btn-outline {
-      background-color: transparent;
-      margin-left: 15px;
-      color: #FFFFFF;
-    }
 
 
 
-    /* قائمة الحجوزات */
-    .booking-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
-    }
 
-    .booking-card {
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      padding: 20px;
-      border-left: 4px solid var(--primary-color);
-      transition: all 0.3s ease;
-      position: relative;
-    }
 
-    .booking-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    }
 
-    .booking-card h3 {
-      color: var(--primary-color);
-      margin-bottom: 15px;
-      font-size: 1.1rem;
-    }
 
-    .booking-detail {
-      display: flex;
-      margin-bottom: 10px;
-      color: #555;
-    }
 
-    .booking-detail i {
-      color: var(--primary-color);
-      margin-left: 10px;
-      width: 20px;
-      text-align: center;
-    }
 
-    .booking-actions {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 20px;
-    }
 
-    .btn-danger {
-      background-color: var(--danger-color);
-      color: white;
-    }
 
-    .btn-danger:hover {
-      background-color: #d32f2f;
-    }
 
-    /* صفحة تسجيل الخروج */
-    .logout-container {
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .paper-slider-container {
+      width: 100%;
       max-width: 500px;
-      margin: 50px auto;
-      text-align: center;
+      position: relative;
+      height: 500px;
+      margin-top: 30px ;
+      margin-right: auto;
+      margin-left: 200px;
     }
 
-    .logout-icon {
-      font-size: 4rem;
-      color: var(--primary-color);
-      margin-bottom: 20px;
+    .paper-slider {
+      position: relative;
+      width: 100%;
+      height: 100%;
     }
 
-    .logout-message {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
-      color: #555;
+    .paper-slide {
+      position: absolute;
+      width: 80%;
+      height: 90%;
+      background: white;
+      border-radius: 2px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2),
+      0 0 0 1px rgba(0,0,0,0.05),
+      inset 0 -10px 20px -10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      transition: all 0.6s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+      transform-origin: bottom center;
+      cursor: pointer;
     }
 
-    /* تأثيرات إضافية */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    .slide-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
     }
 
-    .content-card {
-      animation: fadeIn 0.5s ease-out;
+    .paper-slide:hover .slide-image {
+      transform: scale(1.05);
     }
 
-    /* تصميم متجاوب */
+    .slider-controls-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+      gap: 30px;
+    }
+
+    /* أسهم التنقل */
+    .slider-arrow {
+      background: none;
+      color: #CB9953;
+      border: none;
+      cursor: pointer;
+      font-size: 28px;
+      transition: all 0.3s;
+      padding: 5px 15px;
+    }
+
+    .slider-arrow:hover {
+      color: #CB9953;
+      transform: scale(1.2);
+    }
+
+    .slider-arrow:active {
+      transform: scale(0.9);
+    }
+
+    /* مؤشرات مربعة */
+    .slide-indicators {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .indicator {
+      width: 8px;
+      height: 8px;
+      background: #ddd;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .indicator.active {
+      background: #CB9953;
+      transform: rotate(45deg) scale(1.2);
+      box-shadow: 0 0 0 2px rgba(203, 153, 83, 0.3)
+
+    }
     @media (max-width: 768px) {
-      body {
+      .paper-slider {
+        height: 40vh;
+        min-height: 200px;
+      }
+
+      .paper-slide {
+        width: 90%;
+        left: 5%;
+        height: 75%;
+        top: 12.5%;
+      }
+
+      .slider-arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+      }
+
+      .indicator {
+        width: 8px;
+        height: 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .paper-slider {
+        height: 35vh;
+        min-height: 180px;
+      }
+      .paper-slider-container {
+        margin: 0 auto;
+        width: 95%;
+      }
+
+      .slider-controls-container {
+        margin-top: 15px;
+        gap: 10px;
+      }
+      .text-content {
+        max-width: 100%;
+        padding: 0 15px;
+        text-align: center;
+      }
+    }
+    .marquee-container {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      background-color: rgba(196, 152, 113, 0.1); /* لون ذهبي خفيف */
+      padding: 15px 0;
+      border-top: 1px solid #c49871;
+      border-bottom: 1px solid #c49871;
+
+    }
+
+    .marquee-content {
+      display: inline-block;
+    }
+
+    .marquee-text {
+
+      color: #e6d6b1;
+      font-family: 'Cormorant', serif;
+      font-size: 24px;
+      letter-spacing: 3px;
+      animation: marquee 60s linear infinite;
+      padding-right: 50px; /* مسافة بين التكرارات */
+    }
+
+    .marquee-text pre {
+      margin: 0;
+      display: inline;
+      font-family: inherit;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .mobile-menu-icon {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 3000;
+      font-size: 28px;
+      color: #8C7250;
+      display: none;
+      cursor: pointer;
+    }
+
+
+    .navbar .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu-icon {
+        display: block;
+      }
+      .navbar ul {
+        display: none;
         flex-direction: column;
+        align-items: flex-end;
+        background-color: rgba(11, 19, 21, 0.95);
+        position: fixed;
+        top: 60px;
+        right: 0;
+        width: 220px;
+        padding: 15px;
+        z-index: 2000;
       }
-
-      .sidebar {
-        width: 100%;
-        height: auto;
-      }
-
-      .sidebar-menu {
+      .navbar.mobile-active ul {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
       }
-
-      .menu-item {
-        padding: 10px 15px;
-        margin: 5px;
-        border-radius: 5px;
+      .navbar ul li {
+        margin: 10px 0;
+        width: 100%;
       }
-
-      .menu-item.active {
-        border-right: none;
-        border-bottom: 3px solid var(--secondary-color);
+      .navbar ul li a {
+        font-size: 18px;
+        padding: 10px;
+        text-align: right;
+        position: relative;
+        z-index: 1;
       }
-
-      .main-content {
-        padding: 20px;
+      .navbar .dropdown-content {
+        position: static;
+        border: none;
+        border-radius: 0;
+        padding-left: 15px;
+        margin-top: 5px;
+        background-color: transparent;
+        display: none;
+      }
+      .navbar .dropdown-content.show {
+        display: block;
       }
     }
-    .fas.fa-bell {
-      color: white;
+    @media (max-width: 768px) {
+      .gold-lines::before,
+      .gold-lines::after {
+        display: none;
+      }
+
+
     }
-    .profile-form .form-group input {
-      width: 100% !important;
-      padding: 15px 20px !important;
-      background-color: rgba(11, 19, 21, 0.8) !important;
-      color: white !important;
-      font-family: 'Cormorant', serif !important;
-      font-size: 18px !important;
-      border-radius: 4px !important;
-      transition: all 0.3s ease !important;
-    }
-
-    .profile-form .form-group input:focus {
-      outline: none !important;
-      border-color: #e6d6b1 !important;
-      box-shadow: 0 0 0 2px rgba(230,214,177,0.2) !important;}
-
-
   </style>
 </head>
 <div id="top"></div>
@@ -469,7 +330,8 @@
 <a href="#top" class="back-to-top1">
   <i class="ri-arrow-up-circle-line"></i>
 </a>
-<body style="scroll-behavior: smooth; background-image: url('../image2/background.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+<body style="scroll-behavior: smooth;
+background-image: url('../image2/background.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
 <div>
 
   <div class="content">
@@ -484,30 +346,22 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
       <ul class="nav-links">
-        <li style="   margin-left:250px; "><a href="index.html" class="active">Home</a></li>
+        <li style="   margin-left:250px; "><a href="index.html" class="active1">Home</a></li>
         <li><a href="about.html">About us</a></li>
         <li><a href="menu.html">Menu</a></li>
         <li><a href="bookatable.html">Book A Table</a></li>
+
         <li class="dropdown">
           <a href="shop.html">Shop</a>
           <ul class="dropdown-content">
             <li><a href="shop.html">Product List</a></li>
             <li><a href="cart.html">Cart</a></li>
+            <li><a href="#">Checkout</a></li>
           </ul>
         </li>
-
-
-
-
 
         <li><a href="contact.html">Contact</a></li>
-        <li class="dropdown">
-          <a href="login.html" style="   margin-left:90px;"><i class="fas fa-user-plus"></i></a>
-          <ul class="dropdown-content">
-            <li><a href="acount.html">My Profile</a></li>
-          </ul>
-        </li>
-
+        <li><a href="login.html" style="   margin-left:90px;"><i class="fas fa-user-plus"></i></a></li>
         <li><a href="out.html" style="   margin-left:-20px;"><i class="fas fa-sign-in-alt"></i></a></li>
 
       </ul>
@@ -518,212 +372,236 @@
     </div>
   </div>
 
-<section>
-  <div class="sidebar">
-    <div class="sidebar-header">
-      <h2>لوحة التحكم</h2>
-      <div class="user-info">
-        <div class="user-avatar">أ</div>
-        <div class="user-name">آمال أفنان</div>
-      </div>
-    </div>
+  <div class="hero-image" >
+    <video autoplay muted loop playsinline>
+      <source src="../image/food-present-bg.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="overlay"></div>
 
-    <div class="sidebar-menu">
-      <a href="#" class="menu-item active" data-section="profile">
-        <i class="fas fa-user-edit"></i>
-        <span>Edit Profile</span>
-      </a>
-      <a href="#" class="menu-item" data-section="bookings">
-        <i class="fas fa-calendar-alt"></i>
-        <span>حجوزاتي</span>
-        <span class="badge">2</span>
-      </a>
-      <a href="#" class="menu-item" data-section="favorites">
-        <i class="fas fa-heart"></i>
-        <span>المفضلة</span>
-      </a>
-      <a href="#" class="menu-item" data-section="settings">
-        <i class="fas fa-cog"></i>
-        <span>الإعدادات</span>
-      </a>
-      <a href="#" class="menu-item" data-section="messages">
-        <i class="fas fa-envelope"></i>
-        <span>الرسائل</span>
-        <span class="badge">3</span>
-      </a>
-    </div>
 
-    <div class="sidebar-footer">
-      <button class="logout-btn" id="logout-btn">
-        <span>تسجيل الخروج</span>
-        <i class="fas fa-sign-out-alt"></i>
-      </button>
+    <div class="text-overlay">sign in & sign up
+
+
     </div>
   </div>
 
-  <div class="main-content">
-    <div class="content-header">
-      <h2 id="content-title">Edit Profile </h2>
-      <div class="notification-icon">
-        <i class="fas fa-bell"></i>
-        <span class="notification-badge">2</span>
-      </div>
-    </div>
-    <!-- Profile Edit Section -->
-    <div class="content-section" id="profile-section">
-      <div class="content-card">
-
-        <form method="POST" action="../PHP_Project/update_profile.php">
-          <div class="profile-form">
-            <div class="form-group">
-              <label for="name">Full Name</label>
-              <input type="text" id="name" name="name" value="" placeholder="Enter your name">
+  <main style="margin-top: 30px">
+    <div class="box" style="    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7)">
+      <div class="inner-box">
+        <div class="forms-wrap">
+          <form action="../PHP_Project/signin.php" method="POST" autocomplete="off" class="sign-in-form">
+            <div class="logo">
+              <img src="../image/6.png" alt="easyclass" />
+              <h4>Golden Restaurant</h4>
             </div>
 
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" value="" placeholder="Enter your email address">
+            <div class="heading">
+              <h2>Welcome Back</h2>
+              <h6>Not registred yet?</h6>
+              <a href="#" class="toggle">Sign up</a>
             </div>
 
-            <div class="form-actions">
-              <button class="btn btn-outline" type="button" onclick="resetForm()">Cancel</button>
-              <button class="btn btn-primary" type="submit" name="update_profile">Save Changes</button>
+            <div class="actual-form">
+              <div class="input-wrap">
+                <input
+                        name="login_name"
+                        type="text"
+                        minlength="4"
+                        class="input-field"
+                        autocomplete="off"
+                        required
+                />
+                <label>Name</label>
+              </div>
+
+              <div class="input-wrap" style="position: relative;">
+                <input
+                        name="login_password"
+                        type="password"
+                        minlength="4"
+                        class="input-field"
+                        id="signin-password"
+                        autocomplete="off"
+                        required
+                />
+                <label>Password</label>
+
+                <i class="ri-eye-off-line toggle-password" id="toggleSigninPassword" style="
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #a07f58;
+        font-size: 1.1rem;"></i>
+              </div>
+
+
+
+              <button type="submit" class="sign-btn">Sign In</button>
+
+              <p class="text">
+                Forgotten your password or you login datails?
+                <a href="#">Get help</a> signing in
+              </p>
+            </div>
+            <div id="login-message" style="margin-top: 10px; text-align: center; "></div>
+
+          </form>
+
+          <form action="../PHP_Project/signup.php" method="POST" autocomplete="off" class="sign-up-form">
+            <div class="logo">
+              <img src="../image/6.png" alt="easyclass" />
+              <h4>Golden Restaurant</h4>
+            </div>
+
+            <div class="heading">
+              <h2>Get Started</h2>
+              <h6>Already have an account?</h6>
+              <a href="#" class="toggle">Sign in</a>
+            </div>
+
+            <div class="actual-form">
+              <div class="input-wrap">
+                <input
+                        name="signup_name"
+                        type="text"
+                        minlength="4"
+                        class="input-field"
+                        autocomplete="off"
+                        required
+                />
+                <label>Name</label>
+              </div>
+
+              <div class="input-wrap">
+                <input
+                        name="signup_email"
+                        type="email"
+                        class="input-field"
+                        autocomplete="off"
+                        required
+                />
+                <label>Email</label>
+              </div>
+
+              <div class="input-wrap" style="position: relative;">
+                <input
+                        name="signup_password"
+                        type="password"
+                        minlength="4"
+                        class="input-field"
+                        id="signup-password"
+                        autocomplete="off"
+                        required
+                />
+                <label>Password</label>
+                <i class="ri-eye-off-line toggle-password" id="toggleSignupPassword" style="
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #a07f58;
+        font-size: 1.1rem;"></i>
+
+
+              </div>
+
+              <input type="submit" value="Sign Up" class="sign-btn" />
+
+              <p class="text">
+                By signing up, I agree to the
+                <a href="#">Terms of Services</a> and
+                <a href="#">Privacy Policy</a>
+              </p>
+            </div>
+          </form>
+          <div id="signup-message" style="margin-top: 10px; text-align: center;"></div>
+
+        </div>
+
+        <div class="carousel">
+          <div class="images-wrapper">
+            <div class="hero-image" >
+
+              <img src="../image/2s.png" alt="Overlay Image" class="overlay-image">
+              <img src="../image/1 s.png" alt="Overlay Image" class="overlay-image1">
             </div>
           </div>
-        </form>
-        <div id="profile-message" style="margin-bottom: 10px;"></div>
 
-      </div>
+          <div class="text-slider">
+            <div class="text-wrap">
+              <div class="text-group">
 
-      <div class="content-card" style="margin-top: 20px;">
-        <h3 style="margin-bottom: 20px;">Change Password</h3>
-
-        <form method="POST" action="../PHP_Project/change_password.php" id="change-password-form">
-          <div class="profile-form">
-            <div class="form-group">
-              <label for="current-password">Current Password</label>
-              <input type="password" id="current-password" name="current_password" placeholder="Enter current password">
+              </div>
             </div>
 
-            <div class="form-group">
-              <label for="new-password">New Password</label>
-              <input type="password" id="new-password" name="new_password" placeholder="Enter new password">
-            </div>
-
-            <div class="form-group">
-              <label for="confirm-password">Confirm New Password</label>
-              <input type="password" id="confirm-password" name="confirm_password" placeholder="Re-enter new password">
-            </div>
-
-            <div class="form-actions">
-              <button class="btn btn-primary" type="submit" name="change_password">Change Password</button>
-            </div>
-          </div>
-        </form>
-        <div id="password-message" style="margin-top: 15px; color: red;"></div>
-
-      </div>
-    </div>
-
-
-    <!-- قسم الحجوزات -->
-    <div class="content-section" id="bookings-section" style="display: none;">
-      <div class="content-card">
-        <h3>الحجوزات القادمة</h3>
-        <div class="booking-list">
-          <div class="booking-card">
-            <h3>حجز مطعم</h3>
-            <div class="booking-detail">
-              <i class="fas fa-calendar-day"></i>
-              <span>السبت، 20 مايو 2025</span>
-            </div>
-            <div class="booking-detail">
-              <i class="fas fa-clock"></i>
-              <span>07:00 مساءً</span>
-            </div>
-            <div class="booking-detail">
-              <i class="fas fa-users"></i>
-              <span>2 أشخاص</span>
-            </div>
-            <div class="booking-detail">
-              <i class="fas fa-map-marker-alt"></i>
-              <span>مطعم اللوفر، الرياض</span>
-            </div>
-            <div class="booking-actions">
-              <button class="btn btn-danger">إلغاء الحجز</button>
-            </div>
-          </div>
-
-          <div class="booking-card">
-            <h3>حجز مطعم</h3>
-            <div class="booking-detail">
-              <i class="fas fa-calendar-day"></i>
-              <span>الثلاثاء، 25 مايو 2025</span>
-            </div>
-            <div class="booking-detail">
-              <i class="fas fa-clock"></i>
-              <span>08:00 مساءً</span>
-            </div>
-            <div class="booking-detail">
-              <i class="fas fa-users"></i>
-              <span>4 أشخاص</span>
-            </div>
-            <div class="booking-detail">
-              <i class="fas fa-map-marker-alt"></i>
-              <span>مطعم النخيل، جدة</span>
-            </div>
-            <div class="booking-actions">
-              <button class="btn btn-danger">إلغاء الحجز</button>
+            <div class="bullets">
+              <span class="active" data-value="1"></span>
+              <span data-value="2"></span>
+              <span data-value="3"></span>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="content-card">
-        <h3>الحجوزات السابقة</h3>
-        <p style="color: #777; text-align: center;">لا توجد حجوزات سابقة</p>
-      </div>
     </div>
+  </main>
 
-    <!-- قسم المفضلة -->
-    <div class="content-section" id="favorites-section" style="display: none;">
-      <div class="content-card">
-        <h3>قائمة المفضلة</h3>
-        <p style="color: #777; text-align: center;">لا توجد عناصر في المفضلة حالياً</p>
-      </div>
-    </div>
-
-    <!-- قسم الإعدادات -->
-    <div class="content-section" id="settings-section" style="display: none;">
-      <div class="content-card">
-        <h3>الإعدادات العامة</h3>
-        <p>هنا يمكنك تعديل إعدادات حسابك وتفضيلاتك الشخصية.</p>
-      </div>
-    </div>
-
-    <!-- قسم الرسائل -->
-    <div class="content-section" id="messages-section" style="display: none;">
-      <div class="content-card">
-        <h3>الرسائل</h3>
-        <p style="color: #777; text-align: center;">لا توجد رسائل جديدة</p>
-      </div>
-    </div>
-
-    <!-- قسم تسجيل الخروج -->
-    <div class="content-section" id="logout-section" style="display: none;">
-      <div class="content-card logout-container">
-        <div class="logout-icon">
-          <i class="fas fa-sign-out-alt"></i>
-        </div>
-        <h3>تسجيل الخروج</h3>
-        <p class="logout-message">هل أنت متأكد من رغبتك في تسجيل الخروج من حسابك؟</p>
-        <div>
-          <button class="btn btn-outline" id="cancel-logout">إلغاء</button>
-          <button class="btn btn-primary" id="confirm-logout">نعم، تسجيل الخروج</button>
-        </div>
+  <script src="../JAVAS_Project/app.js"></script>
+  <div class="marquee-container">
+    <div class="marquee-content">
+      <div class="marquee-text" style=""><pre>
+             G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t  🍴 G o l d e n  R e s t a u r a n t   🍴   G o l d e n   R e s t a u r a n t 🍴  G o l d e n   R e s t a u r a n t   G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t  🍴 G o l d e n  R e s t a u r a n t   🍴   G o l d e n   R e s t a u r a n t 🍴  G o l d e n   R e s t a u r a n t   G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t  🍴 G o l d e n  R e s t a u r a n t   🍴   G o l d e n   R e s t a u r a n t 🍴  G o l d e n   R e s t a u r a n t   G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t  🍴 G o l d e n  R e s t a u r a n t   🍴   G o l d e n   R e s t a u r a n t 🍴  G o l d e n   R e s t a u r a n t   G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t  🍴 G o l d e n  R e s t a u r a n t   🍴   G o l d e n   R e s t a u r a n t 🍴  G o l d e n   R e s t a u r a n t   G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t  🍴 G o l d e n  R e s t a u r a n t   🍴   G o l d e n   R e s t a u r a n t 🍴  G o l d e n   R e s t a u r a n t   G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t 🍴  G o l d e n  R e s t a u r a n t  🍴 G o l d e n  R e s t a u r a n t   🍴   G o l d e n   R e s t a u r a n t 🍴  G o l d e n   R e s t a u r a n t </pre>
       </div>
     </div>
   </div>
+  <div class="slider-wrapper" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin: 0 auto;">
+
+    <div class="paper-slider-container" style="flex: 1; min-width: 300px; max-width: 600px; margin-right: 20px;">
+      <div class="paper-slider" id="paperSlider">
+        <div class="paper-slide" data-index="0">
+          <img src="../image/amaal1.jpg" alt="" class="slide-image">
+        </div>
+        <div class="paper-slide" data-index="1">
+          <img src="../image/amaal4.jpg" alt="" class="slide-image">
+        </div>
+        <div class="paper-slide" data-index="2">
+          <img src="../image/amaal3.jpg" alt="" class="slide-image">
+        </div>
+        <div class="paper-slide" data-index="3">
+          <img src="../image/amaal2.jpg" alt="" class="slide-image">
+        </div>
+      </div>
+
+      <div class="slider-controls-container">
+        <button class="slider-arrow" id="prevBtn">←</button>
+        <div class="slide-indicators" id="indicators"></div>
+        <button class="slider-arrow" id="nextBtn">→</button>
+      </div>
+    </div>
+
+    <div class="text-content" style="flex: 1; min-width: 300px; max-width: 500px; padding: 50px; font-family: 'Poppins', sans-serif;">
+      <h2 style="color: #c49871; margin-bottom: 15px; font-weight: 600;">Join the Flavor Challenge!</h2>
+      <p style="color: #666; line-height: 1.6; font-weight: 400;">
+        We've launched a delicious challenge with an irresistible offer! Enjoy a special discount for a limited time and experience our gourmet flavors at an amazing price.
+      </p>
+      <form action="discount.html" method="get">
+        <input type="submit" value="Receive a discount" class="sign-btn" />
+      </form>
+
+    </div>
+
+
+  </div>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 
 
 
@@ -735,188 +613,328 @@
 
 
 
-</section>
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+  <footer class="golden-footer">
+    <div class="footer-waves">
+      <div class="wave wave-1"></div>
+      <div class="wave wave-2"></div>
+      <div class="wave wave-3"></div>
+    </div>
+
+
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3 class="footer-logo">Golden Restaurant</h3>
+        <p class="footer-description">Experience the finest dining with authentic flavors and luxurious ambiance.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com" class="social-icon" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.instagram.com" class="social-icon" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.twitter.com" class="social-icon" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-twitter"></i>
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="footer-section">
+        <h3 class="footer-title">Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="index.html" style="text-decoration: none">Home</a></li>
+          <li><a href="about.html" style="text-decoration: none">About Us</a></li>
+          <li><a href="menu.html" style="text-decoration: none">Menu</a></li>
+          <li><a href="bookatable.html" style="text-decoration: none">Book a Table</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3 class="footer-title">Contact Us</h3>
+        <ul class="footer-contact">
+          <li><i class="fas fa-map-marker-alt"></i> Tunis Street, near Dahiyat
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Al-Nakheel, Nablus, Palestine</li>
+          <li><i class="fas fa-phone"></i> 059-737-7354</li>
+          <li><i class="fas fa-envelope"></i> golden@gmail.com</li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3 class="footer-title">Opening Hours</h3>
+        <ul class="footer-hours">
+          <li>Monday - Friday: 9:00 AM - 11:00 PM</li>
+          <li>Saturday - Sunday: 10:00 AM - 12:00 AM</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy;  2025 Golden Restaurant. All rights reserved. Designed & Developed by Eng. Amaal ♥ Eng. Afnan
+      </p>
+    </div>
+  </footer>
+</div>
 
 <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // ==== Toggle Password (Sign Up) ====
+    const toggleSignupPassword = document.getElementById("toggleSignupPassword");
+    const signupPassword = document.getElementById("signup-password");
 
-    // إغلاق النافذة عند النقر خارجها
-    $(document).mouseup(function(e) {
-      const modal = $("#confirmation-modal");
-      if (!modal.is(e.target) && modal.has(e.target).length === 0) {
-        modal.fadeOut();
-      }
+    if (toggleSignupPassword && signupPassword) {
+      toggleSignupPassword.addEventListener("click", function () {
+        const isPassword = signupPassword.type === "password";
+        signupPassword.type = isPassword ? "text" : "password";
+        this.classList.toggle("fa-eye");
+        this.classList.toggle("fa-eye-slash");
+      });
+    }
 
+    // ==== Toggle Password (Sign In) ====
+    const toggleSigninPassword = document.getElementById("toggleSigninPassword");
+    const signinPassword = document.getElementById("signin-password");
 
+    if (toggleSigninPassword && signinPassword) {
+      toggleSigninPassword.addEventListener("click", function () {
+        const isPassword = signinPassword.type === "password";
+        signinPassword.type = isPassword ? "text" : "password";
+        this.classList.toggle("fa-eye");
+        this.classList.toggle("fa-eye-slash");
+      });
+    }
 
+    // ==== Login Form AJAX ====
+    const loginForm = document.getElementById("login-form");
+    const loginMessage = document.getElementById("login-message");
 
-  function toggleMobileMenu() {
-    const navbar = document.querySelector('.navbar');
-    navbar.classList.toggle('mobile-active');
-  }
+    if (loginForm && loginMessage) {
+      loginForm.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-  document.addEventListener('DOMContentLoaded', function () {
+        const formData = new FormData(this);
+
+        fetch("php/login.php", {
+          method: "POST",
+          body: formData
+        })
+                .then(res => res.json())
+                .then(data => {
+                  loginMessage.textContent = data.message;
+                  loginMessage.style.color = data.status === "success" ? "green" : "red";
+
+                  if (data.status === "success") {
+                    setTimeout(() => {
+                      window.location.href = "../HTML_Project/index.html";
+                    }, 1000);
+                  }
+                })
+                .catch(err => {
+                  loginMessage.textContent = "Something went wrong.";
+                  loginMessage.style.color = "red";
+                });
+      });
+    }
+
+    // ==== Slider Logic ====
+    const slider = document.getElementById('paperSlider');
+    const slides = document.querySelectorAll('.paper-slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const indicatorsContainer = document.getElementById('indicators');
+
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+
+    // إنشاء مؤشرات الشرائح
+    slides.forEach((_, index) => {
+      const indicator = document.createElement('div');
+      indicator.classList.add('indicator');
+      if (index === currentSlide) indicator.classList.add('active');
+      indicator.addEventListener('click', () => goToSlide(index));
+      indicatorsContainer.appendChild(indicator);
+    });
+
+    const indicators = document.querySelectorAll('.indicator');
+
+    function updateSlides() {
+      slides.forEach((slide, index) => {
+        const diff = index - currentSlide;
+        const zIndex = totalSlides - Math.abs(diff);
+
+        if (diff < 0) {
+          slide.style.transform = `rotate(-5deg) translateY(20px) translateX(${-40 * Math.abs(diff)}px)`;
+          slide.style.zIndex = zIndex;
+          slide.style.opacity = 0.8 - (Math.abs(diff) * 0.2);
+        } else if (diff > 0) {
+          slide.style.transform = `rotate(5deg) translateY(20px) translateX(${40 * diff}px)`;
+          slide.style.zIndex = zIndex;
+          slide.style.opacity = 0.8 - (diff * 0.2);
+        } else {
+          slide.style.transform = 'rotate(0deg) translateY(0)';
+          slide.style.zIndex = totalSlides;
+          slide.style.opacity = '1';
+          slide.style.boxShadow = '0 10px 25px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05)';
+        }
+      });
+
+      indicators.forEach((indicator, index) => {
+        if (index === currentSlide) {
+          indicator.classList.add('active');
+        } else {
+          indicator.classList.remove('active');
+        }
+      });
+    }
+
+    function goToSlide(index) {
+      if (index < 0) index = totalSlides - 1;
+      if (index >= totalSlides) index = 0;
+      currentSlide = index;
+      updateSlides();
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
+    if (nextBtn) nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    if (slider) {
+      slider.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, false);
+
+      slider.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }, false);
+    }
+
+    function handleSwipe() {
+      if (touchEndX < touchStartX - 50) goToSlide(currentSlide - 1);
+      if (touchEndX > touchStartX + 50) goToSlide(currentSlide + 1);
+    }
+
+    updateSlides();
+    setInterval(() => {
+      goToSlide(currentSlide + 1);
+    }, 5000);
+
+    // ==== Toggle Mobile Menu ====
+    function toggleMobileMenu() {
+      const navbar = document.querySelector('.navbar');
+      navbar.classList.toggle('mobile-active');
+    }
+
+    // ==== Dropdown Menu for Mobile ====
     const dropdownToggle = document.querySelector('.navbar .dropdown > a');
     const dropdownContent = document.querySelector('.navbar .dropdown .dropdown-content');
 
-    dropdownToggle.addEventListener('click', function (e) {
-      if (window.innerWidth <= 768) {
-        e.preventDefault(); // منع فتح الرابط الأصلي
-        dropdownContent.classList.toggle('show');
+    if (dropdownToggle && dropdownContent) {
+      dropdownToggle.addEventListener('click', function (e) {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          dropdownContent.classList.toggle('show');
+        }
+      });
+    }
+
+    // إغلاق القائمة عند الضغط خارجها
+    document.addEventListener('click', function (event) {
+      const navbar = document.querySelector('.navbar');
+      const mobileIcon = document.querySelector('.mobile-menu-icon');
+      const isClickInsideNavbar = navbar.contains(event.target);
+      const isClickOnIcon = mobileIcon.contains(event.target);
+
+      if (!isClickInsideNavbar && !isClickOnIcon) {
+        navbar.classList.remove('mobile-active');
       }
     });
   });
+  // ==== Sign Up Form AJAX ====
+  const signupForm = document.querySelector(".sign-up-form");
+  const signupMessage = document.getElementById("signup-message");
 
-
-  // إغلاق القائمة عند الضغط في أي مكان خارجها
-  document.addEventListener('click', function(event) {
-    const navbar = document.querySelector('.navbar');
-    const mobileIcon = document.querySelector('.mobile-menu-icon');
-    const isClickInsideNavbar = navbar.contains(event.target);
-    const isClickOnIcon = mobileIcon.contains(event.target);
-
-    // إذا الكليك خارج النافبار ولم يكن على أيقونة القائمة، أغلق القائمة
-    if (!isClickInsideNavbar && !isClickOnIcon) {
-      navbar.classList.remove('mobile-active');
-    }
-  });
-  });
-
-
-
-      // اختيار العناصر
-      const menuItems = document.querySelectorAll('.menu-item');
-      const contentSections = document.querySelectorAll('.content-section');
-      const contentTitle = document.getElementById('content-title');
-      const logoutBtn = document.getElementById('logout-btn');
-      const cancelLogout = document.getElementById('cancel-logout');
-      const confirmLogout = document.getElementById('confirm-logout');
-
-      // عناوين الأقسام
-      const sectionTitles = {
-      'profile': 'Edit Profile',
-      'bookings': 'حجوزاتي',
-      'favorites': 'المفضلة',
-      'settings': 'الإعدادات',
-      'messages': 'الرسائل',
-      'logout': 'تسجيل الخروج'
-    };
-      function resetForm() {
-      document.getElementById("name").value = "";
-      document.getElementById("email").value = "";
-    }
-      // دالة لعرض القسم المحدد
-      function showSection(sectionId) {
-      contentSections.forEach(section => {
-        section.style.display = section.id === `${sectionId}-section` ? 'block' : 'none';
-      });
-
-      // تحديث العنوان
-      contentTitle.textContent = sectionTitles[sectionId];
-
-      // تحديث العنصر النشط في القائمة
-      menuItems.forEach(item => {
-      if (item.dataset.section === sectionId) {
-      item.classList.add('active');
-    } else {
-      item.classList.remove('active');
-    }
-    });
-    }
-
-      // استماع للنقر على عناصر القائمة
-      menuItems.forEach(item => {
-      item.addEventListener('click', (e) => {
-        e.preventDefault();
-        const sectionId = item.dataset.section;
-        showSection(sectionId);
-      });
-    });
-
-      // استماع للنقر على زر تسجيل الخروج في القائمة الجانبية
-      logoutBtn.addEventListener('click', (e) => {
+  if (signupForm && signupMessage) {
+    signupForm.addEventListener("submit", function (e) {
       e.preventDefault();
-      showSection('logout');
-    });
 
-      // استماع للنقر على زر إلغاء في قسم تسجيل الخروج
-      cancelLogout.addEventListener('click', () => {
-      showSection('profile');
-    });
+      const formData = new FormData(this);
 
-      // استماع للنقر على زر تأكيد تسجيل الخروج
-      confirmLogout.addEventListener('click', () => {
-      alert('تم تسجيل الخروج بنجاح!');
-      // هنا يمكنك إضافة كود تسجيل الخروج الفعلي
-    });
+      fetch("../PHP_Project/signup.php", {
+        method: "POST",
+        body: formData
+      })
+              .then(res => res.json())
+              .then(data => {
+                signupMessage.textContent = data.message;
+                signupMessage.style.color = data.status === "success" ? "green" : "red";
 
-      // عرض قسم الملف الشخصي عند تحميل الصفحة
-      showSection('profile');
-      document.querySelector('form').addEventListener('submit', function (e) {
+                if (data.status === "success") {
+                  this.reset(); // تفريغ النموذج بعد التسجيل الناجح
+                  setTimeout(() => {
+                    window.location.href = '../HTML_Project/index.html';
+                  }, 1500);
+                }
+              })
+
+              .catch(err => {
+                signupMessage.textContent = "Something went wrong.";
+                signupMessage.style.color = "red";
+              });
+    });
+  }
+  // ==== Login Form AJAX ====
+  const loginForm = document.querySelector(".sign-in-form");
+  const loginMessage = document.getElementById("login-message");
+
+  if (loginForm && loginMessage) {
+    loginForm.addEventListener("submit", function (e) {
       e.preventDefault();
-      const form = e.target;
-      const formData = new FormData(form);
 
-      fetch('../PHP_Project/update_profile.php', {
-      method: 'POST',
-      body: formData
-    })
-      .then(res => res.json())
-      .then(data => {
-      const msgDiv = document.getElementById('profile-message');
-      msgDiv.innerHTML = data.message;
-      msgDiv.style.color = (data.status === 'success') ? 'green' : 'red';
-    })
-      .catch(err => {
-      const msgDiv = document.getElementById('profile-message');
-      msgDiv.innerHTML = "Unexpected error occurred.";
-      msgDiv.style.color = 'red';
-      console.error(err);
-    });
-    });document.getElementById("change-password-form").addEventListener("submit", function(e) {
-      e.preventDefault(); // منع الإرسال الافتراضي
+      const formData = new FormData(this);
 
-      const form = e.target;
-      const formData = new FormData(form);
+      fetch("../PHP_Project/signin.php", {
+        method: "POST",
+        body: formData
+      })
+              .then(res => res.json())
+              .then(data => {
+                loginMessage.textContent = data.message;
+                loginMessage.style.color = data.status === "success" ? "green" : "red";
 
-      fetch("../PHP_Project/change_password.php", {
-      method: "POST",
-      body: formData
-    })
-      .then(response => response.json())
-      .then(data => {
-      const messageDiv = document.getElementById("password-message");
-      if (data.status === "success") {
-      messageDiv.style.color = "green";
-    } else {
-      messageDiv.style.color = "red";
-    }
-      messageDiv.innerText = data.message;
-    })
-      .catch(error => {
-      document.getElementById("password-message").innerText = "Unexpected error occurred.";
+                if (data.status === "success") {
+                  setTimeout(() => {
+                    window.location.href = "../HTML_Project/index.html";
+                  }, 1000); // تأخير صغير للإظهار
+                }
+              })
+              .catch(err => {
+                loginMessage.textContent = "Something went wrong.";
+                loginMessage.style.color = "red";
+              });
     });
-    });
+  }
 
 
 </script>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-</div>
 </body>
 </html>
