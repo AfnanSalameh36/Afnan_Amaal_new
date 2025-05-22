@@ -481,14 +481,26 @@
 
     <div class="containerForForm">
       <p>Have any questions?<br>Feel free to contact us</p>
-      <form method="get" action="">
-        <input type="text"  name="name" placeholder="Your Name*" required autocomplete="off">
-        <input type="Email" name="email" placeholder="Your Email*" required autocomplete="off">
-        <input type="tel" name="phoneNum" placeholder="Your Phone Number*" size="10" required autocomplete="off">
-        <textarea placeholder="Message" name="msg" wrap="hard" rows="5" required></textarea>
-        <input type="submit" name="submit" value="Send" class="submitButton">
-      </form>
-   </div>
+        <form id="contactForm">
+            <input type="text" id="name" name="name" placeholder="Your Name*" required readonly>
+            <input type="email" id="email" name="email" placeholder="Your Email*" required readonly>
+            <input type="tel" id="phoneNum" name="phoneNum" placeholder="Your Phone Number*" required>
+            <textarea name="msg" id="msg" placeholder="Message" rows="5" required></textarea>
+            <div id="formMessageBox" style="
+  display: none;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+"></div>
+
+            <input type="submit" value="Send" class="submitButton">
+        </form>
+
+
+    </div>
 
     <div class="containerForPictures" >
         <div class="img1">
@@ -684,6 +696,8 @@
         </p>
     </div>
 </footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
 
     //     function checkOpeningHours() {
@@ -799,6 +813,70 @@
             navbar.classList.remove('mobile-active');
         }
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //
+    // ------------------------------------------------------------
+    //     ------------------------------------------------
+    window.addEventListener("DOMContentLoaded", () => {
+        fetch("../PHP_Project/get_user.php")
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "ok") {
+                    document.getElementById("name").value = data.name;
+                    document.getElementById("email").value = data.email;
+                } else {
+                    alert("You must be logged in to send a message.");
+                    document.querySelector("form").style.display = "none";
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching user data:", error);
+            });
+    });
+
+    $(document).ready(function () {
+        $("#contactForm").submit(function (e) {
+            e.preventDefault(); // منع إعادة تحميل الصفحة
+
+            $.ajax({
+                type: "POST",
+                url: "../PHP_Project/send_message.php",
+                data: $(this).serialize(),
+                success: function (response) {
+                    $("#formMessageBox").text("✅ " + response).css({
+                        "background-color": "#d4edda",
+                        "color": "#155724",
+                        "border": "1px solid #c3e6cb",
+                        "display": "block"
+                    });
+
+                    $("#contactForm")[0].reset();
+                },
+                error: function () {
+                    $("#formMessageBox").text("❌ حدث خطأ أثناء إرسال الرسالة.").css({
+                        "background-color": "#f8d7da",
+                        "color": "#721c24",
+                        "border": "1px solid #f5c6cb",
+                        "display": "block"
+                    });
+                }
+            });
+        });
+    });
+
+
 </script>
 
 
