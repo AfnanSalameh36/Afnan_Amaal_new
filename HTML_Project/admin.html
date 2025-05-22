@@ -107,25 +107,19 @@
 
                 <li class="nav-item">
                     <a class="nav-link" id="reservationsLink" href="#">
-                        <i class="fas fa-calendar-check me-1"></i>Reservations
+                        <i class="fas fa-calendar-check me-1"></i> Reservations
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="shop.php">
-                        <i class="fas fa-store me-1"></i>Shop
+                        <i class="fas fa-store me-1"></i> Shop
                     </a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="users.php">
-                        <i class="fas fa-users-cog me-1"></i>Users
-                    </a>
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="logout.php">
-                        <i class="fas fa-sign-out-alt me-1"></i>Logout
+                    <a class="nav-link" href="#" id="usersLink">
+                        <i class="fas fa-users-cog me-1"></i> Users
                     </a>
                 </li>
             </ul>
@@ -179,7 +173,7 @@
 
 
 <div id="reservationsContent" style="display:none; padding: 20px;">
-    <button id="backToDashboardBtn" class="btn btn-secondary mb-3">رجوع للإحصائيات</button>
+    <button id="backToDashboardBtn" class="btn btn-secondary mb-3" style="color: #FFFFFF"></button>
 
 
     <div id="reservationsTableContainer">
@@ -225,6 +219,30 @@
 
 
 
+<div id="usersContent" style="display:none; padding: 20px;">
+    <button id="backToDashboardFromUsersBtn" class="btn btn-secondary mb-3"></button>
+
+    <table id="usersTable" class="table">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>email</th>
+            <th>password</th>
+            <th>created_at</th>
+            <th>role</th>
+            <th>حذف</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- هنا جدول المستخدمين -->
+        </tbody>
+    </table>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 
 
@@ -237,17 +255,88 @@
 
 
 
-    document.getElementById('reservationsLink').addEventListener('click', function(e) {
-        e.preventDefault(); // لمنع التنقل بالرابط
-        document.querySelector('.page-wrapper').style.display = 'none'; // نخفي الإحصائيات كلها
-        document.getElementById('reservationsContent').style.display = 'block'; // نعرض محتوى الحجوزات
-    });
+//    document.getElementById('reservationsLink').addEventListener('click', function(e) {
+//        e.preventDefault(); // لمنع التنقل بالرابط
+//        document.querySelector('.page-wrapper').style.display = 'none'; // نخفي الإحصائيات كلها
+//        document.getElementById('reservationsContent').style.display = 'block'; // نعرض محتوى الحجوزات
+//    });
+//
+//    // زر الرجوع للإحصائيات
+//    document.getElementById('backToDashboardBtn').addEventListener('click', function() {
+//        document.getElementById('reservationsContent').style.display = 'none'; // نخفي الحجوزات
+//        document.querySelector('.page-wrapper').style.display = 'block'; // نعيد عرض الإحصائيات
+//    });
+// دالة لإخفاء كل الأقسام
+function hideAllSections() {
+    document.querySelector('.dashboard-header').style.display = 'none';
+    document.getElementById('stats-container').style.display = 'none';
+    document.querySelector('.row.mt-4').style.display = 'none';  // Charts
+    document.getElementById('usersLineChart').style.display = 'none';
 
-    // زر الرجوع للإحصائيات
-    document.getElementById('backToDashboardBtn').addEventListener('click', function() {
-        document.getElementById('reservationsContent').style.display = 'none'; // نخفي الحجوزات
-        document.querySelector('.page-wrapper').style.display = 'block'; // نعيد عرض الإحصائيات
-    });
+    document.getElementById('reservationsContent').style.display = 'none';
+    document.getElementById('usersContent').style.display = 'none';
+}
+
+// عرض داشبورد
+document.getElementById('dashboardLink').addEventListener('click', e => {
+    e.preventDefault();
+    hideAllSections();
+    document.querySelector('.dashboard-header').style.display = 'block';
+    document.getElementById('stats-container').style.display = 'flex';
+    document.querySelector('.row.mt-4').style.display = 'flex';
+    document.getElementById('usersLineChart').style.display = 'block';
+
+    // تعديل تفعيل الروابط بالنافبار
+    setActiveNav('dashboardLink');
+});
+
+// عرض قسم الحجز
+document.getElementById('reservationsLink').addEventListener('click', e => {
+    e.preventDefault();
+    hideAllSections();
+    document.getElementById('reservationsContent').style.display = 'block';
+    setActiveNav('reservationsLink');
+});
+
+// عرض قسم المستخدمين
+document.getElementById('usersLink').addEventListener('click', e => {
+    e.preventDefault();
+    hideAllSections();
+    document.getElementById('usersContent').style.display = 'block';
+
+    // جلب بيانات المستخدمين (ممكن جلبها من API أو PHP)
+    loadUsers();
+
+    setActiveNav('usersLink');
+});
+
+// زر الرجوع من الحجز للداشبورد
+document.getElementById('backToDashboardBtn').addEventListener('click', () => {
+    document.getElementById('reservationsContent').style.display = 'none';
+    document.querySelector('.dashboard-header').style.display = 'block';
+    document.getElementById('stats-container').style.display = 'flex';
+    document.querySelector('.row.mt-4').style.display = 'flex';
+    document.getElementById('usersLineChart').style.display = 'block';
+
+    setActiveNav('dashboardLink');
+});
+
+// زر الرجوع من المستخدمين للداشبورد
+document.getElementById('backToDashboardFromUsersBtn').addEventListener('click', () => {
+    document.getElementById('usersContent').style.display = 'none';
+    document.querySelector('.dashboard-header').style.display = 'block';
+    document.getElementById('stats-container').style.display = 'flex';
+    document.querySelector('.row.mt-4').style.display = 'flex';
+    document.getElementById('usersLineChart').style.display = 'block';
+
+    setActiveNav('dashboardLink');
+});
+
+// تحديث رابط مفعّل
+function setActiveNav(id) {
+    document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
 
     document.addEventListener("DOMContentLoaded", () => {
         fetch("../PHP_Admin/admin_stats.php")
@@ -536,6 +625,61 @@
 
     // تحميل الحجوزات عند تحميل الصفحة
     fetchReservations();
+    // ********************************************************
+function loadUsers() {
+    $.ajax({
+        url: '../PHP_Admin/user.php', // رابط ملف PHP اللي يجيب بيانات المستخدمين JSON
+        method: 'GET',
+        dataType: 'json',
+        success: function(users) {
+            let tbody = '';
+            users.forEach(user => {
+                tbody += `
+                    <tr>
+                        <td>${user.id}</td>
+                        <td>${user.name}</td>
+                        <td>${user.email}</td>
+                        <td>${user.password}</td>
+                        <td>${user.created_at}</td>
+                        <td>${user.role}</td>
+                        <td><button class="btn btn-danger btn-sm delete-btn" data-id="${user.id}">حذف</button></td>
+                    </tr>
+                `;
+            });
+            $('#usersTable tbody').html(tbody);
+        },
+        error: function() {
+            alert('فشل تحميل بيانات المستخدمين');
+        }
+    });
+}
+
+$(document).ready(function() {
+    loadUsers();
+
+    // حدث الحذف عند الضغط على زر حذف
+    $('#usersTable').on('click', '.delete-btn', function() {
+        if (!confirm('هل أنت متأكد من حذف المستخدم؟')) return;
+
+        let userId = $(this).data('id');
+        $.ajax({
+            url: '../PHP_Admin/delete_user.php?id=' + userId,  // رابط ملف الحذف اللي كتبته
+            method: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    alert('تم حذف المستخدم');
+                    loadUsers(); // إعادة تحميل الجدول
+                } else {
+                    alert('فشل الحذف: ' + (response.message || 'حدث خطأ'));
+                }
+            },
+            error: function() {
+                alert('حدث خطأ أثناء الاتصال بالخادم');
+            }
+        });
+    });
+});
 </script>
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
