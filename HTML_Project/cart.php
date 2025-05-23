@@ -1,3 +1,40 @@
+<?php
+global $conn;
+session_start();
+require '../PHP_Project/db_connection.php'; // تأكدي من المسار الصحيح
+
+$cartItems = []; // مصفوفة لتخزين عناصر السلة
+
+if (isset($_SESSION['user'])) {
+    $user_id = is_array($_SESSION['user']) ? $_SESSION['user']['id'] : (int)$_SESSION['user'];
+
+    // استعلام آمن باستخدام Prepared Statement
+    $sql_cart = "SELECT * FROM cart_items WHERE user_id = ?";
+    $stmt_cart = $conn->prepare($sql_cart);
+    $stmt_cart->bind_param("i", $user_id);
+    $stmt_cart->execute();
+    $all_cart = $stmt_cart->get_result();
+
+    // جلب البيانات مع ربطها بجدول products
+    while ($row_cart = mysqli_fetch_assoc($all_cart)) {
+        $sql_product = "SELECT * FROM products WHERE product_id = ?";
+        $stmt_product = $conn->prepare($sql_product);
+        $stmt_product->bind_param("i", $row_cart['product_id']);
+        $stmt_product->execute();
+        $all_product = $stmt_product->get_result();
+
+        while ($row = mysqli_fetch_assoc($all_product)) {
+            $cartItems[] = array_merge($row, ['quantity' => $row_cart['quantity']]);
+        }
+        $stmt_product->close();
+    }
+    $stmt_cart->close();
+}
+
+$conn->close(); // إغلاق الاتصال
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +49,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!--  ********************************************************************************************-->
     <style>
@@ -135,9 +173,9 @@
         <li><a href="menu.html">Menu</a></li>
         <li><a href="bookatable.html">Book A Table</a></li>
         <li class="dropdown">
-            <a href="shop.html">Shop</a>
+            <a href="shop.php">Shop</a>
             <ul class="dropdown-content">
-                <li><a href="shop.html">Product List</a></li>
+                <li><a href="shop.php">Product List</a></li>
                 <li><a href="cart.html">Cart</a></li>
             </ul>
         </li>
@@ -155,6 +193,7 @@
         </li>
         <li><a href="out.html" style="   margin-left:-20px;"><i class="fas fa-sign-in-alt"></i></a></li>
 
+
     </ul>
 </nav>
 
@@ -166,190 +205,135 @@
 <div class="backgroundForCart">
     <p class="CartStatement">Cart</p>
 </div>
-
-<table class="styled-table">
-
-    <tr class="theFirstRow">
-        <th>Product</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Subtotal</th>
-        <th></th>
-    </tr>
-<!--======================================================================================================-->
-    <tr>
-        <td class="product-cell">
-            <div class="product-info">
-                <img src="../image2/shopImage/imgMainCourse/m9.jpeg" alt="mainCourse">
-                <span class="productItem">Garlic Butter Shrimp Skillet</span>
-            </div>
-        </td>
-        <td class="price">$ 70.00</td>
-
-        <td>
-            <div class="custom_number_input">
-                <input type="number" min="0" step="1" class="quantity">
-                <div class="arrow-container">
-                    <i class="fa-solid fa-chevron-up arrow-up"></i>
-                    <i class="fa-solid fa-chevron-down arrow-down"></i>
-                </div>
-            </div>
-        </td>
-
-        <td class="subtotal">$ 70.00</td>
-        <td>
-            <div class="iconDelete">
-            <i class="fa-solid fa-trash"></i>
-            </div>
-        </td>
-    </tr>
-<!--====================================================================================================-->
-    <tr>
-        <td class="product-cell">
-            <div class="product-info">
-                <img src="../image2/shopImage/imgDessert/d2.jpg" alt="mainCourse">
-                <span class="productItem">Chocolate Hazelnut Cake with Edible Gold</span>
-            </div>
-        </td>
-
-        <td class="price">$ 25.00</td>
-
-        <td>
-            <div class="custom_number_input">
-                <input type="number" min="0" step="1" class="quantity">
-                <div class="arrow-container">
-                    <i class="fa-solid fa-chevron-up arrow-up"></i>
-                    <i class="fa-solid fa-chevron-down arrow-down"></i>
-                </div>
-            </div>
-        </td>
-
-        <td class="subtotal">$ 25.00</td>
-        <td>
-            <div class="iconDelete">
-                <i class="fa-solid fa-trash"></i>
-            </div>
-        </td>
-    </tr>
-<!--====================================================================================================-->
-    <tr>
-        <td class="product-cell">
-            <div class="product-info">
-                <img src="../image2/shopImage/imgdrink/dr4.jpeg" alt="mainCourse">
-                <span class="productItem">Fresh Strawberry Juice</span>
-            </div>
-        </td>
-
-        <td class="price">$ 15.00</td>
-
-        <td>
-            <div class="custom_number_input">
-                <input type="number" min="0" step="1" class="quantity">
-                <div class="arrow-container">
-                    <i class="fa-solid fa-chevron-up arrow-up"></i>
-                    <i class="fa-solid fa-chevron-down arrow-down"></i>
-                </div>
-            </div>
-        </td>
-
-        <td class="subtotal">$ 15.00</td>
-        <td>
-            <div class="iconDelete">
-                <i class="fa-solid fa-trash"></i>
-            </div>
-        </td>
-    </tr>
-
-    <tr class="theLastRow">
-        <td colspan="2" style="border-bottom: none;padding-top: 30px">
-            <input type="text" class="inputForCouponCode" name="couponCode" placeholder="Coupon Code" id="couponInput">
-            <button class="button">Apply Coupon</button>
-            <button class="button" onclick="window.location.href='discount.html'">Go to Offers</button>
-
-        </td>
-        <td colspan="3" class="button-cell" style="border-bottom: none;">
-            <button class="button">Update Cart</button>
-        </td>
-    </tr>
-</table>
-
-
-
-<table class="styled-table2">
-    <tr class="theFirstRowInSecondTable" >
-        <th colspan="2" style="border-bottom: none" >Cart totals</th>
-    </tr>
-
-    <tr>
-        <td class="price2">Subtotal</td>
-        <td class="subtotal2">£167.00</td>
-    </tr>
-
-    <tr>
-        <td class="price2">Total</td>
-        <td class="price2">	£167.00</td>
-    </tr>
-
-</table>
-
-<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
-
-<div class="backgroundForCheckout">
-    <div class="containerForForm">
-        <form method="get" action="">
-            <table class="tableForCheckout">
-                <tr>
-                    <td colspan="2"><p class="statementOfCheckout">Checkout</p></td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="name" placeholder="First Name" required autocomplete="off" style="width: 150px;"></td>
-                    <td><input type="text" name="name" placeholder="Last Name" required autocomplete="off" style="width: 150px;"></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input type="tel" name="phoneNum" placeholder="Phone Number" required autocomplete="off" style="width: 320px;"></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input type="text" name="name" placeholder="Address" required autocomplete="off" style="width: 320px;"></td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <select class="custom-select" id="city-select" onchange="changeSelectColor(this)">
-                            <option value="" disabled selected hidden class="placeholder-option">City</option>
-                            <option value="Nablus">Nablus</option>
-                            <option value="Ramallah">Ramallah</option>
-                            <option value="Bethlehem">Bethlehem</option>
-                            <option value="Jenin">Jenin</option>
-                            <option value="Tulkarm">Tulkarm</option>
-                            <option value="Qalqilya">Qalqilya</option>
-                            <option value="Salfit">Salfit</option>
-                        </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td colspan="2" style="border-bottom: none"> <button class="button">Place order</button> </td>
-                </tr>
-            </table>
-        </form>
+<?php if (empty($cartItems)): ?>
+    <div class="cartEmpty" style="margin-bottom: 15px;">
+        <p class="statementCartEmpty">Your cart is currently empty</p>
     </div>
-</div>
+    <div class="divButtonReturnToPL" style="margin-bottom: 200px;">
+        <button class="button"><a href="shop.php">Return to shop</a></button>
+    </div>
+<?php else: ?>
+    <table class="styled-table">
+        <tr class="theFirstRow">
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+            <th></th>
+        </tr>
+        <?php foreach ($cartItems as $index => $item): ?>
+            <tr>
+                <td class="product-cell">
+                    <div class="product-info">
+                        <img src="<?php echo htmlspecialchars($item['image_url']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>">
+                        <span class="productItem"><?php echo htmlspecialchars($item['name']); ?></span>
+                    </div>
+                </td>
+                <td class="price"><?php echo number_format($item['price'], 2); ?> $</td>
+                <td>
+                    <div class="custom_number_input">
+                        <input type="number" min="1" step="1" class="quantity"
+                               value="<?php echo max(1, $item['quantity']); ?>"
+                               data-product-id="<?php echo $item['product_id']; ?>"
+                               data-price="<?php echo $item['price']; ?>">
+                        <div class="arrow-container">
+                            <i class="fa-solid fa-chevron-up arrow-up"></i>
+                            <i class="fa-solid fa-chevron-down arrow-down"></i>
+                        </div>
+                    </div>
+                </td>
+                <td class="subtotal" id="subtotal-<?php echo $index; ?>">
+                    <?php echo number_format($item['price'] * $item['quantity'], 2); ?> $
+                </td>
+                <td>
+                    <div class="iconDelete">
+                        <button class="remove" data-id="<?php echo $item['product_id']; ?>">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        <tr class="theLastRow">
+            <td colspan="2" style="border-bottom: none;padding-top: 30px">
+                <input type="text" class="inputForCouponCode" name="couponCode" placeholder="Coupon Code" id="couponInput">
+                <button class="button">Apply Coupon</button>
+                <button class="button" onclick="window.location.href='discount.html'">Go to Offers</button>
+            </td>
+            <td colspan="3" class="button-cell" style="border-bottom: none;">
+                <button class="button" id="update-cart">Update Cart</button>
+            </td>
+        </tr>
+    </table>
 
+    <?php
+    $total = array_sum(array_map(function($item) {
+        return $item['price'] * $item['quantity'];
+    }, $cartItems));
+    ?>
+    <table class="styled-table2">
+        <tr class="theFirstRowInSecondTable">
+            <th colspan="2" style="border-bottom: none">Cart totals</th>
+        </tr>
+        <tr>
+            <td class="price2">Subtotal</td>
+            <td class="subtotal2"><?php echo number_format($total, 2); ?> $</td>
+        </tr>
+        <tr>
+            <td class="price2">Total</td>
+            <td class="price2"><?php echo number_format($total, 2); ?> $</td>
+        </tr>
+    </table>
 
+    <div class="backgroundForCheckout">
+        <div class="containerForForm">
+            <form id="checkout-form" method="POST" action="../PHP_Project/process_checkout.php">
+                <table class="tableForCheckout">
+                    <tr><td colspan="2"><p class="statementOfCheckout">Checkout</p></td></tr>
+                    <tr>
+                        <td><input type="text" name="first_name" placeholder="First Name" required autocomplete="off" style="width: 150px;"></td>
+                        <td><input type="text" name="last_name" placeholder="Last Name" required autocomplete="off" style="width: 150px;"></td>
+                    </tr>
+                    <tr><td colspan="2"><input type="tel" name="phone_number" placeholder="Phone Number" required autocomplete="off" style="width: 320px;"></td></tr>
+                    <tr><td colspan="2"><input type="text" name="address" placeholder="Address" required autocomplete="off" style="width: 320px;"></td></tr>
+                    <tr>
+                        <td colspan="2">
+                            <select class="custom-select" name="city" id="city-select" onchange="changeSelectColor(this)">
+                                <option value="" disabled selected hidden class="placeholder-option">City</option>
+                                <option value="Nablus">Nablus</option>
+                                <option value="Ramallah">Ramallah</option>
+                                <option value="Bethlehem">Bethlehem</option>
+                                <option value="Jenin">Jenin</option>
+                                <option value="Tulkarm">Tulkarm</option>
+                                <option value="Qalqilya">Qalqilya</option>
+                                <option value="Salfit">Salfit</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="border-bottom: none">
+                            <button type="button" class="button" onclick="handleSubmit()">Place order</button>
+                            <!-- إضافة div لعرض الرسالة -->
+                            <div id="message-container" style="text-align: center; margin-top: 10px;"></div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+<?php endif; ?>
 <script>
     function changeSelectColor(select) {
         if (select.value === "") {
             select.classList.remove("selected");
-            select.style.color = "#6c757d"; // Placeholder gray
+            select.style.color = "#6c757d";
         } else {
             select.classList.add("selected");
-            select.style.color = "#cccccc"; // Selected color
+            select.style.color = "#cccccc";
         }
     }
 </script>
-
 <script src="../JAVAS_Project/cart.js"></script>
-
-
 
 <!--*********************************************************************************************-->
 <footer class="golden-footer">

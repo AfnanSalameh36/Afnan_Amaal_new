@@ -177,7 +177,7 @@ p {
     background-position: left center;
 }
 
-/***************************************************************************************************************************/
+/*****************************************/
 div.backgroundForCart{
     display: flex;
     justify-content: center;
@@ -280,10 +280,29 @@ img {
     cursor: pointer;
     color: #8C7250;
 }
-.iconDelete{
-    color: #8C7250;
-    font-size: 20px;
-    cursor: pointer;
+.iconDelete {
+    cursor: pointer; /* الـ div لسه بتستجيب للكليك */
+}
+
+.remove {
+    background: none; /* إزالة الخلفية الافتراضية */
+    border: none; /* إزالة الحدود الافتراضية */
+    padding: 0; /* إزالة الهوامش الداخلية */
+    margin: 0; /* إزالة الهوامش الخارجية */
+    cursor: pointer; /* الزر بيستجيب للكليك */
+    display: inline-flex; /* عشان الزر ياخد حجم الأيقونة */
+    align-items: center;
+    justify-content: center;
+}
+
+.remove i.fa-solid.fa-trash {
+    color: #8C7250; /* اللون بتاع الأيقونة */
+    font-size: 20px; /* حجم الأيقونة */
+    transition: color 0.3s ease; /* تأثير ناعم لما أحط الموس */
+}
+
+.remove:hover i.fa-solid.fa-trash {
+    color: #a07f58; /* تغيير اللون لما أحط الموس (اختياري) */
 }
 .custom_number_input {
     position: relative;
@@ -371,15 +390,30 @@ input.quantity::-webkit-outer-spin-button {
 .inputForCouponCode:focus{
     border: 1px solid #8C7250;
 }
-/*+++++++++++++++++++++++++++++++++++++++++add checkout+++++++++++++++++++++++++++++++++++++*/
+.cartEmpty , .divButtonReturnToPL{
+    display: flex;
+    justify-content: center;
+}
+.statementCartEmpty{
+    border: 1px solid #8C7250;
+    padding: 31px 350px;
+    font-family: 'Josefin Sans', sans-serif;
+    color: #8C7250;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+/*/+++++++++++++++++++++++++++++++++++++++++add checkout+++++++++++++++++++++++++++++++++++++/*/
 
 div.backgroundForCheckout {
     display: flex;
     justify-content: end;
     background-image: url("../image2/checkout/bgforcheckout.jpg");
     background-size: cover;
-    /*background-position: center 50px;*/
-    background-repeat: no-repeat;
+/background-position: center 50px;/
+background-repeat: no-repeat;
     height: 100%;
     width: 100%;
     margin-top: 80px;
@@ -450,7 +484,7 @@ select:focus {
 
 
 
-/***************************************************************************************************************************/
+/*****************************************/
 /* Golden Footer Styles */
 .golden-footer {
     margin-top: 50px;
