@@ -556,7 +556,7 @@
         $('#use-coupon-btn').click(function() {
             // هنا يمكنك تغيير الرابط إلى صفحة السلة في موقعك
             document.getElementById('use-coupon-btn').addEventListener('click', function() {
-                window.location.href = 'cart.html';});
+                window.location.href = 'cart.php';});
             // أو يمكنك استخدام:
             // window.location.href = '/checkout?discount=' + currentDiscountCode;
 
@@ -575,7 +575,7 @@
         const savedCodeObj = JSON.parse(localStorage.getItem('discountCode'));
         if(savedCodeObj && savedCodeObj.code) {
             // ننقل المستخدم مع تمرير الكود في الرابط
-            window.location.href = 'cart.html?coupon=' + encodeURIComponent(savedCodeObj.code);
+            window.location.href = 'cart.php?coupon=' + encodeURIComponent(savedCodeObj.code);
         } else {
             alert('لم يتم العثور على كوبون مستخدم.');
         }

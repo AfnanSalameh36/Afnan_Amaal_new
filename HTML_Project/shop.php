@@ -153,7 +153,6 @@ $result = $conn->query($sql);
             <ul class="dropdown-content">
                 <li><a href="shop.php">Product List</a></li>
                 <li><a href="cart.php">Cart</a></li>
-                <li><a href="acount.html">"My Profile</a></li>
             </ul>
         </li>
 
@@ -174,8 +173,12 @@ $result = $conn->query($sql);
             $stmt->close();
         }
         ?>
-        <li><a href="login.html" style="   margin-left:90px;"><i class="fas fa-user-plus"></i></a></li>
-        <li><a href="out.html" style="   margin-left:-20px;"><i class="fas fa-sign-in-alt"></i></a></li>
+        <li class="dropdown">
+            <a href="login.html" style="   margin-left:90px;"><i class="fas fa-user-plus"></i></a>
+            <ul class="dropdown-content">
+                <li><a href="acount.html">My Profile</a></li>
+            </ul>
+        </li>        <li><a href="out.html" style="   margin-left:-20px;"><i class="fas fa-sign-in-alt"></i></a></li>
         <li class="cart-icon">
             <a href="cart.php" title="View Cart" style="position: relative;">
                 <i class="fas fa-shopping-cart" style="font-size: 22px; color: white;"></i>

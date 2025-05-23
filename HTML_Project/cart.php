@@ -176,7 +176,7 @@ $conn->close(); // إغلاق الاتصال
             <a href="shop.php">Shop</a>
             <ul class="dropdown-content">
                 <li><a href="shop.php">Product List</a></li>
-                <li><a href="cart.html">Cart</a></li>
+                <li><a href="cart.php">Cart</a></li>
             </ul>
         </li>
 
