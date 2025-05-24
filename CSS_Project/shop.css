@@ -190,7 +190,7 @@ body{
 div.backgroundForShop{
     display:flex;
     justify-content: center;
-    background-image: url("../image2/bbbb.jpg");
+    background-image: url("../HTML_Project/image2/bbbb.jpg");
     background-size: cover; /* Ensures the image covers the full div */
     background-position: center; /* Centers the image */
     height: 530px;
@@ -802,7 +802,7 @@ a{
     div.backgroundForCart {
         display: flex;
         justify-content: center;
-        background-image: url("../image2/cart/backgroundCart.jpg");
+        background-image: url("../HTML_Project/image2/cart/backgroundCart.jpg");
         background-size: cover; /* Ensures the image covers the full div */
         background-position: center; /* Centers the image */
         height: 530px; /* Set a visible height */
@@ -1017,7 +1017,7 @@ a{
     div.backgroundForCheckout {
         display: flex;
         justify-content: end;
-        background-image: url("../image2/checkout/bgforcheckout.jpg");
+        background-image: url("../HTML_Project/image2/checkout/bgforcheckout.jpg");
         background-size: cover;
         /*background-position: center 50px;*/
         background-repeat: no-repeat;

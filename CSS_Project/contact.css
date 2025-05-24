@@ -181,7 +181,7 @@ p {
 div.backgroundForContactUs{
     display: flex;
     justify-content: center;
-    background-image: url("../image2/contactUs/backgroundForContact.jpg");
+    background-image: url("../HTML_Project/image2/contactUs/backgroundForContact.jpg");
     background-size: cover; /* Ensures the image covers the full div */
     background-position: center; /* Centers the image */
     height: 530px; /* Set a visible height */

@@ -182,7 +182,7 @@ body {
     background-color: #0B1315;
     margin: 0;
     padding: 0;
-    background-image: url("../image2/b1.png");
+    background-image: url("../HTML_Project/image2/b1.png");
     background-position: left 100px top;
     background-repeat: no-repeat;
     background-size: contain;
@@ -212,7 +212,7 @@ body {
 div.backgroundForOurMenu {
     display: flex;
     justify-content: center;
-    background-image: url("../image2/TopBackground1.jpg");
+    background-image: url("../HTML_Project/image2/TopBackground1.jpg");
     background-size: cover; /* Ensures the image covers the full div */
     background-position: center; /* Centers the image */
     height: 530PX; /* Set a visible height */
@@ -227,12 +227,12 @@ div.background1 , div.background2{
 }
 
 div.background1{
-    background-image: url("../image2/1.jpg");
+    background-image: url("../HTML_Project/image2/1.jpg");
     margin-top: 150px;
 }
 
 div.background2{
-    background-image: url("../image2/2.jpg");
+    background-image: url("../HTML_Project/image2/2.jpg");
     margin-top: 150px;
 }
 

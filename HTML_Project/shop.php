@@ -234,15 +234,16 @@ $result = $conn->query($sql);
         ?>
         <div class="card <?= $category ?>" data-category="<?= $category ?>" data-name="<?= $name ?>" data-popularity="<?= $row['popularity'] ?>" data-price="<?= $price ?>">
             <div class="image-container">
-                <img src="<?= $image ?>" alt="<?= $category ?>">
+                <img src="image2/<?= $image ?>" alt="<?= $category ?>">
                 <span class="discount">-<?= $discount ?>%</span>
 
                 <?php if ($isLoggedIn): ?>
-                    <button class="button-addToCart" data-id="<?php echo $row["product_id"];?>">ADD TO CART</button>
+                    <button class="button-addToCart" data-id="<?= $productId ?>">ADD TO CART</button>
                 <?php else: ?>
                     <a href="login.html" class="button-addToCart">Login to Add</a>
                 <?php endif; ?>
             </div>
+
 
             <div class="container">
                 <h5 class="product-name"><?= $name ?></h5>
