@@ -541,10 +541,18 @@
                 },
                 body: JSON.stringify({
                     code: discountObj.code,
-                    discount: discountObj.discount,
-                    user_email: 'dummy@example.com' // سيتم استبداله من السيشن في PHP
+                    discount: discountObj.discount
                 })
-            });
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        console.log("✔️ تم حفظ الكوبون بنجاح!");
+                    } else {
+                        console.error("❌ خطأ:", data.message);
+                    }
+                });
+
 
             $('#discount-percent').text(discountObj.discount);
             $('#code').text(discountObj.code);
