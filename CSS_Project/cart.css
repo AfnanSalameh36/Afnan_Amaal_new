@@ -325,7 +325,7 @@ input.quantity {
     border: none;
     text-align: left;
     font-size: 17px;
-    padding-left: 27px;
+    padding-left: 18px;
     -moz-appearance: textfield;
 
 }
@@ -404,6 +404,10 @@ input.quantity::-webkit-outer-spin-button {
 a{
     text-decoration: none;
     color: white;
+}
+
+.forrm{
+    display: inline;
 }
 /*/+++++++++++++++++++++++++++++++++++++++++add checkout+++++++++++++++++++++++++++++++++++++/*/
 

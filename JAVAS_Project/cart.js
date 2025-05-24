@@ -58,18 +58,20 @@ document.addEventListener("DOMContentLoaded", function () {
         xhr.send(`product_id=${productId}&quantity=${quantity}&user_id=<?php echo $_SESSION['user']['id'] ?? $_SESSION['user']; ?>`);
     }
 
-    // دالة لتحديث الإجمالي الكلي (Subtotal و Total)
+    // ******************************************************************************************************************
     function updateCartTotal() {
         const subtotals = document.querySelectorAll(".subtotal");
         let total = 0;
         subtotals.forEach(subtotal => {
-            total += parseFloat(subtotal.textContent);
+            total += parseFloat(subtotal.textContent.replace(" $", ""));
         });
 
         // تحديث Subtotal و Total في الجدول الثاني
         document.querySelector(".subtotal2").textContent = total.toFixed(2) + " $";
         document.querySelector(".price2:last-child").textContent = total.toFixed(2) + " $";
     }
+
+    // *****************************************************************************************************************
 
     // التعامل مع زر الحذف (من الكود السابق)
     var remove = document.getElementsByClassName("remove");

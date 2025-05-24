@@ -1,12 +1,15 @@
 <?php
 global $conn;
 session_start();
-require '../PHP_Project/db_connection.php'; // تأكدي من المسار الصحيح
+require '../PHP_Project/db_connection.php';
 
 $cartItems = []; // مصفوفة لتخزين عناصر السلة
+$discountPercent = 0; // القيمة الافتراضية للخصم
+$subtotal = 0;
 
 if (isset($_SESSION['user'])) {
     $user_id = is_array($_SESSION['user']) ? $_SESSION['user']['id'] : (int)$_SESSION['user'];
+    $user_email = is_array($_SESSION['user']) ? $_SESSION['user']['email'] : '';
 
     // استعلام آمن باستخدام Prepared Statement
     $sql_cart = "SELECT * FROM cart_items WHERE user_id = ?";
@@ -29,9 +32,33 @@ if (isset($_SESSION['user'])) {
         $stmt_product->close();
     }
     $stmt_cart->close();
+
+    // حساب الإجمالي الأولي (Subtotal)
+    $subtotal = array_sum(array_map(function($item) {
+        return $item['price'] * $item['quantity'];
+    }, $cartItems));
+
+    // التحقق من الكوبون إذا تم إرساله عبر POST
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['couponCode'])) {
+        $couponCode = trim($_POST['couponCode']);
+        $sql_discount = "SELECT discount_percent FROM discount_coupons WHERE user_email = ? AND code = ?";
+        $stmt_discount = $conn->prepare($sql_discount);
+        $stmt_discount->bind_param("ss", $user_email, $couponCode);
+        $stmt_discount->execute();
+        $result_discount = $stmt_discount->get_result();
+
+        if ($row_discount = $result_discount->fetch_assoc()) {
+            $discountPercent = (float)$row_discount['discount_percent'];
+        }
+        $stmt_discount->close();
+
+    }
 }
 
 $conn->close(); // إغلاق الاتصال
+
+// حساب الـ Total بعد تطبيق الخصم
+$total = $subtotal * (1 - $discountPercent / 100);
 ?>
 
 
@@ -257,9 +284,12 @@ $conn->close(); // إغلاق الاتصال
         <?php endforeach; ?>
         <tr class="theLastRow">
             <td colspan="2" style="border-bottom: none;padding-top: 30px">
+                <form method="POST" action="" class="forrm">
                 <input type="text" class="inputForCouponCode" name="couponCode" placeholder="Coupon Code" id="couponInput">
                 <button class="button">Apply Coupon</button>
+                </form>
                 <button class="button" onclick="window.location.href='discount.html'">Go to Offers</button>
+
             </td>
             <td colspan="3" class="button-cell" style="border-bottom: none;">
                 <button class="button" id="update-cart">Update Cart</button>
@@ -267,18 +297,13 @@ $conn->close(); // إغلاق الاتصال
         </tr>
     </table>
 
-    <?php
-    $total = array_sum(array_map(function($item) {
-        return $item['price'] * $item['quantity'];
-    }, $cartItems));
-    ?>
     <table class="styled-table2">
         <tr class="theFirstRowInSecondTable">
             <th colspan="2" style="border-bottom: none">Cart totals</th>
         </tr>
         <tr>
             <td class="price2">Subtotal</td>
-            <td class="subtotal2"><?php echo number_format($total, 2); ?> $</td>
+            <td class="subtotal2"><?php echo number_format($subtotal, 2); ?> $</td>
         </tr>
         <tr>
             <td class="price2">Total</td>
