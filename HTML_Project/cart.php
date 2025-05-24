@@ -225,7 +225,8 @@ $conn->close(); // إغلاق الاتصال
             <tr>
                 <td class="product-cell">
                     <div class="product-info">
-                        <img src="<?php echo htmlspecialchars($item['image_url']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>">
+
+                        <img src="image2/<?php echo htmlspecialchars($item['image_url']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>">
                         <span class="productItem"><?php echo htmlspecialchars($item['name']); ?></span>
                     </div>
                 </td>

@@ -234,7 +234,7 @@ $result = $conn->query($sql);
         ?>
         <div class="card <?= $category ?>" data-category="<?= $category ?>" data-name="<?= $name ?>" data-popularity="<?= $row['popularity'] ?>" data-price="<?= $price ?>">
             <div class="image-container">
-                <img src="<?= $image ?>" alt="<?= $category ?>">
+                <img src="image2/<?= $image ?>" alt="<?= $category ?>">
                 <span class="discount">-<?= $discount ?>%</span>
 
                 <?php if ($isLoggedIn): ?>
