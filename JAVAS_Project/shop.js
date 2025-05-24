@@ -350,7 +350,7 @@ for (var i = 0; i < product_id.length; i++) {
         xml.send();
     });
 }
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 document.addEventListener('DOMContentLoaded', function () {
     const filterButtons = document.querySelectorAll('.button-value');
     const sortSelect = document.querySelector('.selectByOrder');
@@ -369,14 +369,32 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         // إعادة تعيين اختيار الترتيب إلى "Sort by"
-        sortSelect.selectedIndex = 0;
+        sortSelect.innerHTML = `
+            <option value=""  disabled>Sort by</option>
+            <option value="popularity">Sort by popularity</option>
+            <option value="lowToHigh">Sort by Price: Low to High</option>
+            <option value="highToLow">Sort by Price: High to Low</option>
+        `;
+        sortSelect.value = '';
+
+        // إزالة كلاس active من كل الأزرار
+        filterButtons.forEach(button => button.classList.remove('active'));
+        // إضافة كلاس active للزر المختار
+        const activeButton = Array.from(filterButtons).find(button => button.getAttribute('data-filter') === category);
+        if (activeButton) {
+            activeButton.classList.add('active');
+        }
     }
 
     // ترتيب المنتجات حسب القيمة المختارة
     function sortProducts() {
         const sortValue = sortSelect.value;
 
-        let visibleProducts = allProducts.filter(product => product.style.display !== 'none');
+        // نعرض كل المنتجات (زي "All") قبل الترتيب
+        filterProduct('all');
+
+        // نفرز كل المنتجات (مش بس الظاهرة)
+        let visibleProducts = allProducts;
 
         if (sortValue === 'popularity') {
             visibleProducts.sort((a, b) => {
@@ -396,6 +414,23 @@ document.addEventListener('DOMContentLoaded', function () {
         visibleProducts.forEach(product => {
             productsContainer.appendChild(product);
         });
+
+        // إزالة كلاس active من كل الأزرار لما يتم اختيار ترتيب
+        filterButtons.forEach(button => button.classList.remove('active'));
+
+        // إعادة ترتيب الخيارات في <select> بحيث الخيار المختار يبقى الأول
+        if (sortValue) { // نتحقق إن فيه خيار مختار (مش "Sort by")
+            const options = Array.from(sortSelect.options);
+            const selectedOption = options.find(opt => opt.value === sortValue);
+            const defaultOption = options.find(opt => opt.value === '');
+            const otherOptions = options.filter(opt => opt.value !== '' && opt.value !== sortValue);
+
+            const newOptions = [selectedOption.cloneNode(true), defaultOption.cloneNode(true), ...otherOptions.map(opt => opt.cloneNode(true))];
+
+            sortSelect.innerHTML = '';
+            newOptions.forEach(opt => sortSelect.appendChild(opt));
+            sortSelect.value = sortValue;
+        }
     }
 
     // ربط أزرار الفلترة
@@ -408,9 +443,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ربط قائمة الترتيب
     sortSelect.addEventListener('change', sortProducts);
+
+    // تلوين "All" لما الصفحة تحمل
+    const allButton = Array.from(filterButtons).find(button => button.getAttribute('data-filter') === 'all');
+    if (allButton) {
+        allButton.classList.add('active');
+    }
 });
 
 
+// دالة البحث
+function searchProducts() {
+    const searchInput = document.getElementById('search_input').value.toLowerCase();
+    const cards = document.querySelectorAll('.card');
+
+    cards.forEach(card => {
+        const productName = card.getAttribute('data-name').toLowerCase();
+        if (productName.includes(searchInput)) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
 
 
 
